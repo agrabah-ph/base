@@ -48111,8 +48111,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! E:\laragon\www\agrabah-marketplace\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! E:\laragon\www\agrabah-marketplace\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! c:\Users\pc-8\Documents\dev\agrabah-marketplace\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! c:\Users\pc-8\Documents\dev\agrabah-marketplace\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
