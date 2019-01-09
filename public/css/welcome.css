@@ -13,12 +13,22 @@ html, body {
     position: relative;
     height: 100vh;
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.lg-section {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
 }
 
 .static {
-    background-color:red;
+    background-color:#ededed;
 }
 
 .parallax::after {
@@ -36,9 +46,62 @@ html, body {
 .bg1::after {
     background-image: url('../images/images/front.png');
     background-size: cover;
+    background-position: center;
 }
 
 .bg2::after {
-    background-image: url('../images/images/elaine-casap-86020-unsplash.jpg');
+    background-image: url('../images/images/phuc-long-579304-unsplash.jpg');
     background-size: cover;
+    background-position: center;
+}
+
+.bg3::after {
+    background-image: url('../images/images/help-2.jpg');
+    background-size: cover;
+    background-position: bottom right;
+}
+
+.bg4::after {
+    background-image: url('../images/images/nam-hoang-625148-unsplash.jpg');
+    background-size: cover;
+    background-position: top center;
+}
+
+.bg5::after {
+    background-image: url('../images/images/adele-payman-630506-unsplash (1).jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.section-text {
+    height: 80%;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-size: cover;
+    background-position: right bottom;
+    border-radius: 15px 50px;
+}
+
+.section-text .sm-text {
+    font-size: 2rem;
+}
+
+.section-text .lg-text {
+    font-size: 3rem;
+    font-weight: 800;
+}
+
+.section1 {
+    background-image: url('../images/images/O8RDNS0.jpg');
+}
+
+#login-section {
+    margin-bottom: 2rem;
+    padding: 1.5rem 1rem;
+    border-bottom: 1px solid #cad2ec;
+    font-size: 1.5rem;
 }
