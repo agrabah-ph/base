@@ -31,6 +31,10 @@ html, body {
     background-color:#ededed;
 }
 
+.static1 {
+    background-color:#cad2ec;
+}
+
 .parallax::after {
     content: " ";
     position: absolute;
@@ -73,6 +77,12 @@ html, body {
     background-position: center;
 }
 
+.bg6::after {
+    background-image: url('../images/images/paul-morris-128425-unsplash.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
 .section-text {
     height: 80%;
     width: 80%;
@@ -99,9 +109,21 @@ html, body {
     background-image: url('../images/images/O8RDNS0.jpg');
 }
 
-#login-section {
+.section-head {
     margin-bottom: 2rem;
     padding: 1.5rem 1rem;
     border-bottom: 1px solid #cad2ec;
     font-size: 1.5rem;
+}
+
+.welcome-footer {
+    padding: 1rem 3rem;
+    position: relative;
+    min-height: 10vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align:center;
+    background-color: #cad2ec;
 }
