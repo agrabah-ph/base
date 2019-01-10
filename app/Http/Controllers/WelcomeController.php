@@ -7,6 +7,12 @@ use App\User;
 
 class WelcomeController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('guest')->except('logout');
+    }
+
     public function index() {
         if(User::count()) {
             return view('welcome');
