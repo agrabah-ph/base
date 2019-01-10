@@ -20,8 +20,8 @@
     <section class="section parallax bg2">
         <span style="font-weight:800; color: white; font-size: 3rem; background-color: #ff5345; padding: 1rem;">Get it FRESH</span>
     </section>
-    <section class="section static">
-        <span class="section-head" id="login-section">Log in to Agrabah</span>
+    <section class="section static" id="login-section">
+        <span class="section-head">Log in to Agrabah</span>
         <form method="POST" action="{{ route('login') }}">
             @csrf
             <div class="form-group">
@@ -92,7 +92,7 @@
             </span>
         </div>
     </section>
-    <section class="section parallax bg5">
+    <section class="section parallax bg5"  id="volunteer-section">
         <div style="padding:2rem; color:black; background:rgba(255,255,255,0.5);">
             <span style="font-size:1.3rem;">We are always on the lookout for volunteer:</span>
             <br>
@@ -156,9 +156,9 @@
             <button class="btn btn-primary" type="submit">Submit</button>
         </form>
     </section>
-    <section class="section static1">
+    <section class="section static1"  id="about-section">
         <div class="section-text">
-            <h3>About</h3>
+            <h3>About Us</h3>
             <br>
             <span style="font-size:1rem;">
             Agrabah Marketplace is more than a platform, we build communities. Part of our initiative is to create awareness and encourage millennials to take part in the wave of change. We want to create awareness around the topic of food sustainability in the Philippines. Everyone’s efforts can help create the ripple effect regardless of how big or small their input is. We aim to do this through volunteering efforts and also promoting agri-preneurship as a viable occupational choice. 
@@ -201,7 +201,7 @@
             </ul>
         </div>
     </section>
-    <section class="lg-section static">
+    <section class="lg-section static" id="contact-section">
         <span class="section-head">Contact Us</span>
         <form class="m-2">
             <div class="form-row">
@@ -226,11 +226,11 @@
         </form>
     </section>
     <section class="welcome-footer">
-                Address: <br>
-                Institute of Management – Dado Banatao Incubator <br>
-                123 Paseo de Roxas, Legazpi Village, Makati, 1229 Metro Manila <br>
-                <br>
-                Agrabah Marketplace &copy; 2019
+        Address: <br>
+        Institute of Management – Dado Banatao Incubator <br>
+        123 Paseo de Roxas, Legazpi Village, Makati, 1229 Metro Manila <br>
+        <br>
+        Agrabah Marketplace &copy; 2019
     </section>
 </div>
 @endsection

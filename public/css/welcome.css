@@ -7,6 +7,7 @@ html, body {
     overflow-x: hidden;
     overflow-y: auto;
     perspective: 2px;
+    scroll-behavior: smooth;
 }
 
 .section {
@@ -126,4 +127,9 @@ html, body {
     justify-content: center;
     text-align:center;
     background-color: #cad2ec;
+}
+
+#contact-section {
+    padding-top: 80px;
+    padding-bottom: 2rem;
 }

@@ -46,7 +46,16 @@
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                <a class="nav-link" href="#login-section">{{ __('Login') }}</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#volunteer-section">Volunteer</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#about-section">About us</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#contact-section">Contact us</a>
                             </li>
                         @else
                             <li class="nav-item dropdown">
@@ -76,5 +85,15 @@
             @yield('content')
         </main>
     </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('.navbar-nav>li>a').on('click', function(){ //hides navbar items after link is clicked
+                $('.navbar-collapse').collapse('hide');
+            });
+        });
+    </script>
+
 </body>
 </html>
