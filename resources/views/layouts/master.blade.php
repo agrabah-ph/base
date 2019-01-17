@@ -14,14 +14,15 @@
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Rubik" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Rubik" rel="stylesheet">
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    @yield('style')
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
+        <nav class="navbar navbar-expand-md navbar-light navbar-laravel fixed-top pb-0">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     <img src="{{ url('/images/logo/200x200.png') }}" width="64" height="64" class="d-inline-block align-top" alt="Agrabah Marketplace">
@@ -45,7 +46,16 @@
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                <a class="nav-link" href="#login-section">{{ __('Login') }}</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#about-section">About us</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#volunteer-section">Volunteer</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#contact-section">Contact us</a>
                             </li>
                         @else
                             <li class="nav-item dropdown">
@@ -71,9 +81,26 @@
             </div>
         </nav>
 
-        <main class="py-4">
+        <main>
             @yield('content')
         </main>
     </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('.navbar-nav>li>a').on('click', function(){ //hides navbar items after link is clicked
+                $('.navbar-collapse').collapse('hide');
+            });
+
+            setTimeout(function () { //prevent screen keyboard to resize viewport
+                let viewheight = $(window).height();
+                let viewwidth = $(window).width();
+                let viewport = document.querySelector("meta[name=viewport]");
+                viewport.setAttribute("content", "height=" + viewheight + "px, width=" + viewwidth + "px, initial-scale=1.0");
+            }, 300);
+        });
+    </script>
+
 </body>
 </html>
