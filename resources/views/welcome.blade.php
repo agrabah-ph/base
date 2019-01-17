@@ -59,6 +59,51 @@
             @endif
         </form>
     </section>
+    <section class="section parallax bg6">
+        <div style="padding:2rem; color:white; background:rgba(0,0,0,0.5);text-align:center;">
+            <span style="font-size:1.5rem;">There is a problem in the agricultural value chain. Filipino farmers get the smallest profit share while rendering a majority of the hard work.</span>
+        </div>
+    </section>
+    <section class="section static1"  id="about-section">
+        <div class="section-text">
+            <h3>About Us</h3>
+            <br>
+            <span style="font-size:1rem;">
+            Agrabah Marketplace is more than a platform, we build communities. Part of our initiative is to create awareness and encourage millennials to take part in the wave of change. We want to create awareness around the topic of food sustainability in the Philippines. Everyone’s efforts can help create the ripple effect regardless of how big or small their input is. We aim to do this through volunteering efforts and also promoting agri-preneurship as a viable occupational choice. 
+            </span>
+        </div>
+    </section>
+    <section class="section static">
+        <div class="section-text">
+            <span style="font-size:1.2rem;">How do we connect the consumers directly to the producers and redistribute a fair profit share to the farmers?</span>
+            <br>
+            <span style="font-size:1rem;">
+            We created a b2b web-app platform that address this issue. We provide fisherman and farmers with discoverability which means an increase in sales, marketing cost reduction and elimination of vendor-client bias. On the other hand we also provide consumer’s product cost savings, vendor discovery and analytics.
+            </span>
+        </div>
+    </section>
+    <section class="section static1">
+        <div class="section-text" style="text-align:left; align:left; align-items:baseline;">
+            <h3>Impact</h3>
+            <br>
+            <h5>Farmers</h5>
+            <ul>
+                <li>Stable Market Channel</li>
+                <li>Get connected to other farmers to learn best practices</li>
+                <li>Get access to public and private support</li>
+            </ul>
+            <h5>Local Business</h5>
+            <ul>
+                <li>Have an overview of the supply</li>
+                <li>Establish a market standard for quality</li>
+                <li>Establish a market standard for quality</li>
+            </ul>
+            <h5>Government</h5>
+            <ul>
+                <li>Get access to supply availability and market demand data (Generate Predictive Analytics)</li>
+            </ul>
+        </div>
+    </section>
     <section class="section parallax bg3">
         <span style="padding:2rem; color:white; text-align:center; background:rgba(0,0,0,0.5); font-size: 1rem;">Did you know that the average age of the Filipino farmer is 57 years old?<br><br>
         Furthermore, most of the arable land in the Philippines is not being fully utilized.<br>
@@ -110,7 +155,7 @@
             <span>If you want to be a wavemaker, please reach out to us by filling out the form below.</span>
         </div>
     </section>
-    <section class="lg-section static">
+    <section class="lg-section static1">
         <span class="section-head">Volunteer</span>
         <form class="m-2">
             <div class="form-row">
@@ -155,51 +200,6 @@
             </div>
             <button class="btn btn-primary" type="submit">Submit</button>
         </form>
-    </section>
-    <section class="section static1"  id="about-section">
-        <div class="section-text">
-            <h3>About Us</h3>
-            <br>
-            <span style="font-size:1rem;">
-            Agrabah Marketplace is more than a platform, we build communities. Part of our initiative is to create awareness and encourage millennials to take part in the wave of change. We want to create awareness around the topic of food sustainability in the Philippines. Everyone’s efforts can help create the ripple effect regardless of how big or small their input is. We aim to do this through volunteering efforts and also promoting agri-preneurship as a viable occupational choice. 
-            </span>
-        </div>
-    </section>
-    <section class="section parallax bg6">
-        <div style="padding:2rem; color:white; background:rgba(0,0,0,0.5);text-align:center;">
-            <span style="font-size:1.5rem;">There is a problem in the agricultural value chain. Filipino farmers get the smallest profit share while rendering a majority of the hard work.</span>
-        </div>
-    </section>
-    <section class="section static">
-        <div class="section-text">
-            <span style="font-size:1.2rem;">How do we connect the consumers directly to the producers and redistribute a fair profit share to the farmers?</span>
-            <br>
-            <span style="font-size:1rem;">
-            We created a b2b web-app platform that address this issue. We provide fisherman and farmers with discoverability which means an increase in sales, marketing cost reduction and elimination of vendor-client bias. On the other hand we also provide consumer’s product cost savings, vendor discovery and analytics.
-            </span>
-        </div>
-    </section>
-    <section class="section static1">
-        <div class="section-text" style="text-align:left; align:left; align-items:baseline;">
-            <h3>Impact</h3>
-            <br>
-            <h5>Farmers</h5>
-            <ul>
-                <li>Stable Market Channel</li>
-                <li>Get connected to other farmers to learn best practices</li>
-                <li>Get access to public and private support</li>
-            </ul>
-            <h5>Local Business</h5>
-            <ul>
-                <li>Have an overview of the supply</li>
-                <li>Establish a market standard for quality</li>
-                <li>Establish a market standard for quality</li>
-            </ul>
-            <h5>Government</h5>
-            <ul>
-                <li>Get access to supply availability and market demand data (Generate Predictive Analytics)</li>
-            </ul>
-        </div>
     </section>
     <section class="lg-section static" id="contact-section">
         <span class="section-head">Contact Us</span>

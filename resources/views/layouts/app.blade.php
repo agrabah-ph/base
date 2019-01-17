@@ -49,10 +49,10 @@
                                 <a class="nav-link" href="#login-section">{{ __('Login') }}</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#volunteer-section">Volunteer</a>
+                                <a class="nav-link" href="#about-section">About us</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#about-section">About us</a>
+                                <a class="nav-link" href="#volunteer-section">Volunteer</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#contact-section">Contact us</a>
