@@ -110,6 +110,13 @@ a.sidebar_navlink, a.sidebar_trigger {
     transform: translate(-50%, -50%);
 }
 
+.sidebar_nav > span {
+    position: absolute;
+    bottom:0;
+    font-size: 0.8em;
+    margin: 8px;
+}
+
 @media (min-width: 42em) {
     .dashboard_content {
         margin-left: 4em;
@@ -124,11 +131,22 @@ a.sidebar_navlink, a.sidebar_trigger {
         left: 0;
     }
 
+    .sidebar_nav>span {
+        font-size: 0.5em;
+    }
+
     .sidebar_nav:hover,
     .sidebar_nav:focus,
     .sidebar_trigger:hover + .sidebar_nav,
     .sidebar_trigger:focus + .sidebar_nav {
         width: 15em;
+    }
+
+    .sidebar_nav:hover >span,
+    .sidebar_nav:focus >span,
+    .sidebar_trigger:focus + .sidebar_nav>span,
+    .sidebar_trigger:hover + .sidebar_nav>span {
+        font-size: 0.8em;
     }
 }
 
@@ -147,5 +165,9 @@ a.sidebar_navlink, a.sidebar_trigger {
 
     .sidebar_nav ul {
         top: 1.3em;
+    }
+
+    .sidebar_nav>span {
+        font-size: 0.8em;
     }
 }

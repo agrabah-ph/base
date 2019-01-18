@@ -31,42 +31,30 @@
             </a>
             <nav class="sidebar_nav">
                 <ul>
+                    @role('owner')
                     <li>
-                        <a href="#0" class="sidebar_navlink">
-                            <i class="fa fa-home"></i><em>Home</em>
+                        <a class="sidebar_navlink" href="#0">
+                            <i class="fas fa-users-cog"></i><em>Manage Users</em>
+                        </a>
+                    </li>
+                    @endrole
+                    <li>
+                        <a class="sidebar_navlink" href="#0">
+                            <i class="fas fa-bell"></i><em>Notifications</em>
                         </a>
                     </li>
                     <li>
-                        <a href="#0" class="sidebar_navlink">
-                            <i class="fa fa-home"></i><em>Home</em>
+                        <a class="sidebar_navlink" href="{{ route('logout') }}"
+                            onclick="event.preventDefault();
+                            document.getElementById('logout-form').submit();">
+                            <i class="fas fa-sign-out-alt"></i><em>Log out</em>
                         </a>
-                    </li>
-                    <li>
-                        <a href="#0" class="sidebar_navlink">
-                            <i class="fa fa-home"></i><em>Home</em>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#0" class="sidebar_navlink">
-                            <i class="fa fa-home"></i><em>Home</em>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#0" class="sidebar_navlink">
-                            <i class="fa fa-home"></i><em>Home</em>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#0" class="sidebar_navlink">
-                            <i class="fa fa-home"></i><em>Home</em>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#0" class="sidebar_navlink">
-                            <i class="fa fa-home"></i><em>Home</em>
-                        </a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
                     </li>
                 </ul>
+                <span>Agrabah Marketplace &copy;2019</span>
             </nav>
         </div>
         <main class="dashboard_content">
