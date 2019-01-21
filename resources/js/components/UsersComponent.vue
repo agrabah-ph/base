@@ -6,6 +6,11 @@
             </div>
             <div class="col w-100"></div>
         </div>
+        <div class="row" v-if="!groupedUsers.length">
+            <div class="col-12">
+                No matching records found.
+            </div>
+        </div>
     </div>
 </template>
 

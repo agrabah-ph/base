@@ -1884,6 +1884,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -47651,31 +47656,41 @@ var render = function() {
   return _c(
     "div",
     { staticClass: "container" },
-    _vm._l(_vm.groupedUsers, function(users) {
-      return _c(
-        "div",
-        { staticClass: "row" },
-        [
-          _vm._l(users, function(user) {
-            return _c(
-              "div",
-              { staticClass: "col-md-3 col-sm-6" },
-              [
-                _c("user", {
-                  staticClass: "animated fadeIn",
-                  attrs: { user: user }
-                })
-              ],
-              1
-            )
-          }),
-          _vm._v(" "),
-          _c("div", { staticClass: "col w-100" })
-        ],
-        2
-      )
-    }),
-    0
+    [
+      _vm._l(_vm.groupedUsers, function(users) {
+        return _c(
+          "div",
+          { staticClass: "row" },
+          [
+            _vm._l(users, function(user) {
+              return _c(
+                "div",
+                { staticClass: "col-md-3 col-sm-6" },
+                [
+                  _c("user", {
+                    staticClass: "animated fadeIn",
+                    attrs: { user: user }
+                  })
+                ],
+                1
+              )
+            }),
+            _vm._v(" "),
+            _c("div", { staticClass: "col w-100" })
+          ],
+          2
+        )
+      }),
+      _vm._v(" "),
+      !_vm.groupedUsers.length
+        ? _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "col-12" }, [
+              _vm._v("\n            No matching records found.\n        ")
+            ])
+          ])
+        : _vm._e()
+    ],
+    2
   )
 }
 var staticRenderFns = []
