@@ -31,15 +31,20 @@
             </a>
             <nav class="sidebar_nav">
                 <ul>
+                    <li>
+                        <a class="sidebar_navlink {{ Route::is('home') ? 'nav_active' : ''}}" href="{{ route('home') }}">
+                            <i class="fas fa-tachometer-alt"></i><em>Dashboard</em>
+                        </a>
+                    </li>
                     @role('owner')
                     <li>
-                        <a class="sidebar_navlink" href="#0">
+                        <a class="sidebar_navlink {{ Route::is('manage.users') ? 'nav_active' : ''}}" href="{{ route('manage.users') }}">
                             <i class="fas fa-users-cog"></i><em>Manage Users</em>
                         </a>
                     </li>
                     @endrole
                     <li>
-                        <a class="sidebar_navlink" href="#0">
+                        <a class="sidebar_navlink {{ Route::is('notifications') ? 'nav_active' : ''}}" href="{{ route('notifications') }}">
                             <i class="fas fa-bell"></i><em>Notifications</em>
                         </a>
                     </li>

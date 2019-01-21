@@ -117,13 +117,17 @@ a.sidebar_navlink, a.sidebar_trigger {
     margin: 8px;
 }
 
+.nav_active {
+    background: #061A2B;
+}
+
 @media (min-width: 42em) {
     .dashboard_content {
         margin-left: 4em;
     }
 
     .sidebar_trigger {
-        width: 4em;
+        display:none;
     }
 
     .sidebar_nav {
@@ -148,6 +152,10 @@ a.sidebar_navlink, a.sidebar_trigger {
     .sidebar_trigger:hover + .sidebar_nav>span {
         font-size: 0.8em;
     }
+
+    .sidebar_nav ul {
+        top: 1.3em;
+    }
 }
 
 @media(min-width: 68em) {
@@ -155,16 +163,8 @@ a.sidebar_navlink, a.sidebar_trigger {
         margin-left: 15em;
     }
 
-    .sidebar_trigger {
-        display: none;
-    }
-
     .sidebar_nav {
         width: 15em;
-    }
-
-    .sidebar_nav ul {
-        top: 1.3em;
     }
 
     .sidebar_nav>span {

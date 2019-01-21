@@ -16,5 +16,7 @@ Route::get('/', 'WelcomeController@index')->name('welcome');
 Auth::routes(['verify' => true]);
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/users', 'HomeController@users')->name('manage.users');
+Route::get('/notifications', 'HomeController@notifications')->name('notifications');
 
 Route::get('/test', function() {echo 'test';})->middleware('verified');
