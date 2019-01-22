@@ -28,7 +28,7 @@
                 </a>
                 <div class="navbar-brand d-none d-md-inline-block">
                     <p class="mb-0" style="font-size:1.8rem">{{config('app.name')}}</p>
-                    <p class="m-0" style="font-size:1rem;">Bridging the gap in Agricultural supply</p>
+                    <p class="m-0" style="font-size:1rem;">More than a platform, we build communities</p>
                 </div>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>

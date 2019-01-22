@@ -8,7 +8,7 @@
 <div class="parallax-wrapper">
     <section class="parallax bg1" style="height:100vh;">
         <img src="{{ url('/images/logo/200x200.png') }}" width="200px" height="200px" style="margin: calc(50vh - 100px) calc(50% - 100px) 0 calc(50% - 100px)" alt="Agrabah Marketplace">
-        <p style="text-align:center; margin-top:0; font-size:1rem;">Bridging the gap in Agricultural supply</p>
+        <p style="text-align:center; margin-top:0; font-size:1rem;">More than a platform, we build communities</p>
     </section>
     <section class="section static">
         <div class="section-text section1">
