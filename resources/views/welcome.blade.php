@@ -227,7 +227,7 @@
     </section>
     <section class="welcome-footer">
         Address: <br>
-        Institute of Management – Dado Banatao Incubator <br>
+        Asian Institute of Management – Dado Banatao Incubator <br>
         123 Paseo de Roxas, Legazpi Village, Makati, 1229 Metro Manila <br>
         <br>
         Agrabah Marketplace &copy; 2019
