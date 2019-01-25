@@ -26,10 +26,10 @@
         mounted() {
             this.$store.dispatch('GET_USERS')
 
-            window.Echo.channel('search')
-                .listen('.searchUserResults', (e) => {
-                    this.$store.commit('SET_USERS', e.users)
-                })
+            // window.Echo.channel('search')
+            //     .listen('.searchUserResults', (e) => {
+            //         this.$store.commit('SET_USERS', e.users)
+            //     })
         },
         computed: {
             groupedUsers() {

@@ -7,6 +7,8 @@ let actions = {
         };
         Axios.get(`/api/user-search`, {params})
             .then(res => {
+                commit('SET_USERS', res.data)
+                res.data = 'ok'
                 if(res.data === 'ok')
                     console.log('request sent successfully')
             }).catch(err => {

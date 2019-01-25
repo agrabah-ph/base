@@ -12,8 +12,9 @@ class UserController extends Controller
         $query = $request->query('query');
         $users = User::where('name', 'like', '%'.$query.'%')->get();
 
-        event(new SearchUserEvent($users));
-        return response()->json("ok");
+        // event(new SearchUserEvent($users));
+        // return response()->json("ok");
+        return response()->json($users);
     }
 
     public function get(Request $request) {

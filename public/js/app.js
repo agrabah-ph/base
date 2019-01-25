@@ -1897,12 +1897,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     user: _components_UserComponent__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
   mounted: function mounted() {
-    var _this = this;
-
-    this.$store.dispatch('GET_USERS');
-    window.Echo.channel('search').listen('.searchUserResults', function (e) {
-      _this.$store.commit('SET_USERS', e.users);
-    });
+    this.$store.dispatch('GET_USERS'); // window.Echo.channel('search')
+    //     .listen('.searchUserResults', (e) => {
+    //         this.$store.commit('SET_USERS', e.users)
+    //     })
   },
   computed: _objectSpread({
     groupedUsers: function groupedUsers() {
@@ -60250,15 +60248,14 @@ __webpack_require__.r(__webpack_exports__);
 /*!************************************************************!*\
   !*** ./resources/js/components/UserSearchbarComponent.vue ***!
   \************************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _UserSearchbarComponent_vue_vue_type_template_id_32d39ca8___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./UserSearchbarComponent.vue?vue&type=template&id=32d39ca8& */ "./resources/js/components/UserSearchbarComponent.vue?vue&type=template&id=32d39ca8&");
 /* harmony import */ var _UserSearchbarComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./UserSearchbarComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/UserSearchbarComponent.vue?vue&type=script&lang=js&");
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _UserSearchbarComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _UserSearchbarComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -60288,7 +60285,7 @@ component.options.__file = "resources/js/components/UserSearchbarComponent.vue"
 /*!*************************************************************************************!*\
   !*** ./resources/js/components/UserSearchbarComponent.vue?vue&type=script&lang=js& ***!
   \*************************************************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -60406,6 +60403,8 @@ var actions = {
     axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/user-search", {
       params: params
     }).then(function (res) {
+      commit('SET_USERS', res.data);
+      res.data = 'ok';
       if (res.data === 'ok') console.log('request sent successfully');
     }).catch(function (err) {
       console.log(err);
