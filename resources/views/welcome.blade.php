@@ -82,28 +82,6 @@
             </span>
         </div>
     </section>
-    <section class="section static1">
-        <div class="section-text" style="text-align:left; align:left; align-items:baseline;">
-            <h3>Impact</h3>
-            <br>
-            <h5>Farmers</h5>
-            <ul>
-                <li>Stable Market Channel</li>
-                <li>Get connected to other farmers to learn best practices</li>
-                <li>Get access to public and private support</li>
-            </ul>
-            <h5>Local Business</h5>
-            <ul>
-                <li>Have an overview of the supply</li>
-                <li>Establish a market standard for quality</li>
-                <li>Establish a market standard for quality</li>
-            </ul>
-            <h5>Government</h5>
-            <ul>
-                <li>Get access to supply availability and market demand data (Generate Predictive Analytics)</li>
-            </ul>
-        </div>
-    </section>
     <section class="section parallax bg3">
         <span style="padding:2rem; color:white; text-align:center; background:rgba(0,0,0,0.5); font-size: 1rem;">Did you know that the average age of the Filipino farmer is 57 years old?<br><br>
         Furthermore, most of the arable land in the Philippines is not being fully utilized.<br>
