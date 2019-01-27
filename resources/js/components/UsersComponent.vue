@@ -1,16 +1,40 @@
 <template>
     <div class="container">
-        <div class="row" v-for="users in groupedUsers">
-            <div class="col-md-3 col-sm-6" v-for="user in users">
-                <user class="animated fadeIn" :user="user"></user>
-            </div>
-            <div class="col w-100"></div>
+        <div class="select_wrapper">
+            <label for="role">Role</label>
+            <select v-model="role" class="form-control" name="role">
+                <option value="all">All</option>
+                <option value="client">Client</option>
+                <option value="vendor">Vendor</option>
+                <option value="owner">Owner</option>
+            </select>
         </div>
-        <div class="row" v-if="!groupedUsers.length">
-            <div class="col-12">
-                No matching records found.
-            </div>
+
+        <div class="select_wrapper">    
+            <label for="verified">Status</label>
+            <select v-model="status" class="form-control" name="verified">
+                <option value="all">All</option>
+                <option value="verified">Verified</option>
+                <option value="unverified">Unverified</option>
+            </select>
         </div>
+            
+        <table class="table table-borderless table-responsive">
+            <thead>
+                <tr>
+                <th scope="col">Name</th>
+                <th scope="col" class="d-none d-sm-table-cell">Email</th>
+                <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="user in filteredUsers">
+                    <td>{{user.name}}</td>
+                    <td class="d-none d-sm-table-cell">{{user.email}}</td>
+                    <td>placeholder</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </template>
 
@@ -20,20 +44,38 @@
 
     export default {
         name: "Users",
-        components: {
-            user
+        data() {
+            return {
+                role: 'all',
+                status: 'all',
+            }
         },
         mounted() {
             this.$store.dispatch('GET_USERS')
-
-            // window.Echo.channel('search')
-            //     .listen('.searchUserResults', (e) => {
-            //         this.$store.commit('SET_USERS', e.users)
-            //     })
         },
         computed: {
-            groupedUsers() {
-                return _.chunk(this.users, 4);
+            filteredUsersByRole() {
+                let role = this.role;
+                return this.users.filter(function(user){
+                    if(role == "all"){
+                        return true;
+                    } else {
+                        return user.role.includes(role);
+                    }
+                })
+            },
+            filteredUsers() {
+                let status = this.status;
+                return this.filteredUsersByRole.filter(function(user){
+                    if(status == "all") {
+                        return true;
+                    }
+                    if(status == "verified") {
+                        return user.email_verified_at != null;
+                    } else {
+                        return user.email_verified_at == null;
+                    }
+                })
             },
             ...mapGetters([
                 'users'
@@ -42,5 +84,19 @@
     }
 </script>
 
+<style scoped>
+    .select_wrapper {
+        width: auto;
+        display: inline-block;
+        margin: 0 1em 1em 0;
+    }
+
+    @media (min-width:42em) {
+        select {
+            width: auto;
+            display: inline-block;
+        }
+    }
+</style>
 
 

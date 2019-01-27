@@ -5,12 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Events\SearchUserEvent;
 use App\User;
+use App\Http\Resources\User as UserResource;
 
 class UserController extends Controller
 {
     public function search(Request $request) {
         $query = $request->query('query');
-        $users = User::where('name', 'like', '%'.$query.'%')->get();
+        $rawUsers = User::where('name', 'like', '%'.$query.'%')->get();
+        $users = UserResource::collection($rawUsers);
 
         // event(new SearchUserEvent($users));
         // return response()->json("ok");
@@ -18,7 +20,7 @@ class UserController extends Controller
     }
 
     public function get(Request $request) {
-        $users = User::all();
+        $users = UserResource::collection(User::all());
         return response()->json($users);
     }
 }

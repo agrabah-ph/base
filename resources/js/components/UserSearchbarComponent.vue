@@ -36,3 +36,11 @@ export default {
 }
 </script>
 
+<style scoped>
+    .container {
+        max-width: 80vw;
+        margin-left: 0;
+    }
+</style>
+
+
