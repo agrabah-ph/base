@@ -1913,6 +1913,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -6265,7 +6268,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.select_wrapper[data-v-47d47080] {\n    width: auto;\n    display: inline-block;\n    margin: 0 1em 1em 0;\n}\n@media (min-width:42em) {\nselect[data-v-47d47080] {\n        width: auto;\n        display: inline-block;\n}\n}\n", ""]);
+exports.push([module.i, "\n.result_message[data-v-47d47080] {\n    display: block;\n    font-style: italic;\n}\n.select_wrapper[data-v-47d47080] {\n    width: auto;\n    display: inline-block;\n    margin: 0 1em 1em 0;\n}\n@media (min-width:42em) {\nselect[data-v-47d47080] {\n        width: auto;\n        display: inline-block;\n}\n}\n", ""]);
 
 // exports
 
@@ -47883,25 +47886,49 @@ var render = function() {
       )
     ]),
     _vm._v(" "),
-    _c("table", { staticClass: "table table-borderless table-responsive" }, [
-      _vm._m(0),
-      _vm._v(" "),
-      _c(
-        "tbody",
-        _vm._l(_vm.filteredUsers, function(user) {
-          return _c("tr", [
-            _c("td", [_vm._v(_vm._s(user.name))]),
+    !_vm.filteredUsers.length
+      ? _c("span", { staticClass: "result_message" }, [
+          _vm._v("No matching record found.")
+        ])
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.filteredUsers.length
+      ? _c("span", { staticClass: "result_message" }, [
+          _vm._v(
+            "Found " +
+              _vm._s(_vm.filteredUsers.length) +
+              " record" +
+              _vm._s(_vm.filteredUsers.length > 1 ? "s" : "") +
+              "."
+          )
+        ])
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.filteredUsers.length
+      ? _c(
+          "table",
+          { staticClass: "table table-borderless table-responsive" },
+          [
+            _vm._m(0),
             _vm._v(" "),
-            _c("td", { staticClass: "d-none d-sm-table-cell" }, [
-              _vm._v(_vm._s(user.email))
-            ]),
-            _vm._v(" "),
-            _c("td", [_vm._v("placeholder")])
-          ])
-        }),
-        0
-      )
-    ])
+            _c(
+              "tbody",
+              _vm._l(_vm.filteredUsers, function(user) {
+                return _c("tr", [
+                  _c("td", [_vm._v(_vm._s(user.name))]),
+                  _vm._v(" "),
+                  _c("td", { staticClass: "d-none d-sm-table-cell" }, [
+                    _vm._v(_vm._s(user.email))
+                  ]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v("placeholder")])
+                ])
+              }),
+              0
+            )
+          ]
+        )
+      : _vm._e()
   ])
 }
 var staticRenderFns = [

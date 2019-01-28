@@ -18,8 +18,11 @@
                 <option value="unverified">Unverified</option>
             </select>
         </div>
-            
-        <table class="table table-borderless table-responsive">
+        
+        <span class="result_message" v-if="!filteredUsers.length">No matching record found.</span>
+        <span class="result_message" v-if="filteredUsers.length">Found {{filteredUsers.length}} record{{filteredUsers.length>1? 's' : ''}}.</span>
+
+        <table class="table table-borderless table-responsive" v-if="filteredUsers.length">
             <thead>
                 <tr>
                 <th scope="col">Name</th>
@@ -85,6 +88,11 @@
 </script>
 
 <style scoped>
+    .result_message {
+        display: block;
+        font-style: italic;
+    }
+
     .select_wrapper {
         width: auto;
         display: inline-block;
