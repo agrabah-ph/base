@@ -1916,6 +1916,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -6268,7 +6271,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.result_message[data-v-47d47080] {\n    display: block;\n    font-style: italic;\n}\n.select_wrapper[data-v-47d47080] {\n    width: auto;\n    display: inline-block;\n    margin: 0 1em 1em 0;\n}\n@media (min-width:42em) {\nselect[data-v-47d47080] {\n        width: auto;\n        display: inline-block;\n}\n}\n", ""]);
+exports.push([module.i, "\n.user_action[data-v-47d47080] {\n    margin: 0 0.1em;\n    font-size: 1.3em;\n}\n.user_action_td[data-v-47d47080] {\n    padding-right: 0;\n}\n.result_message[data-v-47d47080] {\n    display: block;\n    font-style: italic;\n}\n.select_wrapper[data-v-47d47080] {\n    width: auto;\n    display: inline-block;\n    margin: 0 1em 1em 0;\n}\n@media (min-width:42em) {\nselect[data-v-47d47080] {\n        width: auto;\n        display: inline-block;\n}\n}\n", ""]);
 
 // exports
 
@@ -47921,7 +47924,7 @@ var render = function() {
                     _vm._v(_vm._s(user.email))
                   ]),
                   _vm._v(" "),
-                  _c("td", [_vm._v("placeholder")])
+                  _vm._m(1, true)
                 ])
               }),
               0
@@ -47947,6 +47950,20 @@ var staticRenderFns = [
         ),
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Actions")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", { staticClass: "user_action_td" }, [
+      _c("a", { staticClass: "user_action", attrs: { href: "#0" } }, [
+        _c("i", { staticClass: "far fa-eye" })
+      ]),
+      _vm._v(" "),
+      _c("a", { staticClass: "user_action", attrs: { href: "#0" } }, [
+        _c("i", { staticClass: "fas fa-cog" })
       ])
     ])
   }

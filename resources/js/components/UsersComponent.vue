@@ -34,7 +34,10 @@
                 <tr v-for="user in filteredUsers">
                     <td>{{user.name}}</td>
                     <td class="d-none d-sm-table-cell">{{user.email}}</td>
-                    <td>placeholder</td>
+                    <td class="user_action_td">
+                        <a href="#0" class="user_action"><i class="far fa-eye"></i></a>
+                        <a href="#0" class="user_action"><i class="fas fa-cog"></i></a>
+                    </td>
                 </tr>
             </tbody>
         </table>
@@ -88,6 +91,15 @@
 </script>
 
 <style scoped>
+    .user_action {
+        margin: 0 0.1em;
+        font-size: 1.3em;
+    }
+
+    .user_action_td {
+        padding-right: 0;
+    }
+
     .result_message {
         display: block;
         font-style: italic;
