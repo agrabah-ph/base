@@ -17,5 +17,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('user-search', 'UserController@search');
-Route::get('user-get', 'UserController@get');
+Route::group(['middleware' => ['auth:api', 'role:owner']], function() {
+    Route::get('user-search', 'UserController@search');
+    Route::get('user-get', 'UserController@get');
+});

@@ -25,7 +25,7 @@ export default {
         query: {
             handler: _.debounce(function() {
                 this.searchUsers()
-            }, 100)
+            }, 1000)
         }
     },
     methods: {

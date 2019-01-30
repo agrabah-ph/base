@@ -1846,7 +1846,7 @@ __webpack_require__.r(__webpack_exports__);
     query: {
       handler: _.debounce(function () {
         this.searchUsers();
-      }, 100)
+      }, 1000)
     }
   },
   methods: {
