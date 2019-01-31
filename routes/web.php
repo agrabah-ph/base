@@ -17,9 +17,15 @@ Auth::routes(['verify' => true]);
 
 Route::group(['middleware' => 'role:owner'], function() {
     Route::get('/users', 'HomeController@users')->name('manage.users');
+    Route::get('/user-add', 'MemberController@showRegistrationForm')->name('user.add');
+    Route::post('/user-create', 'MemberController@register')->name('user.create');
 });
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/notifications', 'HomeController@notifications')->name('notifications');
 
 Route::get('/test', function() {echo 'test';})->middleware('verified');
+
+Route::get('/mail', function() {
+    return view('emails.welcome');
+});

@@ -22,7 +22,7 @@ a.sidebar_navlink, a.sidebar_trigger {
     justify-content: center;
     align-items: baseline;
     flex: 1;
-    padding: 5em 0 3em 0;
+    padding: 5em 0;
 }
 
 .dashboard_sidebar {
