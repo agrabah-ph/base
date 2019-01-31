@@ -37,9 +37,6 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public static function sendWelcomeEmail($user) {
         $token = app('auth.password.broker')->createToken($user);
-
-        Mail::send('emails.welcome', ['user' => $user, 'toke' => $token], function ($m) use ($user) {
-            $m->to($user->email, $user->name)->subject('Welcome to Agrabah Marketplace');
-        });
+        $user->notify(new Notifications\NewUserAddedNotification($token));
     }
 }

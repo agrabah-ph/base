@@ -25,7 +25,7 @@
 <body>
     <div id="app">
         <nav class="navbar navbar-dark bg-primary">
-            <a class="navbar-brand" href="#"><i class="fas fa-arrow-left"></i>&nbsp;&nbsp;&nbsp;Cancel</a>
+            <a class="navbar-brand" href="{{ route('manage.users') }}"><i class="fas fa-arrow-left"></i>&nbsp;&nbsp;&nbsp;Cancel</a>
         </nav>
         <main>
             <div class="container p-3">
