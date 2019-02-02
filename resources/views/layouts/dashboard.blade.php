@@ -49,6 +49,11 @@
                         </a>
                     </li>
                     <li>
+                        <a class="sidebar_navlink {{ Route::is('activity.logs') ? 'nav_active' : ''}}" href="{{ route('activity.logs') }}">
+                            <i class="fas fa-history"></i><em>Activity Logs</em>
+                        </a>
+                    </li>
+                    <li>
                         <a class="sidebar_navlink" href="{{ route('logout') }}"
                             onclick="event.preventDefault();
                             document.getElementById('logout-form').submit();">

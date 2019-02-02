@@ -35,4 +35,10 @@ class HomeController extends Controller
     {
         return view('notifications');
     }
+
+    public function activityLogs()
+    {
+        $loginActivities = \App\LoginActivity::whereUserId(auth()->user()->id)->latest()->paginate(10);
+        return view('activitylogs', compact('loginActivities'));
+    }
 }

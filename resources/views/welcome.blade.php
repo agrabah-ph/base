@@ -130,10 +130,10 @@
             <span>Location: <b>Metro Manila</b></span>
             <br>
             <br>
-            <span>If you want to be a wavemaker, please reach out to us by filling out the form below.</span>
+            <span>If you want to be a wavemaker, please reach out to us by filling out the <a href="#volunteer_form">form</a> below.</span>
         </div>
     </section>
-    <section class="lg-section static1">
+    <section class="lg-section static1" id="volunteer_form">
         <span class="section-head">Volunteer</span>
         <form class="m-2">
             <div class="form-row">

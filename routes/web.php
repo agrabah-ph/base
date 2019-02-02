@@ -23,9 +23,6 @@ Route::group(['middleware' => 'role:owner'], function() {
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/notifications', 'HomeController@notifications')->name('notifications');
+Route::get('/activitylogs', 'HomeController@activityLogs')->name('activity.logs');
 
 Route::get('/test', function() {echo 'test';})->middleware('verified');
-
-Route::get('/mail', function() {
-    return view('emails.welcome');
-});
