@@ -38,7 +38,7 @@ class HomeController extends Controller
 
     public function activityLogs()
     {
-        $loginActivities = \App\LoginActivity::whereUserId(auth()->user()->id)->latest()->paginate(10);
+        $loginActivities = \App\LoginActivity::whereUserId(auth()->user()->id)->latest()->get();
         return view('activitylogs', compact('loginActivities'));
     }
 }
