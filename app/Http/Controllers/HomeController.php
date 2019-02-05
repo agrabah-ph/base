@@ -41,6 +41,11 @@ class HomeController extends Controller
         return view('notifications');
     }
 
+    public function profile()
+    {
+        return view('profile');
+    }
+
     public function activityLogs()
     {
         $loginActivities = \App\LoginActivity::whereUserId(auth()->user()->id)->latest()->get();

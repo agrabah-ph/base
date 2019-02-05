@@ -54,6 +54,11 @@
                         </a>
                     </li>
                     <li>
+                        <a class="sidebar_navlink {{ Route::is('profile') ? 'nav_active' : ''}}" href="{{ route('profile') }}">
+                            <i class="fas fa-user"></i><em>My Profile</em>
+                        </a>
+                    </li>
+                    <li>
                         <a class="sidebar_navlink {{ Route::is('activity.logs') ? 'nav_active' : ''}}" href="{{ route('activity.logs') }}">
                             <i class="fas fa-history"></i><em>Activity Logs</em>
                         </a>

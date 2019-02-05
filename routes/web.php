@@ -24,6 +24,7 @@ Route::group(['middleware' => 'role:owner'], function() {
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/notifications', 'HomeController@notifications')->name('notifications');
 Route::get('/activitylogs', 'HomeController@activityLogs')->name('activity.logs');
+Route::get('/profile', 'HomeController@profile')->name('profile');
 
 Route::group(['middleware' => 'verified'], function() {
     Route::get('/purchaseorders', 'HomeController@purchaseorders')->name('purchase.orders');
