@@ -14,29 +14,8 @@
                         </h4>
                     </div>
                     <div id="collapseLogin" class="collapse show" aria-labelledby="headingLogin" data-parent="#accordionLogs">
-                        <div class="card-body"> 
-                            @if(count($loginActivities))
-                            <div class="responsiveTable">
-                                <table class="col-md-12 table-striped table-condensed clearfix">
-                                    <thead class="clearfix">
-                                        <tr>
-                                            <th>User Agent</th>
-                                            <th>Ip Address</th>
-                                            <th>Date</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach($loginActivities as $loginActivity)
-                                        <tr>
-                                            <td data-title="User Agent">{{ $loginActivity->user_agent }}</td>
-                                            <td data-title="Ip Address" class="pr-2">{{ $loginActivity->ip_address }}</td>
-                                            <td data-title="Date" nowrap>{{ date_format($loginActivity->created_at, "M d, Y H:i:s") }}</td>
-                                        </tr>
-                                        @endforeach
-                                    </tbody>
-                                </table>
-                            </div>
-                            @endif
+                        <div class="card-body">
+                            <loginlogs-table :list-data="{{$loginActivities}}"></loginlogs-table>
                         </div>
                     </div>
                 </div>
@@ -81,55 +60,5 @@
     }
     .card-header .collapsed .fas {
         transform: rotate(90deg);
-    }
-
-    @media only screen and (max-width: 800px) {
-    
-        /* Force table to not be like tables anymore */
-        .responsiveTable table, 
-        .responsiveTable thead, 
-        .responsiveTable tbody, 
-        .responsiveTable th, 
-        .responsiveTable td, 
-        .responsiveTable tr { 
-            display: block; 
-        }
-    
-        /* Hide table headers (but not display: none;, for accessibility) */
-        .responsiveTable thead tr { 
-            position: absolute;
-            top: -9999px;
-            left: -9999px;
-        }
-    
-        .responsiveTable tr { border: 1px solid #ccc; }
-    
-        .responsiveTable td { 
-            /* Behave  like a "row" */
-            border: none;
-            border-bottom: 1px solid #eee; 
-            position: relative;
-            padding-left: 50%; 
-            white-space: normal;
-            text-align:left;
-        }
-    
-        .responsiveTable td:before { 
-            /* Now like a table header */
-            position: absolute;
-            /* Top/left values mimic padding */
-            top: 6px;
-            left: 6px;
-            width: 45%; 
-            padding-right: 10px; 
-            white-space: nowrap;
-            text-align:left;
-            font-weight: bold;
-        }
-    
-        /*
-        Label the data
-        */
-        .responsiveTable td:before { content: attr(data-title); }
     }
 </style>
