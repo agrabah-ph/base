@@ -36,6 +36,11 @@
                             <i class="fas fa-tachometer-alt"></i><em>Dashboard</em>
                         </a>
                     </li>
+                    <li>
+                        <a class="sidebar_navlink {{ Route::is('purchase.orders') ? 'nav_active' : ''}}" href="{{ route('purchase.orders') }}">
+                            <i class="fas fa-clipboard-list"></i><em>Purchase Orders</em>
+                        </a>
+                    </li>
                     @role('owner')
                     <li>
                         <a class="sidebar_navlink {{ Route::is('manage.users') ? 'nav_active' : ''}}" href="{{ route('manage.users') }}">

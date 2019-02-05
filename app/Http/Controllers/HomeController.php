@@ -26,6 +26,11 @@ class HomeController extends Controller
         return view('home');
     }
 
+    public function purchaseorders()
+    {
+        return view('purchaseorders');
+    }
+
     public function users()
     {
         return view('owner.users');

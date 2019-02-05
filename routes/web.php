@@ -25,4 +25,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/notifications', 'HomeController@notifications')->name('notifications');
 Route::get('/activitylogs', 'HomeController@activityLogs')->name('activity.logs');
 
+Route::group(['middleware' => 'verified'], function() {
+    Route::get('/purchaseorders', 'HomeController@purchaseorders')->name('purchase.orders');
+});
+
 Route::get('/test', function() {echo 'test';})->middleware('verified');
