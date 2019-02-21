@@ -39,4 +39,8 @@ class User extends Authenticatable implements MustVerifyEmail
         $token = app('auth.password.broker')->createToken($user);
         $user->notify(new Notifications\NewUserAddedNotification($token));
     }
+
+    public function loginActivities() {
+        return $this->hasMany('App\LoginActivity');
+    }
 }
