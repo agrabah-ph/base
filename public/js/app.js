@@ -1787,6 +1787,82 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/LocationComponent.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/LocationComponent.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "Locations",
+  data: function data() {
+    return {
+      province: "",
+      municipality: "",
+      barangay: "",
+      provinces: [],
+      municipalities: [],
+      barangays: []
+    };
+  },
+  mounted: function mounted() {
+    var map;
+    map = new google.maps.Map(document.getElementById('map'), {
+      center: {
+        lat: -34.397,
+        lng: 150.644
+      },
+      zoom: 8
+    });
+  },
+  methods: {
+    selectProvince: function selectProvince() {
+      console.log(this.province);
+    },
+    selectMunicipality: function selectMunicipality() {
+      console.log(this.municipality);
+    },
+    selectBarangay: function selectBarangay() {
+      console.log(this.barangay);
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/LoginLogsTableComponent.vue?vue&type=script&lang=js&":
 /*!**********************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/LoginLogsTableComponent.vue?vue&type=script&lang=js& ***!
@@ -1835,7 +1911,7 @@ __webpack_require__.r(__webpack_exports__);
     size: {
       type: Number,
       required: false,
-      default: 3
+      "default": 3
     }
   },
   methods: {
@@ -6296,6 +6372,25 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 /***/ }),
 
+/***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/LocationComponent.vue?vue&type=style&index=0&id=51f4a1ed&scoped=true&lang=css&":
+/*!***********************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/LocationComponent.vue?vue&type=style&index=0&id=51f4a1ed&scoped=true&lang=css& ***!
+  \***********************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n#map[data-v-51f4a1ed] {\n    height:300px;\n    width: 100%;\n    border: 1px solid;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/LoginLogsTableComponent.vue?vue&type=style&index=0&id=48cea38c&scoped=true&lang=css&":
 /*!*****************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/LoginLogsTableComponent.vue?vue&type=style&index=0&id=48cea38c&scoped=true&lang=css& ***!
@@ -6308,7 +6403,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\ntable[data-v-48cea38c] {\n    margin-bottom: 0.5rem;\n}\n@media only screen and (max-width: 800px) {\n    \n    /* Force table to not be like tables anymore */\n.responsiveTable table[data-v-48cea38c], \n    .responsiveTable thead[data-v-48cea38c], \n    .responsiveTable tbody[data-v-48cea38c], \n    .responsiveTable th[data-v-48cea38c], \n    .responsiveTable td[data-v-48cea38c], \n    .responsiveTable tr[data-v-48cea38c] { \n        display: block;\n}\n\n    /* Hide table headers (but not display: none;, for accessibility) */\n.responsiveTable thead tr[data-v-48cea38c] { \n        position: absolute;\n        top: -9999px;\n        left: -9999px;\n}\n.responsiveTable tr[data-v-48cea38c] { border: 1px solid #ccc;\n}\n.responsiveTable td[data-v-48cea38c] { \n        /* Behave  like a \"row\" */\n        border: none;\n        border-bottom: 1px solid #eee; \n        position: relative;\n        padding-left: 50%; \n        white-space: normal;\n        text-align:left;\n}\n.responsiveTable td[data-v-48cea38c]:before { \n        /* Now like a table header */\n        position: absolute;\n        /* Top/left values mimic padding */\n        top: 6px;\n        left: 6px;\n        width: 45%; \n        padding-right: 10px; \n        white-space: nowrap;\n        text-align:left;\n        font-weight: bold;\n}\n\n    /*\n    Label the data\n    */\n.responsiveTable td[data-v-48cea38c]:before { content: attr(data-title);\n}\n.responsiveTable table[data-v-48cea38c] {\n        padding: 0;\n}\n}\n", ""]);
+exports.push([module.i, "\ntable[data-v-48cea38c] {\n    margin-bottom: 0.5rem;\n}\n@media only screen and (max-width: 800px) {\n\n    /* Force table to not be like tables anymore */\n.responsiveTable table[data-v-48cea38c],\n    .responsiveTable thead[data-v-48cea38c],\n    .responsiveTable tbody[data-v-48cea38c],\n    .responsiveTable th[data-v-48cea38c],\n    .responsiveTable td[data-v-48cea38c],\n    .responsiveTable tr[data-v-48cea38c] {\n        display: block;\n}\n\n    /* Hide table headers (but not display: none;, for accessibility) */\n.responsiveTable thead tr[data-v-48cea38c] {\n        position: absolute;\n        top: -9999px;\n        left: -9999px;\n}\n.responsiveTable tr[data-v-48cea38c] { border: 1px solid #ccc;\n}\n.responsiveTable td[data-v-48cea38c] {\n        /* Behave  like a \"row\" */\n        border: none;\n        border-bottom: 1px solid #eee;\n        position: relative;\n        padding-left: 50%;\n        white-space: normal;\n        text-align:left;\n}\n.responsiveTable td[data-v-48cea38c]:before {\n        /* Now like a table header */\n        position: absolute;\n        /* Top/left values mimic padding */\n        top: 6px;\n        left: 6px;\n        width: 45%;\n        padding-right: 10px;\n        white-space: nowrap;\n        text-align:left;\n        font-weight: bold;\n}\n\n    /*\n    Label the data\n    */\n.responsiveTable td[data-v-48cea38c]:before { content: attr(data-title);\n}\n.responsiveTable table[data-v-48cea38c] {\n        padding: 0;\n}\n}\n", ""]);
 
 // exports
 
@@ -47054,6 +47149,36 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ }),
 
+/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/LocationComponent.vue?vue&type=style&index=0&id=51f4a1ed&scoped=true&lang=css&":
+/*!***************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/LocationComponent.vue?vue&type=style&index=0&id=51f4a1ed&scoped=true&lang=css& ***!
+  \***************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../node_modules/css-loader??ref--6-1!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--6-2!../../../node_modules/vue-loader/lib??vue-loader-options!./LocationComponent.vue?vue&type=style&index=0&id=51f4a1ed&scoped=true&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/LocationComponent.vue?vue&type=style&index=0&id=51f4a1ed&scoped=true&lang=css&");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
 /***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/LoginLogsTableComponent.vue?vue&type=style&index=0&id=48cea38c&scoped=true&lang=css&":
 /*!*********************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/LoginLogsTableComponent.vue?vue&type=style&index=0&id=48cea38c&scoped=true&lang=css& ***!
@@ -47799,6 +47924,180 @@ var staticRenderFns = [
     ])
   }
 ]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/LocationComponent.vue?vue&type=template&id=51f4a1ed&scoped=true&":
+/*!********************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/LocationComponent.vue?vue&type=template&id=51f4a1ed&scoped=true& ***!
+  \********************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("div", { staticClass: "form-group row" }, [
+      _c(
+        "label",
+        {
+          staticClass: "col-md-4 col-form-label text-md-right",
+          attrs: { for: "province" }
+        },
+        [_vm._v("Province")]
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-6" }, [
+        _c(
+          "select",
+          {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.province,
+                expression: "province"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: { id: "province" },
+            on: {
+              change: [
+                function($event) {
+                  var $$selectedVal = Array.prototype.filter
+                    .call($event.target.options, function(o) {
+                      return o.selected
+                    })
+                    .map(function(o) {
+                      var val = "_value" in o ? o._value : o.value
+                      return val
+                    })
+                  _vm.province = $event.target.multiple
+                    ? $$selectedVal
+                    : $$selectedVal[0]
+                },
+                _vm.selectProvince
+              ]
+            }
+          },
+          [
+            _c("option", { attrs: { value: "provincetrial" } }, [
+              _vm._v("trial")
+            ])
+          ]
+        )
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "form-group row" }, [
+      _c(
+        "label",
+        {
+          staticClass: "col-md-4 col-form-label text-md-right",
+          attrs: { for: "municipality" }
+        },
+        [_vm._v("Municipality")]
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-6" }, [
+        _c(
+          "select",
+          {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.municipality,
+                expression: "municipality"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: { id: "municipality" },
+            on: {
+              change: [
+                function($event) {
+                  var $$selectedVal = Array.prototype.filter
+                    .call($event.target.options, function(o) {
+                      return o.selected
+                    })
+                    .map(function(o) {
+                      var val = "_value" in o ? o._value : o.value
+                      return val
+                    })
+                  _vm.municipality = $event.target.multiple
+                    ? $$selectedVal
+                    : $$selectedVal[0]
+                },
+                _vm.selectMunicipality
+              ]
+            }
+          },
+          [_c("option", { attrs: { value: "trial" } }, [_vm._v("trial")])]
+        )
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "form-group row" }, [
+      _c(
+        "label",
+        {
+          staticClass: "col-md-4 col-form-label text-md-right",
+          attrs: { for: "barangay" }
+        },
+        [_vm._v("Barangay")]
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-md-6" }, [
+        _c(
+          "select",
+          {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.barangay,
+                expression: "barangay"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: { id: "barangay" },
+            on: {
+              change: [
+                function($event) {
+                  var $$selectedVal = Array.prototype.filter
+                    .call($event.target.options, function(o) {
+                      return o.selected
+                    })
+                    .map(function(o) {
+                      var val = "_value" in o ? o._value : o.value
+                      return val
+                    })
+                  _vm.barangay = $event.target.multiple
+                    ? $$selectedVal
+                    : $$selectedVal[0]
+                },
+                _vm.selectBarangay
+              ]
+            }
+          },
+          [_c("option", { attrs: { value: "brgytrial" } }, [_vm._v(" trial")])]
+        )
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { attrs: { id: "map" } })
+  ])
+}
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -60502,11 +60801,12 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-Vue.component('example-component', __webpack_require__(/*! ./components/ExampleComponent.vue */ "./resources/js/components/ExampleComponent.vue").default);
-Vue.component('searchbar', __webpack_require__(/*! ./components/UserSearchbarComponent.vue */ "./resources/js/components/UserSearchbarComponent.vue").default);
-Vue.component('user', __webpack_require__(/*! ./components/UserComponent.vue */ "./resources/js/components/UserComponent.vue").default);
-Vue.component('users', __webpack_require__(/*! ./components/UsersComponent.vue */ "./resources/js/components/UsersComponent.vue").default);
-Vue.component('loginlogs-table', __webpack_require__(/*! ./components/LoginLogsTableComponent.vue */ "./resources/js/components/LoginLogsTableComponent.vue").default);
+Vue.component('example-component', __webpack_require__(/*! ./components/ExampleComponent.vue */ "./resources/js/components/ExampleComponent.vue")["default"]);
+Vue.component('searchbar', __webpack_require__(/*! ./components/UserSearchbarComponent.vue */ "./resources/js/components/UserSearchbarComponent.vue")["default"]);
+Vue.component('user', __webpack_require__(/*! ./components/UserComponent.vue */ "./resources/js/components/UserComponent.vue")["default"]);
+Vue.component('users', __webpack_require__(/*! ./components/UsersComponent.vue */ "./resources/js/components/UsersComponent.vue")["default"]);
+Vue.component('loginlogs-table', __webpack_require__(/*! ./components/LoginLogsTableComponent.vue */ "./resources/js/components/LoginLogsTableComponent.vue")["default"]);
+Vue.component('user-location', __webpack_require__(/*! ./components/LocationComponent.vue */ "./resources/js/components/LocationComponent.vue")["default"]);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -60538,7 +60838,7 @@ window._ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
  */
 
 try {
-  window.Popper = __webpack_require__(/*! popper.js */ "./node_modules/popper.js/dist/esm/popper.js").default;
+  window.Popper = __webpack_require__(/*! popper.js */ "./node_modules/popper.js/dist/esm/popper.js")["default"];
   window.$ = window.jQuery = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 
   __webpack_require__(/*! bootstrap */ "./node_modules/bootstrap/dist/js/bootstrap.js");
@@ -60647,6 +60947,93 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/LocationComponent.vue":
+/*!*******************************************************!*\
+  !*** ./resources/js/components/LocationComponent.vue ***!
+  \*******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _LocationComponent_vue_vue_type_template_id_51f4a1ed_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./LocationComponent.vue?vue&type=template&id=51f4a1ed&scoped=true& */ "./resources/js/components/LocationComponent.vue?vue&type=template&id=51f4a1ed&scoped=true&");
+/* harmony import */ var _LocationComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./LocationComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/LocationComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _LocationComponent_vue_vue_type_style_index_0_id_51f4a1ed_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./LocationComponent.vue?vue&type=style&index=0&id=51f4a1ed&scoped=true&lang=css& */ "./resources/js/components/LocationComponent.vue?vue&type=style&index=0&id=51f4a1ed&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
+  _LocationComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _LocationComponent_vue_vue_type_template_id_51f4a1ed_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _LocationComponent_vue_vue_type_template_id_51f4a1ed_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  "51f4a1ed",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/LocationComponent.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/LocationComponent.vue?vue&type=script&lang=js&":
+/*!********************************************************************************!*\
+  !*** ./resources/js/components/LocationComponent.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_LocationComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./LocationComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/LocationComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_LocationComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/LocationComponent.vue?vue&type=style&index=0&id=51f4a1ed&scoped=true&lang=css&":
+/*!****************************************************************************************************************!*\
+  !*** ./resources/js/components/LocationComponent.vue?vue&type=style&index=0&id=51f4a1ed&scoped=true&lang=css& ***!
+  \****************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_LocationComponent_vue_vue_type_style_index_0_id_51f4a1ed_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader!../../../node_modules/css-loader??ref--6-1!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--6-2!../../../node_modules/vue-loader/lib??vue-loader-options!./LocationComponent.vue?vue&type=style&index=0&id=51f4a1ed&scoped=true&lang=css& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/LocationComponent.vue?vue&type=style&index=0&id=51f4a1ed&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_LocationComponent_vue_vue_type_style_index_0_id_51f4a1ed_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_LocationComponent_vue_vue_type_style_index_0_id_51f4a1ed_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_LocationComponent_vue_vue_type_style_index_0_id_51f4a1ed_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_LocationComponent_vue_vue_type_style_index_0_id_51f4a1ed_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_LocationComponent_vue_vue_type_style_index_0_id_51f4a1ed_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
+
+/***/ }),
+
+/***/ "./resources/js/components/LocationComponent.vue?vue&type=template&id=51f4a1ed&scoped=true&":
+/*!**************************************************************************************************!*\
+  !*** ./resources/js/components/LocationComponent.vue?vue&type=template&id=51f4a1ed&scoped=true& ***!
+  \**************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_LocationComponent_vue_vue_type_template_id_51f4a1ed_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./LocationComponent.vue?vue&type=template&id=51f4a1ed&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/LocationComponent.vue?vue&type=template&id=51f4a1ed&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_LocationComponent_vue_vue_type_template_id_51f4a1ed_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_LocationComponent_vue_vue_type_template_id_51f4a1ed_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
@@ -61024,7 +61411,7 @@ var actions = {
       commit('SET_USERS', res.data);
       res.data = 'ok';
       if (res.data === 'ok') console.log('request sent successfully');
-    }).catch(function (err) {
+    })["catch"](function (err) {
       console.log(err);
     });
   },
@@ -61034,7 +61421,7 @@ var actions = {
       {
         commit('SET_USERS', res.data);
       }
-    }).catch(function (err) {
+    })["catch"](function (err) {
       console.log(err);
     });
   }
@@ -61147,8 +61534,8 @@ var state = {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\laragon\www\agrabah-marketplace\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\laragon\www\agrabah-marketplace\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\xampp\htdocs\project\agrabah-marketplace\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\project\agrabah-marketplace\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

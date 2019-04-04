@@ -51,7 +51,7 @@
                                             @endif
                                         </div>
                                     </div>
-
+                                    <user-location></user-location>
                                     <div class="form-group row">
                                         <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
@@ -65,7 +65,9 @@
                                             @endif
                                         </div>
                                     </div>
+                                    <div class="row">
 
+                                    </div>
                                     <div class="form-group row">
                                         <label for="role" class="col-md-4 col-form-label text-md-right">{{ __('Role') }}</label>
 
@@ -76,7 +78,7 @@
                                                 <option value="vendor">Vendor</option>
                                                 <option value="mod">Moderator</option>
                                             </select>
-                                            
+
                                             @if ($errors->has('role'))
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $errors->first('role') }}</strong>

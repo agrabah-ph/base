@@ -82,6 +82,9 @@
         <main class="dashboard_content">
             @yield('content')
         </main>
-    </div>
+    </div>0
+    <!-- Map -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDSD1bBpEjkW1-JIdMdtL24qRkw7E2cWgE&callback=initMap"
+    async defer></script>
 </body>
 </html>
