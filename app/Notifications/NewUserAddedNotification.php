@@ -45,6 +45,7 @@ class NewUserAddedNotification extends Notification
                     ->subject('Welcome to Agrabah Marketplace')
                     ->line('An Agrabah.ph account was created for you. Please click the button below to set up your account.')
                     ->action('Set Your Password', $link)
+                    ->line('Please set your password within 24 hours after receiving this email.')
                     ->line('Thank you for joining our cause!');
     }
 
