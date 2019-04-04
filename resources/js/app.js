@@ -4,12 +4,21 @@
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
-
+import Vue from 'vue';
 require('./bootstrap');
 
 window.Vue = require('vue');
 
 import store from './store/index'
+
+import * as VueGoogleMaps from 'vue2-google-maps';
+
+Vue.use(VueGoogleMaps, {
+    load: {
+        key: 'AIzaSyDSD1bBpEjkW1-JIdMdtL24qRkw7E2cWgE',
+        libraries: 'places'
+    }
+});
 
 /**
  * The following block of code may be used to automatically register your

@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="mt-4">
         <div class="form-group row">
             <label for="province" class="col-md-4 col-form-label text-md-right">Province</label>
             <div class="col-md-6">
@@ -24,11 +24,25 @@
                 </select>
             </div>
         </div>
-        <div id="map"></div>
+        <div class="map">
+            <GmapMap
+                :center="{lat:14.156581, lng:121.499842}"
+                :zoom="7"
+                map-type-id="terrain"
+                style="width: 100%; height: 300px"
+                >
+                <GmapMarker ref="myMarker"
+                    :position="google &&
+                    new google.maps.LatLng(1.38, 103.8)" />
+            </GmapMap>
+        </div>
     </div>
 </template>
 
 <script>
+import * as VueGoogleMaps from 'vue2-google-maps';
+import {gmapApi} from 'vue2-google-maps'
+
 export default {
     name: "Locations",
     data() {
@@ -42,11 +56,9 @@ export default {
         }
     },
     mounted() {
-        var map;
-        map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: -34.397, lng: 150.644},
-          zoom: 8
-        });
+        // this.$refs.mapRef.$mapPromise.then((map) => {
+        //     map.panTo({lat: 1.38, lng: 103.80})
+        // })
     },
     methods: {
         selectProvince() {
@@ -59,13 +71,33 @@ export default {
             console.log(this.barangay);
         }
     },
+    computed: {
+
+        markerSize() {
+
+            if (!this.googleMapsInitialized) return null
+                return new window.google.maps.Size(10, 10)
+        },
+
+        markerIcon() {
+
+            return {
+                url: 'http://10.0.1.8:3000/img/icons/maps-marker.png',
+                scaledSize: this.markerSize,
+            }
+
+        },
+        google: gmapApi
+    }
 }
 </script>
 
 <style scoped>
-#map {
-    height:300px;
-    width: 100%;
-    border: 1px solid;
+.map {
+    margin: 16px auto;
+    border-radius: 3px;
+    overflow: hidden;
+    box-shadow: 0 0 8px #ccc;
+    width: 500px;
 }
 </style>
