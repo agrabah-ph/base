@@ -48533,7 +48533,8 @@ var render = function() {
               ref: "myMarker",
               attrs: {
                 position:
-                  _vm.google && new _vm.google.maps.LatLng(13.525, 123.3486)
+                  _vm.google &&
+                  new _vm.google.maps.LatLng(_vm.setLat, _vm.setLong)
               }
             })
           ],

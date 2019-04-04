@@ -34,7 +34,7 @@
                 >
                 <GmapMarker ref="myMarker"
                     :position="google &&
-                    new google.maps.LatLng(13.5250, 123.3486)" />
+                    new google.maps.LatLng(setLat, setLong)" />
             </GmapMap>
         </div>
     </div>
