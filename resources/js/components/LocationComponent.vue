@@ -53,12 +53,12 @@ export default {
             barangay: "",
             provinces: [
                 {
-                    name: "camsur",
+                    name: "Camarines Sur",
                     lat: 13.5250,
                     lng: 123.3486
                 },
                 {
-                    name: "albay",
+                    name: "Albay",
                     lat: 13.1775,
                     lng: 123.5280
                 },
@@ -90,18 +90,31 @@ export default {
 
             }
 
-            console.log(selectedProvince);
+            this.pan(this.setLat, this.setLong);
 
-            this.$refs.mapRef.$mapPromise.then((map) => {
-                map.panTo({lat: this.setLat, lng: this.setLong})
-            })
+            console.log(selectedProvince);
 
         },
         selectMunicipality() {
+
             console.log(this.municipality);
+
         },
         selectBarangay() {
+
             console.log(this.barangay);
+
+        },
+
+        pan(latCoo, longCoo) {
+
+            //Dynamically pan after selecting a province
+            this.$refs.mapRef.$mapPromise.then((map) => {
+
+                map.panTo({lat: latCoo, lng: longCoo})
+
+            });
+
         }
     },
     computed: {
@@ -120,6 +133,7 @@ export default {
             }
 
         },
+
         google: gmapApi
     }
 }

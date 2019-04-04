@@ -1850,11 +1850,11 @@ __webpack_require__.r(__webpack_exports__);
       municipality: "",
       barangay: "",
       provinces: [{
-        name: "camsur",
+        name: "Camarines Sur",
         lat: 13.5250,
         lng: 123.3486
       }, {
-        name: "albay",
+        name: "Albay",
         lat: 13.1775,
         lng: 123.5280
       }, {
@@ -1870,8 +1870,6 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     selectProvince: function selectProvince(e) {
-      var _this = this;
-
       var selectedProvince = e.target.value;
       var _iteratorNormalCompletion = true;
       var _didIteratorError = false;
@@ -1901,19 +1899,23 @@ __webpack_require__.r(__webpack_exports__);
         }
       }
 
+      this.pan(this.setLat, this.setLong);
       console.log(selectedProvince);
-      this.$refs.mapRef.$mapPromise.then(function (map) {
-        map.panTo({
-          lat: _this.setLat,
-          lng: _this.setLong
-        });
-      });
     },
     selectMunicipality: function selectMunicipality() {
       console.log(this.municipality);
     },
     selectBarangay: function selectBarangay() {
       console.log(this.barangay);
+    },
+    pan: function pan(latCoo, longCoo) {
+      //Dynamically pan after selecting a province
+      this.$refs.mapRef.$mapPromise.then(function (map) {
+        map.panTo({
+          lat: latCoo,
+          lng: longCoo
+        });
+      });
     }
   },
   computed: {
