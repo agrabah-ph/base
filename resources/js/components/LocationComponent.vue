@@ -4,7 +4,7 @@
             <label for="province" class="col-md-4 col-form-label text-md-right">Province</label>
             <div class="col-md-6">
                 <select id="province" v-model="province" class="form-control" @change="selectProvince">
-                    <option value="provincetrial">trial</option>
+                    <option v-for="p in provinces" :key="p.index">{{ p.name }}</option>
                 </select>
             </div>
         </div>
@@ -26,14 +26,15 @@
         </div>
         <div class="map">
             <GmapMap
-                :center="{lat:14.156581, lng:121.499842}"
+                ref="mapRef"
+                :center="{lat: 13.5250, lng: 123.3486 }"
                 :zoom="7"
                 map-type-id="terrain"
                 style="width: 100%; height: 300px"
                 >
                 <GmapMarker ref="myMarker"
                     :position="google &&
-                    new google.maps.LatLng(1.38, 103.8)" />
+                    new google.maps.LatLng(13.5250, 123.3486)" />
             </GmapMap>
         </div>
     </div>
@@ -50,19 +51,51 @@ export default {
             province: "",
             municipality: "",
             barangay: "",
-            provinces: [],
+            provinces: [
+                {
+                    name: "camsur",
+                    lat: 13.5250,
+                    lng: 123.3486
+                },
+                {
+                    name: "albay",
+                    lat: 13.1775,
+                    lng: 123.5280
+                },
+                {
+                    name: "Manila",
+                    lat: 14.5995,
+                    lng: 120.9842
+                }
+            ],
             municipalities: [],
-            barangays: []
+            barangays: [],
+            setLat: 13.5250,
+            setLong: 123.3486,
         }
     },
-    mounted() {
-        // this.$refs.mapRef.$mapPromise.then((map) => {
-        //     map.panTo({lat: 1.38, lng: 103.80})
-        // })
-    },
     methods: {
-        selectProvince() {
-            console.log(this.province);
+        selectProvince(e) {
+
+            var selectedProvince = e.target.value;
+
+            for(let p of this.provinces) {
+
+                if(p.name == selectedProvince) {
+
+                    this.setLat = p.lat;
+                    this.setLong = p.lng;
+
+                }
+
+            }
+
+            console.log(selectedProvince);
+
+            this.$refs.mapRef.$mapPromise.then((map) => {
+                map.panTo({lat: this.setLat, lng: this.setLong})
+            })
+
         },
         selectMunicipality() {
             console.log(this.municipality);

@@ -1839,6 +1839,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -1848,18 +1849,65 @@ __webpack_require__.r(__webpack_exports__);
       province: "",
       municipality: "",
       barangay: "",
-      provinces: [],
+      provinces: [{
+        name: "camsur",
+        lat: 13.5250,
+        lng: 123.3486
+      }, {
+        name: "albay",
+        lat: 13.1775,
+        lng: 123.5280
+      }, {
+        name: "Manila",
+        lat: 14.5995,
+        lng: 120.9842
+      }],
       municipalities: [],
-      barangays: []
+      barangays: [],
+      setLat: 13.5250,
+      setLong: 123.3486
     };
   },
-  mounted: function mounted() {// this.$refs.mapRef.$mapPromise.then((map) => {
-    //     map.panTo({lat: 1.38, lng: 103.80})
-    // })
-  },
   methods: {
-    selectProvince: function selectProvince() {
-      console.log(this.province);
+    selectProvince: function selectProvince(e) {
+      var _this = this;
+
+      var selectedProvince = e.target.value;
+      var _iteratorNormalCompletion = true;
+      var _didIteratorError = false;
+      var _iteratorError = undefined;
+
+      try {
+        for (var _iterator = this.provinces[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+          var p = _step.value;
+
+          if (p.name == selectedProvince) {
+            this.setLat = p.lat;
+            this.setLong = p.lng;
+          }
+        }
+      } catch (err) {
+        _didIteratorError = true;
+        _iteratorError = err;
+      } finally {
+        try {
+          if (!_iteratorNormalCompletion && _iterator["return"] != null) {
+            _iterator["return"]();
+          }
+        } finally {
+          if (_didIteratorError) {
+            throw _iteratorError;
+          }
+        }
+      }
+
+      console.log(selectedProvince);
+      this.$refs.mapRef.$mapPromise.then(function (map) {
+        map.panTo({
+          lat: _this.setLat,
+          lng: _this.setLong
+        });
+      });
     },
     selectMunicipality: function selectMunicipality() {
       console.log(this.municipality);
@@ -48359,11 +48407,10 @@ var render = function() {
               ]
             }
           },
-          [
-            _c("option", { attrs: { value: "provincetrial" } }, [
-              _vm._v("trial")
-            ])
-          ]
+          _vm._l(_vm.provinces, function(p) {
+            return _c("option", { key: p.index }, [_vm._v(_vm._s(p.name))])
+          }),
+          0
         )
       ])
     ]),
@@ -48471,9 +48518,10 @@ var render = function() {
         _c(
           "GmapMap",
           {
+            ref: "mapRef",
             staticStyle: { width: "100%", height: "300px" },
             attrs: {
-              center: { lat: 14.156581, lng: 121.499842 },
+              center: { lat: 13.525, lng: 123.3486 },
               zoom: 7,
               "map-type-id": "terrain"
             }
@@ -48482,7 +48530,8 @@ var render = function() {
             _c("GmapMarker", {
               ref: "myMarker",
               attrs: {
-                position: _vm.google && new _vm.google.maps.LatLng(1.38, 103.8)
+                position:
+                  _vm.google && new _vm.google.maps.LatLng(13.525, 123.3486)
               }
             })
           ],
