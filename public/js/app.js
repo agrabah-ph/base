@@ -2510,7 +2510,7 @@ __webpack_require__.r(__webpack_exports__);
       }],
       municipalities: [{
         name: "Nabua",
-        provinceOf: "Camarines Sur",
+        provinceOf: "CAMARINES SUR",
         lat: 13.5250,
         lng: 123.3486
       }, {
@@ -2679,10 +2679,13 @@ __webpack_require__.r(__webpack_exports__);
         country: country
       };
       Vue.$geocoder.send(addressObj, function (response) {
+        console.log(response);
         _this.setLat = response.results[0].geometry.location.lat;
         _this.setLong = response.results[0].geometry.location.lng;
 
         _this.zoomIn(_this.setLat, _this.setLong);
+
+        console.log(_this.setLat + ", " + _this.setLong);
       });
     }
   },
@@ -49181,7 +49184,9 @@ var render = function() {
             }
           },
           _vm._l(_vm.provinces, function(p) {
-            return _c("option", { key: p.index }, [_vm._v(_vm._s(p.provDesc))])
+            return _c("option", { key: p.id, domProps: { value: p.id } }, [
+              _vm._v(_vm._s(p.provDesc))
+            ])
           }),
           0
         )

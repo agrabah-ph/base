@@ -4,7 +4,7 @@
             <label for="province" class="col-md-4 col-form-label text-md-right">Province</label>
             <div class="col-md-6">
                 <select id="province" v-model="province" class="form-control" @change="selectProvince">
-                    <option v-for="p in provinces" :key="p.index">{{ p.provDesc }}</option>
+                    <option v-for="p in provinces" :key="p.id" :value="p.id">{{ p.provDesc }}</option>
                 </select>
             </div>
         </div>
@@ -675,7 +675,7 @@ export default {
             municipalities: [
                 {
                     name: "Nabua",
-                    provinceOf: "Camarines Sur",
+                    provinceOf: "CAMARINES SUR",
                     lat: 13.5250,
                     lng: 123.3486
                 },
@@ -750,6 +750,7 @@ export default {
                 }
 
             }
+
             this.geoCoder('PH', selectedProvince);
             console.log(selectedProvince);
 
@@ -812,11 +813,14 @@ export default {
 
             Vue.$geocoder.send(addressObj, response => {
 
+                console.log(response)
+
                 this.setLat = response.results[0].geometry.location.lat;
                 this.setLong = response.results[0].geometry.location.lng;
 
                 this.zoomIn(this.setLat, this.setLong);
 
+                console.log(this.setLat + ", " + this.setLong);
              });
         }
     },

@@ -20,11 +20,17 @@ class CreateBarangaysTable extends Migration
             $table->string('regCode',10);
             $table->string('provCode',10)->default("");
             $table->string('citymunCode',10)->default("");
-            $table->timestamps();
-
             $table->foreign('provCode')->references('provCode')->on('provinces')->onDelete('cascade');
             $table->foreign('citymunCode')->references('citymunCode')->on('municipalities')->onDelete('cascade');
         });
+
+        $filepath = storage_path() . '/addresses/refbrgy.json';
+        $file = json_decode(file_get_contents($filepath,true))->RECORDS;
+
+        foreach ($file as $key => $barangay)
+        {
+            App\Models\Barangay::create((array)$barangay)->save();
+        }
     }
 
     /**
@@ -34,6 +40,6 @@ class CreateBarangaysTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('barangays');
+      Schema::dropIfExists('barangays');
     }
 }
