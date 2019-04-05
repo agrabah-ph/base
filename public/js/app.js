@@ -1840,6 +1840,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -48567,9 +48569,21 @@ var render = function() {
             }
           },
           _vm._l(_vm.municipalities, function(m) {
-            return m.provinceOf == _vm.chosenProvince
-              ? _c("option", { key: m.index }, [_vm._v(_vm._s(m.name))])
-              : _vm._e()
+            return _c(
+              "option",
+              {
+                directives: [
+                  {
+                    name: "show",
+                    rawName: "v-show",
+                    value: m.provinceOf == _vm.chosenProvince,
+                    expression: "m.provinceOf == chosenProvince"
+                  }
+                ],
+                key: m.index
+              },
+              [_c("span", [_vm._v(_vm._s(m.name))])]
+            )
           }),
           0
         )
@@ -48620,9 +48634,21 @@ var render = function() {
             }
           },
           _vm._l(_vm.barangays, function(b) {
-            return b.cityOf == _vm.chosenMunicipality
-              ? _c("option", { key: b.index }, [_vm._v(_vm._s(b.name))])
-              : _vm._e()
+            return _c(
+              "option",
+              {
+                directives: [
+                  {
+                    name: "show",
+                    rawName: "v-show",
+                    value: b.cityOf == _vm.chosenMunicipality,
+                    expression: "b.cityOf == chosenMunicipality"
+                  }
+                ],
+                key: b.index
+              },
+              [_vm._v(_vm._s(b.name))]
+            )
           }),
           0
         )

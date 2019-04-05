@@ -69,7 +69,7 @@
             <h3>About Us</h3>
             <br>
             <span style="font-size:1rem;">
-            Agrabah Marketplace is more than a platform, we build communities. Part of our initiative is to create awareness and encourage millennials to take part in the wave of change. We want to create awareness around the topic of food sustainability in the Philippines. Everyone’s efforts can help create the ripple effect regardless of how big or small their input is. We aim to do this through volunteering efforts and also promoting agri-preneurship as a viable occupational choice. 
+            Agrabah Marketplace is more than a platform, we build communities. Part of our initiative is to create awareness and encourage millennials to take part in the wave of change. We want to create awareness around the topic of food sustainability in the Philippines. Everyone’s efforts can help create the ripple effect regardless of how big or small their input is. We aim to do this through volunteering efforts and also promoting agri-preneurship as a viable occupational choice.
             </span>
         </div>
     </section>
@@ -104,7 +104,7 @@
     <section class="section static">
         <div class="section-text">
             <span>
-            Agrabah Marketplace is more than a platform, we build communities. Part of our initiative is to create awareness and encourage millennials to take part in the wave of change. We want to create awareness around the topic of food sustainability in the Philippines. Everyone’s efforts can help create the ripple effect regardless of how big or small their input is. We aim to do this through volunteering efforts and also promoting agri-preneurship as a viable occupational choice. 
+            Agrabah Marketplace is more than a platform, we build communities. Part of our initiative is to create awareness and encourage millennials to take part in the wave of change. We want to create awareness around the topic of food sustainability in the Philippines. Everyone’s efforts can help create the ripple effect regardless of how big or small their input is. We aim to do this through volunteering efforts and also promoting agri-preneurship as a viable occupational choice.
             </span>
         </div>
     </section>
@@ -135,7 +135,8 @@
     </section>
     <section class="lg-section static1" id="volunteer_form">
         <span class="section-head">Volunteer</span>
-        <form class="m-2">
+        <form class="m-2" method="POST" action="/volunteer">
+            @csrf
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="firstName">First Name</label>

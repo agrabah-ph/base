@@ -20,4 +20,11 @@ class WelcomeController extends Controller
             return redirect()->route('register');
         }
     }
+
+    public function volunteer()
+    {
+
+        dd('hit');
+
+    }
 }

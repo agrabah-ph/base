@@ -21,3 +21,5 @@ Route::group(['middleware' => ['auth:api', 'role:owner']], function() {
     Route::get('user-search', 'UserController@search');
     Route::get('user-get', 'UserController@get');
 });
+
+Route::post('/volunteer', 'WelcomeController@volunteer');

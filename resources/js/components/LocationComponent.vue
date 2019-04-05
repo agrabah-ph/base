@@ -12,7 +12,9 @@
             <label for="municipality" class="col-md-4 col-form-label text-md-right">Municipality</label>
             <div class="col-md-6">
                 <select v-model="municipality" id="municipality" class="form-control" @change="selectMunicipality">
-                        <option v-for="m in municipalities" :key="m.index" v-if="m.provinceOf == chosenProvince">{{ m.name }}</option>
+                        <option v-for="m in municipalities" :key="m.index" v-show="m.provinceOf == chosenProvince">
+                            <span >{{ m.name }}</span>
+                        </option>
                 </select>
             </div>
         </div>
@@ -20,7 +22,7 @@
             <label for="barangay" class="col-md-4 col-form-label text-md-right">Barangay</label>
             <div class="col-md-6">
                 <select v-model="barangay" id="barangay" class="form-control" @change="selectBarangay">
-                    <option v-for="b in barangays" :key="b.index" v-if="b.cityOf == chosenMunicipality">{{ b.name }}</option>
+                    <option v-for="b in barangays" :key="b.index" v-show="b.cityOf == chosenMunicipality">{{ b.name }}</option>
                 </select>
             </div>
         </div>
