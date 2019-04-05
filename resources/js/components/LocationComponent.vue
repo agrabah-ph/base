@@ -12,7 +12,7 @@
             <label for="municipality" class="col-md-4 col-form-label text-md-right">Municipality</label>
             <div class="col-md-6">
                 <select v-model="municipality" id="municipality" class="form-control" @change="selectMunicipality">
-                    <option value="trial">trial</option>
+                        <option v-for="m in municipalities" :key="m.index" v-if="m.provinceOf == chosenProvince">{{ m.name }}</option>
                 </select>
             </div>
         </div>
@@ -20,7 +20,7 @@
             <label for="barangay" class="col-md-4 col-form-label text-md-right">Barangay</label>
             <div class="col-md-6">
                 <select v-model="barangay" id="barangay" class="form-control" @change="selectBarangay">
-                    <option value="brgytrial"> trial</option>
+                    <option v-for="b in barangays" :key="b.index" v-if="b.cityOf == chosenMunicipality">{{ b.name }}</option>
                 </select>
             </div>
         </div>
@@ -63,58 +63,131 @@ export default {
                     lng: 123.5280
                 },
                 {
-                    name: "Manila",
+                    name: "NCR",
                     lat: 14.5995,
                     lng: 120.9842
                 }
             ],
-            municipalities: [],
-            barangays: [],
-            setLat: 13.5250,
-            setLong: 123.3486,
-            gmapsAPIKey: "AIzaSyDSD1bBpEjkW1-JIdMdtL24qRkw7E2cWgE",
+            municipalities: [
+                {
+                    name: "Nabua",
+                    provinceOf: "Camarines Sur",
+                    lat: 13.5250,
+                    lng: 123.3486
+                },
+                {
+                    name: "Naga City",
+                    provinceOf: "Camarines Sur",
+                    lat: 13.5250,
+                    lng: 123.3486
+                },
+                {
+                    name: "Legazpi City",
+                    provinceOf: "Albay",
+                    lat: 13.1775,
+                    lng: 123.5290
+                },
+                {
+                    name: "Pasig City",
+                    provinceOf: "NCR",
+                    lat: 14.5764,
+                    lng: 121.0851,
+                }
+            ],
+            barangays: [
+                {
+                    name: "San Felipe",
+                    cityOf: "Naga City",
+                    lat: 13.5250,
+                    lng: 123.3486
+                },
+                {
+                    name: "Concepcion Grande",
+                    cityOf: "Naga City",
+                    lat: 13.5250,
+                    lng: 123.3486
+                },
+                {
+                    name: "Cabugao",
+                    cityOf: "Legazpi City",
+                    lat: 13.1775,
+                    lng: 123.5290
+                },
+                {
+                    name: "Rosario",
+                    cityOf: "Pasig City",
+                    lat: 14.5764,
+                    lng: 121.0851,
+                }
+            ],
+            setLat: 13.5250, //default
+            setLong: 123.3486, //default
+            chosenProvince: null,
+            chosenMunicipality: null,
         }
-    },
-    mounted() {
-
-        this.geoLocationFetcher();
-
     },
     methods: {
         selectProvince(e) {
 
             var selectedProvince = e.target.value;
 
+            /**
+             * Find the selected province
+             * and pass on to the chosen province to filter
+             * selected province and their municipalities/city
+             */
+
             for(let p of this.provinces) {
 
                 if(p.name == selectedProvince) {
 
-                    this.setLat = p.lat;
-                    this.setLong = p.lng;
+                    this.chosenProvince = selectedProvince;
 
                 }
 
             }
 
-            this.pan(this.setLat, this.setLong);
-
             console.log(selectedProvince);
-            var map = new google.maps.Geocoder;
-            console.log(map);
 
         },
-        selectMunicipality() {
+        selectMunicipality(e) {
 
-            console.log(this.municipality);
+            var selectedMunicipality = e.target.value;
+
+            for(let m of this.municipalities) {
+
+                if(m.name == selectedMunicipality) {
+
+                    this.chosenMunicipality = selectedMunicipality;
+
+                }
+
+            }
+
+            console.log(selectedMunicipality);
 
         },
-        selectBarangay() {
+        selectBarangay(e) {
 
+            var selectedBrgy = e.target.value;
+
+            for(let b of this.barangays) {
+
+                if(b.name == selectedBrgy) {
+
+                    this.setLat = b.lat;
+                    this.setLong = b.lng;
+
+                }
+
+            }
+
+            this.zoomIn(this.setLat, this.setLong);
             console.log(this.barangay);
 
         },
 
-        pan(latCoo, longCoo) {
+        zoomIn(latCoo, longCoo) {
 
             //Dynamically pan after selecting a province
             this.$refs.mapRef.$mapPromise.then((map) => {
@@ -123,25 +196,6 @@ export default {
 
             });
 
-        },
-
-        geoLocationFetcher() {
-
-            // var uri = "https://maps.googleapis.com/maps/api/geocode/json?latlng=40.714224,-73.961452&key=AIzaSyDSD1bBpEjkW1-JIdMdtL24qRkw7E2cWgE";
-            // fetch(uri, {
-            //     method: 'post',
-            // })
-            // .then(
-            //     res => {
-            //         console.log(res.status);
-            //         if(res.status === 200) {
-            //             console.log(res[0].formatted_address);
-            //         }
-            //     }
-            // )
-            // .catch(
-            //     err => console.log(err.message)
-            // )
         },
     },
     computed: {

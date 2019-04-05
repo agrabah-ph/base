@@ -1858,23 +1858,69 @@ __webpack_require__.r(__webpack_exports__);
         lat: 13.1775,
         lng: 123.5280
       }, {
-        name: "Manila",
+        name: "NCR",
         lat: 14.5995,
         lng: 120.9842
       }],
-      municipalities: [],
-      barangays: [],
+      municipalities: [{
+        name: "Nabua",
+        provinceOf: "Camarines Sur",
+        lat: 13.5250,
+        lng: 123.3486
+      }, {
+        name: "Naga City",
+        provinceOf: "Camarines Sur",
+        lat: 13.5250,
+        lng: 123.3486
+      }, {
+        name: "Legazpi City",
+        provinceOf: "Albay",
+        lat: 13.1775,
+        lng: 123.5290
+      }, {
+        name: "Pasig City",
+        provinceOf: "NCR",
+        lat: 14.5764,
+        lng: 121.0851
+      }],
+      barangays: [{
+        name: "San Felipe",
+        cityOf: "Naga City",
+        lat: 13.5250,
+        lng: 123.3486
+      }, {
+        name: "Concepcion Grande",
+        cityOf: "Naga City",
+        lat: 13.5250,
+        lng: 123.3486
+      }, {
+        name: "Cabugao",
+        cityOf: "Legazpi City",
+        lat: 13.1775,
+        lng: 123.5290
+      }, {
+        name: "Rosario",
+        cityOf: "Pasig City",
+        lat: 14.5764,
+        lng: 121.0851
+      }],
       setLat: 13.5250,
+      //default
       setLong: 123.3486,
-      gmapsAPIKey: "AIzaSyDSD1bBpEjkW1-JIdMdtL24qRkw7E2cWgE"
+      //default
+      chosenProvince: null,
+      chosenMunicipality: null
     };
-  },
-  mounted: function mounted() {
-    this.geoLocationFetcher();
   },
   methods: {
     selectProvince: function selectProvince(e) {
       var selectedProvince = e.target.value;
+      /**
+       * Find the selected province
+       * and pass on to the chosen province to filter
+       * selected province and their municipalities/city
+       */
+
       var _iteratorNormalCompletion = true;
       var _didIteratorError = false;
       var _iteratorError = undefined;
@@ -1884,8 +1930,7 @@ __webpack_require__.r(__webpack_exports__);
           var p = _step.value;
 
           if (p.name == selectedProvince) {
-            this.setLat = p.lat;
-            this.setLong = p.lng;
+            this.chosenProvince = selectedProvince;
           }
         }
       } catch (err) {
@@ -1903,18 +1948,73 @@ __webpack_require__.r(__webpack_exports__);
         }
       }
 
-      this.pan(this.setLat, this.setLong);
       console.log(selectedProvince);
-      var map = new google.maps.Geocoder();
-      console.log(map);
     },
-    selectMunicipality: function selectMunicipality() {
-      console.log(this.municipality);
+    selectMunicipality: function selectMunicipality(e) {
+      var selectedMunicipality = e.target.value;
+      var _iteratorNormalCompletion2 = true;
+      var _didIteratorError2 = false;
+      var _iteratorError2 = undefined;
+
+      try {
+        for (var _iterator2 = this.municipalities[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+          var m = _step2.value;
+
+          if (m.name == selectedMunicipality) {
+            this.chosenMunicipality = selectedMunicipality;
+          }
+        }
+      } catch (err) {
+        _didIteratorError2 = true;
+        _iteratorError2 = err;
+      } finally {
+        try {
+          if (!_iteratorNormalCompletion2 && _iterator2["return"] != null) {
+            _iterator2["return"]();
+          }
+        } finally {
+          if (_didIteratorError2) {
+            throw _iteratorError2;
+          }
+        }
+      }
+
+      console.log(selectedMunicipality);
     },
-    selectBarangay: function selectBarangay() {
+    selectBarangay: function selectBarangay(e) {
+      var selectedBrgy = e.target.value;
+      var _iteratorNormalCompletion3 = true;
+      var _didIteratorError3 = false;
+      var _iteratorError3 = undefined;
+
+      try {
+        for (var _iterator3 = this.barangays[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
+          var b = _step3.value;
+
+          if (b.name == selectedBrgy) {
+            this.setLat = b.lat;
+            this.setLong = b.lng;
+          }
+        }
+      } catch (err) {
+        _didIteratorError3 = true;
+        _iteratorError3 = err;
+      } finally {
+        try {
+          if (!_iteratorNormalCompletion3 && _iterator3["return"] != null) {
+            _iterator3["return"]();
+          }
+        } finally {
+          if (_didIteratorError3) {
+            throw _iteratorError3;
+          }
+        }
+      }
+
+      this.zoomIn(this.setLat, this.setLong);
       console.log(this.barangay);
     },
-    pan: function pan(latCoo, longCoo) {
+    zoomIn: function zoomIn(latCoo, longCoo) {
       //Dynamically pan after selecting a province
       this.$refs.mapRef.$mapPromise.then(function (map) {
         map.panTo({
@@ -1922,22 +2022,6 @@ __webpack_require__.r(__webpack_exports__);
           lng: longCoo
         });
       });
-    },
-    geoLocationFetcher: function geoLocationFetcher() {// var uri = "https://maps.googleapis.com/maps/api/geocode/json?latlng=40.714224,-73.961452&key=AIzaSyDSD1bBpEjkW1-JIdMdtL24qRkw7E2cWgE";
-      // fetch(uri, {
-      //     method: 'post',
-      // })
-      // .then(
-      //     res => {
-      //         console.log(res.status);
-      //         if(res.status === 200) {
-      //             console.log(res[0].formatted_address);
-      //         }
-      //     }
-      // )
-      // .catch(
-      //     err => console.log(err.message)
-      // )
     }
   },
   computed: {
@@ -48482,7 +48566,12 @@ var render = function() {
               ]
             }
           },
-          [_c("option", { attrs: { value: "trial" } }, [_vm._v("trial")])]
+          _vm._l(_vm.municipalities, function(m) {
+            return m.provinceOf == _vm.chosenProvince
+              ? _c("option", { key: m.index }, [_vm._v(_vm._s(m.name))])
+              : _vm._e()
+          }),
+          0
         )
       ])
     ]),
@@ -48530,7 +48619,12 @@ var render = function() {
               ]
             }
           },
-          [_c("option", { attrs: { value: "brgytrial" } }, [_vm._v(" trial")])]
+          _vm._l(_vm.barangays, function(b) {
+            return b.cityOf == _vm.chosenMunicipality
+              ? _c("option", { key: b.index }, [_vm._v(_vm._s(b.name))])
+              : _vm._e()
+          }),
+          0
         )
       ])
     ]),
