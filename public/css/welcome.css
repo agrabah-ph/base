@@ -133,3 +133,11 @@ html, body {
     padding-top: 80px;
     padding-bottom: 2rem;
 }
+
+.error-message {
+    position: fixed;
+    top: 35px;
+    right: 0;
+    margin: 15px;
+    z-index: 10000;
+}

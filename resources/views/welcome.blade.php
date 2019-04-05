@@ -5,6 +5,7 @@
 @endsection
 
 @section('content')
+
 <div class="parallax-wrapper">
     <section class="parallax bg1" style="height:100vh;">
         <img src="{{ url('/images/logo/200x200.png') }}" width="200px" height="200px" style="margin: calc(50vh - 100px) calc(50% - 100px) 0 calc(50% - 100px)" alt="Agrabah Marketplace">
@@ -140,38 +141,38 @@
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="firstName">First Name</label>
-                    <input type="text" id="firstName" class="form-control">
+                    <input type="text" name="firstname" value="{{ old('firstname') }}" id="firstName" class="form-control">
                 </div>
                 <div class="form-group col-md-6">
                     <label for="lastName">Last Name</label>
-                    <input type="text" id="lastName" class="form-control">
+                    <input type="text" name="lastname" value="{{ old('lastname') }}" id="lastName" class="form-control">
                 </div>
             </div>
             <div class="form-group">
                 <label for="inputAddress">Address</label>
-                <input type="text" class="form-control" id="inputAddress">
+                <input type="text" name="address" value="{{ old('address') }}" class="form-control" id="inputAddress">
             </div>
             <div class="form-group">
                 <label for="inputEmail">Email</label>
-                <input type="text" class="form-control" id="inputEmail">
+                <input type="text" name="email" value="{{ old('email') }}" class="form-control" id="inputEmail">
             </div>
             <div class="form-group">
                 <label for="inputPhone">Phone</label>
-                <input type="text" class="form-control" id="inputPhone">
+            <input type="text" name="mobile" value="{{ old('mobile') }}" class="form-control" id="inputPhone">
             </div>
             <div class="form-group">
                 <label for="volunteer-role">Volunteer as:</label>
                 <select name="volunteer-role" id="volunteer-role" class="custom-select">
-                    <option value="Content Writer Volunteer" selected>Content Writer Volunteer</option>
-                    <option value="Volunteer Vlogger">Volunteer Vlogger</option>
-                    <option value="Volunteer Influencer">Volunteer Influencer</option>
-                    <option value="Community Engagement Manager Volunteer">Community Engagement Manager Volunteer</option>
-                    <option value="Events Coordinator Volunteer">Events Coordinator Volunteer</option>
+                    <option value="Content Writer Volunteer" {{ old('volunteer-role') ? 'selected' : '' }} selected>Content Writer Volunteer</option>
+                    <option value="Volunteer Vlogger" {{ old('volunteer-role') == 'Volunteer Vlogger' ? 'selected' : '' }}>Volunteer Vlogger</option>
+                    <option value="Volunteer Influencer" {{ old('volunteer-role') == 'Volunteer Influencer' ? 'selected' : '' }}>Volunteer Influencer</option>
+                    <option value="Community Engagement Manager Volunteer" == 'Community Engagement Manager Volunteer' {{ old('volunteer-role') ? 'selected' : '' }}>Community Engagement Manager Volunteer</option>
+                    <option value="Events Coordinator Volunteer" {{ old('volunteer-role') == 'Events Coordinator Volunteer' ? 'selected' : '' }}>Events Coordinator Volunteer</option>
                 </select>
             </div>
             <div class="form-group">
                 <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="gridCheck">
+                <input class="form-check-input" name="agreement" {{ old('agreement') ? 'checked' : null }} type="checkbox" id="gridCheck">
                 <label class="form-check-label" for="gridCheck">
                     I agree to Agrabah Marketplace's Privacy terms and conditions.
                 </label>
@@ -182,24 +183,25 @@
     </section>
     <section class="lg-section static" id="contact-section">
         <span class="section-head">Contact Us</span>
-        <form class="m-2">
+        <form class="m-2" method="POST" action="/api/contact">
+            @csrf
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="contactFirstName">First Name</label>
-                    <input type="text" id="contactFirstName" class="form-control">
+                    <input type="text" name="firstname" id="contactFirstName" class="form-control">
                 </div>
                 <div class="form-group col-md-6">
                     <label for="contactLastName">Last Name</label>
-                    <input type="text" id="contactLastName" class="form-control">
+                    <input type="text" name="lastname" id="contactLastName" class="form-control">
                 </div>
             </div>
             <div class="form-group">
                 <label for="contactEmail">Email</label>
-                <input type="text" class="form-control" id="contactEmail">
+                <input type="text" name="email" class="form-control" id="contactEmail">
             </div>
             <div class="form-group">
                 <label for="contactMessage">Message</label>
-                <textarea class="form-control" id="contactMessage" rows="3"></textarea>
+                <textarea class="form-control" name="message" id="contactMessage" rows="3"></textarea>
             </div>
             <button class="btn btn-primary" type="submit">Submit</button>
         </form>

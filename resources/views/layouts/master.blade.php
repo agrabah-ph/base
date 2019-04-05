@@ -22,6 +22,7 @@
 </head>
 <body>
     <div id="app">
+        @include('includes.errors')
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel fixed-top pb-0">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">

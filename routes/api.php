@@ -22,4 +22,5 @@ Route::group(['middleware' => ['auth:api', 'role:owner']], function() {
     Route::get('user-get', 'UserController@get');
 });
 
-Route::post('/volunteer', 'WelcomeController@volunteer');
+
+Route::post('/contact', 'WelcomeController@contact');
