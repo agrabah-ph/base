@@ -72,7 +72,13 @@ export default {
             barangays: [],
             setLat: 13.5250,
             setLong: 123.3486,
+            gmapsAPIKey: "AIzaSyDSD1bBpEjkW1-JIdMdtL24qRkw7E2cWgE",
         }
+    },
+    mounted() {
+
+        this.geoLocationFetcher();
+
     },
     methods: {
         selectProvince(e) {
@@ -93,6 +99,8 @@ export default {
             this.pan(this.setLat, this.setLong);
 
             console.log(selectedProvince);
+            var map = new google.maps.Geocoder;
+            console.log(map);
 
         },
         selectMunicipality() {
@@ -115,7 +123,26 @@ export default {
 
             });
 
-        }
+        },
+
+        geoLocationFetcher() {
+
+            // var uri = "https://maps.googleapis.com/maps/api/geocode/json?latlng=40.714224,-73.961452&key=AIzaSyDSD1bBpEjkW1-JIdMdtL24qRkw7E2cWgE";
+            // fetch(uri, {
+            //     method: 'post',
+            // })
+            // .then(
+            //     res => {
+            //         console.log(res.status);
+            //         if(res.status === 200) {
+            //             console.log(res[0].formatted_address);
+            //         }
+            //     }
+            // )
+            // .catch(
+            //     err => console.log(err.message)
+            // )
+        },
     },
     computed: {
 
