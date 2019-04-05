@@ -12,12 +12,23 @@ window.Vue = require('vue');
 import store from './store/index'
 
 import * as VueGoogleMaps from 'vue2-google-maps';
+import Geocoder from '@pderas/vue2-geocoder';
 
 Vue.use(VueGoogleMaps, {
+
     load: {
+
         key: 'AIzaSyDSD1bBpEjkW1-JIdMdtL24qRkw7E2cWgE',
         libraries: 'places'
+
     }
+
+});
+
+Vue.use(Geocoder, {
+
+    googleMapsApiKey: 'AIzaSyDSD1bBpEjkW1-JIdMdtL24qRkw7E2cWgE'
+
 });
 
 /**
