@@ -23,12 +23,12 @@ class CreateCitiesMunicipalitiesTable extends Migration
           $table->foreign('provCode')->references('provCode')->on('provinces')->onDelete('cascade');
       });
 
-      $filepath = storage_path() . '/addresses/refcitymun.json';
-      $file = json_decode(file_get_contents($filepath,true))->RECORDS;
+    //   $filepath = storage_path() . '/addresses/refcitymun.json';
+    //   $file = json_decode(file_get_contents($filepath,true))->RECORDS;
 
-      foreach ($file as $key => $municipality) {
-        App\CityMunicipality::create((array)$municipality)->save();
-      }
+    //   foreach ($file as $key => $municipality) {
+    //     App\CityMunicipality::create((array)$municipality)->save();
+    //   }
     }
 
     /**

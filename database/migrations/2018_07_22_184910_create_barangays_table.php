@@ -24,13 +24,13 @@ class CreateBarangaysTable extends Migration
             $table->foreign('citymunCode')->references('citymunCode')->on('cities_municipalities')->onDelete('cascade');
         });
 
-        $filepath = storage_path() . '/addresses/refbrgy.json';
-        $file = json_decode(file_get_contents($filepath,true))->RECORDS;
+        // $filepath = storage_path() . '/addresses/refbrgy.json';
+        // $file = json_decode(file_get_contents($filepath,true))->RECORDS;
 
-        foreach ($file as $key => $barangay)
-        {
-            App\Barangay::create((array)$barangay)->save();
-        }
+        // foreach ($file as $key => $barangay)
+        // {
+        //     App\Barangay::create((array)$barangay)->save();
+        // }
     }
 
     /**

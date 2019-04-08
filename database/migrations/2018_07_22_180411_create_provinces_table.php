@@ -21,12 +21,12 @@ class CreateProvincesTable extends Migration
           $table->string('provCode', 10)->unique();
       });
 
-      $filepath = storage_path() . '/addresses/refprovince.json';
-      $file = json_decode(file_get_contents($filepath,true))->RECORDS;
+    //   $filepath = storage_path() . '/addresses/refprovince.json';
+    //   $file = json_decode(file_get_contents($filepath,true))->RECORDS;
 
-      foreach ($file as $key => $province) {
-        App\Province::create((array)$province)->save();
-      }
+    //   foreach ($file as $key => $province) {
+    //     App\Province::create((array)$province)->save();
+    //   }
     }
 
     /**

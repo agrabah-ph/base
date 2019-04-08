@@ -11,9 +11,8 @@ class Province extends Model
     public $timestamps = false;
     protected $table = 'provinces';
 
-    public function municipalities()
+    public function cities_municipalities()
     {
-        return $this->hasMany(Municipality::class, 'provCode', 'provCode');
+        return $this->hasMany(CityMunicipality::class, 'provCode', 'provCode');
     }
-
 }

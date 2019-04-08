@@ -11,8 +11,8 @@ class Barangay extends Model
 
     public $timestamps = false;
 
-    public function municipality()
+    public function citymunicipality()
     {
-        return $this->belongsTo(Municipality::class, 'citymunCode', 'citymunCode');
+        return $this->belongsTo(CityMunicipality::class, 'citymunCode', 'citymunCode');
     }
 }

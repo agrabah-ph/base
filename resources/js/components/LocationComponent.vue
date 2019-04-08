@@ -1,71 +1,114 @@
 <template>
-    <div class="mt-4">
-        <div class="form-group row">
-            <label for="province" class="col-md-4 col-form-label text-md-right">Province</label>
-            <div class="col-md-6">
-                <select id="province" v-model="province" class="form-control" @change="selectProvince">
-                    <option v-for="p in provinces" :key="p.id" :value="p.id">{{ p.provDesc }}</option>
-                </select>
-            </div>
+    <div class="container mt-3 mb-3">
+        <div class="form-group">
+            <select v-model="province" id="" class="form-control" @change="fetchMunicipalities(province)">
+                <option v-for="province in provinces" :key="province.id" :value="province.provCode">{{ province.provDesc }}</option>
+            </select>
         </div>
-        <div class="form-group row">
-            <label for="municipality" class="col-md-4 col-form-label text-md-right">Municipality</label>
-            <div class="col-md-6">
-                <select v-model="municipality" id="municipality" class="form-control" @change="selectMunicipality">
-                        <option v-for="m in municipalities" :key="m.index" v-show="m.provinceOf == chosenProvince">
-                            <span >{{ m.name }}</span>
-                        </option>
-                </select>
-            </div>
+        <div class="form-group">
+            <select v-model="municipality" class="form-control" @change="fetchBarangays(municipality)">
+                <option v-for="municipality in selectedProvince" :key="municipality.id" :value="municipality.citymunCode">{{ municipality.citymunDesc }}</option>
+            </select>
         </div>
-        <div class="form-group row">
-            <label for="barangay" class="col-md-4 col-form-label text-md-right">Barangay</label>
-            <div class="col-md-6">
-                <select v-model="barangay" id="barangay" class="form-control" @change="selectBarangay">
-                    <option v-for="b in barangays" :key="b.index" v-show="b.cityOf == chosenMunicipality">{{ b.name }}</option>
-                </select>
-            </div>
+        <div class="form-group">
+            <select v-model="barangay" class="form-control" @change="getCoords">
+                <option v-for="barangay in selectedMunicipality" :key="barangay.id" :value="barangay.brgyDesc"> {{ barangay.brgyDesc }} </option>
+            </select>
         </div>
         <div class="map">
             <GmapMap
-                ref="mapRef"
-                :center="{lat: 13.5250, lng: 123.3486 }"
+                ref="myMarker"
+                :center="{lat:14, lng:123}"
                 :zoom="7"
                 map-type-id="terrain"
-                style="width: 100%; height: 300px"
-                >
-                <GmapMarker ref="myMarker"
-                    :position="google &&
-                    new google.maps.LatLng(setLat, setLong)" />
+                style="width: 500px; height: 300px"
+            >
+            <GmapMarker ref="myMarker"
+                :position="google && new google.maps.LatLng(14, 123)"
+            />
             </GmapMap>
         </div>
     </div>
 </template>
 
 <script>
-import * as VueGoogleMaps from 'vue2-google-maps';
-import {gmapApi} from 'vue2-google-maps'
-
+import {gmapApi} from 'vue2-google-maps';
 export default {
-    name: "Locations",
+    name: "locations",
     data() {
         return {
-
-            province: "",
-            municipality: "",
-            barangay: "",
+            province: null,
+            municipality: null,
+            barangay: null,
             provinces: [],
             municipalities: [],
-            barangays: []
+            barangays: [],
         }
     },
+    created() {
+        this.fetchProvince();
+    },
     methods: {
-        fetchProvinces() {
+        fetchProvince() {
+
+            fetch('/api/province')
+            .then( res => res.json())
+            .then( data => {
+
+                console.log(data);
+                this.provinces = data.provinces
+
+            })
+            .catch(err => console.log(err))
+        },
+
+        fetchMunicipalities(code) {
+
+            fetch(`api/municipality/${code}`)
+            .then( res => res.json() )
+            .then( data => {
+
+                this.municipalities = data.municipalities;
+
+            })
+        },
+
+        fetchBarangays(code) {
+
+            fetch(`api/barangay/${code}`)
+            .then( res => res.json() )
+            .then( data => {
+                this.barangays = data.barangays;
+
+            });
+
+        },
+        getCoords() {
+
+            // Vue.$geocoder.setDefaultMode('address');      // this is default
+            // var addressObj = {
+            //     address_line_1: this.barangay,
+            //     address_line_2: '',
+            //     city:           '',
+            //     state:          '',               // province also valid
+            //     zip_code:       '',            // postal_code also valid
+            //     country:        'PH'
+            // }
+            // Vue.$geocoder.send(addressObj, response => { console.log(response) });
+        }
+    },
+    computed: {
+        google: gmapApi,
+        selectedProvince() {
+
+            return this.municipalities.filter(code => code.provCode == this.province)
+
+        },
+        selectedMunicipality() {
+
+            return this.barangays.filter(code => code.citymunCode == this.municipality)
 
         }
     }
 }
 </script>
-
-<style scoped>
-</style>

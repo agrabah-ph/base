@@ -34,6 +34,3 @@ Route::group(['middleware' => 'verified'], function() {
 });
 
 Route::get('/test', function() {echo 'test';})->middleware('verified');
-
-
-Route::post('/volunteer', 'WelcomeController@volunteer');

@@ -1959,751 +1959,81 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: "Locations",
+  name: "locations",
   data: function data() {
     return {
-      province: "",
-      municipality: "",
-      barangay: "",
-      provinces: [{
-        "id": 1,
-        "psgcCode": "012800000",
-        "provDesc": "ILOCOS NORTE",
-        "regCode": "01",
-        "provCode": "0128"
-      }, {
-        "id": 2,
-        "psgcCode": "012900000",
-        "provDesc": "ILOCOS SUR",
-        "regCode": "01",
-        "provCode": "0129"
-      }, {
-        "id": 3,
-        "psgcCode": "013300000",
-        "provDesc": "LA UNION",
-        "regCode": "01",
-        "provCode": "0133"
-      }, {
-        "id": 4,
-        "psgcCode": "015500000",
-        "provDesc": "PANGASINAN",
-        "regCode": "01",
-        "provCode": "0155"
-      }, {
-        "id": 5,
-        "psgcCode": "020900000",
-        "provDesc": "BATANES",
-        "regCode": "02",
-        "provCode": "0209"
-      }, {
-        "id": 6,
-        "psgcCode": "021500000",
-        "provDesc": "CAGAYAN",
-        "regCode": "02",
-        "provCode": "0215"
-      }, {
-        "id": 7,
-        "psgcCode": "023100000",
-        "provDesc": "ISABELA",
-        "regCode": "02",
-        "provCode": "0231"
-      }, {
-        "id": 8,
-        "psgcCode": "025000000",
-        "provDesc": "NUEVA VIZCAYA",
-        "regCode": "02",
-        "provCode": "0250"
-      }, {
-        "id": 9,
-        "psgcCode": "025700000",
-        "provDesc": "QUIRINO",
-        "regCode": "02",
-        "provCode": "0257"
-      }, {
-        "id": 10,
-        "psgcCode": "030800000",
-        "provDesc": "BATAAN",
-        "regCode": "03",
-        "provCode": "0308"
-      }, {
-        "id": 11,
-        "psgcCode": "031400000",
-        "provDesc": "BULACAN",
-        "regCode": "03",
-        "provCode": "0314"
-      }, {
-        "id": 12,
-        "psgcCode": "034900000",
-        "provDesc": "NUEVA ECIJA",
-        "regCode": "03",
-        "provCode": "0349"
-      }, {
-        "id": 13,
-        "psgcCode": "035400000",
-        "provDesc": "PAMPANGA",
-        "regCode": "03",
-        "provCode": "0354"
-      }, {
-        "id": 14,
-        "psgcCode": "036900000",
-        "provDesc": "TARLAC",
-        "regCode": "03",
-        "provCode": "0369"
-      }, {
-        "id": 15,
-        "psgcCode": "037100000",
-        "provDesc": "ZAMBALES",
-        "regCode": "03",
-        "provCode": "0371"
-      }, {
-        "id": 16,
-        "psgcCode": "037700000",
-        "provDesc": "AURORA",
-        "regCode": "03",
-        "provCode": "0377"
-      }, {
-        "id": 17,
-        "psgcCode": "041000000",
-        "provDesc": "BATANGAS",
-        "regCode": "04",
-        "provCode": "0410"
-      }, {
-        "id": 18,
-        "psgcCode": "042100000",
-        "provDesc": "CAVITE",
-        "regCode": "04",
-        "provCode": "0421"
-      }, {
-        "id": 19,
-        "psgcCode": "043400000",
-        "provDesc": "LAGUNA",
-        "regCode": "04",
-        "provCode": "0434"
-      }, {
-        "id": 20,
-        "psgcCode": "045600000",
-        "provDesc": "QUEZON",
-        "regCode": "04",
-        "provCode": "0456"
-      }, {
-        "id": 21,
-        "psgcCode": "045800000",
-        "provDesc": "RIZAL",
-        "regCode": "04",
-        "provCode": "0458"
-      }, {
-        "id": 22,
-        "psgcCode": "174000000",
-        "provDesc": "MARINDUQUE",
-        "regCode": "17",
-        "provCode": "1740"
-      }, {
-        "id": 23,
-        "psgcCode": "175100000",
-        "provDesc": "OCCIDENTAL MINDORO",
-        "regCode": "17",
-        "provCode": "1751"
-      }, {
-        "id": 24,
-        "psgcCode": "175200000",
-        "provDesc": "ORIENTAL MINDORO",
-        "regCode": "17",
-        "provCode": "1752"
-      }, {
-        "id": 25,
-        "psgcCode": "175300000",
-        "provDesc": "PALAWAN",
-        "regCode": "17",
-        "provCode": "1753"
-      }, {
-        "id": 26,
-        "psgcCode": "175900000",
-        "provDesc": "ROMBLON",
-        "regCode": "17",
-        "provCode": "1759"
-      }, {
-        "id": 27,
-        "psgcCode": "050500000",
-        "provDesc": "ALBAY",
-        "regCode": "05",
-        "provCode": "0505"
-      }, {
-        "id": 28,
-        "psgcCode": "051600000",
-        "provDesc": "CAMARINES NORTE",
-        "regCode": "05",
-        "provCode": "0516"
-      }, {
-        "id": 29,
-        "psgcCode": "051700000",
-        "provDesc": "CAMARINES SUR",
-        "regCode": "05",
-        "provCode": "0517"
-      }, {
-        "id": 30,
-        "psgcCode": "052000000",
-        "provDesc": "CATANDUANES",
-        "regCode": "05",
-        "provCode": "0520"
-      }, {
-        "id": 31,
-        "psgcCode": "054100000",
-        "provDesc": "MASBATE",
-        "regCode": "05",
-        "provCode": "0541"
-      }, {
-        "id": 32,
-        "psgcCode": "056200000",
-        "provDesc": "SORSOGON",
-        "regCode": "05",
-        "provCode": "0562"
-      }, {
-        "id": 33,
-        "psgcCode": "060400000",
-        "provDesc": "AKLAN",
-        "regCode": "06",
-        "provCode": "0604"
-      }, {
-        "id": 34,
-        "psgcCode": "060600000",
-        "provDesc": "ANTIQUE",
-        "regCode": "06",
-        "provCode": "0606"
-      }, {
-        "id": 35,
-        "psgcCode": "061900000",
-        "provDesc": "CAPIZ",
-        "regCode": "06",
-        "provCode": "0619"
-      }, {
-        "id": 36,
-        "psgcCode": "063000000",
-        "provDesc": "ILOILO",
-        "regCode": "06",
-        "provCode": "0630"
-      }, {
-        "id": 37,
-        "psgcCode": "064500000",
-        "provDesc": "NEGROS OCCIDENTAL",
-        "regCode": "06",
-        "provCode": "0645"
-      }, {
-        "id": 38,
-        "psgcCode": "067900000",
-        "provDesc": "GUIMARAS",
-        "regCode": "06",
-        "provCode": "0679"
-      }, {
-        "id": 39,
-        "psgcCode": "071200000",
-        "provDesc": "BOHOL",
-        "regCode": "07",
-        "provCode": "0712"
-      }, {
-        "id": 40,
-        "psgcCode": "072200000",
-        "provDesc": "CEBU",
-        "regCode": "07",
-        "provCode": "0722"
-      }, {
-        "id": 41,
-        "psgcCode": "074600000",
-        "provDesc": "NEGROS ORIENTAL",
-        "regCode": "07",
-        "provCode": "0746"
-      }, {
-        "id": 42,
-        "psgcCode": "076100000",
-        "provDesc": "SIQUIJOR",
-        "regCode": "07",
-        "provCode": "0761"
-      }, {
-        "id": 43,
-        "psgcCode": "082600000",
-        "provDesc": "EASTERN SAMAR",
-        "regCode": "08",
-        "provCode": "0826"
-      }, {
-        "id": 44,
-        "psgcCode": "083700000",
-        "provDesc": "LEYTE",
-        "regCode": "08",
-        "provCode": "0837"
-      }, {
-        "id": 45,
-        "psgcCode": "084800000",
-        "provDesc": "NORTHERN SAMAR",
-        "regCode": "08",
-        "provCode": "0848"
-      }, {
-        "id": 46,
-        "psgcCode": "086000000",
-        "provDesc": "SAMAR (WESTERN SAMAR)",
-        "regCode": "08",
-        "provCode": "0860"
-      }, {
-        "id": 47,
-        "psgcCode": "086400000",
-        "provDesc": "SOUTHERN LEYTE",
-        "regCode": "08",
-        "provCode": "0864"
-      }, {
-        "id": 48,
-        "psgcCode": "087800000",
-        "provDesc": "BILIRAN",
-        "regCode": "08",
-        "provCode": "0878"
-      }, {
-        "id": 49,
-        "psgcCode": "097200000",
-        "provDesc": "ZAMBOANGA DEL NORTE",
-        "regCode": "09",
-        "provCode": "0972"
-      }, {
-        "id": 50,
-        "psgcCode": "097300000",
-        "provDesc": "ZAMBOANGA DEL SUR",
-        "regCode": "09",
-        "provCode": "0973"
-      }, {
-        "id": 51,
-        "psgcCode": "098300000",
-        "provDesc": "ZAMBOANGA SIBUGAY",
-        "regCode": "09",
-        "provCode": "0983"
-      }, {
-        "id": 52,
-        "psgcCode": "099700000",
-        "provDesc": "CITY OF ISABELA",
-        "regCode": "09",
-        "provCode": "0997"
-      }, {
-        "id": 53,
-        "psgcCode": "101300000",
-        "provDesc": "BUKIDNON",
-        "regCode": "10",
-        "provCode": "1013"
-      }, {
-        "id": 54,
-        "psgcCode": "101800000",
-        "provDesc": "CAMIGUIN",
-        "regCode": "10",
-        "provCode": "1018"
-      }, {
-        "id": 55,
-        "psgcCode": "103500000",
-        "provDesc": "LANAO DEL NORTE",
-        "regCode": "10",
-        "provCode": "1035"
-      }, {
-        "id": 56,
-        "psgcCode": "104200000",
-        "provDesc": "MISAMIS OCCIDENTAL",
-        "regCode": "10",
-        "provCode": "1042"
-      }, {
-        "id": 57,
-        "psgcCode": "104300000",
-        "provDesc": "MISAMIS ORIENTAL",
-        "regCode": "10",
-        "provCode": "1043"
-      }, {
-        "id": 58,
-        "psgcCode": "112300000",
-        "provDesc": "DAVAO DEL NORTE",
-        "regCode": "11",
-        "provCode": "1123"
-      }, {
-        "id": 59,
-        "psgcCode": "112400000",
-        "provDesc": "DAVAO DEL SUR",
-        "regCode": "11",
-        "provCode": "1124"
-      }, {
-        "id": 60,
-        "psgcCode": "112500000",
-        "provDesc": "DAVAO ORIENTAL",
-        "regCode": "11",
-        "provCode": "1125"
-      }, {
-        "id": 61,
-        "psgcCode": "118200000",
-        "provDesc": "COMPOSTELA VALLEY",
-        "regCode": "11",
-        "provCode": "1182"
-      }, {
-        "id": 62,
-        "psgcCode": "118600000",
-        "provDesc": "DAVAO OCCIDENTAL",
-        "regCode": "11",
-        "provCode": "1186"
-      }, {
-        "id": 63,
-        "psgcCode": "124700000",
-        "provDesc": "COTABATO (NORTH COTABATO)",
-        "regCode": "12",
-        "provCode": "1247"
-      }, {
-        "id": 64,
-        "psgcCode": "126300000",
-        "provDesc": "SOUTH COTABATO",
-        "regCode": "12",
-        "provCode": "1263"
-      }, {
-        "id": 65,
-        "psgcCode": "126500000",
-        "provDesc": "SULTAN KUDARAT",
-        "regCode": "12",
-        "provCode": "1265"
-      }, {
-        "id": 66,
-        "psgcCode": "128000000",
-        "provDesc": "SARANGANI",
-        "regCode": "12",
-        "provCode": "1280"
-      }, {
-        "id": 67,
-        "psgcCode": "129800000",
-        "provDesc": "COTABATO CITY",
-        "regCode": "12",
-        "provCode": "1298"
-      }, {
-        "id": 68,
-        "psgcCode": "133900000",
-        "provDesc": "NCR, CITY OF MANILA, FIRST DISTRICT",
-        "regCode": "13",
-        "provCode": "1339"
-      }, {
-        "id": 69,
-        "psgcCode": "133900000",
-        "provDesc": "CITY OF MANILA",
-        "regCode": "13",
-        "provCode": "1340"
-      }, {
-        "id": 70,
-        "psgcCode": "137400000",
-        "provDesc": "NCR, SECOND DISTRICT",
-        "regCode": "13",
-        "provCode": "1374"
-      }, {
-        "id": 71,
-        "psgcCode": "137500000",
-        "provDesc": "NCR, THIRD DISTRICT",
-        "regCode": "13",
-        "provCode": "1375"
-      }, {
-        "id": 72,
-        "psgcCode": "137600000",
-        "provDesc": "NCR, FOURTH DISTRICT",
-        "regCode": "13",
-        "provCode": "1376"
-      }, {
-        "id": 73,
-        "psgcCode": "140100000",
-        "provDesc": "ABRA",
-        "regCode": "14",
-        "provCode": "1401"
-      }, {
-        "id": 74,
-        "psgcCode": "141100000",
-        "provDesc": "BENGUET",
-        "regCode": "14",
-        "provCode": "1411"
-      }, {
-        "id": 75,
-        "psgcCode": "142700000",
-        "provDesc": "IFUGAO",
-        "regCode": "14",
-        "provCode": "1427"
-      }, {
-        "id": 76,
-        "psgcCode": "143200000",
-        "provDesc": "KALINGA",
-        "regCode": "14",
-        "provCode": "1432"
-      }, {
-        "id": 77,
-        "psgcCode": "144400000",
-        "provDesc": "MOUNTAIN PROVINCE",
-        "regCode": "14",
-        "provCode": "1444"
-      }, {
-        "id": 78,
-        "psgcCode": "148100000",
-        "provDesc": "APAYAO",
-        "regCode": "14",
-        "provCode": "1481"
-      }, {
-        "id": 79,
-        "psgcCode": "150700000",
-        "provDesc": "BASILAN",
-        "regCode": "15",
-        "provCode": "1507"
-      }, {
-        "id": 80,
-        "psgcCode": "153600000",
-        "provDesc": "LANAO DEL SUR",
-        "regCode": "15",
-        "provCode": "1536"
-      }, {
-        "id": 81,
-        "psgcCode": "153800000",
-        "provDesc": "MAGUINDANAO",
-        "regCode": "15",
-        "provCode": "1538"
-      }, {
-        "id": 82,
-        "psgcCode": "156600000",
-        "provDesc": "SULU",
-        "regCode": "15",
-        "provCode": "1566"
-      }, {
-        "id": 83,
-        "psgcCode": "157000000",
-        "provDesc": "TAWI-TAWI",
-        "regCode": "15",
-        "provCode": "1570"
-      }, {
-        "id": 84,
-        "psgcCode": "160200000",
-        "provDesc": "AGUSAN DEL NORTE",
-        "regCode": "16",
-        "provCode": "1602"
-      }, {
-        "id": 85,
-        "psgcCode": "160300000",
-        "provDesc": "AGUSAN DEL SUR",
-        "regCode": "16",
-        "provCode": "1603"
-      }, {
-        "id": 86,
-        "psgcCode": "166700000",
-        "provDesc": "SURIGAO DEL NORTE",
-        "regCode": "16",
-        "provCode": "1667"
-      }, {
-        "id": 87,
-        "psgcCode": "166800000",
-        "provDesc": "SURIGAO DEL SUR",
-        "regCode": "16",
-        "provCode": "1668"
-      }, {
-        "id": 88,
-        "psgcCode": "168500000",
-        "provDesc": "DINAGAT ISLANDS",
-        "regCode": "16",
-        "provCode": "1685"
-      }],
-      municipalities: [{
-        name: "Nabua",
-        provinceOf: "CAMARINES SUR",
-        lat: 13.5250,
-        lng: 123.3486
-      }, {
-        name: "Naga City",
-        provinceOf: "Camarines Sur",
-        lat: 13.5250,
-        lng: 123.3486
-      }, {
-        name: "Legazpi City",
-        provinceOf: "Albay",
-        lat: 13.1775,
-        lng: 123.5290
-      }, {
-        name: "Pasig City",
-        provinceOf: "NCR",
-        lat: 14.5764,
-        lng: 121.0851
-      }],
-      barangays: [{
-        name: "San Felipe",
-        cityOf: "Naga City",
-        lat: 13.5250,
-        lng: 123.3486
-      }, {
-        name: "Concepcion Grande",
-        cityOf: "Naga City",
-        lat: 13.5250,
-        lng: 123.3486
-      }, {
-        name: "Cabugao",
-        cityOf: "Legazpi City",
-        lat: 13.1775,
-        lng: 123.5290
-      }, {
-        name: "Rosario",
-        cityOf: "Pasig City",
-        lat: 14.5764,
-        lng: 121.0851
-      }],
-      setLat: 13.5250,
-      //default
-      setLong: 123.3486,
-      //default
-      chosenProvince: null,
-      chosenMunicipality: null
+      province: null,
+      municipality: null,
+      barangay: null,
+      provinces: [],
+      municipalities: [],
+      barangays: []
     };
   },
+  created: function created() {
+    this.fetchProvince();
+  },
   methods: {
-    selectProvince: function selectProvince(e) {
-      var selectedProvince = e.target.value;
-      /**
-       * Find the selected province
-       * and pass on to the chosen province to filter
-       * selected province and their municipalities/city
-       */
-
-      var _iteratorNormalCompletion = true;
-      var _didIteratorError = false;
-      var _iteratorError = undefined;
-
-      try {
-        for (var _iterator = this.provinces[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-          var p = _step.value;
-
-          if (p.name == selectedProvince) {
-            this.chosenProvince = selectedProvince;
-          }
-        }
-      } catch (err) {
-        _didIteratorError = true;
-        _iteratorError = err;
-      } finally {
-        try {
-          if (!_iteratorNormalCompletion && _iterator["return"] != null) {
-            _iterator["return"]();
-          }
-        } finally {
-          if (_didIteratorError) {
-            throw _iteratorError;
-          }
-        }
-      }
-
-      this.geoCoder('PH', selectedProvince);
-      console.log(selectedProvince);
-    },
-    selectMunicipality: function selectMunicipality(e) {
-      var selectedMunicipality = e.target.value;
-      var _iteratorNormalCompletion2 = true;
-      var _didIteratorError2 = false;
-      var _iteratorError2 = undefined;
-
-      try {
-        for (var _iterator2 = this.municipalities[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-          var m = _step2.value;
-
-          if (m.name == selectedMunicipality) {
-            this.chosenMunicipality = selectedMunicipality;
-          }
-        }
-      } catch (err) {
-        _didIteratorError2 = true;
-        _iteratorError2 = err;
-      } finally {
-        try {
-          if (!_iteratorNormalCompletion2 && _iterator2["return"] != null) {
-            _iterator2["return"]();
-          }
-        } finally {
-          if (_didIteratorError2) {
-            throw _iteratorError2;
-          }
-        }
-      }
-
-      console.log(selectedMunicipality);
-    },
-    selectBarangay: function selectBarangay(e) {
-      var selectedBrgy = e.target.value;
-      var _iteratorNormalCompletion3 = true;
-      var _didIteratorError3 = false;
-      var _iteratorError3 = undefined;
-
-      try {
-        for (var _iterator3 = this.barangays[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
-          var b = _step3.value;
-
-          if (b.name == selectedBrgy) {
-            this.setLat = b.lat;
-            this.setLong = b.lng;
-          }
-        }
-      } catch (err) {
-        _didIteratorError3 = true;
-        _iteratorError3 = err;
-      } finally {
-        try {
-          if (!_iteratorNormalCompletion3 && _iterator3["return"] != null) {
-            _iterator3["return"]();
-          }
-        } finally {
-          if (_didIteratorError3) {
-            throw _iteratorError3;
-          }
-        }
-      }
-
-      this.zoomIn(this.setLat, this.setLong);
-      console.log(this.barangay);
-    },
-    zoomIn: function zoomIn(latCoo, longCoo) {
-      //Dynamically pan after selecting a province
-      this.$refs.mapRef.$mapPromise.then(function (map) {
-        map.panTo({
-          lat: latCoo,
-          lng: longCoo
-        });
-      });
-    },
-    geoCoder: function geoCoder(country, province) {
+    fetchProvince: function fetchProvince() {
       var _this = this;
 
-      Vue.$geocoder.setDefaultMode('address');
-      var addressObj = {
-        state: province,
-        country: country
-      };
-      Vue.$geocoder.send(addressObj, function (response) {
-        console.log(response);
-        _this.setLat = response.results[0].geometry.location.lat;
-        _this.setLong = response.results[0].geometry.location.lng;
-
-        _this.zoomIn(_this.setLat, _this.setLong);
-
-        console.log(_this.setLat + ", " + _this.setLong);
+      fetch('/api/province').then(function (res) {
+        return res.json();
+      }).then(function (data) {
+        console.log(data);
+        _this.provinces = data.provinces;
+      })["catch"](function (err) {
+        return console.log(err);
       });
+    },
+    fetchMunicipalities: function fetchMunicipalities(code) {
+      var _this2 = this;
+
+      fetch("api/municipality/".concat(code)).then(function (res) {
+        return res.json();
+      }).then(function (data) {
+        _this2.municipalities = data.municipalities;
+      });
+    },
+    fetchBarangays: function fetchBarangays(code) {
+      var _this3 = this;
+
+      fetch("api/barangay/".concat(code)).then(function (res) {
+        return res.json();
+      }).then(function (data) {
+        _this3.barangays = data.barangays;
+      });
+    },
+    getCoords: function getCoords() {// Vue.$geocoder.setDefaultMode('address');      // this is default
+      // var addressObj = {
+      //     address_line_1: this.barangay,
+      //     address_line_2: '',
+      //     city:           '',
+      //     state:          '',               // province also valid
+      //     zip_code:       '',            // postal_code also valid
+      //     country:        'PH'
+      // }
+      // Vue.$geocoder.send(addressObj, response => { console.log(response) });
     }
   },
-  created: function created() {
-    this.geoCoder('PH', '');
-  },
   computed: {
-    markerSize: function markerSize() {
-      if (!this.googleMapsInitialized) return null;
-      return new window.google.maps.Size(10, 10);
+    google: vue2_google_maps__WEBPACK_IMPORTED_MODULE_0__["gmapApi"],
+    selectedProvince: function selectedProvince() {
+      var _this4 = this;
+
+      return this.municipalities.filter(function (code) {
+        return code.provCode == _this4.province;
+      });
     },
-    markerIcon: function markerIcon() {
-      return {
-        url: 'http://10.0.1.8:3000/img/icons/maps-marker.png',
-        scaledSize: this.markerSize
-      };
-    },
-    google: vue2_google_maps__WEBPACK_IMPORTED_MODULE_0__["gmapApi"]
+    selectedMunicipality: function selectedMunicipality() {
+      var _this5 = this;
+
+      return this.barangays.filter(function (code) {
+        return code.citymunCode == _this5.municipality;
+      });
+    }
   }
 });
 
@@ -7250,25 +6580,6 @@ exports = module.exports = __webpack_require__(/*! ../../../css-loader/lib/css-b
 
 // module
 exports.push([module.i, "\n.vue-street-view-pano-container {\n  position: relative;\n}\n.vue-street-view-pano-container .vue-street-view-pano {\n  left: 0; right: 0; top: 0; bottom: 0;\n  position: absolute;\n}\n", ""]);
-
-// exports
-
-
-/***/ }),
-
-/***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/LocationComponent.vue?vue&type=style&index=0&id=51f4a1ed&scoped=true&lang=css&":
-/*!***********************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/LocationComponent.vue?vue&type=style&index=0&id=51f4a1ed&scoped=true&lang=css& ***!
-  \***********************************************************************************************************************************************************************************************************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
-// imports
-
-
-// module
-exports.push([module.i, "\n.map[data-v-51f4a1ed] {\n    margin: 16px auto;\n    border-radius: 3px;\n    overflow: hidden;\n    box-shadow: 0 0 8px #ccc;\n    width: 500px;\n}\n", ""]);
 
 // exports
 
@@ -48093,36 +47404,6 @@ if(false) {}
 
 /***/ }),
 
-/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/LocationComponent.vue?vue&type=style&index=0&id=51f4a1ed&scoped=true&lang=css&":
-/*!***************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/LocationComponent.vue?vue&type=style&index=0&id=51f4a1ed&scoped=true&lang=css& ***!
-  \***************************************************************************************************************************************************************************************************************************************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-
-var content = __webpack_require__(/*! !../../../node_modules/css-loader??ref--6-1!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--6-2!../../../node_modules/vue-loader/lib??vue-loader-options!./LocationComponent.vue?vue&type=style&index=0&id=51f4a1ed&scoped=true&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/LocationComponent.vue?vue&type=style&index=0&id=51f4a1ed&scoped=true&lang=css&");
-
-if(typeof content === 'string') content = [[module.i, content, '']];
-
-var transform;
-var insertInto;
-
-
-
-var options = {"hmr":true}
-
-options.transform = transform
-options.insertInto = undefined;
-
-var update = __webpack_require__(/*! ../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
-
-if(content.locals) module.exports = content.locals;
-
-if(false) {}
-
-/***/ }),
-
 /***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/LoginLogsTableComponent.vue?vue&type=style&index=0&id=48cea38c&scoped=true&lang=css&":
 /*!*********************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/LoginLogsTableComponent.vue?vue&type=style&index=0&id=48cea38c&scoped=true&lang=css& ***!
@@ -49124,10 +48405,10 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/LocationComponent.vue?vue&type=template&id=51f4a1ed&scoped=true&":
-/*!********************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/LocationComponent.vue?vue&type=template&id=51f4a1ed&scoped=true& ***!
-  \********************************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/LocationComponent.vue?vue&type=template&id=51f4a1ed&":
+/*!********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/LocationComponent.vue?vue&type=template&id=51f4a1ed& ***!
+  \********************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -49139,188 +48420,142 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "mt-4" }, [
-    _c("div", { staticClass: "form-group row" }, [
+  return _c("div", { staticClass: "container mt-3 mb-3" }, [
+    _c("div", { staticClass: "form-group" }, [
       _c(
-        "label",
+        "select",
         {
-          staticClass: "col-md-4 col-form-label text-md-right",
-          attrs: { for: "province" }
-        },
-        [_vm._v("Province")]
-      ),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-md-6" }, [
-        _c(
-          "select",
-          {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.province,
-                expression: "province"
-              }
-            ],
-            staticClass: "form-control",
-            attrs: { id: "province" },
-            on: {
-              change: [
-                function($event) {
-                  var $$selectedVal = Array.prototype.filter
-                    .call($event.target.options, function(o) {
-                      return o.selected
-                    })
-                    .map(function(o) {
-                      var val = "_value" in o ? o._value : o.value
-                      return val
-                    })
-                  _vm.province = $event.target.multiple
-                    ? $$selectedVal
-                    : $$selectedVal[0]
-                },
-                _vm.selectProvince
-              ]
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.province,
+              expression: "province"
             }
-          },
-          _vm._l(_vm.provinces, function(p) {
-            return _c("option", { key: p.id, domProps: { value: p.id } }, [
-              _vm._v(_vm._s(p.provDesc))
-            ])
-          }),
-          0
-        )
-      ])
+          ],
+          staticClass: "form-control",
+          attrs: { id: "" },
+          on: {
+            change: [
+              function($event) {
+                var $$selectedVal = Array.prototype.filter
+                  .call($event.target.options, function(o) {
+                    return o.selected
+                  })
+                  .map(function(o) {
+                    var val = "_value" in o ? o._value : o.value
+                    return val
+                  })
+                _vm.province = $event.target.multiple
+                  ? $$selectedVal
+                  : $$selectedVal[0]
+              },
+              function($event) {
+                _vm.fetchMunicipalities(_vm.province)
+              }
+            ]
+          }
+        },
+        _vm._l(_vm.provinces, function(province) {
+          return _c(
+            "option",
+            { key: province.id, domProps: { value: province.provCode } },
+            [_vm._v(_vm._s(province.provDesc))]
+          )
+        }),
+        0
+      )
     ]),
     _vm._v(" "),
-    _c("div", { staticClass: "form-group row" }, [
+    _c("div", { staticClass: "form-group" }, [
       _c(
-        "label",
+        "select",
         {
-          staticClass: "col-md-4 col-form-label text-md-right",
-          attrs: { for: "municipality" }
-        },
-        [_vm._v("Municipality")]
-      ),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-md-6" }, [
-        _c(
-          "select",
-          {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.municipality,
-                expression: "municipality"
-              }
-            ],
-            staticClass: "form-control",
-            attrs: { id: "municipality" },
-            on: {
-              change: [
-                function($event) {
-                  var $$selectedVal = Array.prototype.filter
-                    .call($event.target.options, function(o) {
-                      return o.selected
-                    })
-                    .map(function(o) {
-                      var val = "_value" in o ? o._value : o.value
-                      return val
-                    })
-                  _vm.municipality = $event.target.multiple
-                    ? $$selectedVal
-                    : $$selectedVal[0]
-                },
-                _vm.selectMunicipality
-              ]
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.municipality,
+              expression: "municipality"
             }
-          },
-          _vm._l(_vm.municipalities, function(m) {
-            return _c(
-              "option",
-              {
-                directives: [
-                  {
-                    name: "show",
-                    rawName: "v-show",
-                    value: m.provinceOf == _vm.chosenProvince,
-                    expression: "m.provinceOf == chosenProvince"
-                  }
-                ],
-                key: m.index
+          ],
+          staticClass: "form-control",
+          on: {
+            change: [
+              function($event) {
+                var $$selectedVal = Array.prototype.filter
+                  .call($event.target.options, function(o) {
+                    return o.selected
+                  })
+                  .map(function(o) {
+                    var val = "_value" in o ? o._value : o.value
+                    return val
+                  })
+                _vm.municipality = $event.target.multiple
+                  ? $$selectedVal
+                  : $$selectedVal[0]
               },
-              [_c("span", [_vm._v(_vm._s(m.name))])]
-            )
-          }),
-          0
-        )
-      ])
+              function($event) {
+                _vm.fetchBarangays(_vm.municipality)
+              }
+            ]
+          }
+        },
+        _vm._l(_vm.selectedProvince, function(municipality) {
+          return _c(
+            "option",
+            {
+              key: municipality.id,
+              domProps: { value: municipality.citymunCode }
+            },
+            [_vm._v(_vm._s(municipality.citymunDesc))]
+          )
+        }),
+        0
+      )
     ]),
     _vm._v(" "),
-    _c("div", { staticClass: "form-group row" }, [
+    _c("div", { staticClass: "form-group" }, [
       _c(
-        "label",
+        "select",
         {
-          staticClass: "col-md-4 col-form-label text-md-right",
-          attrs: { for: "barangay" }
-        },
-        [_vm._v("Barangay")]
-      ),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-md-6" }, [
-        _c(
-          "select",
-          {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.barangay,
-                expression: "barangay"
-              }
-            ],
-            staticClass: "form-control",
-            attrs: { id: "barangay" },
-            on: {
-              change: [
-                function($event) {
-                  var $$selectedVal = Array.prototype.filter
-                    .call($event.target.options, function(o) {
-                      return o.selected
-                    })
-                    .map(function(o) {
-                      var val = "_value" in o ? o._value : o.value
-                      return val
-                    })
-                  _vm.barangay = $event.target.multiple
-                    ? $$selectedVal
-                    : $$selectedVal[0]
-                },
-                _vm.selectBarangay
-              ]
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.barangay,
+              expression: "barangay"
             }
-          },
-          _vm._l(_vm.barangays, function(b) {
-            return _c(
-              "option",
-              {
-                directives: [
-                  {
-                    name: "show",
-                    rawName: "v-show",
-                    value: b.cityOf == _vm.chosenMunicipality,
-                    expression: "b.cityOf == chosenMunicipality"
-                  }
-                ],
-                key: b.index
+          ],
+          staticClass: "form-control",
+          on: {
+            change: [
+              function($event) {
+                var $$selectedVal = Array.prototype.filter
+                  .call($event.target.options, function(o) {
+                    return o.selected
+                  })
+                  .map(function(o) {
+                    var val = "_value" in o ? o._value : o.value
+                    return val
+                  })
+                _vm.barangay = $event.target.multiple
+                  ? $$selectedVal
+                  : $$selectedVal[0]
               },
-              [_vm._v(_vm._s(b.name))]
-            )
-          }),
-          0
-        )
-      ])
+              _vm.getCoords
+            ]
+          }
+        },
+        _vm._l(_vm.selectedMunicipality, function(barangay) {
+          return _c(
+            "option",
+            { key: barangay.id, domProps: { value: barangay.brgyDesc } },
+            [_vm._v(" " + _vm._s(barangay.brgyDesc) + " ")]
+          )
+        }),
+        0
+      )
     ]),
     _vm._v(" "),
     _c(
@@ -49330,10 +48565,10 @@ var render = function() {
         _c(
           "GmapMap",
           {
-            ref: "mapRef",
-            staticStyle: { width: "100%", height: "300px" },
+            ref: "myMarker",
+            staticStyle: { width: "500px", height: "300px" },
             attrs: {
-              center: { lat: 13.525, lng: 123.3486 },
+              center: { lat: 14, lng: 123 },
               zoom: 7,
               "map-type-id": "terrain"
             }
@@ -49342,9 +48577,7 @@ var render = function() {
             _c("GmapMarker", {
               ref: "myMarker",
               attrs: {
-                position:
-                  _vm.google &&
-                  new _vm.google.maps.LatLng(_vm.setLat, _vm.setLong)
+                position: _vm.google && new _vm.google.maps.LatLng(14, 123)
               }
             })
           ],
@@ -64771,11 +64004,9 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _LocationComponent_vue_vue_type_template_id_51f4a1ed_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./LocationComponent.vue?vue&type=template&id=51f4a1ed&scoped=true& */ "./resources/js/components/LocationComponent.vue?vue&type=template&id=51f4a1ed&scoped=true&");
+/* harmony import */ var _LocationComponent_vue_vue_type_template_id_51f4a1ed___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./LocationComponent.vue?vue&type=template&id=51f4a1ed& */ "./resources/js/components/LocationComponent.vue?vue&type=template&id=51f4a1ed&");
 /* harmony import */ var _LocationComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./LocationComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/LocationComponent.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _LocationComponent_vue_vue_type_style_index_0_id_51f4a1ed_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./LocationComponent.vue?vue&type=style&index=0&id=51f4a1ed&scoped=true&lang=css& */ "./resources/js/components/LocationComponent.vue?vue&type=style&index=0&id=51f4a1ed&scoped=true&lang=css&");
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -64783,13 +64014,13 @@ __webpack_require__.r(__webpack_exports__);
 
 /* normalize component */
 
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
   _LocationComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _LocationComponent_vue_vue_type_template_id_51f4a1ed_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _LocationComponent_vue_vue_type_template_id_51f4a1ed_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _LocationComponent_vue_vue_type_template_id_51f4a1ed___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _LocationComponent_vue_vue_type_template_id_51f4a1ed___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
-  "51f4a1ed",
+  null,
   null
   
 )
@@ -64815,35 +64046,19 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/components/LocationComponent.vue?vue&type=style&index=0&id=51f4a1ed&scoped=true&lang=css&":
-/*!****************************************************************************************************************!*\
-  !*** ./resources/js/components/LocationComponent.vue?vue&type=style&index=0&id=51f4a1ed&scoped=true&lang=css& ***!
-  \****************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_LocationComponent_vue_vue_type_style_index_0_id_51f4a1ed_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader!../../../node_modules/css-loader??ref--6-1!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--6-2!../../../node_modules/vue-loader/lib??vue-loader-options!./LocationComponent.vue?vue&type=style&index=0&id=51f4a1ed&scoped=true&lang=css& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/LocationComponent.vue?vue&type=style&index=0&id=51f4a1ed&scoped=true&lang=css&");
-/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_LocationComponent_vue_vue_type_style_index_0_id_51f4a1ed_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_LocationComponent_vue_vue_type_style_index_0_id_51f4a1ed_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_LocationComponent_vue_vue_type_style_index_0_id_51f4a1ed_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_LocationComponent_vue_vue_type_style_index_0_id_51f4a1ed_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
- /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_LocationComponent_vue_vue_type_style_index_0_id_51f4a1ed_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
-
-/***/ }),
-
-/***/ "./resources/js/components/LocationComponent.vue?vue&type=template&id=51f4a1ed&scoped=true&":
-/*!**************************************************************************************************!*\
-  !*** ./resources/js/components/LocationComponent.vue?vue&type=template&id=51f4a1ed&scoped=true& ***!
-  \**************************************************************************************************/
+/***/ "./resources/js/components/LocationComponent.vue?vue&type=template&id=51f4a1ed&":
+/*!**************************************************************************************!*\
+  !*** ./resources/js/components/LocationComponent.vue?vue&type=template&id=51f4a1ed& ***!
+  \**************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_LocationComponent_vue_vue_type_template_id_51f4a1ed_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./LocationComponent.vue?vue&type=template&id=51f4a1ed&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/LocationComponent.vue?vue&type=template&id=51f4a1ed&scoped=true&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_LocationComponent_vue_vue_type_template_id_51f4a1ed_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_LocationComponent_vue_vue_type_template_id_51f4a1ed___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./LocationComponent.vue?vue&type=template&id=51f4a1ed& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/LocationComponent.vue?vue&type=template&id=51f4a1ed&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_LocationComponent_vue_vue_type_template_id_51f4a1ed___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_LocationComponent_vue_vue_type_template_id_51f4a1ed_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_LocationComponent_vue_vue_type_template_id_51f4a1ed___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
@@ -65344,8 +64559,8 @@ var state = {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\xampp\htdocs\project\agrabah-marketplace\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\project\agrabah-marketplace\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\laragon\www\agrabah-marketplace\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\laragon\www\agrabah-marketplace\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
