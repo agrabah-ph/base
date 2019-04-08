@@ -1969,7 +1969,9 @@ __webpack_require__.r(__webpack_exports__);
       barangay: null,
       provinces: [],
       municipalities: [],
-      barangays: []
+      barangays: [],
+      lat: null,
+      lng: null
     };
   },
   created: function created() {
@@ -1982,7 +1984,7 @@ __webpack_require__.r(__webpack_exports__);
       fetch('/api/province').then(function (res) {
         return res.json();
       }).then(function (data) {
-        console.log(data);
+        //console.log(data);
         _this.provinces = data.provinces;
       })["catch"](function (err) {
         return console.log(err);
@@ -2006,32 +2008,108 @@ __webpack_require__.r(__webpack_exports__);
         _this3.barangays = data.barangays;
       });
     },
-    getCoords: function getCoords() {// Vue.$geocoder.setDefaultMode('address');      // this is default
-      // var addressObj = {
-      //     address_line_1: this.barangay,
-      //     address_line_2: '',
-      //     city:           '',
-      //     state:          '',               // province also valid
-      //     zip_code:       '',            // postal_code also valid
-      //     country:        'PH'
-      // }
-      // Vue.$geocoder.send(addressObj, response => { console.log(response) });
+    getCoords: function getCoords() {
+      var _this4 = this;
+
+      var provname = "";
+      var cityname = "";
+      var _iteratorNormalCompletion = true;
+      var _didIteratorError = false;
+      var _iteratorError = undefined;
+
+      try {
+        for (var _iterator = this.provinces[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+          var p = _step.value;
+
+          if (p.provCode == this.province) {
+            provname = p.provDesc;
+          }
+        }
+      } catch (err) {
+        _didIteratorError = true;
+        _iteratorError = err;
+      } finally {
+        try {
+          if (!_iteratorNormalCompletion && _iterator["return"] != null) {
+            _iterator["return"]();
+          }
+        } finally {
+          if (_didIteratorError) {
+            throw _iteratorError;
+          }
+        }
+      }
+
+      var _iteratorNormalCompletion2 = true;
+      var _didIteratorError2 = false;
+      var _iteratorError2 = undefined;
+
+      try {
+        for (var _iterator2 = this.municipalities[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+          var m = _step2.value;
+
+          if (m.citymunCode == this.municipality) {
+            cityname = m.citymunDesc;
+          }
+        }
+      } catch (err) {
+        _didIteratorError2 = true;
+        _iteratorError2 = err;
+      } finally {
+        try {
+          if (!_iteratorNormalCompletion2 && _iterator2["return"] != null) {
+            _iterator2["return"]();
+          }
+        } finally {
+          if (_didIteratorError2) {
+            throw _iteratorError2;
+          }
+        }
+      }
+
+      Vue.$geocoder.setDefaultMode('address'); // this is default
+
+      var addressObj = {
+        address_line_1: this.barangay,
+        address_line_2: '',
+        city: cityname,
+        state: provname,
+        // province also valid
+        zip_code: '',
+        // postal_code also valid
+        country: 'PH'
+      };
+      Vue.$geocoder.send(addressObj, function (response) {
+        console.log(response);
+        _this4.lat = response.results[0].geometry.location.lat;
+        _this4.lng = response.results[0].geometry.location.lng;
+
+        _this4.zoomIn(_this4.lat, _this4.lng);
+      });
+    },
+    zoomIn: function zoomIn(lat, lng) {
+      this.$refs.mapRef.$mapPromise.then(function (map) {
+        map.panTo({
+          lat: lat,
+          lng: lng
+        });
+      });
     }
   },
   computed: {
     google: vue2_google_maps__WEBPACK_IMPORTED_MODULE_0__["gmapApi"],
     selectedProvince: function selectedProvince() {
-      var _this4 = this;
+      var _this5 = this;
 
       return this.municipalities.filter(function (code) {
-        return code.provCode == _this4.province;
+        return code.provCode == _this5.province;
       });
     },
     selectedMunicipality: function selectedMunicipality() {
-      var _this5 = this;
+      var _this6 = this;
 
       return this.barangays.filter(function (code) {
-        return code.citymunCode == _this5.municipality;
+        return code.citymunCode == _this6.municipality;
       });
     }
   }
@@ -48405,10 +48483,10 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/LocationComponent.vue?vue&type=template&id=51f4a1ed&":
-/*!********************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/LocationComponent.vue?vue&type=template&id=51f4a1ed& ***!
-  \********************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/LocationComponent.vue?vue&type=template&id=51f4a1ed&scoped=true&":
+/*!********************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/LocationComponent.vue?vue&type=template&id=51f4a1ed&scoped=true& ***!
+  \********************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -48565,8 +48643,8 @@ var render = function() {
         _c(
           "GmapMap",
           {
-            ref: "myMarker",
-            staticStyle: { width: "500px", height: "300px" },
+            ref: "mapRef",
+            staticStyle: { width: "100%", height: "300px" },
             attrs: {
               center: { lat: 14, lng: 123 },
               zoom: 7,
@@ -48577,7 +48655,8 @@ var render = function() {
             _c("GmapMarker", {
               ref: "myMarker",
               attrs: {
-                position: _vm.google && new _vm.google.maps.LatLng(14, 123)
+                position:
+                  _vm.google && new _vm.google.maps.LatLng(_vm.lat, _vm.lng)
               }
             })
           ],
@@ -64004,7 +64083,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _LocationComponent_vue_vue_type_template_id_51f4a1ed___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./LocationComponent.vue?vue&type=template&id=51f4a1ed& */ "./resources/js/components/LocationComponent.vue?vue&type=template&id=51f4a1ed&");
+/* harmony import */ var _LocationComponent_vue_vue_type_template_id_51f4a1ed_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./LocationComponent.vue?vue&type=template&id=51f4a1ed&scoped=true& */ "./resources/js/components/LocationComponent.vue?vue&type=template&id=51f4a1ed&scoped=true&");
 /* harmony import */ var _LocationComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./LocationComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/LocationComponent.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
@@ -64016,11 +64095,11 @@ __webpack_require__.r(__webpack_exports__);
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
   _LocationComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _LocationComponent_vue_vue_type_template_id_51f4a1ed___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _LocationComponent_vue_vue_type_template_id_51f4a1ed___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _LocationComponent_vue_vue_type_template_id_51f4a1ed_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _LocationComponent_vue_vue_type_template_id_51f4a1ed_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
-  null,
+  "51f4a1ed",
   null
   
 )
@@ -64046,19 +64125,19 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/components/LocationComponent.vue?vue&type=template&id=51f4a1ed&":
-/*!**************************************************************************************!*\
-  !*** ./resources/js/components/LocationComponent.vue?vue&type=template&id=51f4a1ed& ***!
-  \**************************************************************************************/
+/***/ "./resources/js/components/LocationComponent.vue?vue&type=template&id=51f4a1ed&scoped=true&":
+/*!**************************************************************************************************!*\
+  !*** ./resources/js/components/LocationComponent.vue?vue&type=template&id=51f4a1ed&scoped=true& ***!
+  \**************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_LocationComponent_vue_vue_type_template_id_51f4a1ed___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./LocationComponent.vue?vue&type=template&id=51f4a1ed& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/LocationComponent.vue?vue&type=template&id=51f4a1ed&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_LocationComponent_vue_vue_type_template_id_51f4a1ed___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_LocationComponent_vue_vue_type_template_id_51f4a1ed_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./LocationComponent.vue?vue&type=template&id=51f4a1ed&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/LocationComponent.vue?vue&type=template&id=51f4a1ed&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_LocationComponent_vue_vue_type_template_id_51f4a1ed_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_LocationComponent_vue_vue_type_template_id_51f4a1ed___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_LocationComponent_vue_vue_type_template_id_51f4a1ed_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

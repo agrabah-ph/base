@@ -17,14 +17,14 @@
         </div>
         <div class="map">
             <GmapMap
-                ref="myMarker"
+                ref="mapRef"
                 :center="{lat:14, lng:123}"
                 :zoom="7"
                 map-type-id="terrain"
-                style="width: 500px; height: 300px"
+                style="width: 100%; height: 300px;"
             >
             <GmapMarker ref="myMarker"
-                :position="google && new google.maps.LatLng(14, 123)"
+                :position="google && new google.maps.LatLng(lat, lng)"
             />
             </GmapMap>
         </div>
@@ -43,6 +43,8 @@ export default {
             provinces: [],
             municipalities: [],
             barangays: [],
+            lat: null,
+            lng: null
         }
     },
     created() {
@@ -55,7 +57,7 @@ export default {
             .then( res => res.json())
             .then( data => {
 
-                console.log(data);
+                //console.log(data);
                 this.provinces = data.provinces
 
             })
@@ -78,6 +80,7 @@ export default {
             fetch(`api/barangay/${code}`)
             .then( res => res.json() )
             .then( data => {
+
                 this.barangays = data.barangays;
 
             });
@@ -85,20 +88,61 @@ export default {
         },
         getCoords() {
 
-            // Vue.$geocoder.setDefaultMode('address');      // this is default
-            // var addressObj = {
-            //     address_line_1: this.barangay,
-            //     address_line_2: '',
-            //     city:           '',
-            //     state:          '',               // province also valid
-            //     zip_code:       '',            // postal_code also valid
-            //     country:        'PH'
-            // }
-            // Vue.$geocoder.send(addressObj, response => { console.log(response) });
+            var provname = "";
+            var cityname = "";
+
+            for(let p of this.provinces)
+            {
+                if(p.provCode == this.province)
+                {
+                    provname = p.provDesc
+                }
+            }
+
+            for(let m of this.municipalities)
+            {
+                if(m.citymunCode == this.municipality)
+                {
+                    cityname = m.citymunDesc
+                }
+            }
+
+            Vue.$geocoder.setDefaultMode('address');      // this is default
+            var addressObj = {
+                address_line_1: this.barangay,
+                address_line_2: '',
+                city:           cityname,
+                state:          provname,               // province also valid
+                zip_code:       '',            // postal_code also valid
+                country:        'PH'
+            }
+
+            Vue.$geocoder.send(addressObj, response => {
+
+                console.log(response);
+                this.lat = response.results[0].geometry.location.lat
+                this.lng = response.results[0].geometry.location.lng
+
+                this.zoomIn(this.lat, this.lng);
+
+            });
+
+        },
+
+        zoomIn(lat, lng) {
+
+            this.$refs.mapRef.$mapPromise.then((map) => {
+
+                map.panTo({lat: lat, lng: lng})
+
+            });
+
         }
     },
     computed: {
+
         google: gmapApi,
+
         selectedProvince() {
 
             return this.municipalities.filter(code => code.provCode == this.province)
@@ -112,3 +156,7 @@ export default {
     }
 }
 </script>
+
+<style scoped>
+
+</style>
