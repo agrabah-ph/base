@@ -29,7 +29,7 @@ class CreateBarangaysTable extends Migration
 
         foreach ($file as $key => $barangay)
         {
-            App\Models\Barangay::create((array)$barangay)->save();
+            App\Barangay::create((array)$barangay)->save();
         }
     }
 

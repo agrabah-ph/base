@@ -27,7 +27,7 @@ class CreateCitiesMunicipalitiesTable extends Migration
       $file = json_decode(file_get_contents($filepath,true))->RECORDS;
 
       foreach ($file as $key => $municipality) {
-        App\Models\Municipality::create((array)$municipality)->save();
+        App\Municipality::create((array)$municipality)->save();
       }
     }
 

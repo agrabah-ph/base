@@ -25,7 +25,7 @@ class CreateProvincesTable extends Migration
       $file = json_decode(file_get_contents($filepath,true))->RECORDS;
 
       foreach ($file as $key => $province) {
-        App\Models\Province::create((array)$province)->save();
+        App\Province::create((array)$province)->save();
       }
     }
 

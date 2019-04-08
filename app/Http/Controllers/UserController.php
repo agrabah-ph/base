@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Events\SearchUserEvent;
-use App\Models\User;
+use App\User;
 use App\Http\Resources\User as UserResource;
 
 class UserController extends Controller
