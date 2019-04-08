@@ -30,33 +30,8 @@ class WelcomeController extends Controller
 
     public function contact()
     {
+
         dd($this->validateContactMessage());
-    }
 
-    protected function validateVolunteer()
-    {
-        return request()->validate([
-
-            'firstname' => ['required', 'min:1'],
-            'lastname' => ['required', 'min:1'],
-            'address' => ['required', 'min: 3'],
-            'volunteer_email' => ['required', 'email'],
-            'mobile' => ['required', 'numeric','digits:11'],
-            'volunteer-role' => ['required'],
-            'agreement' => ['accepted']
-
-        ]);
-    }
-
-    protected function validateContactMessage()
-    {
-        return request()->validate([
-
-            'firstname' => ['required', 'min:1'],
-            'lastname' => ['required', 'min:1'],
-            'email' => ['required', 'email'],
-            'message' => ['required', 'min: 3', 'max: 399']
-
-        ]);
     }
 }
