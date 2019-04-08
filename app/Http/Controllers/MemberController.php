@@ -28,9 +28,11 @@ class MemberController extends Controller
         ]);
 
         if($validator->fails()){
+
             return back()
               ->withErrors($validator)
               ->withInput();
+
         }
 
         $password = User::generatePassword();
