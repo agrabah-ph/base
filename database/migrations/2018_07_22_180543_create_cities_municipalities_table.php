@@ -13,7 +13,7 @@ class CreateCitiesMunicipalitiesTable extends Migration
      */
     public function up()
     {
-        Schema::create('municipalities', function (Blueprint $table) {
+        Schema::create('cities_municipalities', function (Blueprint $table) {
           $table->increments('id');
           $table->string('psgcCode',100);
           $table->string('citymunDesc', 100)->default('');
@@ -27,7 +27,7 @@ class CreateCitiesMunicipalitiesTable extends Migration
       $file = json_decode(file_get_contents($filepath,true))->RECORDS;
 
       foreach ($file as $key => $municipality) {
-        App\Municipality::create((array)$municipality)->save();
+        App\CityMunicipality::create((array)$municipality)->save();
       }
     }
 

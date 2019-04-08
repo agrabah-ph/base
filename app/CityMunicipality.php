@@ -9,6 +9,7 @@ class CityMunicipality extends Model
     protected $guarded = [];
 
     public $timestamps = false;
+    protected $table = 'cities_municipalities';
 
     public function province()
     {

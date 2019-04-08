@@ -21,7 +21,7 @@ class CreateBarangaysTable extends Migration
             $table->string('provCode',10)->default("");
             $table->string('citymunCode',10)->default("");
             $table->foreign('provCode')->references('provCode')->on('provinces')->onDelete('cascade');
-            $table->foreign('citymunCode')->references('citymunCode')->on('municipalities')->onDelete('cascade');
+            $table->foreign('citymunCode')->references('citymunCode')->on('cities_municipalities')->onDelete('cascade');
         });
 
         $filepath = storage_path() . '/addresses/refbrgy.json';
