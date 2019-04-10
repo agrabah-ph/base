@@ -1959,6 +1959,38 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "locations",
@@ -1970,8 +2002,10 @@ __webpack_require__.r(__webpack_exports__);
       provinces: [],
       municipalities: [],
       barangays: [],
-      lat: null,
-      lng: null
+      lat: 13.6218,
+      lng: 123.1948,
+      addressLine: "",
+      addressLine2: ""
     };
   },
   created: function created() {
@@ -1981,11 +2015,8 @@ __webpack_require__.r(__webpack_exports__);
     fetchProvince: function fetchProvince() {
       var _this = this;
 
-      fetch('/api/province').then(function (res) {
-        return res.json();
-      }).then(function (data) {
-        //console.log(data);
-        _this.provinces = data.provinces;
+      axios.get('/api/province').then(function (response) {
+        _this.provinces = response.data;
       })["catch"](function (err) {
         return console.log(err);
       });
@@ -1993,19 +2024,19 @@ __webpack_require__.r(__webpack_exports__);
     fetchMunicipalities: function fetchMunicipalities(code) {
       var _this2 = this;
 
-      fetch("api/municipality/".concat(code)).then(function (res) {
-        return res.json();
-      }).then(function (data) {
-        _this2.municipalities = data.municipalities;
+      axios.get('/api/municipality/' + code).then(function (response) {
+        _this2.municipalities = response.data;
+      })["catch"](function (err) {
+        return console.log(err);
       });
     },
     fetchBarangays: function fetchBarangays(code) {
       var _this3 = this;
 
-      fetch("api/barangay/".concat(code)).then(function (res) {
-        return res.json();
-      }).then(function (data) {
-        _this3.barangays = data.barangays;
+      axios.get('/api/barangay/' + code).then(function (response) {
+        _this3.barangays = response.data;
+      })["catch"](function (err) {
+        return console.log(err);
       });
     },
     getCoords: function getCoords() {
@@ -2080,11 +2111,28 @@ __webpack_require__.r(__webpack_exports__);
         country: 'PH'
       };
       Vue.$geocoder.send(addressObj, function (response) {
-        console.log(response);
         _this4.lat = response.results[0].geometry.location.lat;
         _this4.lng = response.results[0].geometry.location.lng;
 
         _this4.zoomIn(_this4.lat, _this4.lng);
+      });
+    },
+    getLocation: function getLocation(place) {
+      var _this5 = this;
+
+      this.lat = place.latLng.lat();
+      this.lng = place.latLng.lng();
+      Vue.$geocoder.setDefaultMode('lat-lng');
+      var LatLngObj = {
+        lat: this.lat,
+        lng: this.lng
+      };
+      Vue.$geocoder.send(LatLngObj, function (response) {
+        _this5.addressLine = response.results[0].address_components[0].long_name;
+        _this5.addressLine2 = response.results[0].address_components[1].long_name;
+        /*
+         *  Unfinished
+         */
       });
     },
     zoomIn: function zoomIn(lat, lng) {
@@ -2099,17 +2147,17 @@ __webpack_require__.r(__webpack_exports__);
   computed: {
     google: vue2_google_maps__WEBPACK_IMPORTED_MODULE_0__["gmapApi"],
     selectedProvince: function selectedProvince() {
-      var _this5 = this;
+      var _this6 = this;
 
       return this.municipalities.filter(function (code) {
-        return code.provCode == _this5.province;
+        return code.provCode == _this6.province;
       });
     },
     selectedMunicipality: function selectedMunicipality() {
-      var _this6 = this;
+      var _this7 = this;
 
       return this.barangays.filter(function (code) {
-        return code.citymunCode == _this6.municipality;
+        return code.citymunCode == _this7.municipality;
       });
     }
   }
@@ -48499,7 +48547,16 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container mt-3 mb-3" }, [
-    _c("div", { staticClass: "form-group" }, [
+    _c("div", { staticClass: "form-group row" }, [
+      _c(
+        "label",
+        {
+          staticClass: "col-md-4 col-form-label text-md-right",
+          attrs: { for: "province" }
+        },
+        [_vm._v("Province")]
+      ),
+      _vm._v(" "),
       _c(
         "select",
         {
@@ -48511,8 +48568,8 @@ var render = function() {
               expression: "province"
             }
           ],
-          staticClass: "form-control",
-          attrs: { id: "" },
+          staticClass: "col-md-6 custom-select form-control",
+          attrs: { name: "province", id: "province" },
           on: {
             change: [
               function($event) {
@@ -48538,14 +48595,29 @@ var render = function() {
           return _c(
             "option",
             { key: province.id, domProps: { value: province.provCode } },
-            [_vm._v(_vm._s(province.provDesc))]
+            [
+              _vm._v(
+                "\n                    " +
+                  _vm._s(province.provDesc) +
+                  "\n            "
+              )
+            ]
           )
         }),
         0
       )
     ]),
     _vm._v(" "),
-    _c("div", { staticClass: "form-group" }, [
+    _c("div", { staticClass: "form-group row" }, [
+      _c(
+        "label",
+        {
+          staticClass: "col-md-4 col-form-label text-md-right",
+          attrs: { for: "municipality" }
+        },
+        [_vm._v("City / Municipality")]
+      ),
+      _vm._v(" "),
       _c(
         "select",
         {
@@ -48557,7 +48629,8 @@ var render = function() {
               expression: "municipality"
             }
           ],
-          staticClass: "form-control",
+          staticClass: "col-md-6 custom-select form-control",
+          attrs: { name: "municipality", id: "municipality" },
           on: {
             change: [
               function($event) {
@@ -48586,14 +48659,29 @@ var render = function() {
               key: municipality.id,
               domProps: { value: municipality.citymunCode }
             },
-            [_vm._v(_vm._s(municipality.citymunDesc))]
+            [
+              _vm._v(
+                "\n                    " +
+                  _vm._s(municipality.citymunDesc) +
+                  "\n            "
+              )
+            ]
           )
         }),
         0
       )
     ]),
     _vm._v(" "),
-    _c("div", { staticClass: "form-group" }, [
+    _c("div", { staticClass: "form-group row" }, [
+      _c(
+        "label",
+        {
+          staticClass: "col-md-4 col-form-label text-md-right",
+          attrs: { for: "barangay" }
+        },
+        [_vm._v("Barangay")]
+      ),
+      _vm._v(" "),
       _c(
         "select",
         {
@@ -48605,7 +48693,8 @@ var render = function() {
               expression: "barangay"
             }
           ],
-          staticClass: "form-control",
+          staticClass: "col-md-6 custom-select form-control",
+          attrs: { name: "barangay", id: "barangay" },
           on: {
             change: [
               function($event) {
@@ -48629,11 +48718,83 @@ var render = function() {
           return _c(
             "option",
             { key: barangay.id, domProps: { value: barangay.brgyDesc } },
-            [_vm._v(" " + _vm._s(barangay.brgyDesc) + " ")]
+            [
+              _vm._v(
+                "\n                    " +
+                  _vm._s(barangay.brgyDesc) +
+                  "\n            "
+              )
+            ]
           )
         }),
         0
       )
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "form-group row" }, [
+      _c(
+        "label",
+        {
+          staticClass: "col-md-4 col-form-label text-md-right",
+          attrs: { for: "addln1" }
+        },
+        [_vm._v("Address Line 1")]
+      ),
+      _vm._v(" "),
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.addressLine,
+            expression: "addressLine"
+          }
+        ],
+        staticClass: "col-md-6 form-control",
+        attrs: { type: "text", name: "address_line_one", id: "addln1" },
+        domProps: { value: _vm.addressLine },
+        on: {
+          input: function($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.addressLine = $event.target.value
+          }
+        }
+      })
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "form-group row" }, [
+      _c(
+        "label",
+        {
+          staticClass: "col-md-4 col-form-label text-md-right",
+          attrs: { for: "addln2" }
+        },
+        [_vm._v("Address Line 2")]
+      ),
+      _vm._v(" "),
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.addressLine2,
+            expression: "addressLine2"
+          }
+        ],
+        staticClass: "col-md-6 form-control",
+        attrs: { type: "text", name: "address_line_two" },
+        domProps: { value: _vm.addressLine2 },
+        on: {
+          input: function($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.addressLine2 = $event.target.value
+          }
+        }
+      })
     ]),
     _vm._v(" "),
     _c(
@@ -48644,10 +48805,16 @@ var render = function() {
           "GmapMap",
           {
             ref: "mapRef",
-            staticStyle: { width: "100%", height: "300px" },
+            staticStyle: { width: "80%", height: "300px", margin: "auto" },
             attrs: {
-              center: { lat: 14, lng: 123 },
-              zoom: 7,
+              center: { lat: 13.6218, lng: 123.1948 },
+              zoom: 15,
+              options: {
+                zoomControl: false,
+                scaleControl: false,
+                streetViewControl: false,
+                fullscreenControl: false
+              },
               "map-type-id": "terrain"
             }
           },
@@ -48656,8 +48823,11 @@ var render = function() {
               ref: "myMarker",
               attrs: {
                 position:
-                  _vm.google && new _vm.google.maps.LatLng(_vm.lat, _vm.lng)
-              }
+                  _vm.google && new _vm.google.maps.LatLng(_vm.lat, _vm.lng),
+                clickable: true,
+                draggable: true
+              },
+              on: { dragend: _vm.getLocation }
             })
           ],
           1

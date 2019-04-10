@@ -11,30 +11,28 @@ class LocationsController extends Controller
 {
     public function province()
     {
-        return response([
+        $provinces = Province::with(['cities_municipalities', 'cities_municipalities.barangays'])
+                    ->orderBy('provDesc', 'asc')
+                    ->get();
 
-            'provinces' => Province::with(['cities_municipalities', 'cities_municipalities.barangays'])
-            ->orderBy('provDesc', 'asc')
-            ->get()
-
-        ]);
+        return response()->json($provinces);
     }
 
     public function municipality($provCode)
     {
-        return response([
+        $municipalities = CityMunicipality::where('provCode', $provCode)
+                        ->orderBy('citymunDesc', 'asc')
+                        ->get();
 
-            'municipalities' => CityMunicipality::where('provCode', $provCode)->get()
-
-        ]);
+        return response()->json($municipalities);
     }
+
     public function barangay($citymunCode)
     {
-        return response([
-            'barangays' => Barangay::
-                where('citymunCode', $citymunCode)
-                ->orderBy('brgyDesc', 'asc')
-                ->get()
-        ]);
+        $barangays = Barangay::where('citymunCode', $citymunCode)
+                    ->orderBy('brgyDesc', 'asc')
+                    ->get();
+
+        return response()->json($barangays);
     }
 }
