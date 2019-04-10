@@ -40,10 +40,10 @@ class WelcomeController extends Controller
     {
         return request()->validate([
 
-            'contact_firstname' => ['required', 'min:1'],
-            'contact_lastname' => ['required', 'min:1'],
+            'contact_firstname' => ['required', 'min:1', 'string'],
+            'contact_lastname' => ['required', 'min:1', 'string'],
             'contact_email' => ['required', 'email'],
-            'contact_message' => ['required', 'min:3']
+            'contact_message' => ['required', 'min:3', 'string']
 
         ]);
     }
@@ -52,9 +52,9 @@ class WelcomeController extends Controller
     {
         return request()->validate([
 
-            'volunteer_firstname' => ['required', 'min:1'],
-            'volunteer_lastname' => ['required', 'min:1'],
-            'volunteer_address' => ['required', 'min: 3'],
+            'volunteer_firstname' => ['required', 'min:1', 'string'],
+            'volunteer_lastname' => ['required', 'min:1', 'string'],
+            'volunteer_address' => ['required', 'min: 3', 'string'],
             'volunteer_email' => ['required', 'email'],
             'volunteer_mobile' => ['required', 'numeric','digits:11'],
             'volunteer-role' => ['required'],

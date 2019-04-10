@@ -178,7 +178,7 @@
             </div>
             <div class="form-group">
                 <label for="inputPhone">Phone</label>
-                <input type="text" name="volunteer_mobile" value="{{ old('mobile') }}" class="form-control {{ $errors->has('volunteer_mobile') ? ' is-invalid' : '' }}" {{ $errors->has('volunteer_mobile') ? 'autofocus' : '' }} id="inputPhone">
+                <input type="text" name="volunteer_mobile" value="{{ old('volunteer_mobile') }}" class="form-control {{ $errors->has('volunteer_mobile') ? ' is-invalid' : '' }}" {{ $errors->has('volunteer_mobile') ? 'autofocus' : '' }} id="inputPhone">
                 @if($errors->has('volunteer_mobile'))
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $errors->first('volunteer_mobile') }}</strong>
@@ -252,7 +252,7 @@
             </div>
             <div class="form-group">
                 <label for="contactMessage">Message</label>
-                <textarea class="form-control {{ $errors->has('contact_message') ? ' is-invalid' : '' }}" name="message" id="contactMessage" rows="3" {{ $errors->has('contact_message') ? 'autofocus' : '' }}>{{ old('contact_message') }}</textarea>
+                <textarea class="form-control {{ $errors->has('contact_message') ? ' is-invalid' : '' }}" name="contact_message" id="contactMessage" rows="3" {{ $errors->has('contact_message') ? 'autofocus' : '' }}>{{ old('contact_message') }}</textarea>
                 @if($errors->has('contact_message'))
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $errors->first('contact_message') }}</strong>
