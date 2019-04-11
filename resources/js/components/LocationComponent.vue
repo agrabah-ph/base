@@ -1,46 +1,110 @@
 <template>
-    <div class="container mt-3 mb-3">
+    <div>
         <div class="form-group row">
-            <label for="province" class="col-md-4 col-form-label text-md-right">Province</label>
-            <select v-model="province" name="province" id="province" class="col-md-6 custom-select form-control" @change="fetchMunicipalities(province)">
-                <option v-for="province in provinces"
-                        :key="province.id"
-                        :value="province.provCode">
-                        {{ province.provDesc }}
-                </option>
-            </select>
+            <label for="province" class="col-md-4 col-form-label text-md-right" >Province</label>
+
+            <div class="col-md-6">
+                <select v-model="province"
+                        name="province"
+                        id="province"
+                        class="custom-select form-control"
+                        :class="province_error.length ? ' is-invalid': '' "
+                        @change="fetchMunicipalities(province)"
+                        required>
+
+                    <option v-for="province in provinces"
+                            :key="province.id"
+                            :value="province.provCode">
+                            {{ province.provDesc }}
+                    </option>
+
+                </select>
+
+                <span class="invalid-feedback" role="alert" v-if="province_error.length">
+                    <strong>{{ province_error }}</strong>
+                </span>
+            </div>
+
         </div>
         <div class="form-group row">
             <label for="municipality" class="col-md-4 col-form-label text-md-right">City / Municipality</label>
-            <select v-model="municipality" name="municipality" id="municipality" class="col-md-6 custom-select form-control" @change="fetchBarangays(municipality)">
-                <option v-for="municipality in selectedProvince"
-                        :key="municipality.id"
-                        :value="municipality.citymunCode">
-                        {{ municipality.citymunDesc }}
-                </option>
-            </select>
+
+            <div class="col-md-6">
+                <select v-model="municipality"
+                        name="municipality"
+                        id="municipality"
+                        class="custom-select form-control"
+                        :class="municipality_error.length ? ' is-invalid' : ''"
+                        @change="fetchBarangays(municipality)"
+                        required>
+
+                    <option v-for="municipality in selectedProvince"
+                            :key="municipality.id"
+                            :value="municipality.citymunCode">
+                            {{ municipality.citymunDesc }}
+                    </option>
+
+                </select>
+
+                <span class="invalid-feedback" role="alert" v-if="municipality_error.length">
+                    <strong>{{ municipality_error }}</strong>
+                </span>
+            </div>
+
         </div>
         <div class="form-group row">
             <label for="barangay" class="col-md-4 col-form-label text-md-right">Barangay</label>
-            <select v-model="barangay" name="barangay" id="barangay" class="col-md-6 custom-select form-control" @change="getCoords">
-                <option v-for="barangay in selectedMunicipality"
-                        :key="barangay.id"
-                        :value="barangay.brgyDesc">
-                        {{ barangay.brgyDesc }}
-                </option>
-            </select>
+
+            <div class="col-md-6">
+                <select v-model="barangay"
+                        name="barangay"
+                        id="barangay"
+                        class="custom-select form-control"
+                        :class="barangay_error.length ? ' is-invalid' : '' "
+                        @change="getCoords"
+                        required>
+
+                    <option v-for="barangay in selectedMunicipality"
+                            :key="barangay.id"
+                            :value="barangay.brgyDesc">
+                            {{ barangay.brgyDesc }}
+                    </option>
+
+                </select>
+
+                 <span class="invalid-feedback" role="alert" v-if="barangay_error.length">
+                    <strong>{{ barangay_error }}</strong>
+                </span>
+            </div>
+
         </div>
         <div class="form-group row">
+
             <label for="addln1" class="col-md-4 col-form-label text-md-right">Address Line 1</label>
-            <input type="text" name="address_line_one" v-model="addressLine" id="addln1" class="col-md-6 form-control">
+
+            <div class="col-md-6">
+                <input type="text" name="address_line_1" v-model="addressLine" id="addln1" class="form-control" :class="addln_error.length ? ' is-invalid' : ''" required>
+
+                <span class="invalid-feedback" role="alert" v-if="addln_error.length">
+                    <strong>{{ addln_error }}</strong>
+                </span>
+            </div>
+
         </div>
         <div class="form-group row">
+
             <label for="addln2" class="col-md-4 col-form-label text-md-right">Address Line 2</label>
-            <input type="text" name="address_line_two" v-model="addressLine2" class="col-md-6 form-control">
+
+            <div class="col-md-6">
+                <input type="text" name="address_line_two" v-model="addressLine2" class="form-control">
+            </div>
+
         </div>
         <div class="map">
             <GmapMap
+                id="map"
                 ref="mapRef"
+                map-type-id="terrain"
                 :center="{lat:13.6218, lng:123.1948}"
                 :zoom="15"
                 :options="{
@@ -48,9 +112,7 @@
                     scaleControl: false,
                     streetViewControl: false,
                     fullscreenControl: false,
-                    }"
-                map-type-id="terrain"
-                style="width: 80%; height: 300px; margin: auto;"
+                }"
             >
             <GmapMarker ref="myMarker"
                 :position="google && new google.maps.LatLng(lat, lng)"
@@ -60,14 +122,15 @@
             />
             </GmapMap>
         </div>
+        <p>{{ province_error }}</p>
     </div>
 </template>
 
 <script>
-
 import {gmapApi} from 'vue2-google-maps';
 export default {
     name: "locations",
+    props: ['province_error', 'municipality_error', 'barangay_error', 'addln_error'],
     data() {
         return {
             province: null,
@@ -190,11 +253,10 @@ export default {
             }
             Vue.$geocoder.send(LatLngObj, response => {
 
-                this.addressLine = response.results[0].address_components[0].long_name;
-                this.addressLine2 =  response.results[0].address_components[1].long_name;
+                this.addressLine = response.results[0].address_components[1].long_name;
 
                 /*
-                 *  Unfinished
+                 *  tbc
                  */
             })
 
@@ -230,5 +292,12 @@ export default {
 </script>
 
 <style scoped>
-
+#map {
+    height: 300px;
+    width: 80%;
+    margin: auto;
+    box-shadow: 0 0 12px #555555;
+    border-radius: 3px;
+    overflow: hidden;
+}
 </style>

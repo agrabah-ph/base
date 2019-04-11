@@ -15,6 +15,11 @@
                     @endif
 
                     You are logged in!
+
+                    <p>
+                        {{ ucfirst(Auth::user()->name) }}
+                    </p>
+
                 </div>
             </div>
         </div>

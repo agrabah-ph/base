@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 
 use App\User;
+use App\Province;
+use App\CityMunicipality;
 
 class MemberController extends Controller
 {
@@ -19,12 +21,18 @@ class MemberController extends Controller
     }
 
     public function register(Request $request) {
+
         $validator = Validator::make($request->all(), [
             'name' => ['required', 'string', 'max:255', 'unique:users'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'role' => ['required',
                 Rule::in(['owner', 'client', 'vendor', 'mod']),
             ],
+            'province' => ['required', 'string', 'max:12'],
+            'municipality' => ['required', 'string', 'max:12'],
+            'barangay' => ['required', 'string', 'max:40'],
+            'address_line_1' => ['required', 'max:60'],
+            'address_line_two' => ['nullable', 'max:60']
         ]);
 
         if($validator->fails()){
@@ -34,6 +42,12 @@ class MemberController extends Controller
               ->withInput();
 
         }
+
+        /*
+         * Get province and city/municipality names
+         */
+        $province = Province::where('provCode', $request['province'])->value('provDesc');
+        $municipality = CityMunicipality::where('citymunCode', $request['municipality'])->value('citymunDesc');
 
         $password = User::generatePassword();
         $role = $request['role'];

@@ -1991,9 +1991,73 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "locations",
+  props: ['province_error', 'municipality_error', 'barangay_error', 'addln_error'],
   data: function data() {
     return {
       province: null,
@@ -2128,10 +2192,9 @@ __webpack_require__.r(__webpack_exports__);
         lng: this.lng
       };
       Vue.$geocoder.send(LatLngObj, function (response) {
-        _this5.addressLine = response.results[0].address_components[0].long_name;
-        _this5.addressLine2 = response.results[0].address_components[1].long_name;
+        _this5.addressLine = response.results[0].address_components[1].long_name;
         /*
-         *  Unfinished
+         *  tbc
          */
       });
     },
@@ -6706,6 +6769,25 @@ exports = module.exports = __webpack_require__(/*! ../../../css-loader/lib/css-b
 
 // module
 exports.push([module.i, "\n.vue-street-view-pano-container {\n  position: relative;\n}\n.vue-street-view-pano-container .vue-street-view-pano {\n  left: 0; right: 0; top: 0; bottom: 0;\n  position: absolute;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/LocationComponent.vue?vue&type=style&index=0&id=51f4a1ed&scoped=true&lang=css&":
+/*!***********************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/LocationComponent.vue?vue&type=style&index=0&id=51f4a1ed&scoped=true&lang=css& ***!
+  \***********************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n#map[data-v-51f4a1ed] {\n    height: 300px;\n    width: 80%;\n    margin: auto;\n    box-shadow: 0 0 12px #555555;\n    border-radius: 3px;\n    overflow: hidden;\n}\n", ""]);
 
 // exports
 
@@ -47530,6 +47612,36 @@ if(false) {}
 
 /***/ }),
 
+/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/LocationComponent.vue?vue&type=style&index=0&id=51f4a1ed&scoped=true&lang=css&":
+/*!***************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/LocationComponent.vue?vue&type=style&index=0&id=51f4a1ed&scoped=true&lang=css& ***!
+  \***************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../node_modules/css-loader??ref--6-1!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--6-2!../../../node_modules/vue-loader/lib??vue-loader-options!./LocationComponent.vue?vue&type=style&index=0&id=51f4a1ed&scoped=true&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/LocationComponent.vue?vue&type=style&index=0&id=51f4a1ed&scoped=true&lang=css&");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
 /***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/LoginLogsTableComponent.vue?vue&type=style&index=0&id=48cea38c&scoped=true&lang=css&":
 /*!*********************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/LoginLogsTableComponent.vue?vue&type=style&index=0&id=48cea38c&scoped=true&lang=css& ***!
@@ -48546,7 +48658,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container mt-3 mb-3" }, [
+  return _c("div", [
     _c("div", { staticClass: "form-group row" }, [
       _c(
         "label",
@@ -48557,55 +48669,66 @@ var render = function() {
         [_vm._v("Province")]
       ),
       _vm._v(" "),
-      _c(
-        "select",
-        {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.province,
-              expression: "province"
-            }
-          ],
-          staticClass: "col-md-6 custom-select form-control",
-          attrs: { name: "province", id: "province" },
-          on: {
-            change: [
-              function($event) {
-                var $$selectedVal = Array.prototype.filter
-                  .call($event.target.options, function(o) {
-                    return o.selected
-                  })
-                  .map(function(o) {
-                    var val = "_value" in o ? o._value : o.value
-                    return val
-                  })
-                _vm.province = $event.target.multiple
-                  ? $$selectedVal
-                  : $$selectedVal[0]
-              },
-              function($event) {
-                _vm.fetchMunicipalities(_vm.province)
+      _c("div", { staticClass: "col-md-6" }, [
+        _c(
+          "select",
+          {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.province,
+                expression: "province"
               }
-            ]
-          }
-        },
-        _vm._l(_vm.provinces, function(province) {
-          return _c(
-            "option",
-            { key: province.id, domProps: { value: province.provCode } },
-            [
-              _vm._v(
-                "\n                    " +
-                  _vm._s(province.provDesc) +
-                  "\n            "
-              )
-            ]
-          )
-        }),
-        0
-      )
+            ],
+            staticClass: "custom-select form-control",
+            class: _vm.province_error.length ? " is-invalid" : "",
+            attrs: { name: "province", id: "province", required: "" },
+            on: {
+              change: [
+                function($event) {
+                  var $$selectedVal = Array.prototype.filter
+                    .call($event.target.options, function(o) {
+                      return o.selected
+                    })
+                    .map(function(o) {
+                      var val = "_value" in o ? o._value : o.value
+                      return val
+                    })
+                  _vm.province = $event.target.multiple
+                    ? $$selectedVal
+                    : $$selectedVal[0]
+                },
+                function($event) {
+                  _vm.fetchMunicipalities(_vm.province)
+                }
+              ]
+            }
+          },
+          _vm._l(_vm.provinces, function(province) {
+            return _c(
+              "option",
+              { key: province.id, domProps: { value: province.provCode } },
+              [
+                _vm._v(
+                  "\n                        " +
+                    _vm._s(province.provDesc) +
+                    "\n                "
+                )
+              ]
+            )
+          }),
+          0
+        ),
+        _vm._v(" "),
+        _vm.province_error.length
+          ? _c(
+              "span",
+              { staticClass: "invalid-feedback", attrs: { role: "alert" } },
+              [_c("strong", [_vm._v(_vm._s(_vm.province_error))])]
+            )
+          : _vm._e()
+      ])
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "form-group row" }, [
@@ -48618,58 +48741,69 @@ var render = function() {
         [_vm._v("City / Municipality")]
       ),
       _vm._v(" "),
-      _c(
-        "select",
-        {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.municipality,
-              expression: "municipality"
-            }
-          ],
-          staticClass: "col-md-6 custom-select form-control",
-          attrs: { name: "municipality", id: "municipality" },
-          on: {
-            change: [
-              function($event) {
-                var $$selectedVal = Array.prototype.filter
-                  .call($event.target.options, function(o) {
-                    return o.selected
-                  })
-                  .map(function(o) {
-                    var val = "_value" in o ? o._value : o.value
-                    return val
-                  })
-                _vm.municipality = $event.target.multiple
-                  ? $$selectedVal
-                  : $$selectedVal[0]
-              },
-              function($event) {
-                _vm.fetchBarangays(_vm.municipality)
+      _c("div", { staticClass: "col-md-6" }, [
+        _c(
+          "select",
+          {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.municipality,
+                expression: "municipality"
               }
-            ]
-          }
-        },
-        _vm._l(_vm.selectedProvince, function(municipality) {
-          return _c(
-            "option",
-            {
-              key: municipality.id,
-              domProps: { value: municipality.citymunCode }
-            },
-            [
-              _vm._v(
-                "\n                    " +
-                  _vm._s(municipality.citymunDesc) +
-                  "\n            "
-              )
-            ]
-          )
-        }),
-        0
-      )
+            ],
+            staticClass: "custom-select form-control",
+            class: _vm.municipality_error.length ? " is-invalid" : "",
+            attrs: { name: "municipality", id: "municipality", required: "" },
+            on: {
+              change: [
+                function($event) {
+                  var $$selectedVal = Array.prototype.filter
+                    .call($event.target.options, function(o) {
+                      return o.selected
+                    })
+                    .map(function(o) {
+                      var val = "_value" in o ? o._value : o.value
+                      return val
+                    })
+                  _vm.municipality = $event.target.multiple
+                    ? $$selectedVal
+                    : $$selectedVal[0]
+                },
+                function($event) {
+                  _vm.fetchBarangays(_vm.municipality)
+                }
+              ]
+            }
+          },
+          _vm._l(_vm.selectedProvince, function(municipality) {
+            return _c(
+              "option",
+              {
+                key: municipality.id,
+                domProps: { value: municipality.citymunCode }
+              },
+              [
+                _vm._v(
+                  "\n                        " +
+                    _vm._s(municipality.citymunDesc) +
+                    "\n                "
+                )
+              ]
+            )
+          }),
+          0
+        ),
+        _vm._v(" "),
+        _vm.municipality_error.length
+          ? _c(
+              "span",
+              { staticClass: "invalid-feedback", attrs: { role: "alert" } },
+              [_c("strong", [_vm._v(_vm._s(_vm.municipality_error))])]
+            )
+          : _vm._e()
+      ])
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "form-group row" }, [
@@ -48682,53 +48816,64 @@ var render = function() {
         [_vm._v("Barangay")]
       ),
       _vm._v(" "),
-      _c(
-        "select",
-        {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.barangay,
-              expression: "barangay"
+      _c("div", { staticClass: "col-md-6" }, [
+        _c(
+          "select",
+          {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.barangay,
+                expression: "barangay"
+              }
+            ],
+            staticClass: "custom-select form-control",
+            class: _vm.barangay_error.length ? " is-invalid" : "",
+            attrs: { name: "barangay", id: "barangay", required: "" },
+            on: {
+              change: [
+                function($event) {
+                  var $$selectedVal = Array.prototype.filter
+                    .call($event.target.options, function(o) {
+                      return o.selected
+                    })
+                    .map(function(o) {
+                      var val = "_value" in o ? o._value : o.value
+                      return val
+                    })
+                  _vm.barangay = $event.target.multiple
+                    ? $$selectedVal
+                    : $$selectedVal[0]
+                },
+                _vm.getCoords
+              ]
             }
-          ],
-          staticClass: "col-md-6 custom-select form-control",
-          attrs: { name: "barangay", id: "barangay" },
-          on: {
-            change: [
-              function($event) {
-                var $$selectedVal = Array.prototype.filter
-                  .call($event.target.options, function(o) {
-                    return o.selected
-                  })
-                  .map(function(o) {
-                    var val = "_value" in o ? o._value : o.value
-                    return val
-                  })
-                _vm.barangay = $event.target.multiple
-                  ? $$selectedVal
-                  : $$selectedVal[0]
-              },
-              _vm.getCoords
-            ]
-          }
-        },
-        _vm._l(_vm.selectedMunicipality, function(barangay) {
-          return _c(
-            "option",
-            { key: barangay.id, domProps: { value: barangay.brgyDesc } },
-            [
-              _vm._v(
-                "\n                    " +
-                  _vm._s(barangay.brgyDesc) +
-                  "\n            "
-              )
-            ]
-          )
-        }),
-        0
-      )
+          },
+          _vm._l(_vm.selectedMunicipality, function(barangay) {
+            return _c(
+              "option",
+              { key: barangay.id, domProps: { value: barangay.brgyDesc } },
+              [
+                _vm._v(
+                  "\n                        " +
+                    _vm._s(barangay.brgyDesc) +
+                    "\n                "
+                )
+              ]
+            )
+          }),
+          0
+        ),
+        _vm._v(" "),
+        _vm.barangay_error.length
+          ? _c(
+              "span",
+              { staticClass: "invalid-feedback", attrs: { role: "alert" } },
+              [_c("strong", [_vm._v(_vm._s(_vm.barangay_error))])]
+            )
+          : _vm._e()
+      ])
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "form-group row" }, [
@@ -48741,27 +48886,43 @@ var render = function() {
         [_vm._v("Address Line 1")]
       ),
       _vm._v(" "),
-      _c("input", {
-        directives: [
-          {
-            name: "model",
-            rawName: "v-model",
-            value: _vm.addressLine,
-            expression: "addressLine"
-          }
-        ],
-        staticClass: "col-md-6 form-control",
-        attrs: { type: "text", name: "address_line_one", id: "addln1" },
-        domProps: { value: _vm.addressLine },
-        on: {
-          input: function($event) {
-            if ($event.target.composing) {
-              return
+      _c("div", { staticClass: "col-md-6" }, [
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.addressLine,
+              expression: "addressLine"
             }
-            _vm.addressLine = $event.target.value
+          ],
+          staticClass: "form-control",
+          class: _vm.addln_error.length ? " is-invalid" : "",
+          attrs: {
+            type: "text",
+            name: "address_line_1",
+            id: "addln1",
+            required: ""
+          },
+          domProps: { value: _vm.addressLine },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.addressLine = $event.target.value
+            }
           }
-        }
-      })
+        }),
+        _vm._v(" "),
+        _vm.addln_error.length
+          ? _c(
+              "span",
+              { staticClass: "invalid-feedback", attrs: { role: "alert" } },
+              [_c("strong", [_vm._v(_vm._s(_vm.addln_error))])]
+            )
+          : _vm._e()
+      ])
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "form-group row" }, [
@@ -48774,27 +48935,29 @@ var render = function() {
         [_vm._v("Address Line 2")]
       ),
       _vm._v(" "),
-      _c("input", {
-        directives: [
-          {
-            name: "model",
-            rawName: "v-model",
-            value: _vm.addressLine2,
-            expression: "addressLine2"
-          }
-        ],
-        staticClass: "col-md-6 form-control",
-        attrs: { type: "text", name: "address_line_two" },
-        domProps: { value: _vm.addressLine2 },
-        on: {
-          input: function($event) {
-            if ($event.target.composing) {
-              return
+      _c("div", { staticClass: "col-md-6" }, [
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.addressLine2,
+              expression: "addressLine2"
             }
-            _vm.addressLine2 = $event.target.value
+          ],
+          staticClass: "form-control",
+          attrs: { type: "text", name: "address_line_two" },
+          domProps: { value: _vm.addressLine2 },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.addressLine2 = $event.target.value
+            }
           }
-        }
-      })
+        })
+      ])
     ]),
     _vm._v(" "),
     _c(
@@ -48805,8 +48968,9 @@ var render = function() {
           "GmapMap",
           {
             ref: "mapRef",
-            staticStyle: { width: "80%", height: "300px", margin: "auto" },
             attrs: {
+              id: "map",
+              "map-type-id": "terrain",
               center: { lat: 13.6218, lng: 123.1948 },
               zoom: 15,
               options: {
@@ -48814,8 +48978,7 @@ var render = function() {
                 scaleControl: false,
                 streetViewControl: false,
                 fullscreenControl: false
-              },
-              "map-type-id": "terrain"
+              }
             }
           },
           [
@@ -48834,7 +48997,9 @@ var render = function() {
         )
       ],
       1
-    )
+    ),
+    _vm._v(" "),
+    _c("p", [_vm._v(_vm._s(_vm.province_error))])
   ])
 }
 var staticRenderFns = []
@@ -64058,9 +64223,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _store_index__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./store/index */ "./resources/js/store/index.js");
-/* harmony import */ var vue2_google_maps__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue2-google-maps */ "./node_modules/vue2-google-maps/dist/main.js");
-/* harmony import */ var vue2_google_maps__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vue2_google_maps__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _pderas_vue2_geocoder__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @pderas/vue2-geocoder */ "./node_modules/@pderas/vue2-geocoder/index.js");
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -64072,17 +64234,6 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 
-
-
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue2_google_maps__WEBPACK_IMPORTED_MODULE_2__, {
-  load: {
-    key: 'AIzaSyDSD1bBpEjkW1-JIdMdtL24qRkw7E2cWgE',
-    libraries: 'places'
-  }
-});
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(_pderas_vue2_geocoder__WEBPACK_IMPORTED_MODULE_3__["default"], {
-  googleMapsApiKey: 'AIzaSyDSD1bBpEjkW1-JIdMdtL24qRkw7E2cWgE'
-});
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -64122,6 +64273,11 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var laravel_echo__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! laravel-echo */ "./node_modules/laravel-echo/dist/echo.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var vue2_google_maps__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue2-google-maps */ "./node_modules/vue2-google-maps/dist/main.js");
+/* harmony import */ var vue2_google_maps__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vue2_google_maps__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _pderas_vue2_geocoder__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @pderas/vue2-geocoder */ "./node_modules/@pderas/vue2-geocoder/index.js");
 window._ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
@@ -64165,12 +64321,24 @@ if (token) {
 
 
 
+
 window.Pusher = __webpack_require__(/*! pusher-js */ "./node_modules/pusher-js/dist/web/pusher.js");
 window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"]({
   broadcaster: 'pusher',
   key: "d71a9a8c7a8a814e927b",
   cluster: "ap1",
   encrypted: false
+});
+
+vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(vue2_google_maps__WEBPACK_IMPORTED_MODULE_2__, {
+  load: {
+    key: "AIzaSyDSD1bBpEjkW1-JIdMdtL24qRkw7E2cWgE",
+    libraries: 'places'
+  }
+});
+
+vue__WEBPACK_IMPORTED_MODULE_1___default.a.use(_pderas_vue2_geocoder__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  googleMapsApiKey: "AIzaSyDSD1bBpEjkW1-JIdMdtL24qRkw7E2cWgE"
 });
 
 /***/ }),
@@ -64255,7 +64423,9 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _LocationComponent_vue_vue_type_template_id_51f4a1ed_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./LocationComponent.vue?vue&type=template&id=51f4a1ed&scoped=true& */ "./resources/js/components/LocationComponent.vue?vue&type=template&id=51f4a1ed&scoped=true&");
 /* harmony import */ var _LocationComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./LocationComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/LocationComponent.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* empty/unused harmony star reexport *//* harmony import */ var _LocationComponent_vue_vue_type_style_index_0_id_51f4a1ed_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./LocationComponent.vue?vue&type=style&index=0&id=51f4a1ed&scoped=true&lang=css& */ "./resources/js/components/LocationComponent.vue?vue&type=style&index=0&id=51f4a1ed&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
 
 
 
@@ -64263,7 +64433,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /* normalize component */
 
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
   _LocationComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
   _LocationComponent_vue_vue_type_template_id_51f4a1ed_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
   _LocationComponent_vue_vue_type_template_id_51f4a1ed_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
@@ -64292,6 +64462,22 @@ component.options.__file = "resources/js/components/LocationComponent.vue"
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_LocationComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./LocationComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/LocationComponent.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_LocationComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/LocationComponent.vue?vue&type=style&index=0&id=51f4a1ed&scoped=true&lang=css&":
+/*!****************************************************************************************************************!*\
+  !*** ./resources/js/components/LocationComponent.vue?vue&type=style&index=0&id=51f4a1ed&scoped=true&lang=css& ***!
+  \****************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_LocationComponent_vue_vue_type_style_index_0_id_51f4a1ed_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader!../../../node_modules/css-loader??ref--6-1!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--6-2!../../../node_modules/vue-loader/lib??vue-loader-options!./LocationComponent.vue?vue&type=style&index=0&id=51f4a1ed&scoped=true&lang=css& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/LocationComponent.vue?vue&type=style&index=0&id=51f4a1ed&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_LocationComponent_vue_vue_type_style_index_0_id_51f4a1ed_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_LocationComponent_vue_vue_type_style_index_0_id_51f4a1ed_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_LocationComponent_vue_vue_type_style_index_0_id_51f4a1ed_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_LocationComponent_vue_vue_type_style_index_0_id_51f4a1ed_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_LocationComponent_vue_vue_type_style_index_0_id_51f4a1ed_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
 
 /***/ }),
 

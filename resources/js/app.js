@@ -11,26 +11,6 @@ window.Vue = require('vue');
 
 import store from './store/index'
 
-import * as VueGoogleMaps from 'vue2-google-maps';
-import Geocoder from '@pderas/vue2-geocoder';
-
-Vue.use(VueGoogleMaps, {
-
-    load: {
-
-        key: 'AIzaSyDSD1bBpEjkW1-JIdMdtL24qRkw7E2cWgE',
-        libraries: 'places'
-
-    }
-
-});
-
-Vue.use(Geocoder, {
-
-    googleMapsApiKey: 'AIzaSyDSD1bBpEjkW1-JIdMdtL24qRkw7E2cWgE'
-
-});
-
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
