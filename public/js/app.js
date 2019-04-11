@@ -2046,14 +2046,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "locations",
@@ -2081,6 +2073,7 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.get('/api/province').then(function (response) {
         _this.provinces = response.data;
+        console.log(response);
       })["catch"](function (err) {
         return console.log(err);
       });
@@ -2093,6 +2086,7 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (err) {
         return console.log(err);
       });
+      this.barangay = "";
     },
     fetchBarangays: function fetchBarangays(code) {
       var _this3 = this;
@@ -2108,6 +2102,7 @@ __webpack_require__.r(__webpack_exports__);
 
       var provname = "";
       var cityname = "";
+      var brgyname = "";
       var _iteratorNormalCompletion = true;
       var _didIteratorError = false;
       var _iteratorError = undefined;
@@ -2162,10 +2157,37 @@ __webpack_require__.r(__webpack_exports__);
         }
       }
 
+      var _iteratorNormalCompletion3 = true;
+      var _didIteratorError3 = false;
+      var _iteratorError3 = undefined;
+
+      try {
+        for (var _iterator3 = this.barangays[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
+          var b = _step3.value;
+
+          if (b.brgyCode == this.barangay) {
+            brgyname = b.brgyDesc;
+          }
+        }
+      } catch (err) {
+        _didIteratorError3 = true;
+        _iteratorError3 = err;
+      } finally {
+        try {
+          if (!_iteratorNormalCompletion3 && _iterator3["return"] != null) {
+            _iterator3["return"]();
+          }
+        } finally {
+          if (_didIteratorError3) {
+            throw _iteratorError3;
+          }
+        }
+      }
+
       Vue.$geocoder.setDefaultMode('address'); // this is default
 
       var addressObj = {
-        address_line_1: this.barangay,
+        address_line_1: brgyname,
         address_line_2: '',
         city: cityname,
         state: provname,
@@ -2473,7 +2495,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         }
       });
     }
-  }, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['users']))
+  }, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['users'])),
+  methods: {
+    userDetails: function userDetails(user_id) {
+      console.log(user_id);
+      axios.get('/api/user-info/' + user_id).then(function (response) {
+        console.log(response);
+      });
+    }
+  }
 });
 
 /***/ }),
@@ -48853,7 +48883,7 @@ var render = function() {
           _vm._l(_vm.selectedMunicipality, function(barangay) {
             return _c(
               "option",
-              { key: barangay.id, domProps: { value: barangay.brgyDesc } },
+              { key: barangay.id, domProps: { value: barangay.brgyCode } },
               [
                 _vm._v(
                   "\n                        " +
@@ -48883,7 +48913,7 @@ var render = function() {
           staticClass: "col-md-4 col-form-label text-md-right",
           attrs: { for: "addln1" }
         },
-        [_vm._v("Address Line 1")]
+        [_vm._v("Address Line")]
       ),
       _vm._v(" "),
       _c("div", { staticClass: "col-md-6" }, [
@@ -48900,7 +48930,7 @@ var render = function() {
           class: _vm.addln_error.length ? " is-invalid" : "",
           attrs: {
             type: "text",
-            name: "address_line_1",
+            name: "address_line",
             id: "addln1",
             required: ""
           },
@@ -48922,41 +48952,6 @@ var render = function() {
               [_c("strong", [_vm._v(_vm._s(_vm.addln_error))])]
             )
           : _vm._e()
-      ])
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "form-group row" }, [
-      _c(
-        "label",
-        {
-          staticClass: "col-md-4 col-form-label text-md-right",
-          attrs: { for: "addln2" }
-        },
-        [_vm._v("Address Line 2")]
-      ),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-md-6" }, [
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.addressLine2,
-              expression: "addressLine2"
-            }
-          ],
-          staticClass: "form-control",
-          attrs: { type: "text", name: "address_line_two" },
-          domProps: { value: _vm.addressLine2 },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
-              }
-              _vm.addressLine2 = $event.target.value
-            }
-          }
-        })
       ])
     ]),
     _vm._v(" "),
@@ -48999,7 +48994,15 @@ var render = function() {
       1
     ),
     _vm._v(" "),
-    _c("p", [_vm._v(_vm._s(_vm.province_error))])
+    _c("input", {
+      attrs: { type: "hidden", name: "lat" },
+      domProps: { value: _vm.lat }
+    }),
+    _vm._v(" "),
+    _c("input", {
+      attrs: { type: "hidden", name: "lng" },
+      domProps: { value: _vm.lng }
+    })
   ])
 }
 var staticRenderFns = []
@@ -49346,7 +49349,23 @@ var render = function() {
                     _vm._v(_vm._s(user.email))
                   ]),
                   _vm._v(" "),
-                  _vm._m(1, true)
+                  _c("td", { staticClass: "user_action_td" }, [
+                    _c(
+                      "a",
+                      {
+                        staticClass: "user_action",
+                        attrs: { href: "#0" },
+                        on: {
+                          click: function($event) {
+                            _vm.userDetails(user.id)
+                          }
+                        }
+                      },
+                      [_c("i", { staticClass: "far fa-eye" })]
+                    ),
+                    _vm._v(" "),
+                    _vm._m(1, true)
+                  ])
                 ])
               }),
               0
@@ -49379,14 +49398,8 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("td", { staticClass: "user_action_td" }, [
-      _c("a", { staticClass: "user_action", attrs: { href: "#0" } }, [
-        _c("i", { staticClass: "far fa-eye" })
-      ]),
-      _vm._v(" "),
-      _c("a", { staticClass: "user_action", attrs: { href: "#0" } }, [
-        _c("i", { staticClass: "fas fa-cog" })
-      ])
+    return _c("a", { staticClass: "user_action", attrs: { href: "#0" } }, [
+      _c("i", { staticClass: "fas fa-cog" })
     ])
   }
 ]
@@ -64880,6 +64893,7 @@ var actions = {
     axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/user-get').then(function (res) {
       {
         commit('SET_USERS', res.data);
+        console.log(res.data);
       }
     })["catch"](function (err) {
       console.log(err);

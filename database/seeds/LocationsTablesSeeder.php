@@ -27,12 +27,12 @@ class LocationsTablesSeeder extends Seeder
             App\Province::create((array)$province)->save();
         }
 
-        DB::table('municipalities')->delete();
+        DB::table('cities_municipalities')->delete();
         $filepath = 'database/data/locations/refcitymun.json';
         $file = json_decode(file_get_contents($filepath,true))->RECORDS;
 
         foreach ($file as $key => $municipality) {
-            App\Municipality::create((array)$municipality)->save();
+            App\CityMunicipality::create((array)$municipality)->save();
         }
 
         DB::table('barangays')->delete();

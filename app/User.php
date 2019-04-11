@@ -6,12 +6,15 @@ use Laravel\Passport\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\DB;
 use Spatie\Permission\Traits\HasRoles;
 use Mail;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
     use  HasApiTokens, Notifiable, HasRoles;
+
+    protected $appends = ['address'];
 
     /**
      * The attributes that are mass assignable.
@@ -41,6 +44,23 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
     public function loginActivities() {
+
         return $this->hasMany('App\LoginActivity');
+
+    }
+
+    public function userAddress() {
+
+        return $this->hasOne('App\UserAddress');
+
+    }
+
+    public function getAddressAttribute()
+    {
+        $provDesc = DB::table('provinces')->where('provCode', $this->userAddress->provCode)->value('provDesc');
+        $citymunDesc = DB::table('cities_municipalities')->where('citymunCode', $this->userAddress->citymunCode)->value('citymunDesc');
+        $brgyDesc = DB::table('barangays')->where('brgyCode', $this->userAddress->brgyCode)->value('brgyDesc');
+
+        return $provDesc.", ".$citymunDesc.", ".$brgyDesc;
     }
 }

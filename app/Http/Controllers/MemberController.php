@@ -7,8 +7,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 
 use App\User;
-use App\Province;
-use App\CityMunicipality;
+use App\UserAddress;
 
 class MemberController extends Controller
 {
@@ -31,8 +30,10 @@ class MemberController extends Controller
             'province' => ['required', 'string', 'max:12'],
             'municipality' => ['required', 'string', 'max:12'],
             'barangay' => ['required', 'string', 'max:40'],
-            'address_line_1' => ['required', 'max:60'],
-            'address_line_two' => ['nullable', 'max:60']
+            'address_line' => ['required', 'max:60'],
+            'address_line_two' => ['nullable', 'max:60'],
+            'lat' => ['required', 'string'],
+            'lng' => ['required', 'string']
         ]);
 
         if($validator->fails()){
@@ -42,12 +43,6 @@ class MemberController extends Controller
               ->withInput();
 
         }
-
-        /*
-         * Get province and city/municipality names
-         */
-        $province = Province::where('provCode', $request['province'])->value('provDesc');
-        $municipality = CityMunicipality::where('citymunCode', $request['municipality'])->value('citymunDesc');
 
         $password = User::generatePassword();
         $role = $request['role'];
@@ -59,6 +54,16 @@ class MemberController extends Controller
         ]);
 
         $user->assignRole($role);
+
+        $userAddress = UserAddress::create([
+            'user_id' => $user->id,
+            'provCode' => $request['province'],
+            'citymunCode' => $request['municipality'],
+            'brgyCode' => $request['barangay'],
+            'address_line' => $request['address_line'],
+            'lat' => $request['lat'],
+            'lng' => $request['lng']
+        ]);
 
         User::sendWelcomeEmail($user);
 

@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use App\Events\SearchUserEvent;
 use App\User;
 use App\Http\Resources\User as UserResource;
-
 class UserController extends Controller
 {
     public function search(Request $request) {
@@ -20,7 +19,9 @@ class UserController extends Controller
     }
 
     public function get(Request $request) {
+
         $users = UserResource::collection(User::all());
         return response()->json($users);
+
     }
 }

@@ -66,7 +66,7 @@
 
                     <option v-for="barangay in selectedMunicipality"
                             :key="barangay.id"
-                            :value="barangay.brgyDesc">
+                            :value="barangay.brgyCode">
                             {{ barangay.brgyDesc }}
                     </option>
 
@@ -80,23 +80,14 @@
         </div>
         <div class="form-group row">
 
-            <label for="addln1" class="col-md-4 col-form-label text-md-right">Address Line 1</label>
+            <label for="addln1" class="col-md-4 col-form-label text-md-right">Address Line</label>
 
             <div class="col-md-6">
-                <input type="text" name="address_line_1" v-model="addressLine" id="addln1" class="form-control" :class="addln_error.length ? ' is-invalid' : ''" required>
+                <input type="text" name="address_line" v-model="addressLine" id="addln1" class="form-control" :class="addln_error.length ? ' is-invalid' : ''" required>
 
                 <span class="invalid-feedback" role="alert" v-if="addln_error.length">
                     <strong>{{ addln_error }}</strong>
                 </span>
-            </div>
-
-        </div>
-        <div class="form-group row">
-
-            <label for="addln2" class="col-md-4 col-form-label text-md-right">Address Line 2</label>
-
-            <div class="col-md-6">
-                <input type="text" name="address_line_two" v-model="addressLine2" class="form-control">
             </div>
 
         </div>
@@ -122,7 +113,8 @@
             />
             </GmapMap>
         </div>
-        <p>{{ province_error }}</p>
+        <input type="hidden" :value="lat" name="lat">
+        <input type="hidden" :value="lng" name="lng">
     </div>
 </template>
 
@@ -158,6 +150,7 @@ export default {
             .then( response => {
 
                 this.provinces = response.data;
+                console.log(response);
 
             })
             .catch(
@@ -180,6 +173,8 @@ export default {
                 err => console.log(err)
 
             )
+
+            this.barangay = "";
         },
 
         fetchBarangays(code) {
@@ -201,6 +196,7 @@ export default {
 
             var provname = "";
             var cityname = "";
+            var brgyname = "";
 
             for(let p of this.provinces)
             {
@@ -218,9 +214,17 @@ export default {
                 }
             }
 
+            for(let b of this.barangays)
+            {
+                if(b.brgyCode == this.barangay)
+                {
+                    brgyname = b.brgyDesc
+                }
+            }
+
             Vue.$geocoder.setDefaultMode('address');      // this is default
             var addressObj = {
-                address_line_1: this.barangay,
+                address_line_1: brgyname,
                 address_line_2: '',
                 city:           cityname,
                 state:          provname,               // province also valid

@@ -15,4 +15,9 @@ class Barangay extends Model
     {
         return $this->belongsTo(CityMunicipality::class, 'citymunCode', 'citymunCode');
     }
+
+    public function province()
+    {
+        return $this->belongsTo(Province::class, 'provCode', 'provCode');
+    }
 }

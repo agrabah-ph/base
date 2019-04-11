@@ -10,7 +10,7 @@
             </select>
         </div>
 
-        <div class="select_wrapper">    
+        <div class="select_wrapper">
             <label for="verified">Status</label>
             <select v-model="status" class="form-control" name="verified">
                 <option value="all">All</option>
@@ -18,7 +18,7 @@
                 <option value="unverified">Unverified</option>
             </select>
         </div>
-        
+
         <span class="result_message" v-if="!filteredUsers.length">No matching record found.</span>
         <span class="result_message" v-if="filteredUsers.length">Found {{filteredUsers.length}} record{{filteredUsers.length>1? 's' : ''}}.</span>
 
@@ -35,7 +35,7 @@
                     <td>{{user.name}}</td>
                     <td class="d-none d-sm-table-cell">{{user.email}}</td>
                     <td class="user_action_td">
-                        <a href="#0" class="user_action"><i class="far fa-eye"></i></a>
+                        <a href="#0" class="user_action" @click="userDetails(user.id)"><i class="far fa-eye"></i></a>
                         <a href="#0" class="user_action"><i class="fas fa-cog"></i></a>
                     </td>
                 </tr>
@@ -60,6 +60,7 @@
             this.$store.dispatch('GET_USERS')
         },
         computed: {
+
             filteredUsersByRole() {
                 let role = this.role;
                 return this.users.filter(function(user){
@@ -72,7 +73,7 @@
             },
             filteredUsers() {
                 let status = this.status;
-                return this.filteredUsersByRole.filter(function(user){
+                return this.filteredUsersByRole.filter(function(user) {
                     if(status == "all") {
                         return true;
                     }
@@ -86,6 +87,19 @@
             ...mapGetters([
                 'users'
             ])
+        },
+        methods: {
+
+            userDetails(user_id) {
+
+                console.log(user_id);
+
+                axios.get('/api/user-info/' + user_id)
+                .then( response => {
+                    console.log(response);
+                })
+
+            }
         }
     }
 </script>
