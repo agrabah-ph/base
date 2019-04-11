@@ -24,6 +24,7 @@ Route::group(['middleware' => ['auth:api', 'role:owner']], function() {
 
 });
 
+
 Route::get('/province', 'LocationsController@province');
 Route::get('/municipality/{code}', 'LocationsController@municipality');
 Route::get('/barangay/{code}', 'LocationsController@barangay');
