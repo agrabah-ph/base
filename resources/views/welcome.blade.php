@@ -5,6 +5,7 @@
 @endsection
 
 @section('content')
+
 <div class="parallax-wrapper">
     <section class="parallax bg1" style="height:100vh;">
         <img src="{{ url('/images/logo/200x200.png') }}" width="200px" height="200px" style="margin: calc(50vh - 100px) calc(50% - 100px) 0 calc(50% - 100px)" alt="Agrabah Marketplace">
@@ -69,7 +70,7 @@
             <h3>About Us</h3>
             <br>
             <span style="font-size:1rem;">
-            Agrabah Marketplace is more than a platform, we build communities. Part of our initiative is to create awareness and encourage millennials to take part in the wave of change. We want to create awareness around the topic of food sustainability in the Philippines. Everyone’s efforts can help create the ripple effect regardless of how big or small their input is. We aim to do this through volunteering efforts and also promoting agri-preneurship as a viable occupational choice. 
+            Agrabah Marketplace is more than a platform, we build communities. Part of our initiative is to create awareness and encourage millennials to take part in the wave of change. We want to create awareness around the topic of food sustainability in the Philippines. Everyone’s efforts can help create the ripple effect regardless of how big or small their input is. We aim to do this through volunteering efforts and also promoting agri-preneurship as a viable occupational choice.
             </span>
         </div>
     </section>
@@ -104,7 +105,7 @@
     <section class="section static">
         <div class="section-text">
             <span>
-            Agrabah Marketplace is more than a platform, we build communities. Part of our initiative is to create awareness and encourage millennials to take part in the wave of change. We want to create awareness around the topic of food sustainability in the Philippines. Everyone’s efforts can help create the ripple effect regardless of how big or small their input is. We aim to do this through volunteering efforts and also promoting agri-preneurship as a viable occupational choice. 
+            Agrabah Marketplace is more than a platform, we build communities. Part of our initiative is to create awareness and encourage millennials to take part in the wave of change. We want to create awareness around the topic of food sustainability in the Philippines. Everyone’s efforts can help create the ripple effect regardless of how big or small their input is. We aim to do this through volunteering efforts and also promoting agri-preneurship as a viable occupational choice.
             </span>
         </div>
     </section>
@@ -135,73 +136,132 @@
     </section>
     <section class="lg-section static1" id="volunteer_form">
         <span class="section-head">Volunteer</span>
-        <form class="m-2">
+        <form class="m-2" method="POST" action="/volunteer">
+            @csrf
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="firstName">First Name</label>
-                    <input type="text" id="firstName" class="form-control">
+                    <input type="text" name="volunteer_firstname" value="{{ old('volunteer_firstname') }}" id="firstName" class="form-control {{ $errors->has('volunteer_firstname') ? ' is-invalid' : '' }}" {{ $errors->has('volunteer_firstname') ? 'autofocus' : ''}}>
+                    @if($errors->has('volunteer_firstname'))
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $errors->first('volunteer_firstname') }}</strong>
+                        </span>
+                    @endif
                 </div>
                 <div class="form-group col-md-6">
                     <label for="lastName">Last Name</label>
-                    <input type="text" id="lastName" class="form-control">
+                    <input type="text" name="volunteer_lastname" value="{{ old('volunteer_lastname') }}" id="lastName" class="form-control {{ $errors->has('volunteer_lastname') ? ' is-invalid' : '' }}" {{ $errors->has('volunteer_lastname') ? 'autofocus' : ''}}>
+                    @if($errors->has('volunteer_lastname'))
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $errors->first('volunteer_lastname') }}</strong>
+                        </span>
+                    @endif
                 </div>
             </div>
             <div class="form-group">
                 <label for="inputAddress">Address</label>
-                <input type="text" class="form-control" id="inputAddress">
+                <input type="text" name="volunteer_address" value="{{ old('volunteer_address') }}" class="form-control {{ $errors->has('volunteer_address') ? ' is-invalid' : '' }}" {{ $errors->has('volunteer_address') ? 'autofocus' : ''}} id="inputAddress">
+                @if($errors->has('volunteer_address'))
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $errors->first('volunteer_address') }}</strong>
+                    </span>
+                @endif
             </div>
             <div class="form-group">
                 <label for="inputEmail">Email</label>
-                <input type="text" class="form-control" id="inputEmail">
+                <input type="text" name="volunteer_email" value="{{ old('volunteer_email') }}" class="form-control {{ $errors->has('volunteer_email') ? ' is-invalid' : '' }}" {{ $errors->has('volunteer_email') ? 'autofocus' : '' }} id="inputEmail">
+                @if($errors->has('volunteer_email'))
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $errors->first('volunteer_email') }}</strong>
+                    </span>
+                @endif
             </div>
             <div class="form-group">
                 <label for="inputPhone">Phone</label>
-                <input type="text" class="form-control" id="inputPhone">
+                <input type="text" name="volunteer_mobile" value="{{ old('mobile') }}" class="form-control {{ $errors->has('volunteer_mobile') ? ' is-invalid' : '' }}" {{ $errors->has('volunteer_mobile') ? 'autofocus' : '' }} id="inputPhone">
+                @if($errors->has('volunteer_mobile'))
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $errors->first('volunteer_mobile') }}</strong>
+                    </span>
+                @endif
             </div>
             <div class="form-group">
                 <label for="volunteer-role">Volunteer as:</label>
                 <select name="volunteer-role" id="volunteer-role" class="custom-select">
-                    <option value="Content Writer Volunteer" selected>Content Writer Volunteer</option>
-                    <option value="Volunteer Vlogger">Volunteer Vlogger</option>
-                    <option value="Volunteer Influencer">Volunteer Influencer</option>
-                    <option value="Community Engagement Manager Volunteer">Community Engagement Manager Volunteer</option>
-                    <option value="Events Coordinator Volunteer">Events Coordinator Volunteer</option>
+                    <option value="Content Writer Volunteer" {{ old('volunteer-role') ? 'selected' : '' }} selected>Content Writer Volunteer</option>
+                    <option value="Volunteer Vlogger" {{ old('volunteer-role') == 'Volunteer Vlogger' ? 'selected' : '' }}>Volunteer Vlogger</option>
+                    <option value="Volunteer Influencer" {{ old('volunteer-role') == 'Volunteer Influencer' ? 'selected' : '' }}>Volunteer Influencer</option>
+                    <option value="Community Engagement Manager Volunteer" == 'Community Engagement Manager Volunteer' {{ old('volunteer-role') ? 'selected' : '' }}>Community Engagement Manager Volunteer</option>
+                    <option value="Events Coordinator Volunteer" {{ old('volunteer-role') == 'Events Coordinator Volunteer' ? 'selected' : '' }}>Events Coordinator Volunteer</option>
                 </select>
             </div>
             <div class="form-group">
                 <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="gridCheck">
-                <label class="form-check-label" for="gridCheck">
-                    I agree to Agrabah Marketplace's Privacy terms and conditions.
-                </label>
+                    <input class="form-check-input {{ $errors->has('agreement') ? ' is-invalid' : '' }}" {{ $errors->has('agreement') ? 'autofocus' : '' }} name="agreement" {{ old('agreement') ? 'checked' : null }} type="checkbox" id="gridCheck">
+                    <label class="form-check-label" for="gridCheck">
+                        I agree to Agrabah Marketplace's Privacy terms and conditions.
+                    </label>
+                    @if($errors->has('agreement'))
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $errors->first('agreement') }}</strong>
+                        </span>
+                    @endif
                 </div>
+                @if($errors->has('agreement'))
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $errors->first('agreement') }}</strong>
+                    </span>
+                @endif
             </div>
             <button class="btn btn-primary" type="submit">Submit</button>
         </form>
     </section>
+
     <section class="lg-section static" id="contact-section">
         <span class="section-head">Contact Us</span>
-        <form class="m-2">
+        <form class="m-2" method="POST" action="/contact">
+            @csrf
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="contactFirstName">First Name</label>
-                    <input type="text" id="contactFirstName" class="form-control">
+                <input type="text" name="contact_firstname" id="contactFirstName" class="form-control{{ $errors->has('contact_firstname') ? ' is-invalid' : '' }}" {{$errors->has('contact_firstname') ? 'autofocus' : ''}} value="{{ old('contact_firstname') }}">
+                    @if($errors->has('contact_firstname'))
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $errors->first('contact_firstname') }}</strong>
+                        </span>
+                    @endif
                 </div>
                 <div class="form-group col-md-6">
                     <label for="contactLastName">Last Name</label>
-                    <input type="text" id="contactLastName" class="form-control">
+                    <input type="text" name="contact_lastname" id="contactLastName" class="form-control {{ $errors->has('contact_lastname') ? ' is-invalid' : '' }}" {{$errors->has('contact_lastname') ? 'autofocus' : ''}} value="{{ old('contact_lastname') }}">
+                    @if($errors->has('contact_lastname'))
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $errors->first('contact_lastname') }}</strong>
+                        </span>
+                    @endif
                 </div>
             </div>
             <div class="form-group">
                 <label for="contactEmail">Email</label>
-                <input type="text" class="form-control" id="contactEmail">
+                <input type="text" name="contact_email" class="form-control {{ $errors->has('contact_email') ? ' is-invalid' : '' }}" {{ $errors->has('contact_email') ? 'autofocus' : '' }} id="contactEmail" value="{{ old('contact_email') }}">
+                @if($errors->has('contact_email'))
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $errors->first('contact_email') }}</strong>
+                    </span>
+                @endif
             </div>
             <div class="form-group">
                 <label for="contactMessage">Message</label>
-                <textarea class="form-control" id="contactMessage" rows="3"></textarea>
+                <textarea class="form-control {{ $errors->has('contact_message') ? ' is-invalid' : '' }}" name="message" id="contactMessage" rows="3" {{ $errors->has('contact_message') ? 'autofocus' : '' }}>{{ old('contact_message') }}</textarea>
+                @if($errors->has('contact_message'))
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $errors->first('contact_message') }}</strong>
+                    </span>
+                @endif
             </div>
             <button class="btn btn-primary" type="submit">Submit</button>
         </form>
+
     </section>
     <section class="welcome-footer">
         Address: <br>
