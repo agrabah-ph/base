@@ -22,7 +22,6 @@ let actions = {
             .then(res => {
                 {
                     commit('SET_USERS', res.data)
-                    console.log(res.data);
                 }
             }).catch(err => {
                 console.log(err)

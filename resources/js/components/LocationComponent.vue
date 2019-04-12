@@ -150,7 +150,6 @@ export default {
             .then( response => {
 
                 this.provinces = response.data;
-                console.log(response);
 
             })
             .catch(
@@ -259,9 +258,15 @@ export default {
 
                 this.addressLine = response.results[0].address_components[1].long_name;
 
-                /*
-                 *  tbc
-                 */
+                // Get the province name
+                // ->use for loop to get code for every matching name
+                // ->set the value to the model
+                this.province = "0516";
+                this.fetchMunicipalities(this.province)
+                this.municipality = "051603";
+                this.fetchBarangays(this.municipality)
+                this.barangay = "051603024";
+
             })
 
         },

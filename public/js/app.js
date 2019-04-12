@@ -2073,7 +2073,6 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.get('/api/province').then(function (response) {
         _this.provinces = response.data;
-        console.log(response);
       })["catch"](function (err) {
         return console.log(err);
       });
@@ -2214,10 +2213,19 @@ __webpack_require__.r(__webpack_exports__);
         lng: this.lng
       };
       Vue.$geocoder.send(LatLngObj, function (response) {
-        _this5.addressLine = response.results[0].address_components[1].long_name;
-        /*
-         *  tbc
-         */
+        _this5.addressLine = response.results[0].address_components[1].long_name; // Get the province name
+        // ->use for loop to get code for every matching name
+        // ->set the value to the model
+
+        _this5.province = "0516";
+
+        _this5.fetchMunicipalities(_this5.province);
+
+        _this5.municipality = "051603";
+
+        _this5.fetchBarangays(_this5.municipality);
+
+        _this5.barangay = "051603024";
       });
     },
     zoomIn: function zoomIn(lat, lng) {
@@ -64989,7 +64997,6 @@ var actions = {
     axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/user-get').then(function (res) {
       {
         commit('SET_USERS', res.data);
-        console.log(res.data);
       }
     })["catch"](function (err) {
       console.log(err);
