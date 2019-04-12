@@ -60,7 +60,8 @@ class User extends Authenticatable implements MustVerifyEmail
         $provDesc = DB::table('provinces')->where('provCode', $this->userAddress->provCode)->value('provDesc');
         $citymunDesc = DB::table('cities_municipalities')->where('citymunCode', $this->userAddress->citymunCode)->value('citymunDesc');
         $brgyDesc = DB::table('barangays')->where('brgyCode', $this->userAddress->brgyCode)->value('brgyDesc');
+        $addressLine = DB::table('user_addresses')->where('user_id', $this->id)->value('address_line');
 
-        return $provDesc.", ".$citymunDesc.", ".$brgyDesc;
+        return strtolower($provDesc.", ".$citymunDesc.", ".$brgyDesc.", ".$addressLine);
     }
 }

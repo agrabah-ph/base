@@ -2457,6 +2457,25 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2464,7 +2483,9 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   data: function data() {
     return {
       role: 'all',
-      status: 'all'
+      status: 'all',
+      display: false,
+      userDetails: []
     };
   },
   mounted: function mounted() {
@@ -2497,11 +2518,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }
   }, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['users'])),
   methods: {
-    userDetails: function userDetails(user_id) {
-      console.log(user_id);
-      axios.get('/api/user-info/' + user_id).then(function (response) {
-        console.log(response);
-      });
+    trimname: function trimname(string) {
+      return string.replace(/\s/g, '');
     }
   }
 });
@@ -49354,18 +49372,64 @@ var render = function() {
                       "a",
                       {
                         staticClass: "user_action",
-                        attrs: { href: "#0" },
-                        on: {
-                          click: function($event) {
-                            _vm.userDetails(user.id)
-                          }
+                        attrs: {
+                          href: "#0",
+                          "data-toggle": "modal",
+                          "data-target": "#" + _vm.trimname(user.name)
                         }
                       },
                       [_c("i", { staticClass: "far fa-eye" })]
                     ),
                     _vm._v(" "),
                     _vm._m(1, true)
-                  ])
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass: "modal fade",
+                      attrs: {
+                        id: _vm.trimname(user.name),
+                        tabindex: "-1",
+                        role: "dialog",
+                        "aria-labelledby": "exampleModalLabel",
+                        "aria-hidden": "true"
+                      }
+                    },
+                    [
+                      _c(
+                        "div",
+                        {
+                          staticClass: "modal-dialog",
+                          attrs: { role: "document" }
+                        },
+                        [
+                          _c("div", { staticClass: "modal-content" }, [
+                            _c("div", { staticClass: "modal-header" }, [
+                              _c(
+                                "h5",
+                                {
+                                  staticClass: "modal-title",
+                                  attrs: { id: "exampleModalLabel" }
+                                },
+                                [_vm._v(_vm._s(user.name.trim()))]
+                              ),
+                              _vm._v(" "),
+                              _vm._m(2, true)
+                            ]),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "modal-body" }, [
+                              _c("h5", [_vm._v("Address: ")]),
+                              _vm._v(" "),
+                              _c("p", [_vm._v(_vm._s(user.address))])
+                            ]),
+                            _vm._v(" "),
+                            _vm._m(3, true)
+                          ])
+                        ]
+                      )
+                    ]
+                  )
                 ])
               }),
               0
@@ -49400,6 +49464,38 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("a", { staticClass: "user_action", attrs: { href: "#0" } }, [
       _c("i", { staticClass: "fas fa-cog" })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "button",
+      {
+        staticClass: "close",
+        attrs: {
+          type: "button",
+          "data-dismiss": "modal",
+          "aria-label": "Close"
+        }
+      },
+      [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-footer" }, [
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-secondary",
+          attrs: { type: "button", "data-dismiss": "modal" }
+        },
+        [_vm._v("Close")]
+      )
     ])
   }
 ]

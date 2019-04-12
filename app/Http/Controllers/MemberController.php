@@ -31,7 +31,6 @@ class MemberController extends Controller
             'municipality' => ['required', 'string', 'max:12'],
             'barangay' => ['required', 'string', 'max:40'],
             'address_line' => ['required', 'max:60'],
-            'address_line_two' => ['nullable', 'max:60'],
             'lat' => ['required', 'string'],
             'lng' => ['required', 'string']
         ]);
