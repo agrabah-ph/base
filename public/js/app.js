@@ -49420,7 +49420,7 @@ var render = function() {
                                   staticClass: "modal-title",
                                   attrs: { id: "exampleModalLabel" }
                                 },
-                                [_vm._v(_vm._s(user.name.trim()))]
+                                [_vm._v(_vm._s(user.name))]
                               ),
                               _vm._v(" "),
                               _vm._m(2, true)
