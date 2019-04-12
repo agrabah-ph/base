@@ -27,5 +27,3 @@ Route::group(['middleware' => ['auth:api', 'role:owner']], function() {
     Route::get('/barangay/{code}', 'LocationsController@barangay');
 
 });
-
-

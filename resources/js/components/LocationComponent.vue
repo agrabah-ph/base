@@ -247,6 +247,8 @@ export default {
             this.lat = place.latLng.lat();
             this.lng = place.latLng.lng();
 
+            var resLongName = "";
+
             Vue.$geocoder.setDefaultMode('lat-lng');
             var LatLngObj = {
 
@@ -257,16 +259,34 @@ export default {
             Vue.$geocoder.send(LatLngObj, response => {
 
                 this.addressLine = response.results[0].address_components[1].long_name;
+                
+                for(let res of response.results)
+                {
+                    for(let resAddressComponents of res.address_components)
+                    {
+                        resLongName = resAddressComponents.long_name.toLowerCase();
+                        console.log("Results: ", resLongName);
 
-                // Get the province name
-                // ->use for loop to get code for every matching name
-                // ->set the value to the model
-                this.province = "0516";
-                this.fetchMunicipalities(this.province)
-                this.municipality = "051603";
-                this.fetchBarangays(this.municipality)
-                this.barangay = "051603024";
+                        for(let revprov of this.provinces)
+                        {
+                            if(revprov.provDesc.toLowerCase() == resLongName)
+                            {
+                                this.fetchMunicipalities(revprov.provCode);
+                                this.province = revprov.provCode;
 
+                                for(let revmun of revprov.cities_municipalities)
+                                {
+                                    console.log("Municipality: ", revmun.citymunDesc.toLowerCase());
+                                    console.log("Res:", resLongName);
+                                    if(revmun.citymunDesc.toLowerCase() == resLongName)
+                                    {
+                                        console.log("Here,",revmun.citymunDesc);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
             })
 
         },
