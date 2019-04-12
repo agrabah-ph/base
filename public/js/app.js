@@ -2078,30 +2078,6 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     fetchMunicipalities: function fetchMunicipalities(code) {
-      var _this2 = this;
-
-      axios.get('/api/municipality/' + code).then(function (response) {
-        _this2.municipalities = response.data;
-      })["catch"](function (err) {
-        return console.log(err);
-      });
-      this.barangay = "";
-    },
-    fetchBarangays: function fetchBarangays(code) {
-      var _this3 = this;
-
-      axios.get('/api/barangay/' + code).then(function (response) {
-        _this3.barangays = response.data;
-      })["catch"](function (err) {
-        return console.log(err);
-      });
-    },
-    getCoords: function getCoords() {
-      var _this4 = this;
-
-      var provname = "";
-      var cityname = "";
-      var brgyname = "";
       var _iteratorNormalCompletion = true;
       var _didIteratorError = false;
       var _iteratorError = undefined;
@@ -2110,8 +2086,30 @@ __webpack_require__.r(__webpack_exports__);
         for (var _iterator = this.provinces[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
           var p = _step.value;
 
-          if (p.provCode == this.province) {
-            provname = p.provDesc;
+          if (code == p.provCode) {
+            var _iteratorNormalCompletion2 = true;
+            var _didIteratorError2 = false;
+            var _iteratorError2 = undefined;
+
+            try {
+              for (var _iterator2 = p.cities_municipalities[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+                var m = _step2.value;
+                this.municipalities.push(m);
+              }
+            } catch (err) {
+              _didIteratorError2 = true;
+              _iteratorError2 = err;
+            } finally {
+              try {
+                if (!_iteratorNormalCompletion2 && _iterator2["return"] != null) {
+                  _iterator2["return"]();
+                }
+              } finally {
+                if (_didIteratorError2) {
+                  throw _iteratorError2;
+                }
+              }
+            }
           }
         }
       } catch (err) {
@@ -2129,43 +2127,41 @@ __webpack_require__.r(__webpack_exports__);
         }
       }
 
-      var _iteratorNormalCompletion2 = true;
-      var _didIteratorError2 = false;
-      var _iteratorError2 = undefined;
-
-      try {
-        for (var _iterator2 = this.municipalities[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-          var m = _step2.value;
-
-          if (m.citymunCode == this.municipality) {
-            cityname = m.citymunDesc;
-          }
-        }
-      } catch (err) {
-        _didIteratorError2 = true;
-        _iteratorError2 = err;
-      } finally {
-        try {
-          if (!_iteratorNormalCompletion2 && _iterator2["return"] != null) {
-            _iterator2["return"]();
-          }
-        } finally {
-          if (_didIteratorError2) {
-            throw _iteratorError2;
-          }
-        }
-      }
-
+      this.barangay = "";
+    },
+    fetchBarangays: function fetchBarangays(code) {
       var _iteratorNormalCompletion3 = true;
       var _didIteratorError3 = false;
       var _iteratorError3 = undefined;
 
       try {
-        for (var _iterator3 = this.barangays[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
-          var b = _step3.value;
+        for (var _iterator3 = this.municipalities[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
+          var m = _step3.value;
 
-          if (b.brgyCode == this.barangay) {
-            brgyname = b.brgyDesc;
+          if (code == m.citymunCode) {
+            var _iteratorNormalCompletion4 = true;
+            var _didIteratorError4 = false;
+            var _iteratorError4 = undefined;
+
+            try {
+              for (var _iterator4 = m.barangays[Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
+                var b = _step4.value;
+                this.barangays.push(b);
+              }
+            } catch (err) {
+              _didIteratorError4 = true;
+              _iteratorError4 = err;
+            } finally {
+              try {
+                if (!_iteratorNormalCompletion4 && _iterator4["return"] != null) {
+                  _iterator4["return"]();
+                }
+              } finally {
+                if (_didIteratorError4) {
+                  throw _iteratorError4;
+                }
+              }
+            }
           }
         }
       } catch (err) {
@@ -2179,6 +2175,93 @@ __webpack_require__.r(__webpack_exports__);
         } finally {
           if (_didIteratorError3) {
             throw _iteratorError3;
+          }
+        }
+      }
+    },
+    getCoords: function getCoords() {
+      var _this2 = this;
+
+      var provname = "";
+      var cityname = "";
+      var brgyname = "";
+      var _iteratorNormalCompletion5 = true;
+      var _didIteratorError5 = false;
+      var _iteratorError5 = undefined;
+
+      try {
+        for (var _iterator5 = this.provinces[Symbol.iterator](), _step5; !(_iteratorNormalCompletion5 = (_step5 = _iterator5.next()).done); _iteratorNormalCompletion5 = true) {
+          var p = _step5.value;
+
+          if (p.provCode == this.province) {
+            provname = p.provDesc;
+          }
+        }
+      } catch (err) {
+        _didIteratorError5 = true;
+        _iteratorError5 = err;
+      } finally {
+        try {
+          if (!_iteratorNormalCompletion5 && _iterator5["return"] != null) {
+            _iterator5["return"]();
+          }
+        } finally {
+          if (_didIteratorError5) {
+            throw _iteratorError5;
+          }
+        }
+      }
+
+      var _iteratorNormalCompletion6 = true;
+      var _didIteratorError6 = false;
+      var _iteratorError6 = undefined;
+
+      try {
+        for (var _iterator6 = this.municipalities[Symbol.iterator](), _step6; !(_iteratorNormalCompletion6 = (_step6 = _iterator6.next()).done); _iteratorNormalCompletion6 = true) {
+          var m = _step6.value;
+
+          if (m.citymunCode == this.municipality) {
+            cityname = m.citymunDesc;
+          }
+        }
+      } catch (err) {
+        _didIteratorError6 = true;
+        _iteratorError6 = err;
+      } finally {
+        try {
+          if (!_iteratorNormalCompletion6 && _iterator6["return"] != null) {
+            _iterator6["return"]();
+          }
+        } finally {
+          if (_didIteratorError6) {
+            throw _iteratorError6;
+          }
+        }
+      }
+
+      var _iteratorNormalCompletion7 = true;
+      var _didIteratorError7 = false;
+      var _iteratorError7 = undefined;
+
+      try {
+        for (var _iterator7 = this.barangays[Symbol.iterator](), _step7; !(_iteratorNormalCompletion7 = (_step7 = _iterator7.next()).done); _iteratorNormalCompletion7 = true) {
+          var b = _step7.value;
+
+          if (b.brgyCode == this.barangay) {
+            brgyname = b.brgyDesc;
+          }
+        }
+      } catch (err) {
+        _didIteratorError7 = true;
+        _iteratorError7 = err;
+      } finally {
+        try {
+          if (!_iteratorNormalCompletion7 && _iterator7["return"] != null) {
+            _iterator7["return"]();
+          }
+        } finally {
+          if (_didIteratorError7) {
+            throw _iteratorError7;
           }
         }
       }
@@ -2196,127 +2279,70 @@ __webpack_require__.r(__webpack_exports__);
         country: 'PH'
       };
       Vue.$geocoder.send(addressObj, function (response) {
-        _this4.lat = response.results[0].geometry.location.lat;
-        _this4.lng = response.results[0].geometry.location.lng;
+        _this2.lat = response.results[0].geometry.location.lat;
+        _this2.lng = response.results[0].geometry.location.lng;
 
-        _this4.zoomIn(_this4.lat, _this4.lng);
+        _this2.zoomIn(_this2.lat, _this2.lng);
       });
     },
     getLocation: function getLocation(place) {
-      var _this5 = this;
+      var _this3 = this;
 
       this.lat = place.latLng.lat();
       this.lng = place.latLng.lng();
-      var resLongName = "";
       Vue.$geocoder.setDefaultMode('lat-lng');
       var LatLngObj = {
         lat: this.lat,
         lng: this.lng
       };
       Vue.$geocoder.send(LatLngObj, function (response) {
-        _this5.addressLine = response.results[0].address_components[1].long_name;
-        var _iteratorNormalCompletion4 = true;
-        var _didIteratorError4 = false;
-        var _iteratorError4 = undefined;
-
-        try {
-          for (var _iterator4 = response.results[Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
-            var res = _step4.value;
-            var _iteratorNormalCompletion5 = true;
-            var _didIteratorError5 = false;
-            var _iteratorError5 = undefined;
-
-            try {
-              for (var _iterator5 = res.address_components[Symbol.iterator](), _step5; !(_iteratorNormalCompletion5 = (_step5 = _iterator5.next()).done); _iteratorNormalCompletion5 = true) {
-                var resAddressComponents = _step5.value;
-                resLongName = resAddressComponents.long_name.toLowerCase();
-                console.log("Results: ", resLongName);
-                var _iteratorNormalCompletion6 = true;
-                var _didIteratorError6 = false;
-                var _iteratorError6 = undefined;
-
-                try {
-                  for (var _iterator6 = _this5.provinces[Symbol.iterator](), _step6; !(_iteratorNormalCompletion6 = (_step6 = _iterator6.next()).done); _iteratorNormalCompletion6 = true) {
-                    var revprov = _step6.value;
-
-                    if (revprov.provDesc.toLowerCase() == resLongName) {
-                      _this5.fetchMunicipalities(revprov.provCode);
-
-                      _this5.province = revprov.provCode;
-                      var _iteratorNormalCompletion7 = true;
-                      var _didIteratorError7 = false;
-                      var _iteratorError7 = undefined;
-
-                      try {
-                        for (var _iterator7 = revprov.cities_municipalities[Symbol.iterator](), _step7; !(_iteratorNormalCompletion7 = (_step7 = _iterator7.next()).done); _iteratorNormalCompletion7 = true) {
-                          var revmun = _step7.value;
-                          console.log("Municipality: ", revmun.citymunDesc.toLowerCase());
-                          console.log("Res:", resLongName);
-
-                          if (revmun.citymunDesc.toLowerCase() == resLongName) {
-                            console.log("Here,", revmun.citymunDesc);
-                          }
-                        }
-                      } catch (err) {
-                        _didIteratorError7 = true;
-                        _iteratorError7 = err;
-                      } finally {
-                        try {
-                          if (!_iteratorNormalCompletion7 && _iterator7["return"] != null) {
-                            _iterator7["return"]();
-                          }
-                        } finally {
-                          if (_didIteratorError7) {
-                            throw _iteratorError7;
-                          }
-                        }
-                      }
-                    }
-                  }
-                } catch (err) {
-                  _didIteratorError6 = true;
-                  _iteratorError6 = err;
-                } finally {
-                  try {
-                    if (!_iteratorNormalCompletion6 && _iterator6["return"] != null) {
-                      _iterator6["return"]();
-                    }
-                  } finally {
-                    if (_didIteratorError6) {
-                      throw _iteratorError6;
-                    }
-                  }
-                }
-              }
-            } catch (err) {
-              _didIteratorError5 = true;
-              _iteratorError5 = err;
-            } finally {
-              try {
-                if (!_iteratorNormalCompletion5 && _iterator5["return"] != null) {
-                  _iterator5["return"]();
-                }
-              } finally {
-                if (_didIteratorError5) {
-                  throw _iteratorError5;
-                }
-              }
-            }
-          }
-        } catch (err) {
-          _didIteratorError4 = true;
-          _iteratorError4 = err;
-        } finally {
-          try {
-            if (!_iteratorNormalCompletion4 && _iterator4["return"] != null) {
-              _iterator4["return"]();
-            }
-          } finally {
-            if (_didIteratorError4) {
-              throw _iteratorError4;
-            }
-          }
-        }
+        _this3.addressLine = response.results[0].address_components[0].long_name;
+        console.log(response); // for(let res of response.results)
+        // {
+        //     for(let resAddressComponents of res.address_components)
+        //     {
+        //         var resLongName = resAddressComponents.long_name.toLowerCase();
+        //         for(let revprov of this.provinces)
+        //         {
+        //             if(revprov.provDesc.toLowerCase() == resLongName)
+        //             {
+        //                 this.fetchMunicipalities(revprov.provCode);
+        //                 this.province = revprov.provCode;
+        //             }
+        //         }
+        //     }
+        // }
+        // for(let newres of response.results)
+        // {
+        //     //AC = Address Components
+        //     for(let newresAC of newres.address_components)
+        //     {
+        //         //LN = Long Name
+        //         var newresLN = newresAC.long_name.toLowerCase();
+        //         for(let revmun of this.municipalities)
+        //         {
+        //             if(revmun.citymunDesc.toLowerCase() == newresLN)
+        //             {
+        //                 this.fetchBarangays(revmun.citymunCode);
+        //                 this.municipality = revmun.citymunCode;
+        //             }
+        //         }
+        //     }
+        // }
+        // for(let ares of response.results)
+        // {
+        //     for(let aresAC of ares.address_components)
+        //     {
+        //         var aresLN = aresAC.long_name.toLowerCase();
+        //         for(let revbrgy of this.barangays)
+        //         {
+        //             if(revbrgy.brgyDesc.toLowerCase() == aresLN)
+        //             {
+        //                 this.barangay = revbrgy.brgyCode;
+        //             }
+        //         }
+        //     }
+        // }
       });
     },
     zoomIn: function zoomIn(lat, lng) {
@@ -2331,17 +2357,17 @@ __webpack_require__.r(__webpack_exports__);
   computed: {
     google: vue2_google_maps__WEBPACK_IMPORTED_MODULE_0__["gmapApi"],
     selectedProvince: function selectedProvince() {
-      var _this6 = this;
+      var _this4 = this;
 
       return this.municipalities.filter(function (code) {
-        return code.provCode == _this6.province;
+        return code.provCode == _this4.province;
       });
     },
     selectedMunicipality: function selectedMunicipality() {
-      var _this7 = this;
+      var _this5 = this;
 
       return this.barangays.filter(function (code) {
-        return code.citymunCode == _this7.municipality;
+        return code.citymunCode == _this5.municipality;
       });
     }
   }
@@ -48855,7 +48881,7 @@ var render = function() {
           _vm._l(_vm.provinces, function(province) {
             return _c(
               "option",
-              { key: province.id, domProps: { value: province.provCode } },
+              { key: province.index, domProps: { value: province.provCode } },
               [
                 _vm._v(
                   "\n                        " +
@@ -48928,7 +48954,7 @@ var render = function() {
             return _c(
               "option",
               {
-                key: municipality.id,
+                key: municipality.index,
                 domProps: { value: municipality.citymunCode }
               },
               [
@@ -49000,7 +49026,7 @@ var render = function() {
           _vm._l(_vm.selectedMunicipality, function(barangay) {
             return _c(
               "option",
-              { key: barangay.id, domProps: { value: barangay.brgyCode } },
+              { key: barangay.index, domProps: { value: barangay.brgyCode } },
               [
                 _vm._v(
                   "\n                        " +

@@ -13,7 +13,7 @@
                         required>
 
                     <option v-for="province in provinces"
-                            :key="province.id"
+                            :key="province.index"
                             :value="province.provCode">
                             {{ province.provDesc }}
                     </option>
@@ -39,7 +39,7 @@
                         required>
 
                     <option v-for="municipality in selectedProvince"
-                            :key="municipality.id"
+                            :key="municipality.index"
                             :value="municipality.citymunCode">
                             {{ municipality.citymunDesc }}
                     </option>
@@ -65,7 +65,7 @@
                         required>
 
                     <option v-for="barangay in selectedMunicipality"
-                            :key="barangay.id"
+                            :key="barangay.index"
                             :value="barangay.brgyCode">
                             {{ barangay.brgyDesc }}
                     </option>
@@ -161,34 +161,33 @@ export default {
 
         fetchMunicipalities(code) {
 
-            axios.get('/api/municipality/' + code)
-            .then( response => {
-
-                this.municipalities = response.data
-
-            })
-            .catch(
-
-                err => console.log(err)
-
-            )
+            for(let p of this.provinces)
+            {
+                if(code == p.provCode)
+                {
+                    for(let m of p.cities_municipalities)
+                    {
+                        this.municipalities.push(m);
+                    }
+                }
+            }
 
             this.barangay = "";
         },
 
         fetchBarangays(code) {
 
-            axios.get('/api/barangay/' + code)
-            .then( response => {
+            for(let m of this.municipalities)
+            {
+                if(code == m.citymunCode)
+                {
+                    for(let b of m.barangays)
+                    {
+                        this.barangays.push(b);
+                    }
+                }
+            }
 
-                this.barangays = response.data
-
-            })
-            .catch(
-
-                err => console.log(err)
-
-            )
         },
 
         getCoords() {
@@ -247,8 +246,6 @@ export default {
             this.lat = place.latLng.lat();
             this.lng = place.latLng.lng();
 
-            var resLongName = "";
-
             Vue.$geocoder.setDefaultMode('lat-lng');
             var LatLngObj = {
 
@@ -256,37 +253,64 @@ export default {
                 lng: this.lng
 
             }
+
             Vue.$geocoder.send(LatLngObj, response => {
 
-                this.addressLine = response.results[0].address_components[1].long_name;
-                
-                for(let res of response.results)
-                {
-                    for(let resAddressComponents of res.address_components)
-                    {
-                        resLongName = resAddressComponents.long_name.toLowerCase();
-                        console.log("Results: ", resLongName);
+                this.addressLine = response.results[0].address_components[0].long_name;
+                console.log(response);
 
-                        for(let revprov of this.provinces)
-                        {
-                            if(revprov.provDesc.toLowerCase() == resLongName)
-                            {
-                                this.fetchMunicipalities(revprov.provCode);
-                                this.province = revprov.provCode;
+                // for(let res of response.results)
+                // {
+                //     for(let resAddressComponents of res.address_components)
+                //     {
+                //         var resLongName = resAddressComponents.long_name.toLowerCase();
 
-                                for(let revmun of revprov.cities_municipalities)
-                                {
-                                    console.log("Municipality: ", revmun.citymunDesc.toLowerCase());
-                                    console.log("Res:", resLongName);
-                                    if(revmun.citymunDesc.toLowerCase() == resLongName)
-                                    {
-                                        console.log("Here,",revmun.citymunDesc);
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
+                //         for(let revprov of this.provinces)
+                //         {
+                //             if(revprov.provDesc.toLowerCase() == resLongName)
+                //             {
+                //                 this.fetchMunicipalities(revprov.provCode);
+                //                 this.province = revprov.provCode;
+                //             }
+                //         }
+                //     }
+                // }
+
+                // for(let newres of response.results)
+                // {
+                //     //AC = Address Components
+                //     for(let newresAC of newres.address_components)
+                //     {
+                //         //LN = Long Name
+                //         var newresLN = newresAC.long_name.toLowerCase();
+
+                //         for(let revmun of this.municipalities)
+                //         {
+                //             if(revmun.citymunDesc.toLowerCase() == newresLN)
+                //             {
+                //                 this.fetchBarangays(revmun.citymunCode);
+                //                 this.municipality = revmun.citymunCode;
+                //             }
+                //         }
+                //     }
+                // }
+
+                // for(let ares of response.results)
+                // {
+                //     for(let aresAC of ares.address_components)
+                //     {
+                //         var aresLN = aresAC.long_name.toLowerCase();
+
+                //         for(let revbrgy of this.barangays)
+                //         {
+                //             if(revbrgy.brgyDesc.toLowerCase() == aresLN)
+                //             {
+                //                 this.barangay = revbrgy.brgyCode;
+                //             }
+                //         }
+                //     }
+                // }
+
             })
 
         },
