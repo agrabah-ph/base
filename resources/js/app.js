@@ -28,6 +28,7 @@ Vue.component('user', require('./components/UserComponent.vue').default);
 Vue.component('users', require('./components/UsersComponent.vue').default);
 Vue.component('loginlogs-table', require('./components/LoginLogsTableComponent.vue').default);
 Vue.component('user-location', require('./components/LocationComponent.vue').default);
+Vue.component('user-profile', require('./components/ProfileComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

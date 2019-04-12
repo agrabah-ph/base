@@ -35,11 +35,13 @@
                     <td>{{user.name}}</td>
                     <td class="d-none d-sm-table-cell">{{user.email}}</td>
                     <td class="user_action_td">
+
                         <a href="#0" class="user_action" data-toggle="modal" :data-target="'#'+trimname(user.name)"><i class="far fa-eye"></i></a>
                         <a href="#0" class="user_action"><i class="fas fa-cog"></i></a>
+
                     </td>
                     <div class="modal fade" :id="trimname(user.name)" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h5 class="modal-title" id="exampleModalLabel">{{ user.name }}</h5>
@@ -48,10 +50,12 @@
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                    <h5>Address: </h5>
-                                    <p>{{ user.address }}</p>
+                                    <p><b>Email: </b> {{ user.email }}</p>
+                                    <p><b>Address: </b> {{ user.address }}</p>
                                 </div>
                                 <div class="modal-footer">
+                                    <button class="btn btn-warning">Edit</button>
+                                    <button class="btn btn-danger" @click="deleteUser(user.id)">Delete</button>
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                 </div>
                             </div>
@@ -60,6 +64,7 @@
                 </tr>
             </tbody>
         </table>
+
     </div>
 </template>
 
@@ -111,7 +116,14 @@
         },
         methods: {
             trimname(string) {
+
                 return string.replace(/\s/g,'');
+
+            },
+            deleteUser(user) {
+
+                console.log(user);
+
             }
         },
     }

@@ -97,7 +97,7 @@
                 ref="mapRef"
                 map-type-id="terrain"
                 :center="{lat:13.6218, lng:123.1948}"
-                :zoom="15"
+                :zoom="10"
                 :options="{
                     zoomControl: false,
                     scaleControl: false,
@@ -119,7 +119,9 @@
 </template>
 
 <script>
+
 import {gmapApi} from 'vue2-google-maps';
+
 export default {
     name: "locations",
     props: ['province_error', 'municipality_error', 'barangay_error', 'addln_error'],
@@ -342,6 +344,7 @@ export default {
         }
     }
 }
+
 </script>
 
 <style scoped>
