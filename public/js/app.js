@@ -49564,7 +49564,7 @@ var render = function() {
                   ]),
                   _vm._v(" "),
                   _c("input", {
-                    staticClass: "btn btn-primary",
+                    staticClass: "btn btn-primary float-right",
                     attrs: { type: "submit", value: "Place Order" }
                   })
                 ])

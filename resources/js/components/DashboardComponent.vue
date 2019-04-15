@@ -54,7 +54,7 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <input type="submit" class="btn btn-primary" value="Place Order">
+                        <input type="submit" class="btn btn-primary float-right" value="Place Order">
                     </div>
                 </form>
             </div>

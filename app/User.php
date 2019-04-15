@@ -55,6 +55,11 @@ class User extends Authenticatable implements MustVerifyEmail
 
     }
 
+    public function orders()
+    {
+        return $this->hasMany('App\Orders');
+    }
+
     public function getAddressAttribute()
     {
         $provDesc = DB::table('provinces')->where('provCode', $this->userAddress->provCode)->value('provDesc');
