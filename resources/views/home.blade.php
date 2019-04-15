@@ -18,16 +18,21 @@
             </div>
         </div>
     </div> --}}
-    <div class="row justify-content-center">
-        <div class="col-md-10">
-            <div class="card m-auto">
-                <div class="card-header">
-                    Order
+
+    @hasanyrole('client')
+        <div class="row justify-content-center">
+            <div class="col-md-10">
+                <div class="card m-auto">
+                    <div class="card-header">
+                        Order
+                    </div>
+                    <add-order></add-order>
+                    {{-- <all-orders></all-orders> --}}
                 </div>
-                <add-order></add-order>
-                {{-- <all-orders></all-orders> --}}
             </div>
         </div>
-    </div>
+    @else
+        Bids
+    @endrole
 </div>
 @endsection

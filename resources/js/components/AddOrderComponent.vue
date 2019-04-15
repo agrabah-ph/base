@@ -59,40 +59,6 @@
                 </form>
             </div>
         </div>
-        <!-- <div class="row m-auto">
-            <div class="col-md-5 m-auto p-3">
-                <h1>-- Sellers --</h1>
-                <div class="card" style="width: 18rem;">
-                    <div class="card-body">
-                        <h5 class="card-title">Naga City Resto</h5>
-                        <p class="card-text">We need these items. Thanks</p>
-                    </div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">Tomato 6kg</li>
-                        <li class="list-group-item">Cabbage 3kg</li>
-                        <li class="list-group-item">Banana 5kg</li>
-                    </ul>
-                    <div class="card-body">
-                        <button class="btn btn-primary">Bid</button>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-5 m-auto p-3">
-                <h1>-- Sellers --</h1>
-                <div class="card" style="width: 18rem;">
-                    <div class="card-body">
-                        <h5 class="card-title">Naga City Resto</h5>
-                        <p class="card-text">We need this item Thanks</p>
-                    </div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">Tomato 6kg</li>
-                    </ul>
-                    <div class="card-body">
-                        <button class="btn btn-primary">Bid</button>
-                    </div>
-                </div>
-            </div>
-        </div> -->
     </div>
 </template>
 
