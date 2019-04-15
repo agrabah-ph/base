@@ -12,14 +12,15 @@
                 <p>{{ user.address }}</p>
                 <button class="btn btn-primary" @click="edit = !edit">Edit Profile</button>
             </div>
-
         </div>
         <div v-if="edit" class="row justify-content-center">
-
             <div class="col-sm">
                 <img src="https://via.placeholder.com/150" class="rounded-circle d-block m-auto">
-                <form @submit.prevent="addProfilePicture" enctype="multipart/form-data">
-                    <input type="file" name="profilePic" id="" @change="this.form.submit()">
+                <form @submit.prevent="addProfilePicture" enctype="multipart/form-data" class="mt-2 d-flex justify-content-center">
+                    <label for="profilePic" class="btn btn-secondary">
+                        Upload Picture
+                        <input type="file" name="profilePic" id="profilePic" @change="this.form.submit()" hidden>
+                    </label>
                 </form>
             </div>
             <div class="col-sm">

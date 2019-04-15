@@ -2938,6 +2938,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Profile",
   props: ["user"],
@@ -50448,6 +50449,7 @@ var render = function() {
             _c(
               "form",
               {
+                staticClass: "mt-2 d-flex justify-content-center",
                 attrs: { enctype: "multipart/form-data" },
                 on: {
                   submit: function($event) {
@@ -50457,14 +50459,31 @@ var render = function() {
                 }
               },
               [
-                _c("input", {
-                  attrs: { type: "file", name: "profilePic", id: "" },
-                  on: {
-                    change: function($event) {
-                      this.form.submit()
-                    }
-                  }
-                })
+                _c(
+                  "label",
+                  {
+                    staticClass: "btn btn-secondary",
+                    attrs: { for: "profilePic" }
+                  },
+                  [
+                    _vm._v(
+                      "\n                    Upload Picture\n                    "
+                    ),
+                    _c("input", {
+                      attrs: {
+                        type: "file",
+                        name: "profilePic",
+                        id: "profilePic",
+                        hidden: ""
+                      },
+                      on: {
+                        change: function($event) {
+                          this.form.submit()
+                        }
+                      }
+                    })
+                  ]
+                )
               ]
             )
           ]),
