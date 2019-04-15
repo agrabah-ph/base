@@ -15,7 +15,6 @@
             </div>
         </div>
     </div> --}}
-    {{ Auth::user()->roles }}
     <user-profile :user="{{ json_encode(Auth::user()) }}"></user-profile>
 </div>
 @endsection
