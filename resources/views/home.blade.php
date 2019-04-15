@@ -18,7 +18,16 @@
             </div>
         </div>
     </div> --}}
-
-    <user-dashboard></user-dashboard>
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <div class="card m-auto">
+                <div class="card-header">
+                    Order
+                </div>
+                <add-order></add-order>
+                {{-- <all-orders></all-orders> --}}
+            </div>
+        </div>
+    </div>
 </div>
 @endsection

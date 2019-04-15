@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="card-body">
         <div class="row m-auto">
             <div class="col-md-8 m-auto p-3">
                 <form @submit.prevent="addOrder">
