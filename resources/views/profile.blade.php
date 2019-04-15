@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
+    {{-- <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">{{ Auth::user()->name }}</div>
@@ -14,7 +14,8 @@
                 </div>
             </div>
         </div>
-    </div>
-    <user-profile></user-profile>
+    </div> --}}
+    {{ Auth::user()->roles }}
+    <user-profile :user="{{ json_encode(Auth::user()) }}"></user-profile>
 </div>
 @endsection

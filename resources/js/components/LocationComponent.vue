@@ -222,13 +222,13 @@ export default {
                 }
             }
 
-            Vue.$geocoder.setDefaultMode('address');      // this is default
+            Vue.$geocoder.setDefaultMode('address');
             var addressObj = {
                 address_line_1: brgyname,
                 address_line_2: '',
                 city:           cityname,
-                state:          provname,               // province also valid
-                zip_code:       '',            // postal_code also valid
+                state:          provname,
+                zip_code:       '',
                 country:        'PH'
             }
 
@@ -259,59 +259,58 @@ export default {
             Vue.$geocoder.send(LatLngObj, response => {
 
                 this.addressLine = response.results[0].address_components[0].long_name;
-                console.log(response);
 
-                // for(let res of response.results)
-                // {
-                //     for(let resAddressComponents of res.address_components)
-                //     {
-                //         var resLongName = resAddressComponents.long_name.toLowerCase();
+                for(let res of response.results)
+                {
+                    for(let resAddressComponents of res.address_components)
+                    {
+                        var resLongName = resAddressComponents.long_name.toLowerCase();
 
-                //         for(let revprov of this.provinces)
-                //         {
-                //             if(revprov.provDesc.toLowerCase() == resLongName)
-                //             {
-                //                 this.fetchMunicipalities(revprov.provCode);
-                //                 this.province = revprov.provCode;
-                //             }
-                //         }
-                //     }
-                // }
+                        for(let revprov of this.provinces)
+                        {
+                            if(revprov.provDesc.toLowerCase() == resLongName)
+                            {
+                                this.fetchMunicipalities(revprov.provCode);
+                                this.province = revprov.provCode;
+                            }
+                        }
+                    }
+                }
 
-                // for(let newres of response.results)
-                // {
-                //     //AC = Address Components
-                //     for(let newresAC of newres.address_components)
-                //     {
-                //         //LN = Long Name
-                //         var newresLN = newresAC.long_name.toLowerCase();
+                for(let newres of response.results)
+                {
+                    //AC = Address Components
+                    for(let newresAC of newres.address_components)
+                    {
+                        //LN = Long Name
+                        var newresLN = newresAC.long_name.toLowerCase();
 
-                //         for(let revmun of this.municipalities)
-                //         {
-                //             if(revmun.citymunDesc.toLowerCase() == newresLN)
-                //             {
-                //                 this.fetchBarangays(revmun.citymunCode);
-                //                 this.municipality = revmun.citymunCode;
-                //             }
-                //         }
-                //     }
-                // }
+                        for(let revmun of this.municipalities)
+                        {
+                            if(revmun.citymunDesc.toLowerCase() == newresLN)
+                            {
+                                this.fetchBarangays(revmun.citymunCode);
+                                this.municipality = revmun.citymunCode;
+                            }
+                        }
+                    }
+                }
 
-                // for(let ares of response.results)
-                // {
-                //     for(let aresAC of ares.address_components)
-                //     {
-                //         var aresLN = aresAC.long_name.toLowerCase();
+                for(let ares of response.results)
+                {
+                    for(let aresAC of ares.address_components)
+                    {
+                        var aresLN = aresAC.long_name.toLowerCase();
 
-                //         for(let revbrgy of this.barangays)
-                //         {
-                //             if(revbrgy.brgyDesc.toLowerCase() == aresLN)
-                //             {
-                //                 this.barangay = revbrgy.brgyCode;
-                //             }
-                //         }
-                //     }
-                // }
+                        for(let revbrgy of this.barangays)
+                        {
+                            if(revbrgy.brgyDesc.toLowerCase() == aresLN)
+                            {
+                                this.barangay = revbrgy.brgyCode;
+                            }
+                        }
+                    }
+                }
 
             })
 

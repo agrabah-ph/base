@@ -22,7 +22,7 @@ class User extends JsonResource
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
             'role' => $this->getRoleNames(),
-            'address' => ucwords($this->address)
+            'address' => $this->address
         ];
     }
 }

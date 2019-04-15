@@ -37,25 +37,39 @@
                     <td class="user_action_td">
 
                         <a href="#0" class="user_action" data-toggle="modal" :data-target="'#'+trimname(user.name)"><i class="far fa-eye"></i></a>
-                        <a href="#0" class="user_action"><i class="fas fa-cog"></i></a>
 
+                        <div class="dropdown show d-inline">
+                            <a href="#" class="user_action" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-cog"></i>
+                            </a>
+
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                <button class="dropdown-item">Edit</button>
+                                <button class="dropdown-item">Delete</button>
+                            </div>
+                        </div>
                     </td>
                     <div class="modal fade" :id="trimname(user.name)" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered" role="document">
                             <div class="modal-content">
+
                                 <div class="modal-header">
                                     <h5 class="modal-title" id="exampleModalLabel">{{ user.name }}</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
+
                                 <div class="modal-body">
                                     <p><b>Email: </b> {{ user.email }}</p>
                                     <p><b>Address: </b> {{ user.address }}</p>
                                 </div>
-                                <div class="modal-footer">
-                                    <button class="btn btn-warning">Edit</button>
-                                    <button class="btn btn-danger" @click="deleteUser(user.id)">Delete</button>
+
+                                <div class="modal-footer justify-content-between">
+                                    <div>
+                                        <button class="btn btn-warning">Edit</button>
+                                        <button class="btn btn-danger" @click="deleteUser(user.id)">Delete</button>
+                                    </div>
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                 </div>
                             </div>

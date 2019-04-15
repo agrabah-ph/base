@@ -2266,16 +2266,13 @@ __webpack_require__.r(__webpack_exports__);
         }
       }
 
-      Vue.$geocoder.setDefaultMode('address'); // this is default
-
+      Vue.$geocoder.setDefaultMode('address');
       var addressObj = {
         address_line_1: brgyname,
         address_line_2: '',
         city: cityname,
         state: provname,
-        // province also valid
         zip_code: '',
-        // postal_code also valid
         country: 'PH'
       };
       Vue.$geocoder.send(addressObj, function (response) {
@@ -2297,52 +2294,227 @@ __webpack_require__.r(__webpack_exports__);
       };
       Vue.$geocoder.send(LatLngObj, function (response) {
         _this3.addressLine = response.results[0].address_components[0].long_name;
-        console.log(response); // for(let res of response.results)
-        // {
-        //     for(let resAddressComponents of res.address_components)
-        //     {
-        //         var resLongName = resAddressComponents.long_name.toLowerCase();
-        //         for(let revprov of this.provinces)
-        //         {
-        //             if(revprov.provDesc.toLowerCase() == resLongName)
-        //             {
-        //                 this.fetchMunicipalities(revprov.provCode);
-        //                 this.province = revprov.provCode;
-        //             }
-        //         }
-        //     }
-        // }
-        // for(let newres of response.results)
-        // {
-        //     //AC = Address Components
-        //     for(let newresAC of newres.address_components)
-        //     {
-        //         //LN = Long Name
-        //         var newresLN = newresAC.long_name.toLowerCase();
-        //         for(let revmun of this.municipalities)
-        //         {
-        //             if(revmun.citymunDesc.toLowerCase() == newresLN)
-        //             {
-        //                 this.fetchBarangays(revmun.citymunCode);
-        //                 this.municipality = revmun.citymunCode;
-        //             }
-        //         }
-        //     }
-        // }
-        // for(let ares of response.results)
-        // {
-        //     for(let aresAC of ares.address_components)
-        //     {
-        //         var aresLN = aresAC.long_name.toLowerCase();
-        //         for(let revbrgy of this.barangays)
-        //         {
-        //             if(revbrgy.brgyDesc.toLowerCase() == aresLN)
-        //             {
-        //                 this.barangay = revbrgy.brgyCode;
-        //             }
-        //         }
-        //     }
-        // }
+        var _iteratorNormalCompletion8 = true;
+        var _didIteratorError8 = false;
+        var _iteratorError8 = undefined;
+
+        try {
+          for (var _iterator8 = response.results[Symbol.iterator](), _step8; !(_iteratorNormalCompletion8 = (_step8 = _iterator8.next()).done); _iteratorNormalCompletion8 = true) {
+            var res = _step8.value;
+            var _iteratorNormalCompletion11 = true;
+            var _didIteratorError11 = false;
+            var _iteratorError11 = undefined;
+
+            try {
+              for (var _iterator11 = res.address_components[Symbol.iterator](), _step11; !(_iteratorNormalCompletion11 = (_step11 = _iterator11.next()).done); _iteratorNormalCompletion11 = true) {
+                var resAddressComponents = _step11.value;
+                var resLongName = resAddressComponents.long_name.toLowerCase();
+                var _iteratorNormalCompletion12 = true;
+                var _didIteratorError12 = false;
+                var _iteratorError12 = undefined;
+
+                try {
+                  for (var _iterator12 = _this3.provinces[Symbol.iterator](), _step12; !(_iteratorNormalCompletion12 = (_step12 = _iterator12.next()).done); _iteratorNormalCompletion12 = true) {
+                    var revprov = _step12.value;
+
+                    if (revprov.provDesc.toLowerCase() == resLongName) {
+                      _this3.fetchMunicipalities(revprov.provCode);
+
+                      _this3.province = revprov.provCode;
+                    }
+                  }
+                } catch (err) {
+                  _didIteratorError12 = true;
+                  _iteratorError12 = err;
+                } finally {
+                  try {
+                    if (!_iteratorNormalCompletion12 && _iterator12["return"] != null) {
+                      _iterator12["return"]();
+                    }
+                  } finally {
+                    if (_didIteratorError12) {
+                      throw _iteratorError12;
+                    }
+                  }
+                }
+              }
+            } catch (err) {
+              _didIteratorError11 = true;
+              _iteratorError11 = err;
+            } finally {
+              try {
+                if (!_iteratorNormalCompletion11 && _iterator11["return"] != null) {
+                  _iterator11["return"]();
+                }
+              } finally {
+                if (_didIteratorError11) {
+                  throw _iteratorError11;
+                }
+              }
+            }
+          }
+        } catch (err) {
+          _didIteratorError8 = true;
+          _iteratorError8 = err;
+        } finally {
+          try {
+            if (!_iteratorNormalCompletion8 && _iterator8["return"] != null) {
+              _iterator8["return"]();
+            }
+          } finally {
+            if (_didIteratorError8) {
+              throw _iteratorError8;
+            }
+          }
+        }
+
+        var _iteratorNormalCompletion9 = true;
+        var _didIteratorError9 = false;
+        var _iteratorError9 = undefined;
+
+        try {
+          for (var _iterator9 = response.results[Symbol.iterator](), _step9; !(_iteratorNormalCompletion9 = (_step9 = _iterator9.next()).done); _iteratorNormalCompletion9 = true) {
+            var newres = _step9.value;
+            //AC = Address Components
+            var _iteratorNormalCompletion13 = true;
+            var _didIteratorError13 = false;
+            var _iteratorError13 = undefined;
+
+            try {
+              for (var _iterator13 = newres.address_components[Symbol.iterator](), _step13; !(_iteratorNormalCompletion13 = (_step13 = _iterator13.next()).done); _iteratorNormalCompletion13 = true) {
+                var newresAC = _step13.value;
+                //LN = Long Name
+                var newresLN = newresAC.long_name.toLowerCase();
+                var _iteratorNormalCompletion14 = true;
+                var _didIteratorError14 = false;
+                var _iteratorError14 = undefined;
+
+                try {
+                  for (var _iterator14 = _this3.municipalities[Symbol.iterator](), _step14; !(_iteratorNormalCompletion14 = (_step14 = _iterator14.next()).done); _iteratorNormalCompletion14 = true) {
+                    var revmun = _step14.value;
+
+                    if (revmun.citymunDesc.toLowerCase() == newresLN) {
+                      _this3.fetchBarangays(revmun.citymunCode);
+
+                      _this3.municipality = revmun.citymunCode;
+                    }
+                  }
+                } catch (err) {
+                  _didIteratorError14 = true;
+                  _iteratorError14 = err;
+                } finally {
+                  try {
+                    if (!_iteratorNormalCompletion14 && _iterator14["return"] != null) {
+                      _iterator14["return"]();
+                    }
+                  } finally {
+                    if (_didIteratorError14) {
+                      throw _iteratorError14;
+                    }
+                  }
+                }
+              }
+            } catch (err) {
+              _didIteratorError13 = true;
+              _iteratorError13 = err;
+            } finally {
+              try {
+                if (!_iteratorNormalCompletion13 && _iterator13["return"] != null) {
+                  _iterator13["return"]();
+                }
+              } finally {
+                if (_didIteratorError13) {
+                  throw _iteratorError13;
+                }
+              }
+            }
+          }
+        } catch (err) {
+          _didIteratorError9 = true;
+          _iteratorError9 = err;
+        } finally {
+          try {
+            if (!_iteratorNormalCompletion9 && _iterator9["return"] != null) {
+              _iterator9["return"]();
+            }
+          } finally {
+            if (_didIteratorError9) {
+              throw _iteratorError9;
+            }
+          }
+        }
+
+        var _iteratorNormalCompletion10 = true;
+        var _didIteratorError10 = false;
+        var _iteratorError10 = undefined;
+
+        try {
+          for (var _iterator10 = response.results[Symbol.iterator](), _step10; !(_iteratorNormalCompletion10 = (_step10 = _iterator10.next()).done); _iteratorNormalCompletion10 = true) {
+            var ares = _step10.value;
+            var _iteratorNormalCompletion15 = true;
+            var _didIteratorError15 = false;
+            var _iteratorError15 = undefined;
+
+            try {
+              for (var _iterator15 = ares.address_components[Symbol.iterator](), _step15; !(_iteratorNormalCompletion15 = (_step15 = _iterator15.next()).done); _iteratorNormalCompletion15 = true) {
+                var aresAC = _step15.value;
+                var aresLN = aresAC.long_name.toLowerCase();
+                var _iteratorNormalCompletion16 = true;
+                var _didIteratorError16 = false;
+                var _iteratorError16 = undefined;
+
+                try {
+                  for (var _iterator16 = _this3.barangays[Symbol.iterator](), _step16; !(_iteratorNormalCompletion16 = (_step16 = _iterator16.next()).done); _iteratorNormalCompletion16 = true) {
+                    var revbrgy = _step16.value;
+
+                    if (revbrgy.brgyDesc.toLowerCase() == aresLN) {
+                      _this3.barangay = revbrgy.brgyCode;
+                    }
+                  }
+                } catch (err) {
+                  _didIteratorError16 = true;
+                  _iteratorError16 = err;
+                } finally {
+                  try {
+                    if (!_iteratorNormalCompletion16 && _iterator16["return"] != null) {
+                      _iterator16["return"]();
+                    }
+                  } finally {
+                    if (_didIteratorError16) {
+                      throw _iteratorError16;
+                    }
+                  }
+                }
+              }
+            } catch (err) {
+              _didIteratorError15 = true;
+              _iteratorError15 = err;
+            } finally {
+              try {
+                if (!_iteratorNormalCompletion15 && _iterator15["return"] != null) {
+                  _iterator15["return"]();
+                }
+              } finally {
+                if (_didIteratorError15) {
+                  throw _iteratorError15;
+                }
+              }
+            }
+          }
+        } catch (err) {
+          _didIteratorError10 = true;
+          _iteratorError10 = err;
+        } finally {
+          try {
+            if (!_iteratorNormalCompletion10 && _iterator10["return"] != null) {
+              _iterator10["return"]();
+            }
+          } finally {
+            if (_didIteratorError10) {
+              throw _iteratorError10;
+            }
+          }
+        }
       });
     },
     zoomIn: function zoomIn(lat, lng) {
@@ -2481,10 +2653,103 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Profile",
+  props: ["user"],
   data: function data() {
     return {};
+  },
+  created: function created() {
+    console.log(this.user);
   }
 });
 
@@ -2576,6 +2841,20 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -49312,41 +49591,276 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", { staticClass: "m-3" }, [
+    _c("div", { staticClass: "row justify-content-center" }, [
+      _vm._m(0),
+      _vm._v(" "),
+      _c("div", { staticClass: "col-sm" }, [
+        _c("p", [_vm._v(_vm._s(_vm.user.name))]),
+        _vm._v(" "),
+        _c("p", [_vm._v("Vendor")]),
+        _vm._v(" "),
+        _c("p", [_vm._v(_vm._s(_vm.user.email))]),
+        _vm._v(" "),
+        _c("p", [_vm._v(_vm._s(_vm.user.address))]),
+        _vm._v(" "),
+        _c("button", { staticClass: "btn btn-primary" }, [
+          _vm._v("Edit Profile")
+        ])
+      ])
+    ]),
+    _vm._v(" "),
+    _vm._m(1),
+    _vm._v(" "),
+    _vm._m(2)
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "mt-3 mb-3" }, [
-      _c("div", { staticClass: "row justify-content-center" }, [
-        _c("div", { staticClass: "col sm" }, [
-          _c("img", {
-            staticClass: "rounded d-block m-auto",
-            attrs: { src: "https://via.placeholder.com/150", alt: "" }
-          })
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "col sm" }, [
-          _c("p", [_vm._v("Neil Aldrei")]),
-          _vm._v(" "),
-          _c("p", [_vm._v("Vendor")]),
-          _vm._v(" "),
-          _c("p", [_vm._v("neilaldreiii@gmail.com")]),
-          _vm._v(" "),
-          _c("p", [_vm._v("Naga City Camarines Sur PH")]),
-          _vm._v(" "),
-          _c("button", { staticClass: "btn btn-primary" }, [
-            _vm._v("Edit Profile")
+    return _c("div", { staticClass: "col-sm" }, [
+      _c("img", {
+        staticClass: "rounded-circle d-block m-auto",
+        attrs: { src: "https://via.placeholder.com/150" }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row p-3" }, [
+      _c("div", { staticClass: "col-lg" }, [
+        _c("div", { staticClass: "table-responsive-md" }, [
+          _c("table", { staticClass: "table table-striped table-hover" }, [
+            _c("thead", [
+              _c("tr", [
+                _c("th", { attrs: { scope: "col" } }, [_vm._v("Bid #")]),
+                _vm._v(" "),
+                _c("th", { attrs: { scope: "col" } }, [_vm._v("Items")]),
+                _vm._v(" "),
+                _c(
+                  "th",
+                  {
+                    staticClass: "d-none d-sm-table-cell",
+                    attrs: { scope: "col" }
+                  },
+                  [_vm._v("Quantity")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "th",
+                  {
+                    staticClass: "d-none d-sm-table-cell",
+                    attrs: { scope: "col" }
+                  },
+                  [_vm._v("Client")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "th",
+                  {
+                    staticClass: "d-none d-sm-table-cell",
+                    attrs: { scope: "col" }
+                  },
+                  [_vm._v("Date")]
+                ),
+                _vm._v(" "),
+                _c("th", { attrs: { scope: "col" } }, [_vm._v("Status")])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("tbody", [
+              _c("tr", [
+                _c("th", { attrs: { scope: "row" } }, [_vm._v("1")]),
+                _vm._v(" "),
+                _c("td", [_vm._v("Tomatoes")]),
+                _vm._v(" "),
+                _c("td", { staticClass: "d-none d-sm-table-cell" }, [
+                  _vm._v("50Kg")
+                ]),
+                _vm._v(" "),
+                _c(
+                  "th",
+                  {
+                    staticClass: "d-none d-sm-table-cell",
+                    attrs: { scope: "col" }
+                  },
+                  [_vm._v("Naga Resto")]
+                ),
+                _vm._v(" "),
+                _c("td", { staticClass: "d-none d-sm-table-cell" }, [
+                  _vm._v("April 15, 2019")
+                ]),
+                _vm._v(" "),
+                _c("td", { staticClass: "text-danger" }, [_vm._v("Pending")])
+              ]),
+              _vm._v(" "),
+              _c("tr", [
+                _c("th", { attrs: { scope: "row" } }, [_vm._v("2")]),
+                _vm._v(" "),
+                _c("td", [_vm._v("Carrots")]),
+                _vm._v(" "),
+                _c("td", { staticClass: "d-none d-sm-table-cell" }, [
+                  _vm._v("20kg")
+                ]),
+                _vm._v(" "),
+                _c(
+                  "th",
+                  {
+                    staticClass: "d-none d-sm-table-cell",
+                    attrs: { scope: "col" }
+                  },
+                  [_vm._v("Manila resto")]
+                ),
+                _vm._v(" "),
+                _c("td", { staticClass: "d-none d-sm-table-cell" }, [
+                  _vm._v("April 9, 2019")
+                ]),
+                _vm._v(" "),
+                _c("td", { staticClass: "text-success" }, [_vm._v("Approved")])
+              ]),
+              _vm._v(" "),
+              _c("tr", [
+                _c("th", { attrs: { scope: "row" } }, [_vm._v("3")]),
+                _vm._v(" "),
+                _c("td", [_vm._v("Onion, Garlic")]),
+                _vm._v(" "),
+                _c("td", { staticClass: "d-none d-sm-table-cell" }, [
+                  _vm._v("15kg")
+                ]),
+                _vm._v(" "),
+                _c(
+                  "th",
+                  {
+                    staticClass: "d-none d-sm-table-cell",
+                    attrs: { scope: "col" }
+                  },
+                  [_vm._v("Trial Resto")]
+                ),
+                _vm._v(" "),
+                _c("td", { staticClass: "d-none d-sm-table-cell" }, [
+                  _vm._v("April 5, 2019")
+                ]),
+                _vm._v(" "),
+                _c("td", { staticClass: "text-success" }, [_vm._v("Approved")])
+              ])
+            ])
           ])
         ])
-      ]),
-      _vm._v(" "),
-      _c("hr"),
-      _vm._v(" "),
-      _c("div", { staticClass: "row justify-content-center" }, [
-        _c("p", [_vm._v("Lorem")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row p-3" }, [
+      _c("div", { staticClass: "col-lg" }, [
+        _c("div", { staticClass: "table-responsive-md" }, [
+          _c("table", { staticClass: "table table-striped table-hover" }, [
+            _c("thead", [
+              _c("tr", [
+                _c("th", { attrs: { scope: "col" } }, [_vm._v("Order #")]),
+                _vm._v(" "),
+                _c("th", { attrs: { scope: "col" } }, [_vm._v("Items")]),
+                _vm._v(" "),
+                _c(
+                  "th",
+                  {
+                    staticClass: "d-none d-sm-table-cell",
+                    attrs: { scope: "col" }
+                  },
+                  [_vm._v("Quantity")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "th",
+                  {
+                    staticClass: "d-none d-sm-table-cell",
+                    attrs: { scope: "col" }
+                  },
+                  [_vm._v("Bidder")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "th",
+                  {
+                    staticClass: "d-none d-sm-table-cell",
+                    attrs: { scope: "col" }
+                  },
+                  [_vm._v("Date")]
+                ),
+                _vm._v(" "),
+                _c("th", { attrs: { scope: "col" } }, [_vm._v("Status")])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("tbody", [
+              _c("tr", [
+                _c("th", { attrs: { scope: "row" } }, [_vm._v("1")]),
+                _vm._v(" "),
+                _c("td", [_vm._v("Tomatoes")]),
+                _vm._v(" "),
+                _c("td", { staticClass: "d-none d-sm-table-cell" }, [
+                  _vm._v("50Kg")
+                ]),
+                _vm._v(" "),
+                _c("td", { staticClass: "d-none-d-sm-table-cell" }, [
+                  _vm._v("John Doe")
+                ]),
+                _vm._v(" "),
+                _c("td", { staticClass: "d-none d-sm-table-cell" }, [
+                  _vm._v("April 15, 2019")
+                ]),
+                _vm._v(" "),
+                _c("td", { staticClass: "text-danger" }, [_vm._v("Pending")])
+              ]),
+              _vm._v(" "),
+              _c("tr", [
+                _c("th", { attrs: { scope: "row" } }, [_vm._v("2")]),
+                _vm._v(" "),
+                _c("td", [_vm._v("Carrots")]),
+                _vm._v(" "),
+                _c("td", { staticClass: "d-none d-sm-table-cell" }, [
+                  _vm._v("20kg")
+                ]),
+                _vm._v(" "),
+                _c("td", { staticClass: "d-none-d-sm-table-cell" }, [
+                  _vm._v("Juan Dela Cruz")
+                ]),
+                _vm._v(" "),
+                _c("td", { staticClass: "d-none d-sm-table-cell" }, [
+                  _vm._v("April 9, 2019")
+                ]),
+                _vm._v(" "),
+                _c("td", { staticClass: "text-success" }, [_vm._v("Delivered")])
+              ]),
+              _vm._v(" "),
+              _c("tr", [
+                _c("th", { attrs: { scope: "row" } }, [_vm._v("3")]),
+                _vm._v(" "),
+                _c("td", [_vm._v("Onion, Garlic")]),
+                _vm._v(" "),
+                _c("td", { staticClass: "d-none d-sm-table-cell" }, [
+                  _vm._v("15kg")
+                ]),
+                _vm._v(" "),
+                _c("td", { staticClass: "d-none-d-sm-table-cell" }, [
+                  _vm._v("User")
+                ]),
+                _vm._v(" "),
+                _c("td", { staticClass: "d-none d-sm-table-cell" }, [
+                  _vm._v("April 5, 2019")
+                ]),
+                _vm._v(" "),
+                _c("td", { staticClass: "text-success" }, [_vm._v("Delivered")])
+              ])
+            ])
+          ])
+        ])
       ])
     ])
   }
@@ -49663,36 +50177,47 @@ var render = function() {
                               ])
                             ]),
                             _vm._v(" "),
-                            _c("div", { staticClass: "modal-footer" }, [
-                              _c("button", { staticClass: "btn btn-warning" }, [
-                                _vm._v("Edit")
-                              ]),
-                              _vm._v(" "),
-                              _c(
-                                "button",
-                                {
-                                  staticClass: "btn btn-danger",
-                                  on: {
-                                    click: function($event) {
-                                      _vm.deleteUser(user.id)
+                            _c(
+                              "div",
+                              {
+                                staticClass:
+                                  "modal-footer justify-content-between"
+                              },
+                              [
+                                _c("div", [
+                                  _c(
+                                    "button",
+                                    { staticClass: "btn btn-warning" },
+                                    [_vm._v("Edit")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "button",
+                                    {
+                                      staticClass: "btn btn-danger",
+                                      on: {
+                                        click: function($event) {
+                                          _vm.deleteUser(user.id)
+                                        }
+                                      }
+                                    },
+                                    [_vm._v("Delete")]
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c(
+                                  "button",
+                                  {
+                                    staticClass: "btn btn-secondary",
+                                    attrs: {
+                                      type: "button",
+                                      "data-dismiss": "modal"
                                     }
-                                  }
-                                },
-                                [_vm._v("Delete")]
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "button",
-                                {
-                                  staticClass: "btn btn-secondary",
-                                  attrs: {
-                                    type: "button",
-                                    "data-dismiss": "modal"
-                                  }
-                                },
-                                [_vm._v("Close")]
-                              )
-                            ])
+                                  },
+                                  [_vm._v("Close")]
+                                )
+                              ]
+                            )
                           ])
                         ]
                       )
@@ -49730,8 +50255,35 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("a", { staticClass: "user_action", attrs: { href: "#0" } }, [
-      _c("i", { staticClass: "fas fa-cog" })
+    return _c("div", { staticClass: "dropdown show d-inline" }, [
+      _c(
+        "a",
+        {
+          staticClass: "user_action",
+          attrs: {
+            href: "#",
+            role: "button",
+            id: "dropdownMenuLink",
+            "data-toggle": "dropdown",
+            "aria-haspopup": "true",
+            "aria-expanded": "false"
+          }
+        },
+        [_c("i", { staticClass: "fas fa-cog" })]
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass: "dropdown-menu",
+          attrs: { "aria-labelledby": "dropdownMenuLink" }
+        },
+        [
+          _c("button", { staticClass: "dropdown-item" }, [_vm._v("Edit")]),
+          _vm._v(" "),
+          _c("button", { staticClass: "dropdown-item" }, [_vm._v("Delete")])
+        ]
+      )
     ])
   },
   function() {
