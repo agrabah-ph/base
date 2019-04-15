@@ -35,7 +35,7 @@ class BidsController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
+        dd(auth()->user()->id);
     }
 
     /**

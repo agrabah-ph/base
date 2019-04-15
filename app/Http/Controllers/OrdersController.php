@@ -3,10 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Order;
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 
 class OrdersController extends Controller
 {
+    // public function __construct() {
+
+    //     $this->middleware(['role:client']);
+
+    // }
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +22,7 @@ class OrdersController extends Controller
      */
     public function index()
     {
-        //
+        dd('Index');
     }
 
     /**
