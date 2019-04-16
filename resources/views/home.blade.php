@@ -19,7 +19,8 @@
         </div>
     </div> --}}
 
-    @hasanyrole('client')
+    @hasrole(" client|mod|'' ")
+        Client and Mod
         <div class="row justify-content-center">
             <div class="col-md-10">
                 <div class="card m-auto">
@@ -27,12 +28,11 @@
                         Order
                     </div>
                     <add-order></add-order>
-                    {{-- <all-orders></all-orders> --}}
                 </div>
             </div>
         </div>
     @else
-        Bids
+        Vendor and Mod
     @endrole
 </div>
 @endsection

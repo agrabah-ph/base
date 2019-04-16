@@ -1955,13 +1955,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Orders",
   data: function data() {
     return {
       name: "",
       quantity: 0,
-      description: "",
+      notes: "",
       items: [],
       errors: []
     };
@@ -1978,7 +1981,7 @@ __webpack_require__.r(__webpack_exports__);
         this.items.push({
           name: this.name,
           quantity: this.quantity,
-          description: this.description
+          notes: this.notes
         });
         this.clearForm();
       }
@@ -2006,7 +2009,7 @@ __webpack_require__.r(__webpack_exports__);
     clearForm: function clearForm() {
       this.name = "";
       this.quantity = "";
-      this.description = "";
+      this.notes = "";
     }
   }
 });
@@ -2781,6 +2784,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
 //
 //
 //
@@ -7488,7 +7493,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\ntextarea[data-v-6ae36d16] {\n    resize: none;\n}\n.qty-btn[data-v-6ae36d16] {\n    border-radius: 0;\n}\n.qty-txt[data-v-6ae36d16] {\n    border-radius: 0;\n    width: 40px;\n}\n", ""]);
+exports.push([module.i, "\ntextarea[data-v-6ae36d16] {\n    resize: none;\n}\n.qty-btn[data-v-6ae36d16] {\n    border-radius: 0;\n}\n.qty-txt[data-v-6ae36d16] {\n    border-radius: 0;\n    width: 45px;\n}\n", ""]);
 
 // exports
 
@@ -49417,10 +49422,10 @@ var render = function() {
                   staticClass: "col-md-4 col-form-label text-md-right",
                   attrs: { for: "" }
                 },
-                [_vm._v("Quantity: (KG)")]
+                [_vm._v("Quantity:")]
               ),
               _vm._v(" "),
-              _c("div", { staticClass: "col-md-6 d-flex" }, [
+              _c("div", { staticClass: "col-md-4 d-flex" }, [
                 _c(
                   "button",
                   {
@@ -49461,6 +49466,15 @@ var render = function() {
                     on: { click: _vm.qtyInc }
                   },
                   [_c("i", { staticClass: "fas fa-plus" })]
+                ),
+                _vm._v(" "),
+                _c(
+                  "p",
+                  {
+                    staticClass: "mt-auto mb-auto ml-1",
+                    staticStyle: { "font-size": "12pt" }
+                  },
+                  [_vm._v("KG")]
                 )
               ])
             ]),
@@ -49472,7 +49486,7 @@ var render = function() {
                   staticClass: "col-md-4 col-form-label text-md-right",
                   attrs: { for: "" }
                 },
-                [_vm._v("Description")]
+                [_vm._v("Notes: ")]
               ),
               _vm._v(" "),
               _c("div", { staticClass: "col-md-6" }, [
@@ -49481,19 +49495,19 @@ var render = function() {
                     {
                       name: "model",
                       rawName: "v-model",
-                      value: _vm.description,
-                      expression: "description"
+                      value: _vm.notes,
+                      expression: "notes"
                     }
                   ],
                   staticClass: "form-control",
                   attrs: { id: "", col: "5", row: "5" },
-                  domProps: { value: _vm.description },
+                  domProps: { value: _vm.notes },
                   on: {
                     input: function($event) {
                       if ($event.target.composing) {
                         return
                       }
-                      _vm.description = $event.target.value
+                      _vm.notes = $event.target.value
                     }
                   }
                 })
@@ -49505,7 +49519,7 @@ var render = function() {
                 _c(
                   "button",
                   {
-                    staticClass: "btn btn-primary float-right",
+                    staticClass: "btn btn-secondary float-right",
                     attrs: { type: "button" },
                     on: { click: _vm.addItem }
                   },
@@ -49525,9 +49539,9 @@ var render = function() {
                         return _c("tr", { key: item.index }, [
                           _c("td", [_vm._v(_vm._s(item.name))]),
                           _vm._v(" "),
-                          _c("td", [_vm._v(_vm._s(item.quantity) + " KG")]),
+                          _c("td", [_vm._v("KG " + _vm._s(item.quantity))]),
                           _vm._v(" "),
-                          _c("td", [_vm._v(_vm._s(item.description))]),
+                          _c("td", [_vm._v(_vm._s(item.notes))]),
                           _vm._v(" "),
                           _c("td", [
                             _c(
@@ -49549,10 +49563,7 @@ var render = function() {
                     )
                   ]),
                   _vm._v(" "),
-                  _c("input", {
-                    staticClass: "btn btn-primary float-right",
-                    attrs: { type: "submit", value: "Place Order" }
-                  })
+                  _vm._m(1)
                 ])
               : _vm._e()
           ]
@@ -49572,10 +49583,21 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Quantity")]),
         _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Description")]),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Notes")]),
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } })
       ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md" }, [
+      _c("input", {
+        staticClass: "btn btn-primary float-right",
+        attrs: { type: "submit", value: "Place Order" }
+      })
     ])
   }
 ]
@@ -50115,10 +50137,12 @@ var staticRenderFns = [
       _c("div", { staticClass: "row p-3" }, [
         _c("div", { staticClass: "col-lg" }, [
           _c("div", { staticClass: "table-responsive-md" }, [
+            _c("h1", [_vm._v("Bidder")]),
+            _vm._v(" "),
             _c("table", { staticClass: "table table-striped table-hover" }, [
               _c("thead", [
                 _c("tr", [
-                  _c("th", { attrs: { scope: "col" } }, [_vm._v("Bid #")]),
+                  _c("th", { attrs: { scope: "col" } }, [_vm._v("Order #")]),
                   _vm._v(" "),
                   _c("th", { attrs: { scope: "col" } }, [_vm._v("Items")]),
                   _vm._v(" "),
@@ -50277,6 +50301,8 @@ var staticRenderFns = [
       _c("div", { staticClass: "row p-3" }, [
         _c("div", { staticClass: "col-lg" }, [
           _c("div", { staticClass: "table-responsive-md" }, [
+            _c("h1", [_vm._v("Client")]),
+            _vm._v(" "),
             _c("table", { staticClass: "table table-striped table-hover" }, [
               _c("thead", [
                 _c("tr", [
@@ -50333,7 +50359,7 @@ var staticRenderFns = [
                     _vm._v("April 15, 2019")
                   ]),
                   _vm._v(" "),
-                  _c("td", { staticClass: "text-danger" }, [_vm._v("Pending")])
+                  _c("td", { staticClass: "text-danger" }, [_vm._v("Shipping")])
                 ]),
                 _vm._v(" "),
                 _c("tr", [

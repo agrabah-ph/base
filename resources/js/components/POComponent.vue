@@ -4,10 +4,11 @@
         <div class="row p-3">
             <div class="col-lg">
                 <div class="table-responsive-md">
+                    <h1>Bidder</h1>
                     <table class="table table-striped table-hover">
                         <thead>
                             <tr>
-                                <th scope="col">Bid #</th>
+                                <th scope="col">Order #</th>
                                 <th scope="col">Items</th>
                                 <th scope="col" class="d-none d-sm-table-cell">Quantity</th>
                                 <th scope="col" class="d-none d-sm-table-cell">Client</th>
@@ -54,6 +55,7 @@
         <div class="row p-3">
             <div class="col-lg">
                 <div class="table-responsive-md">
+                    <h1>Client</h1>
                     <table class="table table-striped table-hover">
                         <thead>
                             <tr>
@@ -72,7 +74,7 @@
                                 <td class="d-none d-sm-table-cell">50Kg</td>
                                 <td class="d-none-d-sm-table-cell">John Doe</td>
                                 <td class="d-none d-sm-table-cell">April 15, 2019</td>
-                                <td class="text-danger">Pending</td>
+                                <td class="text-danger">Shipping</td>
                             </tr>
                             <tr>
                                 <th scope="row">2</th>
