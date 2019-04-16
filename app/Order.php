@@ -18,6 +18,11 @@ class Order extends Model
         return $this->hasMany("App\Item", "order_id");
     }
 
+    public function addItem($item)
+    {
+        return $this->items()->create($item);
+    }
+
     public function bids()
     {
         return $this->hasMany("App\Bid", "order_id");

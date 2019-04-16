@@ -6,7 +6,7 @@
                     <div class="form-group row">
                         <label class="col-md-4 col-form-label text-md-right" for="">Add Item: </label>
                         <div class="col-md-6">
-                            <input type="text" class="form-control" v-model="name">
+                            <input type="text" class="form-control" v-model="item">
                         </div>
                     </div>
                     <div class="form-group row">
@@ -20,7 +20,7 @@
                             <button type="button" class="btn btn-secondary btn-number qty-btn" @click="qtyInc">
                                 <i class="fas fa-plus"></i>
                             </button>
-                            <p style="font-size: 12pt;" class="mt-auto mb-auto ml-1">KG</p>
+                            <p style="font-size: 12pt;" class="mt-auto mb-auto ml-1">Kg</p>
                         </div>
                     </div>
 
@@ -48,10 +48,10 @@
                             </thead>
                             <tbody>
                                 <tr v-for="item in items" :key="item.index">
-                                    <td>{{ item.name }}</td>
-                                    <td>KG {{ item.quantity }}</td>
+                                    <td>{{ item.item }}</td>
+                                    <td>{{ item.quantity }}Kg</td>
                                     <td>{{ item.notes }}</td>
-                                    <td><button class="btn btn-danger" @click="removeItem(items,'name',item.name)">X</button></td>
+                                    <td><button class="btn btn-danger" @click="removeItem(items,'item',item.item)">X</button></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -70,7 +70,7 @@ export default {
     name:"Orders",
     data() {
         return {
-            name: "",
+            item: "",
             quantity: 0,
             notes: "",
             items: [],
@@ -82,7 +82,7 @@ export default {
 
             this.errors = [];
 
-            if(!this.name) {
+            if(!this.item) {
 
                 this.errors.push("blank");
 
@@ -96,11 +96,13 @@ export default {
 
                 this.items.push({
 
-                    name: this.name,
+                    item: this.item,
                     quantity: this.quantity,
                     notes: this.notes
 
                 });
+
+                console.log(this.items);
 
                 this.clearForm();
 

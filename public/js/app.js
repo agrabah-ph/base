@@ -1962,7 +1962,7 @@ __webpack_require__.r(__webpack_exports__);
   name: "Orders",
   data: function data() {
     return {
-      name: "",
+      item: "",
       quantity: 0,
       notes: "",
       items: [],
@@ -1973,16 +1973,17 @@ __webpack_require__.r(__webpack_exports__);
     addItem: function addItem() {
       this.errors = [];
 
-      if (!this.name) {
+      if (!this.item) {
         this.errors.push("blank");
       } else if (!this.quantity) {
         this.errors.push("Blank");
       } else {
         this.items.push({
-          name: this.name,
+          item: this.item,
           quantity: this.quantity,
           notes: this.notes
         });
+        console.log(this.items);
         this.clearForm();
       }
     },
@@ -49396,19 +49397,19 @@ var render = function() {
                     {
                       name: "model",
                       rawName: "v-model",
-                      value: _vm.name,
-                      expression: "name"
+                      value: _vm.item,
+                      expression: "item"
                     }
                   ],
                   staticClass: "form-control",
                   attrs: { type: "text" },
-                  domProps: { value: _vm.name },
+                  domProps: { value: _vm.item },
                   on: {
                     input: function($event) {
                       if ($event.target.composing) {
                         return
                       }
-                      _vm.name = $event.target.value
+                      _vm.item = $event.target.value
                     }
                   }
                 })
@@ -49474,7 +49475,7 @@ var render = function() {
                     staticClass: "mt-auto mb-auto ml-1",
                     staticStyle: { "font-size": "12pt" }
                   },
-                  [_vm._v("KG")]
+                  [_vm._v("Kg")]
                 )
               ])
             ]),
@@ -49537,9 +49538,9 @@ var render = function() {
                       "tbody",
                       _vm._l(_vm.items, function(item) {
                         return _c("tr", { key: item.index }, [
-                          _c("td", [_vm._v(_vm._s(item.name))]),
+                          _c("td", [_vm._v(_vm._s(item.item))]),
                           _vm._v(" "),
-                          _c("td", [_vm._v("KG " + _vm._s(item.quantity))]),
+                          _c("td", [_vm._v(_vm._s(item.quantity) + "Kg")]),
                           _vm._v(" "),
                           _c("td", [_vm._v(_vm._s(item.notes))]),
                           _vm._v(" "),
@@ -49550,7 +49551,7 @@ var render = function() {
                                 staticClass: "btn btn-danger",
                                 on: {
                                   click: function($event) {
-                                    _vm.removeItem(_vm.items, "name", item.name)
+                                    _vm.removeItem(_vm.items, "item", item.item)
                                   }
                                 }
                               },
