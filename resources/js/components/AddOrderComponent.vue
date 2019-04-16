@@ -51,7 +51,7 @@
                                     <td>{{ item.item }}</td>
                                     <td>{{ item.quantity }}Kg</td>
                                     <td>{{ item.notes }}</td>
-                                    <td><button class="btn btn-danger" @click="removeItem(items,'item',item.item)">X</button></td>
+                                    <td><button type="button" class="btn btn-danger" @click="removeItem(items,'item',item.item)">X</button></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -66,6 +66,7 @@
 </template>
 
 <script>
+
 export default {
     name:"Orders",
     data() {
@@ -80,38 +81,27 @@ export default {
     methods: {
         addItem() {
 
-            this.errors = [];
+            this.items.push({
 
-            if(!this.item) {
+                item: this.item,
+                quantity: this.quantity,
+                notes: this.notes
 
-                this.errors.push("blank");
+            });
 
-            }
-            else if (!this.quantity) {
-
-                this.errors.push("Blank");
-
-            }
-            else {
-
-                this.items.push({
-
-                    item: this.item,
-                    quantity: this.quantity,
-                    notes: this.notes
-
-                });
-
-                console.log(this.items);
-
-                this.clearForm();
-
-            }
+            this.clearForm();
 
         },
         addOrder() {
-
-            console.log(this.items);
+            axios.post('/api/order',
+                this.items
+            )
+            .then(function(response) {
+                console.log(response);
+            })
+            .catch(err => {
+                console.log(err);
+            })
 
         },
         qtyInc() {
@@ -139,11 +129,13 @@ export default {
         },
 
         clearForm() {
-            this.name = "";
+
+            this.item = "";
             this.quantity = "";
             this.notes = "";
+
         }
-    },
+    }
 }
 </script>
 

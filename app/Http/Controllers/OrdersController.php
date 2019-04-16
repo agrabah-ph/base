@@ -4,17 +4,19 @@ namespace App\Http\Controllers;
 
 use App\Order;
 use App\User;
+use App\Item;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 
 class OrdersController extends Controller
 {
-    // public function __construct() {
+    public function __construct()
+    {
+        $this->middleware(['role:owner']);
+    }
 
-    //     $this->middleware(['role:client']);
-
-    // }
     /**
      * Display a listing of the resource.
      *
@@ -22,7 +24,10 @@ class OrdersController extends Controller
      */
     public function index()
     {
+        $orders = Order::orderBy('created_at', 'desc')
+            ->with('user', 'items')->get();
 
+        return response()->json($orders);
     }
 
     /**
@@ -32,7 +37,7 @@ class OrdersController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**
@@ -43,7 +48,46 @@ class OrdersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $order = Order::create([
+            'user_id' => auth()->id()
+        ]);
+
+        $items = $request->json()->all();
+
+        foreach($items as $item)
+        {
+            Item::create([
+                'order_id' => $order->id,
+                'item' => $item['item'],
+                'quantity' => $item['quantity'],
+                'note' => $item['notes']
+            ]);
+        }
+
+        return response()->json("OKAY");
+
+        // $validator = Validator::make($request->all(), [
+        //     'item' => ['required',],
+        //     'quantity' => ['required','integer'],
+        //     'notes' => ['nullable', 'string' , 'min:3', 'max:399']
+        // ]);
+
+        // if($validator->fails()){
+        //     return back()
+        //       ->withErrors($validator)
+        //       ->withInput();
+        // }
+        /**
+         * Create order first
+         * then items
+         * $order = Order::create([
+         *  get current authenticated user id
+         * ])
+         *
+         * Item::create([
+         *  get order id
+         * ])
+         */
     }
 
     /**

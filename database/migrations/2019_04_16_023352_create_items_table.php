@@ -16,21 +16,14 @@ class CreateItemsTable extends Migration
         Schema::create('items', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('order_id');
-            $table->unsignedInteger('bid_id');
             $table->string('item');
             $table->unsignedInteger('quantity');
-            $table->unsignedInteger('price');
             $table->text('note');
             $table->timestamps();
 
             $table->foreign('order_id')
                 ->references('id')
                 ->on('orders')
-                ->onDelete('cascade');
-
-            $table->foreign('bid_id')
-                ->references('id')
-                ->on('bids')
                 ->onDelete('cascade');
         });
     }

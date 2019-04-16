@@ -18,17 +18,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::group(['middleware' => ['auth:api', 'role:owner']], function() {
-
     Route::get('user-search', 'UserController@search');
     Route::get('user-info/{user_id}', 'UserController@getUserInfo');
     Route::get('user-get', 'UserController@get');
     Route::get('province', 'LocationsController@province');
+    Route::get('orders', 'OrdersController@index');
+    Route::post('order', 'OrdersController@store');
 });
 
-Route::group(['middleware' => ['auth:api', 'role:client']], function() {
-
-
-
-});
-
-Route::Resource('orders', 'OrdersController');

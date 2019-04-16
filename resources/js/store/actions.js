@@ -26,6 +26,19 @@ let actions = {
             }).catch(err => {
                 console.log(err)
             })
+    },
+    GET_ORDERS({commit}) {
+        Axios.get('/api/orders')
+        .then( res => {
+            {
+                commit('SET_ORDERS', res.data);
+            }
+        })
+        .catch( err => {
+
+            console.log(err)
+
+        })
     }
 }
 

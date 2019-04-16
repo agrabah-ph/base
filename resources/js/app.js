@@ -31,7 +31,7 @@ Vue.component('user-location', require('./components/LocationComponent.vue').def
 Vue.component('user-profile', require('./components/ProfileComponent.vue').default);
 Vue.component('purchase-orders', require('./components/POComponent.vue').default);
 Vue.component('add-order', require('./components/AddOrderComponent.vue').default);
-Vue.component('user-orders', require('./components/OrdersComponent.vue').default);
+Vue.component('client-orders', require('./components/OrdersComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

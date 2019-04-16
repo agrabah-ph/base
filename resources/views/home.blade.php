@@ -19,20 +19,35 @@
         </div>
     </div> --}}
 
-    @hasrole(" client|mod|'' ")
-        Client and Mod
+    @hasrole(" client|owner ")
         <div class="row justify-content-center">
             <div class="col-md-10">
                 <div class="card m-auto">
                     <div class="card-header">
-                        Order
+                        Order | Client and owner
                     </div>
                     <add-order></add-order>
+                    @if($errors->any())
+                        @foreach ($errors->all() as $error)
+                            {{ $error }}
+                        @endforeach
+                    @endif
                 </div>
             </div>
         </div>
-    @else
-        Vendor and Mod
+    @endrole
+
+    @hasrole(" vendor|owner ")
+    <div class="row justify-content-center mt-3 ">
+        <div class="col-md-10">
+            <div class="card m-auto">
+                <div class="card-header">
+                    Order Lists | Vendor and Owner
+                </div>
+                <client-orders></client-orders>
+            </div>
+        </div>
+    </div>
     @endrole
 </div>
 @endsection

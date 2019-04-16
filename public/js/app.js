@@ -1971,24 +1971,19 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     addItem: function addItem() {
-      this.errors = [];
-
-      if (!this.item) {
-        this.errors.push("blank");
-      } else if (!this.quantity) {
-        this.errors.push("Blank");
-      } else {
-        this.items.push({
-          item: this.item,
-          quantity: this.quantity,
-          notes: this.notes
-        });
-        console.log(this.items);
-        this.clearForm();
-      }
+      this.items.push({
+        item: this.item,
+        quantity: this.quantity,
+        notes: this.notes
+      });
+      this.clearForm();
     },
     addOrder: function addOrder() {
-      console.log(this.items);
+      axios.post('/api/order', this.items).then(function (response) {
+        console.log(response);
+      })["catch"](function (err) {
+        console.log(err);
+      });
     },
     qtyInc: function qtyInc() {
       this.quantity++;
@@ -2008,7 +2003,7 @@ __webpack_require__.r(__webpack_exports__);
       return arr;
     },
     clearForm: function clearForm() {
-      this.name = "";
+      this.item = "";
       this.quantity = "";
       this.notes = "";
     }
@@ -2766,13 +2761,38 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
 //
 //
 //
-/* harmony default export */ __webpack_exports__["default"] = ({});
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "Orders",
+  created: function created() {
+    this.$store.dispatch('GET_ORDERS');
+  },
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['orders']))
+});
 
 /***/ }),
 
@@ -49549,6 +49569,7 @@ var render = function() {
                               "button",
                               {
                                 staticClass: "btn btn-danger",
+                                attrs: { type: "button" },
                                 on: {
                                   click: function($event) {
                                     _vm.removeItem(_vm.items, "item", item.item)
@@ -50103,7 +50124,40 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div")
+  return _c("div", [
+    _c(
+      "ul",
+      _vm._l(_vm.orders, function(order) {
+        return _c(
+          "li",
+          { key: order.index },
+          [
+            _c("p", [_vm._v(_vm._s(order.user.name))]),
+            _vm._v(" "),
+            _vm._l(order.user, function(client) {
+              return _c("p", { key: client.id }, [
+                _c("span", [_vm._v(_vm._s(client.name))])
+              ])
+            }),
+            _vm._v(" "),
+            _vm._l(order.items, function(item) {
+              return _c("p", { key: item.index }, [
+                _c("span", [_vm._v(_vm._s(item.item))]),
+                _vm._v(" "),
+                _c("span", [_vm._v(_vm._s(item.quantity))]),
+                _vm._v(" "),
+                _c("span", [_vm._v(_vm._s(item.note))]),
+                _vm._v(" "),
+                _c("span", [_vm._v(_vm._s(item.id))])
+              ])
+            })
+          ],
+          2
+        )
+      }),
+      0
+    )
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -65894,7 +65948,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('user-location', __webpack_
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('user-profile', __webpack_require__(/*! ./components/ProfileComponent.vue */ "./resources/js/components/ProfileComponent.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('purchase-orders', __webpack_require__(/*! ./components/POComponent.vue */ "./resources/js/components/POComponent.vue")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('add-order', __webpack_require__(/*! ./components/AddOrderComponent.vue */ "./resources/js/components/AddOrderComponent.vue")["default"]);
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('user-orders', __webpack_require__(/*! ./components/OrdersComponent.vue */ "./resources/js/components/OrdersComponent.vue")["default"]);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('client-orders', __webpack_require__(/*! ./components/OrdersComponent.vue */ "./resources/js/components/OrdersComponent.vue")["default"]);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -66823,6 +66877,16 @@ var actions = {
     })["catch"](function (err) {
       console.log(err);
     });
+  },
+  GET_ORDERS: function GET_ORDERS(_ref3) {
+    var commit = _ref3.commit;
+    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/orders').then(function (res) {
+      {
+        commit('SET_ORDERS', res.data);
+      }
+    })["catch"](function (err) {
+      console.log(err);
+    });
   }
 };
 /* harmony default export */ __webpack_exports__["default"] = (actions);
@@ -66843,6 +66907,9 @@ __webpack_require__.r(__webpack_exports__);
 var getters = {
   users: function users(state) {
     return state.users;
+  },
+  orders: function orders(state) {
+    return state.orders;
   }
 };
 /* harmony default export */ __webpack_exports__["default"] = (getters);
@@ -66893,6 +66960,9 @@ __webpack_require__.r(__webpack_exports__);
 var mutations = {
   SET_USERS: function SET_USERS(state, users) {
     state.users = users;
+  },
+  SET_ORDERS: function SET_ORDERS(state, orders) {
+    state.orders = orders;
   }
 };
 /* harmony default export */ __webpack_exports__["default"] = (mutations);
@@ -66909,7 +66979,8 @@ var mutations = {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 var state = {
-  users: []
+  users: [],
+  orders: []
 };
 /* harmony default export */ __webpack_exports__["default"] = (state);
 
