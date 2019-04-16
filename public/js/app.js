@@ -1958,6 +1958,24 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Orders",
   data: function data() {
@@ -1966,7 +1984,7 @@ __webpack_require__.r(__webpack_exports__);
       quantity: 0,
       notes: "",
       items: [],
-      errors: []
+      messages: []
     };
   },
   methods: {
@@ -1979,8 +1997,13 @@ __webpack_require__.r(__webpack_exports__);
       this.clearForm();
     },
     addOrder: function addOrder() {
+      var _this = this;
+
+      this.messages = [];
       axios.post('/api/order', this.items).then(function (response) {
-        console.log(response);
+        _this.messages.push(response.data);
+
+        _this.items = [];
       })["catch"](function (err) {
         console.log(err);
       });
@@ -49401,6 +49424,27 @@ var render = function() {
             }
           },
           [
+            _vm.messages.length
+              ? _c(
+                  "div",
+                  {
+                    staticClass:
+                      "alert alert-success alert-dismissible fade show",
+                    attrs: { role: "alert" }
+                  },
+                  [
+                    _vm._l(_vm.messages, function(message) {
+                      return _c("p", { key: message.index }, [
+                        _vm._v(_vm._s(message))
+                      ])
+                    }),
+                    _vm._v(" "),
+                    _vm._m(0)
+                  ],
+                  2
+                )
+              : _vm._e(),
+            _vm._v(" "),
             _c("div", { staticClass: "form-group row" }, [
               _c(
                 "label",
@@ -49552,7 +49596,7 @@ var render = function() {
             _vm.items.length
               ? _c("div", { staticClass: "row mt-3" }, [
                   _c("table", { staticClass: "table" }, [
-                    _vm._m(0),
+                    _vm._m(1),
                     _vm._v(" "),
                     _c(
                       "tbody",
@@ -49566,17 +49610,18 @@ var render = function() {
                           _vm._v(" "),
                           _c("td", [
                             _c(
-                              "button",
+                              "a",
                               {
-                                staticClass: "btn btn-danger",
-                                attrs: { type: "button" },
+                                staticClass: "text-danger",
+                                attrs: { href: "#" },
                                 on: {
                                   click: function($event) {
+                                    $event.preventDefault()
                                     _vm.removeItem(_vm.items, "item", item.item)
                                   }
                                 }
                               },
-                              [_vm._v("X")]
+                              [_c("i", { staticClass: "fas fa-times" })]
                             )
                           ])
                         ])
@@ -49585,7 +49630,7 @@ var render = function() {
                     )
                   ]),
                   _vm._v(" "),
-                  _vm._m(1)
+                  _vm._m(2)
                 ])
               : _vm._e()
           ]
@@ -49595,6 +49640,23 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "button",
+      {
+        staticClass: "close",
+        attrs: {
+          type: "button",
+          "data-dismiss": "alert",
+          "aria-label": "Close"
+        }
+      },
+      [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+    )
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement

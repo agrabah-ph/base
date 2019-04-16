@@ -2,17 +2,27 @@
     <div class="card-body">
         <div class="row m-auto">
             <div class="col-md-8 m-auto p-3">
+
                 <form @submit.prevent="addOrder">
+
+                    <div v-if="messages.length" class="alert alert-success alert-dismissible fade show" role="alert">
+                        <p v-for="message in messages" :key="message.index">{{ message }}</p>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
                     <div class="form-group row">
                         <label class="col-md-4 col-form-label text-md-right" for="">Add Item: </label>
                         <div class="col-md-6">
                             <input type="text" class="form-control" v-model="item">
                         </div>
                     </div>
+
                     <div class="form-group row">
                         <label for="" class="col-md-4 col-form-label text-md-right">Quantity:</label>
-                        <div class="col-md-4 d-flex">
 
+                        <div class="col-md-4 d-flex">
                             <button type="button" class="btn btn-secondary btn-number qty-btn" @click="qtyDec">
                                 <i class="fas fa-minus"></i>
                             </button>
@@ -22,11 +32,12 @@
                             </button>
                             <p style="font-size: 12pt;" class="mt-auto mb-auto ml-1">Kg</p>
                         </div>
+
                     </div>
 
                     <div class="form-group row">
                         <label for="" class="col-md-4 col-form-label text-md-right">Notes: </label>
-                            <div class="col-md-6">
+                        <div class="col-md-6">
                             <textarea v-model="notes" id="" col="5" row="5" class="form-control"></textarea>
                         </div>
                     </div>
@@ -36,6 +47,7 @@
                             <button @click="addItem" type="button" class="btn btn-secondary float-right">Add Item</button>
                         </div>
                    </div>
+
                     <div class="row mt-3" v-if="items.length">
                         <table class="table">
                             <thead>
@@ -51,15 +63,21 @@
                                     <td>{{ item.item }}</td>
                                     <td>{{ item.quantity }}Kg</td>
                                     <td>{{ item.notes }}</td>
-                                    <td><button type="button" class="btn btn-danger" @click="removeItem(items,'item',item.item)">X</button></td>
+                                    <td>
+                                        <a href="#" class="text-danger" @click.prevent="removeItem(items,'item',item.item)"><i class="fas fa-times"></i></a>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
+
                         <div class="col-md">
                             <input type="submit" class="btn btn-primary float-right" value="Place Order">
                         </div>
+
                     </div>
+
                 </form>
+
             </div>
         </div>
     </div>
@@ -75,7 +93,7 @@ export default {
             quantity: 0,
             notes: "",
             items: [],
-            errors: []
+            messages: []
         }
     },
     methods: {
@@ -93,11 +111,17 @@ export default {
 
         },
         addOrder() {
+
+            this.messages = [];
+
             axios.post('/api/order',
                 this.items
             )
-            .then(function(response) {
-                console.log(response);
+            .then(response => {
+
+                this.messages.push(response.data);
+                this.items = [];
+
             })
             .catch(err => {
                 console.log(err);

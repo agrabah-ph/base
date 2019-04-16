@@ -64,7 +64,7 @@ class OrdersController extends Controller
             ]);
         }
 
-        return response()->json("OKAY");
+        return response()->json("Thank you. Your Order has been added.");
 
         // $validator = Validator::make($request->all(), [
         //     'item' => ['required',],
