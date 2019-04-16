@@ -22,7 +22,7 @@ class OrdersController extends Controller
      */
     public function index()
     {
-        dd('Index');
+
     }
 
     /**

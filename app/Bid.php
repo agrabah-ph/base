@@ -8,8 +8,13 @@ class Bid extends Model
 {
     protected $guarded = [];
 
+    public function items()
+    {
+        return $this->hasMany("App\Item", "bid_id");
+    }
+
     public function order()
     {
-        return $this->belongsTo('App\Order', 'order_id');
+        return $this->belongsTo("App\Order", "order_id");
     }
 }

@@ -10,11 +10,16 @@ class Order extends Model
 
     public function user()
     {
-        return $this->belongsTo('App\User', 'user_id');
+        return $this->belongsTo("App\User", "user_id");
+    }
+
+    public function items()
+    {
+        return $this->hasMany("App\Item", "order_id");
     }
 
     public function bids()
     {
-        return $this->hasMany('App\Bid', 'order_id');
+        return $this->hasMany("App\Bid", "order_id");
     }
 }
