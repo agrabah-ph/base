@@ -1,16 +1,48 @@
 <template>
-    <div>
-        <ul>
-            <li v-for="order in orders" :key="order.index">
-                <p>{{ order.user.name }}</p>
-                <p v-for="item in order.items" :key="item.index">
-                    <span>{{ item.item }}</span>
-                    <span>{{ item.quantity }}</span>
-                    <span>{{ item.id }}</span>
-                </p>
-                <p>{{ order.note }}</p>
-            </li>
-        </ul>
+    <div class="col-md-10">
+        <div class="row">
+            <div class="col-md">
+                <ul class="pagination">
+                    <li v-bind:class="[{disabled: !pagination.prev_page_url}]" class="page-item">
+                        <a class="page-link" href="#" @click="fetchOrders(pagination.prev_page_url)">Previous</a>
+                    </li>
+                    <li class="page-item disabled">
+                        <a class="page-link text-dark" href="#">Page {{ pagination.current_page }} of {{ pagination.last_page }}</a>
+                    </li>
+                    <li v-bind:class="[{disabled: !pagination.next_page_url}]" class="page-item">
+                        <a class="page-link" href="#" @click="fetchOrders(pagination.next_page_url)">Next</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Client</th>
+                    <th scope="col">Items</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Notes</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="order in orders" :key="order.index">
+                    <th scope="row">{{ order.user.name }}</th>
+                    <td>
+                        <p v-for="item in order.items" :key="item.index">{{ item.item }}</p>
+                    </td>
+                    <td>
+                        <p v-for="quantity in order.items" :key="quantity.index">{{ quantity.quantity }} Kg</p>
+                    </td>
+                    <td style="max-width:175px;">
+                        {{ order.note }}
+                    </td>
+                    <td>
+                        <button class="btn btn-success">Bid</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </template>
 
@@ -28,19 +60,16 @@ export default {
         this.fetchOrders();
     },
     methods: {
-        fetchOrders() {
+        fetchOrders(page_url) {
 
             let vm = this;
 
-            axios.get('/api/orders')
+            page_url = page_url || 'api/orders';
+
+            axios.get(page_url)
             .then( response => {
 
-                console.log(response);
-                console.log(response.data.data);
-                console.log(response.data.meta);
-
                 this.orders = response.data.data;
-
                 vm.makePagination(response.data.meta, response.data.links);
 
             })
@@ -53,6 +82,7 @@ export default {
                 next_page_url: links.next,
                 prev_page_url: links.prev
             }
+            this.pagination = pagination;
         }
     },
     computed: {

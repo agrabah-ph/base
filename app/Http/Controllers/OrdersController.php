@@ -14,10 +14,10 @@ use App\Http\Resources\OrderResource;
 
 class OrdersController extends Controller
 {
-    // public function __construct()
-    // {
-    //     $this->middleware(['role:owner']);
-    // }
+    public function __construct()
+    {
+        $this->middleware(['role:owner']);
+    }
 
     /**
      * Display a listing of the resource.
@@ -27,7 +27,7 @@ class OrdersController extends Controller
     public function index()
     {
         $orders = Order::orderBy('created_at', 'desc')
-            ->with('user', 'items')->paginate(10);
+            ->with('user', 'items')->paginate(5);
 
         return OrderResource::collection($orders);
     }

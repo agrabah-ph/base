@@ -2804,6 +2804,38 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 // import {mapGetters} from 'vuex';
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Orders",
@@ -2817,14 +2849,12 @@ __webpack_require__.r(__webpack_exports__);
     this.fetchOrders();
   },
   methods: {
-    fetchOrders: function fetchOrders() {
+    fetchOrders: function fetchOrders(page_url) {
       var _this = this;
 
       var vm = this;
-      axios.get('/api/orders').then(function (response) {
-        console.log(response);
-        console.log(response.data.data);
-        console.log(response.data.meta);
+      page_url = page_url || 'api/orders';
+      axios.get(page_url).then(function (response) {
         _this.orders = response.data.data;
         vm.makePagination(response.data.meta, response.data.links);
       });
@@ -2836,6 +2866,7 @@ __webpack_require__.r(__webpack_exports__);
         next_page_url: links.next,
         prev_page_url: links.prev
       };
+      this.pagination = pagination;
     }
   },
   computed: {// ...mapGetters([
@@ -50213,36 +50244,147 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c(
-      "ul",
-      _vm._l(_vm.orders, function(order) {
-        return _c(
-          "li",
-          { key: order.index },
-          [
-            _c("p", [_vm._v(_vm._s(order.user.name))]),
+  return _c("div", { staticClass: "col-md-10" }, [
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md" }, [
+        _c("ul", { staticClass: "pagination" }, [
+          _c(
+            "li",
+            {
+              staticClass: "page-item",
+              class: [{ disabled: !_vm.pagination.prev_page_url }]
+            },
+            [
+              _c(
+                "a",
+                {
+                  staticClass: "page-link",
+                  attrs: { href: "#" },
+                  on: {
+                    click: function($event) {
+                      _vm.fetchOrders(_vm.pagination.prev_page_url)
+                    }
+                  }
+                },
+                [_vm._v("Previous")]
+              )
+            ]
+          ),
+          _vm._v(" "),
+          _c("li", { staticClass: "page-item disabled" }, [
+            _c(
+              "a",
+              { staticClass: "page-link text-dark", attrs: { href: "#" } },
+              [
+                _vm._v(
+                  "Page " +
+                    _vm._s(_vm.pagination.current_page) +
+                    " of " +
+                    _vm._s(_vm.pagination.last_page)
+                )
+              ]
+            )
+          ]),
+          _vm._v(" "),
+          _c(
+            "li",
+            {
+              staticClass: "page-item",
+              class: [{ disabled: !_vm.pagination.next_page_url }]
+            },
+            [
+              _c(
+                "a",
+                {
+                  staticClass: "page-link",
+                  attrs: { href: "#" },
+                  on: {
+                    click: function($event) {
+                      _vm.fetchOrders(_vm.pagination.next_page_url)
+                    }
+                  }
+                },
+                [_vm._v("Next")]
+              )
+            ]
+          )
+        ])
+      ])
+    ]),
+    _vm._v(" "),
+    _c("table", { staticClass: "table" }, [
+      _vm._m(0),
+      _vm._v(" "),
+      _c(
+        "tbody",
+        _vm._l(_vm.orders, function(order) {
+          return _c("tr", { key: order.index }, [
+            _c("th", { attrs: { scope: "row" } }, [
+              _vm._v(_vm._s(order.user.name))
+            ]),
             _vm._v(" "),
-            _vm._l(order.items, function(item) {
-              return _c("p", { key: item.index }, [
-                _c("span", [_vm._v(_vm._s(item.item))]),
-                _vm._v(" "),
-                _c("span", [_vm._v(_vm._s(item.quantity))]),
-                _vm._v(" "),
-                _c("span", [_vm._v(_vm._s(item.id))])
-              ])
-            }),
+            _c(
+              "td",
+              _vm._l(order.items, function(item) {
+                return _c("p", { key: item.index }, [_vm._v(_vm._s(item.item))])
+              }),
+              0
+            ),
             _vm._v(" "),
-            _c("p", [_vm._v(_vm._s(order.note))])
-          ],
-          2
-        )
-      }),
-      0
-    )
+            _c(
+              "td",
+              _vm._l(order.items, function(quantity) {
+                return _c("p", { key: quantity.index }, [
+                  _vm._v(_vm._s(quantity.quantity) + " Kg")
+                ])
+              }),
+              0
+            ),
+            _vm._v(" "),
+            _c("td", { staticStyle: { "max-width": "175px" } }, [
+              _vm._v(
+                "\n                    " +
+                  _vm._s(order.note) +
+                  "\n                "
+              )
+            ]),
+            _vm._v(" "),
+            _vm._m(1, true)
+          ])
+        }),
+        0
+      )
+    ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Client")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Items")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Quantity")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Notes")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } })
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("button", { staticClass: "btn btn-success" }, [_vm._v("Bid")])
+    ])
+  }
+]
 render._withStripped = true
 
 

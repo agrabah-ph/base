@@ -38,15 +38,8 @@
     @endrole
 
     @hasrole(" vendor|owner ")
-    <div class="row justify-content-center mt-3 ">
-        <div class="col-md-10">
-            <div class="card m-auto">
-                <div class="card-header">
-                    Order Lists | Vendor and Owner
-                </div>
-                <client-orders></client-orders>
-            </div>
-        </div>
+    <div class="row justify-content-center mt-3">
+        <client-orders></client-orders>
     </div>
     @endrole
 </div>
