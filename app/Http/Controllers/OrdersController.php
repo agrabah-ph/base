@@ -31,16 +31,6 @@ class OrdersController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -48,46 +38,38 @@ class OrdersController extends Controller
      */
     public function store(Request $request)
     {
+        // return response()->json($request->all());
+
+        // $validator = Validator::make($request->all(), [
+        //     'note' => ['nullable', 'string', 'min:1', 'max:399'],
+        //     'item' => ['required', 'string', 'min:1', 'max:199'],
+        //     'quantity' => ['required', 'integer']
+        // ]);
+
+        // if($validator->fails())
+        // {
+        //     return back()
+        //         ->withErrors($validator)
+        //         ->withInput();
+        // }
+
         $order = Order::create([
-            'user_id' => auth()->id()
+            'user_id' => auth()->id(),
+            'note' => $request['note']
         ]);
 
         $items = $request->json()->all();
 
-        foreach($items as $item)
+        foreach($items['items'] as $item)
         {
             Item::create([
                 'order_id' => $order->id,
                 'item' => $item['item'],
                 'quantity' => $item['quantity'],
-                'note' => $item['notes']
             ]);
         }
 
         return response()->json("Thank you. Your Order has been added.");
-
-        // $validator = Validator::make($request->all(), [
-        //     'item' => ['required',],
-        //     'quantity' => ['required','integer'],
-        //     'notes' => ['nullable', 'string' , 'min:3', 'max:399']
-        // ]);
-
-        // if($validator->fails()){
-        //     return back()
-        //       ->withErrors($validator)
-        //       ->withInput();
-        // }
-        /**
-         * Create order first
-         * then items
-         * $order = Order::create([
-         *  get current authenticated user id
-         * ])
-         *
-         * Item::create([
-         *  get order id
-         * ])
-         */
     }
 
     /**
@@ -97,17 +79,6 @@ class OrdersController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Order $order)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Order  $order
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Order $order)
     {
         //
     }

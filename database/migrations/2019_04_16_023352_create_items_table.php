@@ -18,7 +18,6 @@ class CreateItemsTable extends Migration
             $table->unsignedInteger('order_id');
             $table->string('item');
             $table->unsignedInteger('quantity');
-            $table->text('note');
             $table->timestamps();
 
             $table->foreign('order_id')

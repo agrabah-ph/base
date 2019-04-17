@@ -9,9 +9,9 @@
                 <p v-for="item in order.items" :key="item.index">
                     <span>{{ item.item }}</span>
                     <span>{{ item.quantity }}</span>
-                    <span>{{ item.note }}</span>
                     <span>{{ item.id }}</span>
                 </p>
+                <p>{{ order.note }}</p>
             </li>
         </ul>
     </div>

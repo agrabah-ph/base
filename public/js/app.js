@@ -1974,25 +1974,28 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Orders",
   data: function data() {
     return {
       item: "",
       quantity: 0,
-      notes: "",
+      note: "",
       items: [],
       messages: []
     };
   },
   methods: {
+    qtyInc: function qtyInc() {
+      this.quantity++;
+    },
+    qtyDec: function qtyDec() {
+      this.quantity--;
+    },
     addItem: function addItem() {
       this.items.push({
         item: this.item,
-        quantity: this.quantity,
-        notes: this.notes
+        quantity: this.quantity
       });
       this.clearForm();
     },
@@ -2000,19 +2003,21 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       this.messages = [];
-      axios.post('/api/order', this.items).then(function (response) {
+      axios({
+        method: 'post',
+        url: '/api/order',
+        data: {
+          items: this.items,
+          note: this.note
+        }
+      }).then(function (response) {
         _this.messages.push(response.data);
 
         _this.items = [];
+        _this.note = "";
       })["catch"](function (err) {
         console.log(err);
       });
-    },
-    qtyInc: function qtyInc() {
-      this.quantity++;
-    },
-    qtyDec: function qtyDec() {
-      this.quantity--;
     },
     removeItem: function removeItem(arr, attr, value) {
       var i = arr.length;
@@ -2028,7 +2033,6 @@ __webpack_require__.r(__webpack_exports__);
     clearForm: function clearForm() {
       this.item = "";
       this.quantity = "";
-      this.notes = "";
     }
   }
 });
@@ -49544,41 +49548,6 @@ var render = function() {
               ])
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "form-group row" }, [
-              _c(
-                "label",
-                {
-                  staticClass: "col-md-4 col-form-label text-md-right",
-                  attrs: { for: "" }
-                },
-                [_vm._v("Notes: ")]
-              ),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-md-6" }, [
-                _c("textarea", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.notes,
-                      expression: "notes"
-                    }
-                  ],
-                  staticClass: "form-control",
-                  attrs: { id: "", col: "5", row: "5" },
-                  domProps: { value: _vm.notes },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.notes = $event.target.value
-                    }
-                  }
-                })
-              ])
-            ]),
-            _vm._v(" "),
             _c("div", { staticClass: "row mt-3" }, [
               _c("div", { staticClass: "col-md-10" }, [
                 _c(
@@ -49595,7 +49564,7 @@ var render = function() {
             _vm._v(" "),
             _vm.items.length
               ? _c("div", { staticClass: "row mt-3" }, [
-                  _c("table", { staticClass: "table" }, [
+                  _c("table", { staticClass: "mt-3 mb-3 table" }, [
                     _vm._m(1),
                     _vm._v(" "),
                     _c(
@@ -49605,8 +49574,6 @@ var render = function() {
                           _c("td", [_vm._v(_vm._s(item.item))]),
                           _vm._v(" "),
                           _c("td", [_vm._v(_vm._s(item.quantity) + "Kg")]),
-                          _vm._v(" "),
-                          _c("td", [_vm._v(_vm._s(item.notes))]),
                           _vm._v(" "),
                           _c("td", [
                             _c(
@@ -49628,10 +49595,49 @@ var render = function() {
                       }),
                       0
                     )
-                  ]),
-                  _vm._v(" "),
-                  _vm._m(2)
+                  ])
                 ])
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.items.length
+              ? _c("div", { staticClass: "form-group row" }, [
+                  _c(
+                    "label",
+                    {
+                      staticClass: "col-md-4 col-form-label text-md-right",
+                      attrs: { for: "" }
+                    },
+                    [_vm._v("Additional Info / Notes: ")]
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-6" }, [
+                    _c("textarea", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.note,
+                          expression: "note"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      attrs: { id: "", col: "5", row: "5" },
+                      domProps: { value: _vm.note },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.note = $event.target.value
+                        }
+                      }
+                    })
+                  ])
+                ])
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.items.length
+              ? _c("div", { staticClass: "row" }, [_vm._m(2)])
               : _vm._e()
           ]
         )
@@ -49667,8 +49673,6 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Quantity")]),
         _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Notes")]),
-        _vm._v(" "),
         _c("th", { attrs: { scope: "col" } })
       ])
     ])
@@ -49679,7 +49683,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-md" }, [
       _c("input", {
-        staticClass: "btn btn-primary float-right",
+        staticClass: "btn btn-primary float-right mt-3",
         attrs: { type: "submit", value: "Place Order" }
       })
     ])
@@ -50208,11 +50212,11 @@ var render = function() {
                 _vm._v(" "),
                 _c("span", [_vm._v(_vm._s(item.quantity))]),
                 _vm._v(" "),
-                _c("span", [_vm._v(_vm._s(item.note))]),
-                _vm._v(" "),
                 _c("span", [_vm._v(_vm._s(item.id))])
               ])
-            })
+            }),
+            _vm._v(" "),
+            _c("p", [_vm._v(_vm._s(order.note))])
           ],
           2
         )

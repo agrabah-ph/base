@@ -34,14 +34,6 @@
                         </div>
 
                     </div>
-
-                    <div class="form-group row">
-                        <label for="" class="col-md-4 col-form-label text-md-right">Notes: </label>
-                        <div class="col-md-6">
-                            <textarea v-model="notes" id="" col="5" row="5" class="form-control"></textarea>
-                        </div>
-                    </div>
-
                    <div class="row mt-3">
                         <div class="col-md-10">
                             <button @click="addItem" type="button" class="btn btn-secondary float-right">Add Item</button>
@@ -49,12 +41,11 @@
                    </div>
 
                     <div class="row mt-3" v-if="items.length">
-                        <table class="table">
+                        <table class="mt-3 mb-3 table">
                             <thead>
                                 <tr>
                                     <th scope="col">Item</th>
                                     <th scope="col">Quantity</th>
-                                    <th scope="col">Notes</th>
                                     <th scope="col"></th>
                                 </tr>
                             </thead>
@@ -62,18 +53,25 @@
                                 <tr v-for="item in items" :key="item.index">
                                     <td>{{ item.item }}</td>
                                     <td>{{ item.quantity }}Kg</td>
-                                    <td>{{ item.notes }}</td>
                                     <td>
                                         <a href="#" class="text-danger" @click.prevent="removeItem(items,'item',item.item)"><i class="fas fa-times"></i></a>
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
+                    </div>
 
-                        <div class="col-md">
-                            <input type="submit" class="btn btn-primary float-right" value="Place Order">
+                    <div v-if="items.length" class="form-group row">
+                        <label for="" class="col-md-4 col-form-label text-md-right">Additional Info / Notes: </label>
+                        <div class="col-md-6">
+                            <textarea v-model="note" id="" col="5" row="5" class="form-control"></textarea>
                         </div>
+                    </div>
 
+                    <div v-if="items.length" class="row">
+                        <div class="col-md">
+                            <input type="submit" class="btn btn-primary float-right mt-3" value="Place Order">
+                        </div>
                     </div>
 
                 </form>
@@ -91,19 +89,21 @@ export default {
         return {
             item: "",
             quantity: 0,
-            notes: "",
+            note: "",
             items: [],
             messages: []
         }
     },
     methods: {
+        qtyInc() { this.quantity++; },
+        qtyDec() { this.quantity--; },
+
         addItem() {
 
             this.items.push({
 
                 item: this.item,
-                quantity: this.quantity,
-                notes: this.notes
+                quantity: this.quantity
 
             });
 
@@ -114,30 +114,29 @@ export default {
 
             this.messages = [];
 
-            axios.post('/api/order',
-                this.items
-            )
+            axios({
+            method: 'post',
+            url: '/api/order',
+            data: {
+                    items: this.items,
+                    note: this.note
+                }
+            })
             .then(response => {
 
                 this.messages.push(response.data);
                 this.items = [];
+                this.note = "";
 
             })
             .catch(err => {
+
                 console.log(err);
+
             })
 
         },
-        qtyInc() {
 
-            this.quantity++;
-
-        },
-        qtyDec() {
-
-            this.quantity--;
-
-        },
         removeItem(arr, attr, value) {
 
             var i = arr.length;
@@ -156,7 +155,6 @@ export default {
 
             this.item = "";
             this.quantity = "";
-            this.notes = "";
 
         }
     }
