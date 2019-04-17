@@ -2788,11 +2788,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 //
 //
 //
@@ -2809,16 +2804,44 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-
+// import {mapGetters} from 'vuex';
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Orders",
-  created: function created() {
-    this.$store.dispatch('GET_ORDERS');
+  data: function data() {
+    return {
+      orders: [],
+      pagination: {}
+    };
   },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['orders']))
+  created: function created() {
+    this.fetchOrders();
+  },
+  methods: {
+    fetchOrders: function fetchOrders() {
+      var _this = this;
+
+      var vm = this;
+      axios.get('/api/orders').then(function (response) {
+        console.log(response);
+        console.log(response.data.data);
+        console.log(response.data.meta);
+        _this.orders = response.data.data;
+        vm.makePagination(response.data.meta, response.data.links);
+      });
+    },
+    makePagination: function makePagination(meta, links) {
+      var pagination = {
+        current_page: meta.current_page,
+        last_page: meta.last_page,
+        next_page_url: links.next,
+        prev_page_url: links.prev
+      };
+    }
+  },
+  computed: {// ...mapGetters([
+    //     'orders'
+    // ]),
+  }
 });
 
 /***/ }),
@@ -50199,12 +50222,6 @@ var render = function() {
           { key: order.index },
           [
             _c("p", [_vm._v(_vm._s(order.user.name))]),
-            _vm._v(" "),
-            _vm._l(order.user, function(client) {
-              return _c("p", { key: client.id }, [
-                _c("span", [_vm._v(_vm._s(client.name))])
-              ])
-            }),
             _vm._v(" "),
             _vm._l(order.items, function(item) {
               return _c("p", { key: item.index }, [

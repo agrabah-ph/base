@@ -9,13 +9,15 @@ use App\Item;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
+use App\Http\Requests;
+use App\Http\Resources\OrderResource;
 
 class OrdersController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware(['role:owner']);
-    }
+    // public function __construct()
+    // {
+    //     $this->middleware(['role:owner']);
+    // }
 
     /**
      * Display a listing of the resource.
@@ -25,9 +27,9 @@ class OrdersController extends Controller
     public function index()
     {
         $orders = Order::orderBy('created_at', 'desc')
-            ->with('user', 'items')->get();
+            ->with('user', 'items')->paginate(10);
 
-        return response()->json($orders);
+        return OrderResource::collection($orders);
     }
 
     /**

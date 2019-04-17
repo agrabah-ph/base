@@ -22,7 +22,8 @@ Route::group(['middleware' => ['auth:api', 'role:owner']], function() {
     Route::get('user-info/{user_id}', 'UserController@getUserInfo');
     Route::get('user-get', 'UserController@get');
     Route::get('province', 'LocationsController@province');
-    Route::get('orders', 'OrdersController@index');
+
     Route::post('order', 'OrdersController@store');
 });
 
+Route::get('orders', 'OrdersController@index');
