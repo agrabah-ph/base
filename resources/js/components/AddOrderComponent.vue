@@ -138,8 +138,8 @@ export default {
             method: 'post',
             url: '/api/order',
             data: {
-                    items: this.items,
-                    note: this.note
+                items: this.items,
+                note: this.note
                 }
             })
             .then(response => {
@@ -191,6 +191,6 @@ textarea {
 }
 .qty-txt {
     border-radius: 0;
-    width: 45px;
+    width: 55px;
 }
 </style>

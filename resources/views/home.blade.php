@@ -25,7 +25,7 @@
             <div class="col-md-10">
                 <div class="card m-auto">
                     <div class="card-header">
-                        Order | Client and owner
+                        Add Order | Client and owner |
                     </div>
                     <add-order></add-order>
                     @if($errors->any())
@@ -40,6 +40,7 @@
 
     @hasrole(" vendor|owner ")
     <div class="row justify-content-center mt-3">
+        Orders | Client, Vendor, owner |
         <client-orders :user="{{ json_encode(Auth::user()) }}"></client-orders>
     </div>
     @endrole

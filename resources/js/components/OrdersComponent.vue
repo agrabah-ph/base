@@ -15,20 +15,22 @@
                 </ul>
             </div>
         </div>
-        <table class="table">
+        <table class="table border">
             <thead>
                 <tr>
                     <th scope="col">Client</th>
                     <th scope="col">Notes / Description</th>
+                    <th scope="col">Bids</th>
                     <th scope="col"></th>
                 </tr>
             </thead>
             <tbody>
                 <tr v-for="order in orders" :key="order.index">
                     <th scope="row">{{ order.user.name }}</th>
-                    <td style="max-width: 225px">
+                    <td style="max-width: 175px">
                         {{ order.note }}
                     </td>
+                    <td>{{ order.bids.length }}</td>
                     <td>
                         <a :href="'order/'+ order.id" class="btn btn-primary d-block m-auto">View</a>
                     </td>

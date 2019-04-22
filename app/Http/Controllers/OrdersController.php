@@ -30,7 +30,7 @@ class OrdersController extends Controller
     public function index()
     {
         $orders = Order::orderBy('created_at', 'desc')
-            ->with('user', 'items')->paginate(5);
+            ->with('user', 'items', 'bids')->paginate(5);
 
         return OrderResource::collection($orders);
     }

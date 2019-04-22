@@ -56,14 +56,15 @@
                     @role("vendor|owner")
                         <a href="" class="btn btn-primary">Bid</a>
                     @endrole
-                    @role("client|owner")
+
+                    @if(Auth::user())
                         <a href="" class="btn btn-warning">Edit</a>
-                        <form action="/order/{{ $order->id }}">
+                        <form action="/order/{{ $order->id }}" class="d-inline">
                             @csrf
                             @method('delete')
-                            <input type="submit" value="Delete" class="btn btn-danger">
+                            <input type="submit" value="Close Bidding" class="btn btn-success">
                         </form>
-                    @endrole
+                    @endif
                 </div>
 
             </div>

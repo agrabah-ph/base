@@ -2844,6 +2844,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 // import {mapGetters} from 'vuex';
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['user'],
@@ -7608,7 +7610,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\ntextarea[data-v-6ae36d16] {\n    resize: none;\n}\n.qty-btn[data-v-6ae36d16] {\n    border-radius: 0;\n}\n.qty-txt[data-v-6ae36d16] {\n    border-radius: 0;\n    width: 45px;\n}\n", ""]);
+exports.push([module.i, "\ntextarea[data-v-6ae36d16] {\n    resize: none;\n}\n.qty-btn[data-v-6ae36d16] {\n    border-radius: 0;\n}\n.qty-txt[data-v-6ae36d16] {\n    border-radius: 0;\n    width: 55px;\n}\n", ""]);
 
 // exports
 
@@ -50345,7 +50347,7 @@ var render = function() {
       ])
     ]),
     _vm._v(" "),
-    _c("table", { staticClass: "table" }, [
+    _c("table", { staticClass: "table border" }, [
       _vm._m(0),
       _vm._v(" "),
       _c(
@@ -50356,13 +50358,15 @@ var render = function() {
               _vm._v(_vm._s(order.user.name))
             ]),
             _vm._v(" "),
-            _c("td", { staticStyle: { "max-width": "225px" } }, [
+            _c("td", { staticStyle: { "max-width": "175px" } }, [
               _vm._v(
                 "\n                    " +
                   _vm._s(order.note) +
                   "\n                "
               )
             ]),
+            _vm._v(" "),
+            _c("td", [_vm._v(_vm._s(order.bids.length))]),
             _vm._v(" "),
             _c("td", [
               _c(
@@ -50391,6 +50395,8 @@ var staticRenderFns = [
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Client")]),
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Notes / Description")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Bids")]),
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } })
       ])
