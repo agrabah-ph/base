@@ -2,6 +2,7 @@
 
 @section('content')
 <div class="container">
+
     {{-- <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -39,7 +40,7 @@
 
     @hasrole(" vendor|owner ")
     <div class="row justify-content-center mt-3">
-        <client-orders></client-orders>
+        <client-orders :user="{{ json_encode(Auth::user()) }}"></client-orders>
     </div>
     @endrole
 </div>

@@ -12,11 +12,14 @@ use Illuminate\Validation\Rule;
 use App\Http\Requests;
 use App\Http\Resources\OrderResource;
 
+use App\Events\OrderPlaced;
+
 class OrdersController extends Controller
 {
     public function __construct()
     {
         $this->middleware(['role:owner']);
+        // $this->middleware(['role:client']);
     }
 
     /**
@@ -55,6 +58,8 @@ class OrdersController extends Controller
         //         ->withInput();
         // }
 
+        // $user = Auth::user();
+
         $order = Order::create([
             'user_id' => auth()->id(),
             'note' => $request['note']
@@ -71,6 +76,8 @@ class OrdersController extends Controller
             ]);
         }
 
+        // broadcast(new OrderPlaced($user, $order, $items))->toOthers();
+
         return response()->json("Thank you. Your Order has been added.");
     }
 
@@ -82,7 +89,7 @@ class OrdersController extends Controller
      */
     public function show(Order $order)
     {
-        //
+        return view('orders.show', compact('order'));
     }
 
     /**

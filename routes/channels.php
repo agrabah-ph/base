@@ -18,3 +18,7 @@ Broadcast::channel('App.User.{id}', function ($user, $id) {
 Broadcast::channel('search', function() {
     return true;
 });
+
+Broadcast::channel('orders', function() {
+    return Auth::check();
+});

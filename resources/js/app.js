@@ -41,5 +41,10 @@ Vue.component('client-orders', require('./components/OrdersComponent.vue').defau
 
 const app = new Vue({
     el: '#app',
-    store
+    store,
+    data() {
+        return {
+
+        }
+    },
 });

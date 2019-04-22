@@ -37,3 +37,5 @@ Route::get('/test', function() {echo 'test';})->middleware('verified');
 
 Route::post('/volunteer', 'WelcomeController@volunteer');
 Route::post('/contact', 'WelcomeController@contact');
+
+Route::get('/order/{order}', 'OrdersController@show');

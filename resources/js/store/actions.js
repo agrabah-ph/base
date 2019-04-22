@@ -28,6 +28,7 @@ let actions = {
             })
     },
     GET_ORDERS({commit}) {
+
         Axios.get('/api/orders')
         .then( res => {
             {
@@ -39,6 +40,7 @@ let actions = {
             console.log(err)
 
         })
+        
     }
 }
 

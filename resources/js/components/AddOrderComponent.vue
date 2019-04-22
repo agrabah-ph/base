@@ -39,6 +39,13 @@
                             <button @click="addItem" type="button" class="btn btn-secondary float-right">Add Item</button>
                         </div>
                    </div>
+                   <div class="row mt-3">
+                       <div class="col-md-10">
+                           <div v-if="errors.length" class="alert alert-danger mt-3">
+                                <strong v-for="error in errors" :key="error.index">{{ error }}</strong>
+                            </div>
+                       </div>
+                   </div>
 
                     <div class="row mt-3" v-if="items.length">
                         <table class="mt-3 mb-3 table">
@@ -54,7 +61,7 @@
                                     <td>{{ item.item }}</td>
                                     <td>{{ item.quantity }}Kg</td>
                                     <td>
-                                        <a href="#" class="text-danger" @click.prevent="removeItem(items,'item',item.item)"><i class="fas fa-times"></i></a>
+                                        <a href="#" class="text-danger" @click.prevent="removeItem(items,'item',item.item)"><i class="fas fa-times"></i> Remove</a>
                                     </td>
                                 </tr>
                             </tbody>
@@ -91,7 +98,8 @@ export default {
             quantity: 0,
             note: "",
             items: [],
-            messages: []
+            messages: [],
+            errors: []
         }
     },
     methods: {
@@ -100,15 +108,27 @@ export default {
 
         addItem() {
 
-            this.items.push({
+            this.errors = [];
 
-                item: this.item,
-                quantity: this.quantity
+            if(!this.item) {
 
-            });
+                this.errors.push("Item is required");
 
-            this.clearForm();
+            }
+            else if (!this.quantity) {
 
+                this.errors.push("Quantity is required");
+
+            }
+            else {
+
+                this.items.push({
+                    item: this.item,
+                    quantity: this.quantity
+                });
+
+                 this.clearForm();
+            }
         },
         addOrder() {
 
@@ -138,14 +158,14 @@ export default {
         },
 
         removeItem(arr, attr, value) {
-
             var i = arr.length;
+
             while(i--){
+
                 if( arr[i] && arr[i].hasOwnProperty(attr) && (arguments.length > 2 && arr[i][attr] === value )){
-
-                        arr.splice(i,1);
-
+                    arr.splice(i,1);
                 }
+
             }
 
             return arr;

@@ -1974,6 +1974,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Orders",
   data: function data() {
@@ -1982,7 +1989,8 @@ __webpack_require__.r(__webpack_exports__);
       quantity: 0,
       note: "",
       items: [],
-      messages: []
+      messages: [],
+      errors: []
     };
   },
   methods: {
@@ -1993,11 +2001,19 @@ __webpack_require__.r(__webpack_exports__);
       this.quantity--;
     },
     addItem: function addItem() {
-      this.items.push({
-        item: this.item,
-        quantity: this.quantity
-      });
-      this.clearForm();
+      this.errors = [];
+
+      if (!this.item) {
+        this.errors.push("Item is required");
+      } else if (!this.quantity) {
+        this.errors.push("Quantity is required");
+      } else {
+        this.items.push({
+          item: this.item,
+          quantity: this.quantity
+        });
+        this.clearForm();
+      }
     },
     addOrder: function addOrder() {
       var _this = this;
@@ -2828,16 +2844,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
 // import {mapGetters} from 'vuex';
 /* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['user'],
   name: "Orders",
   data: function data() {
     return {
@@ -2846,7 +2855,11 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   created: function created() {
+    console.log(this.user);
     this.fetchOrders();
+    Echo["private"]('orders').listen('.OrderPlaced', function (e) {
+      console.log(e);
+    });
   },
   methods: {
     fetchOrders: function fetchOrders(page_url) {
@@ -49616,6 +49629,23 @@ var render = function() {
               ])
             ]),
             _vm._v(" "),
+            _c("div", { staticClass: "row mt-3" }, [
+              _c("div", { staticClass: "col-md-10" }, [
+                _vm.errors.length
+                  ? _c(
+                      "div",
+                      { staticClass: "alert alert-danger mt-3" },
+                      _vm._l(_vm.errors, function(error) {
+                        return _c("strong", { key: error.index }, [
+                          _vm._v(_vm._s(error))
+                        ])
+                      }),
+                      0
+                    )
+                  : _vm._e()
+              ])
+            ]),
+            _vm._v(" "),
             _vm.items.length
               ? _c("div", { staticClass: "row mt-3" }, [
                   _c("table", { staticClass: "mt-3 mb-3 table" }, [
@@ -49642,7 +49672,10 @@ var render = function() {
                                   }
                                 }
                               },
-                              [_c("i", { staticClass: "fas fa-times" })]
+                              [
+                                _c("i", { staticClass: "fas fa-times" }),
+                                _vm._v(" Remove")
+                              ]
                             )
                           ])
                         ])
@@ -50323,25 +50356,7 @@ var render = function() {
               _vm._v(_vm._s(order.user.name))
             ]),
             _vm._v(" "),
-            _c(
-              "td",
-              _vm._l(order.items, function(item) {
-                return _c("p", { key: item.index }, [_vm._v(_vm._s(item.item))])
-              }),
-              0
-            ),
-            _vm._v(" "),
-            _c(
-              "td",
-              _vm._l(order.items, function(quantity) {
-                return _c("p", { key: quantity.index }, [
-                  _vm._v(_vm._s(quantity.quantity) + " Kg")
-                ])
-              }),
-              0
-            ),
-            _vm._v(" "),
-            _c("td", { staticStyle: { "max-width": "175px" } }, [
+            _c("td", { staticStyle: { "max-width": "225px" } }, [
               _vm._v(
                 "\n                    " +
                   _vm._s(order.note) +
@@ -50349,7 +50364,16 @@ var render = function() {
               )
             ]),
             _vm._v(" "),
-            _vm._m(1, true)
+            _c("td", [
+              _c(
+                "a",
+                {
+                  staticClass: "btn btn-primary d-block m-auto",
+                  attrs: { href: "order/" + order.id }
+                },
+                [_vm._v("View")]
+              )
+            ])
           ])
         }),
         0
@@ -50366,22 +50390,10 @@ var staticRenderFns = [
       _c("tr", [
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Client")]),
         _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Items")]),
-        _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Quantity")]),
-        _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Notes")]),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Notes / Description")]),
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } })
       ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("td", [
-      _c("button", { staticClass: "btn btn-success" }, [_vm._v("Bid")])
     ])
   }
 ]
@@ -66182,7 +66194,10 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('client-orders', __webpack_
 
 var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
   el: '#app',
-  store: _store_index__WEBPACK_IMPORTED_MODULE_1__["default"]
+  store: _store_index__WEBPACK_IMPORTED_MODULE_1__["default"],
+  data: function data() {
+    return {};
+  }
 });
 
 /***/ }),
