@@ -1,10 +1,6 @@
 <template>
     <div class="m-3">
         <div v-if="!edit" class="row justify-content-center">
-
-            <div class="col-sm">
-                <img src="https://via.placeholder.com/150" class="rounded-circle d-block m-auto">
-            </div>
             <div class="col-sm">
                 <p>{{ user.name }}</p>
                 <p>{{ user.roles[0].name }}</p>

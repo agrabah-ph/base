@@ -29,7 +29,7 @@ Vue.component('users', require('./components/UsersComponent.vue').default);
 Vue.component('loginlogs-table', require('./components/LoginLogsTableComponent.vue').default);
 Vue.component('user-location', require('./components/LocationComponent.vue').default);
 Vue.component('user-profile', require('./components/ProfileComponent.vue').default);
-Vue.component('purchase-orders', require('./components/POComponent.vue').default);
+Vue.component('purchase-orders', require('./components/PurchaseOrdersComponent.vue').default);
 Vue.component('add-order', require('./components/AddOrderComponent.vue').default);
 Vue.component('client-orders', require('./components/OrdersComponent.vue').default);
 
@@ -42,9 +42,4 @@ Vue.component('client-orders', require('./components/OrdersComponent.vue').defau
 const app = new Vue({
     el: '#app',
     store,
-    data() {
-        return {
-
-        }
-    },
 });

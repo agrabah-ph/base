@@ -40,7 +40,7 @@ let actions = {
             console.log(err)
 
         })
-        
+
     }
 }
 

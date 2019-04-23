@@ -29,10 +29,20 @@ class OrdersController extends Controller
      */
     public function index()
     {
-        $orders = Order::orderBy('created_at', 'desc')
+        $orders = Order::where('status', 'Open')->orderBy('created_at', 'desc')
             ->with('user', 'items', 'bids')->paginate(5);
 
         return OrderResource::collection($orders);
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        return view('orders.create');
     }
 
     /**
@@ -43,26 +53,10 @@ class OrdersController extends Controller
      */
     public function store(Request $request)
     {
-        // return response()->json($request->all());
-
-        // $validator = Validator::make($request->all(), [
-        //     'note' => ['nullable', 'string', 'min:1', 'max:399'],
-        //     'item' => ['required', 'string', 'min:1', 'max:199'],
-        //     'quantity' => ['required', 'integer']
-        // ]);
-
-        // if($validator->fails())
-        // {
-        //     return back()
-        //         ->withErrors($validator)
-        //         ->withInput();
-        // }
-
-        // $user = Auth::user();
-
         $order = Order::create([
             'user_id' => auth()->id(),
-            'note' => $request['note']
+            'description' => $request['description'],
+            'bid_end_date' => $request['bid_end_date'],
         ]);
 
         $items = $request->json()->all();
@@ -87,9 +81,11 @@ class OrdersController extends Controller
      * @param  \App\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function show(Order $order)
+    public function show($id)
     {
-        return view('orders.show', compact('order'));
+        $order = Order::where('id', $id)->with('user', 'items')->get();
+
+        return response()->json($order);
     }
 
     /**

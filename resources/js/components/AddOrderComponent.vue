@@ -1,7 +1,7 @@
 <template>
     <div class="card-body">
-        <div class="row m-auto">
-            <div class="col-md-8 m-auto p-3">
+        <div class="row justify-content-center">
+            <div class="col-md-8 m-auto">
 
                 <form @submit.prevent="addOrder">
 
@@ -14,15 +14,14 @@
 
                     <div class="form-group row">
                         <label class="col-md-4 col-form-label text-md-right" for="">Add Item: </label>
-                        <div class="col-md-6">
+                        <div class="col-md-7">
                             <input type="text" class="form-control" v-model="item">
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <label for="" class="col-md-4 col-form-label text-md-right">Quantity:</label>
-
-                        <div class="col-md-4 d-flex">
+                        <div class="col-md-7 d-flex">
                             <button type="button" class="btn btn-secondary btn-number qty-btn" @click="qtyDec">
                                 <i class="fas fa-minus"></i>
                             </button>
@@ -32,55 +31,93 @@
                             </button>
                             <p style="font-size: 12pt;" class="mt-auto mb-auto ml-1">Kg</p>
                         </div>
-
                     </div>
-                   <div class="row mt-3">
+
+                    <div class="form-group row">
+                        <label for="" class="col-md-4 col-form-label text-md-right">Category: </label>
+                        <div class="col-md-7">
+                            <select v-model="mainCategory" id="" class="custom-select form-control">
+                                <option value="live">Live</option>
+                                <option value="fresh">Fresh</option>
+                                <option value="frozen">Frozen</option>
+                                <option value="dried">Dried</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="" class="col-md-4 col-form-label text-md-right">Sub Category: </label>
+                        <div class="col-md-7">
+                            <select v-model="subCategory" id="" class="custom-select form-control">
+                                <option value="fish">Fish</option>
+                                <option value="roe">Roe</option>
+                                <option value="crustaceans">Crustaceans</option>
+                                <option value="molluscs">Molluscs</option>
+                                <option value="echinoderms">Echinoderms</option>
+                                <option value="medusozoa">Medusozoa</option>
+                            </select>
+                        </div>
+                    </div>
+
+                   <div class="row mt-3 justify-content-center">
                         <div class="col-md-10">
                             <button @click="addItem" type="button" class="btn btn-secondary float-right">Add Item</button>
                         </div>
                    </div>
-                   <div class="row mt-3">
-                       <div class="col-md-10">
+
+                   <div class="row mt-3 justify-content-center">
+                       <div class="col-md-8">
                            <div v-if="errors.length" class="alert alert-danger mt-3">
                                 <strong v-for="error in errors" :key="error.index">{{ error }}</strong>
                             </div>
                        </div>
                    </div>
 
-                    <div class="row mt-3" v-if="items.length">
-                        <table class="mt-3 mb-3 table">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Item</th>
-                                    <th scope="col">Quantity</th>
-                                    <th scope="col"></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr v-for="item in items" :key="item.index">
-                                    <td>{{ item.item }}</td>
-                                    <td>{{ item.quantity }}Kg</td>
-                                    <td>
-                                        <a href="#" class="text-danger" @click.prevent="removeItem(items,'item',item.item)"><i class="fas fa-times"></i> Remove</a>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <div v-if="items.length" class="form-group row">
-                        <label for="" class="col-md-4 col-form-label text-md-right">Additional Info / Notes: </label>
-                        <div class="col-md-6">
-                            <textarea v-model="note" id="" col="5" row="5" class="form-control"></textarea>
+                    <div class="mt-3" v-if="items.length">
+                        <div class="row">
+                            <table class="mt-3 mb-3 table table-striped border">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Item</th>
+                                        <th scope="col">Quantity</th>
+                                        <th scope="col">Category</th>
+                                        <th scope="col">Sub Category</th>
+                                        <th scope="col"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr v-for="item in items" :key="item.index">
+                                        <td>{{ item.item }}</td>
+                                        <td>{{ item.quantity }}Kg</td>
+                                        <td>{{ item.mainCategory }}</td>
+                                        <td>{{ item.subCategory }}</td>
+                                        <td>
+                                            <a href="#" class="text-danger" @click.prevent="removeItem(items,'item',item.item)"><i class="fas fa-times"></i> Remove</a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
-                    </div>
 
-                    <div v-if="items.length" class="row">
-                        <div class="col-md">
-                            <input type="submit" class="btn btn-primary float-right mt-3" value="Place Order">
+                        <div class="form-group row justify-content-center">
+                            <label for="" class="col-md-4 col-form-label text-md-right">Additional Info / descriptions: </label>
+                            <div class="col-md-7">
+                                <textarea v-model="description" id="" col="5" row="10" class="form-control"></textarea>
+                            </div>
                         </div>
-                    </div>
 
+                        <div class="form-group row justify-content-center">
+                            <label for="" class="col-md-4 col-form-label text-md-right">Bid end date: </label>
+                            <div class="col-md-7">
+                                <input type="datetime-local" class="form-control" v-model="bidEndDate">
+                            </div>
+                        </div>
+
+                        <div class="form-group row justify-content-center">
+                            <input type="submit" class="btn btn-primary mt-3" value="Place Order">
+                        </div>
+
+                    </div>
                 </form>
 
             </div>
@@ -96,10 +133,14 @@ export default {
         return {
             item: "",
             quantity: 0,
-            note: "",
+            mainCategory: "",
+            subCategory: "",
+            description: "",
+            bidEndDate: "",
             items: [],
             messages: [],
-            errors: []
+            errors: [],
+
         }
     },
     methods: {
@@ -112,19 +153,31 @@ export default {
 
             if(!this.item) {
 
-                this.errors.push("Item is required");
+                this.errors.push("Item is required.");
 
-            }
-            else if (!this.quantity) {
+            } else if (!this.quantity) {
 
-                this.errors.push("Quantity is required");
+                this.errors.push("Quantity is required.");
 
-            }
-            else {
+            } else if(!this.mainCategory) {
+
+                this.errors.push("Category is required.");
+
+            } else if(!this.subCategory) {
+
+                this.errors.push("Sub-Category is required.");
+
+            } else if (this.items.length >= 3) {
+
+                this.errors.push("Cannot add more than 3 items.");
+
+            } else {
 
                 this.items.push({
                     item: this.item,
-                    quantity: this.quantity
+                    quantity: this.quantity,
+                    mainCategory: this.mainCategory,
+                    subCategory: this.subCategory
                 });
 
                  this.clearForm();
@@ -134,26 +187,28 @@ export default {
 
             this.messages = [];
 
-            axios({
-            method: 'post',
-            url: '/api/order',
-            data: {
-                items: this.items,
-                note: this.note
-                }
-            })
-            .then(response => {
+            console.log(this.items, this.description, this.bidEndDate);
 
-                this.messages.push(response.data);
-                this.items = [];
-                this.note = "";
+            // axios({
+            // method: 'post',
+            // url: '/api/order',
+            // data: {
+            //     items: this.items,
+            //     description: this.description
+            //     }
+            // })
+            // .then(response => {
 
-            })
-            .catch(err => {
+            //     this.messages.push(response.data);
+            //     this.items = [];
+            //     this.description = "";
 
-                console.log(err);
+            // })
+            // .catch(err => {
 
-            })
+            //     console.log(err);
+
+            // })
 
         },
 
@@ -175,6 +230,8 @@ export default {
 
             this.item = "";
             this.quantity = "";
+            this.mainCategory = "";
+            this.subCategory = "";
 
         }
     }

@@ -6,7 +6,7 @@
     {{-- <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Dashboard</div>
+                <div class="card-header">Purchase Orders</div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -14,29 +14,17 @@
                             {{ session('status') }}
                         </div>
                     @endif
+
                     You are logged in!
+
+                    <p>
+                        {{ ucfirst(Auth::user()->name) }}
+                    </p>
+
                 </div>
             </div>
         </div>
     </div> --}}
-
-    @hasrole(" client|owner ")
-        <div class="row justify-content-center">
-            <div class="col-md-10">
-                <div class="card m-auto">
-                    <div class="card-header">
-                        Add Order | Client and owner |
-                    </div>
-                    <add-order></add-order>
-                    @if($errors->any())
-                        @foreach ($errors->all() as $error)
-                            {{ $error }}
-                        @endforeach
-                    @endif
-                </div>
-            </div>
-        </div>
-    @endrole
 
     @hasrole(" vendor|owner ")
     <div class="row justify-content-center mt-3">

@@ -15,11 +15,13 @@
                 </ul>
             </div>
         </div>
+
         <table class="table border">
+
             <thead>
                 <tr>
                     <th scope="col">Client</th>
-                    <th scope="col">Notes / Description</th>
+                    <th scope="col">Description</th>
                     <th scope="col">Bids</th>
                     <th scope="col"></th>
                 </tr>
@@ -28,20 +30,66 @@
                 <tr v-for="order in orders" :key="order.index">
                     <th scope="row">{{ order.user.name }}</th>
                     <td style="max-width: 175px">
-                        {{ order.note }}
+                        {{ cropText(order.description) }}
                     </td>
                     <td>{{ order.bids.length }}</td>
                     <td>
-                        <a :href="'order/'+ order.id" class="btn btn-primary d-block m-auto">View</a>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#viewOrder" @click="getOrder(order.id)">
+                            View
+                        </button>
                     </td>
                 </tr>
             </tbody>
+
         </table>
+
+        <div class="modal fade" id="viewOrder" tabindex="-1" role="dialog" aria-labelledby="ModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                <div class="modal-content" v-for="order in viewOrder" :key="order.id">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="ModalLongTitle">{{ order.user.name }}</h5>
+
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Dropdown button
+                            </button>
+                            <button type="button" id="dropdownMenu" v-if="order.user.id == user.id" class="close">
+                                <i class="fas fa-angle-down"></i>
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" href="#">Action</a>
+                                <a class="dropdown-item" href="#">Another action</a>
+                                <a class="dropdown-item" href="#">Something else here</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-body">
+                        <p>{{ order.description }}</p>
+                        <ul class="list-group">
+                            <li class="list-group-item d-flex justify-content-around" v-for="item in order.items" :key="item.id">
+                                <span>{{ item.item }}</span>
+                                <span>{{ item.quantity }}&nbsp;Kg</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="row justify-content-between p-3">
+                        <div class="col-md">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                        <div class="col-md">
+                            <button type="button" class="btn btn-success float-right">Bid</button>
+                            <button type="button" class="btn btn-success float-right">Close Bidding</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 </template>
 
 <script>
-// import {mapGetters} from 'vuex';
+
 export default {
     props: ['user'],
     name: "Orders",
@@ -49,20 +97,12 @@ export default {
         return {
             orders: [],
             pagination: {},
+            viewOrder: []
         }
     },
     created() {
 
-        console.log(this.user);
-
         this.fetchOrders();
-
-        Echo.private('orders')
-        .listen('.OrderPlaced', function (e) {
-
-            console.log(e);
-
-        })
 
     },
     methods: {
@@ -82,23 +122,48 @@ export default {
         },
 
         makePagination(meta, links) {
+
             let pagination = {
                 current_page: meta.current_page,
                 last_page: meta.last_page,
                 next_page_url: links.next,
                 prev_page_url: links.prev
             }
+
             this.pagination = pagination;
+        },
+
+        cropText(text) {
+
+            if(text.length >= 65) {
+
+                return text.slice(0, 65) + "...";
+
+            } else {
+
+                return text
+
+            }
+
+        },
+
+        getOrder(orderId) {
+
+            this.viewOrder = [];
+
+            axios.get('/api/order/' + orderId)
+            .then( response => {
+
+                this.viewOrder = response.data;
+
+            })
+            .catch( error => {
+
+                console.log(error)
+
+            })
+
         }
     },
-    computed: {
-        // ...mapGetters([
-        //     'orders'
-        // ]),
-    }
 }
 </script>
-
-<style>
-
-</style>

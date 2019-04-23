@@ -31,6 +31,7 @@ Route::group(['middleware' => ['role:client|vendor']], function() {
 
 Route::group(['middleware' => 'verified'], function() {
     Route::get('/purchaseorders', 'HomeController@purchaseorders')->name('purchase.orders');
+    Route::get('/order-add', 'OrdersController@create')->name('purchase.add');
 });
 
 Route::get('/test', function() {echo 'test';})->middleware('verified');
@@ -38,4 +39,4 @@ Route::get('/test', function() {echo 'test';})->middleware('verified');
 Route::post('/volunteer', 'WelcomeController@volunteer');
 Route::post('/contact', 'WelcomeController@contact');
 
-Route::get('/order/{order}', 'OrdersController@show');
+

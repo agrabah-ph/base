@@ -16,7 +16,8 @@ class CreateOrdersTable extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('user_id');
-            $table->text('note');
+            $table->text('description');
+            $table->dateTime('bid_end_date');
             $table->timestamps();
 
             $table->foreign('user_id')

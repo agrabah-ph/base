@@ -16,8 +16,9 @@ class CreateBidsTable extends Migration
         Schema::create('bids', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('order_id');
-            $table->unsignedInteger('price');
+            $table->unsignedInteger('offer');
             $table->text('message');
+            $table->dateTime('delivery_date_time');
             $table->timestamps();
 
             $table->foreign('order_id')
