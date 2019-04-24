@@ -115,10 +115,8 @@ export default {
 
             axios.get(page_url)
             .then( response => {
-
                 this.orders = response.data.data;
                 vm.makePagination(response.data.meta, response.data.links);
-
             })
 
         },

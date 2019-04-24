@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 use App\Http\Requests;
 use App\Http\Resources\OrderResource;
+use Illuminate\Support\Facades\DB;
 
 use App\Events\OrderPlaced;
 
@@ -18,7 +19,7 @@ class OrdersController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['role:owner']);
+        //$this->middleware(['role:owner']);
         // $this->middleware(['role:client']);
     }
 
@@ -29,7 +30,7 @@ class OrdersController extends Controller
      */
     public function index()
     {
-        $orders = Order::where('bid_end_date','<' ,'Now()')->orderBy('created_at', 'desc')
+        $orders = Order::where('bid_end_date', '>' , DB::raw('Now()'))->orderBy('created_at', 'desc')
             ->with('user', 'items', 'bids')->paginate(5);
 
         return OrderResource::collection($orders);
@@ -53,9 +54,6 @@ class OrdersController extends Controller
      */
     public function store(Request $request)
     {
-
-        return response()->json($request);
-
         $order = Order::create([
             'user_id' => auth()->id(),
             'description' => $request['description'],
@@ -75,7 +73,7 @@ class OrdersController extends Controller
             ]);
         }
 
-        broadcast(new OrderPlaced($user, $order, $items))->toOthers();
+        //broadcast(new OrderPlaced($user, $order, $items))->toOthers();
 
         return response()->json("Thank you. Your Order has been added.");
     }
@@ -135,6 +133,6 @@ class OrdersController extends Controller
      */
     public function userPurchaseOrders()
     {
-        return OrderResource::collection(auth()->user()->orders);
+        return response()->json(auth()->id());
     }
 }

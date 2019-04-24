@@ -192,8 +192,6 @@ export default {
                 data: {
                     items: this.items,
                     description: this.description,
-                    category: this.category,
-                    classification: this.classification,
                     bidEndDate: this.bidEndDate
                 }
             })

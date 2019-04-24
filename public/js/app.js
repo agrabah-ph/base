@@ -2067,15 +2067,12 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       this.messages = [];
-      console.log(this.items, this.description, this.bidEndDate);
       axios({
         method: 'post',
         url: '/api/order',
         data: {
           items: this.items,
           description: this.description,
-          category: this.category,
-          classification: this.classification,
           bidEndDate: this.bidEndDate
         }
       }).then(function (response) {
@@ -2083,6 +2080,7 @@ __webpack_require__.r(__webpack_exports__);
 
         _this.items = [];
         _this.description = "";
+        _this.bidEndDate = "";
       })["catch"](function (err) {
         console.log(err);
       });
@@ -3085,7 +3083,55 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-/* harmony default export */ __webpack_exports__["default"] = ({});
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "purchaseOrders",
+  data: function data() {
+    return {
+      status: 'all'
+    };
+  },
+  created: function created() {
+    this.getOwnPO();
+  },
+  methods: {
+    getOwnPO: function getOwnPO() {
+      axios.get('/api/userPurchaseOrders').then(function (response) {
+        console.log(response);
+      });
+    }
+  }
+});
 
 /***/ }),
 
@@ -50957,9 +51003,92 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div")
+  return _c("div", { staticClass: "container" }, [
+    _c("h4", [_vm._v("Purchase Orders")]),
+    _vm._v(" "),
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "form-group col-md-2" }, [
+        _c("label", { attrs: { for: "status" } }, [_vm._v("Status: ")]),
+        _vm._v(" "),
+        _c(
+          "select",
+          {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.status,
+                expression: "status"
+              }
+            ],
+            staticClass: "form-control custom-select",
+            attrs: { id: "" },
+            on: {
+              change: function($event) {
+                var $$selectedVal = Array.prototype.filter
+                  .call($event.target.options, function(o) {
+                    return o.selected
+                  })
+                  .map(function(o) {
+                    var val = "_value" in o ? o._value : o.value
+                    return val
+                  })
+                _vm.status = $event.target.multiple
+                  ? $$selectedVal
+                  : $$selectedVal[0]
+              }
+            }
+          },
+          [
+            _c("option", { attrs: { value: "all" } }, [_vm._v("All")]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "Active" } }, [_vm._v("Active")]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "Expired" } }, [_vm._v("Expired")])
+          ]
+        )
+      ])
+    ]),
+    _vm._v(" "),
+    _vm._m(0)
+  ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("table", { staticClass: "table table-striped border" }, [
+      _c("thead", [
+        _c("tr", [
+          _c("th", { attrs: { scope: "col" } }, [_vm._v("Order #")]),
+          _vm._v(" "),
+          _c("th", { attrs: { scope: "col" } }, [_vm._v("Bidders")]),
+          _vm._v(" "),
+          _c("th", { attrs: { scope: "col" } }, [_vm._v("Bid end date")]),
+          _vm._v(" "),
+          _c("th", { attrs: { scope: "col" } }, [_vm._v("Status")]),
+          _vm._v(" "),
+          _c("th", { attrs: { scope: "col" } })
+        ])
+      ]),
+      _vm._v(" "),
+      _c("tbody", [
+        _c("tr", [
+          _c("th", { attrs: { scope: "row" } }, [_vm._v("1")]),
+          _vm._v(" "),
+          _c("td", [_vm._v("8")]),
+          _vm._v(" "),
+          _c("td", [_vm._v("April 30, 2019")]),
+          _vm._v(" "),
+          _c("td", { staticClass: "text-success" }, [_vm._v("Active")]),
+          _vm._v(" "),
+          _c("td", [_c("a", { attrs: { href: "#" } }, [_vm._v("View")])])
+        ])
+      ])
+    ])
+  }
+]
 render._withStripped = true
 
 

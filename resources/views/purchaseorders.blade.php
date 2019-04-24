@@ -3,14 +3,11 @@
 @section('content')
     <div class="container">
 
-        <!-- PO Boost -->
+        <purchase-orders></purchase-orders>
 
-        <!-- Expired POs > Renew -->
         <a href="{{ route('purchase.add') }}" class="btn btn-lg btn-success mx-auto" id="add_user">
             Add Order
         </a>
-        <!-- Active POs -->
-        <purchase-orders></purchase-orders>
 
     </div>
 @endsection
