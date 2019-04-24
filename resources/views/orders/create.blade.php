@@ -23,6 +23,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
+
     <div id="app">
         <nav class="navbar navbar-dark bg-primary">
             <a class="navbar-brand" href="{{ route('purchase.orders') }}"><i class="fas fa-arrow-left"></i>&nbsp;&nbsp;&nbsp;Cancel</a>

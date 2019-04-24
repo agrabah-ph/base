@@ -18,8 +18,8 @@ class CreateItemsTable extends Migration
             $table->unsignedInteger('order_id');
             $table->string('item');
             $table->unsignedInteger('quantity');
-            $table->string('main_category');
-            $table->string('sub_category');
+            $table->string('category');
+            $table->string('classification');
             $table->timestamps();
 
             $table->foreign('order_id')

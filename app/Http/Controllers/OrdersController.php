@@ -29,7 +29,7 @@ class OrdersController extends Controller
      */
     public function index()
     {
-        $orders = Order::where('status', 'Open')->orderBy('created_at', 'desc')
+        $orders = Order::where('bid_end_date','<' ,'Now()')->orderBy('created_at', 'desc')
             ->with('user', 'items', 'bids')->paginate(5);
 
         return OrderResource::collection($orders);
@@ -53,10 +53,13 @@ class OrdersController extends Controller
      */
     public function store(Request $request)
     {
+
+        return response()->json($request);
+
         $order = Order::create([
             'user_id' => auth()->id(),
             'description' => $request['description'],
-            'bid_end_date' => $request['bid_end_date'],
+            'bid_end_date' => $request['bidEndDate'],
         ]);
 
         $items = $request->json()->all();
@@ -67,10 +70,12 @@ class OrdersController extends Controller
                 'order_id' => $order->id,
                 'item' => $item['item'],
                 'quantity' => $item['quantity'],
+                'category' => $item['category'],
+                'classification' => $item['classification']
             ]);
         }
 
-        // broadcast(new OrderPlaced($user, $order, $items))->toOthers();
+        broadcast(new OrderPlaced($user, $order, $items))->toOthers();
 
         return response()->json("Thank you. Your Order has been added.");
     }
@@ -109,5 +114,27 @@ class OrdersController extends Controller
     public function destroy(Order $order)
     {
         //
+    }
+
+    /**
+     * Re-open order bidding and update the bid end date.
+     *
+     * @param \App\Order $order
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function reOpen(Request $request, Order $order)
+    {
+        //
+    }
+
+    /**
+     * Display purchase orders for specific client
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function userPurchaseOrders()
+    {
+        return OrderResource::collection(auth()->user()->orders);
     }
 }

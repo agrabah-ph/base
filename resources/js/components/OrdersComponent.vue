@@ -106,6 +106,7 @@ export default {
 
     },
     methods: {
+
         fetchOrders(page_url) {
 
             let vm = this;
@@ -119,6 +120,7 @@ export default {
                 vm.makePagination(response.data.meta, response.data.links);
 
             })
+
         },
 
         makePagination(meta, links) {

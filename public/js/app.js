@@ -2024,8 +2024,8 @@ __webpack_require__.r(__webpack_exports__);
     return {
       item: "",
       quantity: 0,
-      mainCategory: "",
-      subCategory: "",
+      category: "",
+      classification: "",
       description: "",
       bidEndDate: "",
       items: [],
@@ -2047,40 +2047,45 @@ __webpack_require__.r(__webpack_exports__);
         this.errors.push("Item is required.");
       } else if (!this.quantity) {
         this.errors.push("Quantity is required.");
-      } else if (!this.mainCategory) {
+      } else if (!this.category) {
         this.errors.push("Category is required.");
-      } else if (!this.subCategory) {
-        this.errors.push("Sub-Category is required.");
+      } else if (!this.classification) {
+        this.errors.push("Classification is required.");
       } else if (this.items.length >= 3) {
         this.errors.push("Cannot add more than 3 items.");
       } else {
         this.items.push({
           item: this.item,
           quantity: this.quantity,
-          mainCategory: this.mainCategory,
-          subCategory: this.subCategory
+          category: this.category,
+          classification: this.classification
         });
         this.clearForm();
       }
     },
     addOrder: function addOrder() {
+      var _this = this;
+
       this.messages = [];
-      console.log(this.items, this.description, this.bidEndDate); // axios({
-      // method: 'post',
-      // url: '/api/order',
-      // data: {
-      //     items: this.items,
-      //     description: this.description
-      //     }
-      // })
-      // .then(response => {
-      //     this.messages.push(response.data);
-      //     this.items = [];
-      //     this.description = "";
-      // })
-      // .catch(err => {
-      //     console.log(err);
-      // })
+      console.log(this.items, this.description, this.bidEndDate);
+      axios({
+        method: 'post',
+        url: '/api/order',
+        data: {
+          items: this.items,
+          description: this.description,
+          category: this.category,
+          classification: this.classification,
+          bidEndDate: this.bidEndDate
+        }
+      }).then(function (response) {
+        _this.messages.push(response.data);
+
+        _this.items = [];
+        _this.description = "";
+      })["catch"](function (err) {
+        console.log(err);
+      });
     },
     removeItem: function removeItem(arr, attr, value) {
       var i = arr.length;
@@ -2096,8 +2101,9 @@ __webpack_require__.r(__webpack_exports__);
     clearForm: function clearForm() {
       this.item = "";
       this.quantity = "";
-      this.mainCategory = "";
-      this.subCategory = "";
+      this.category = "";
+      this.classification = "";
+      this.bidEndDate = "";
     }
   }
 });
@@ -49490,7 +49496,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "card-body" }, [
     _c("div", { staticClass: "row justify-content-center" }, [
-      _c("div", { staticClass: "col-md-8 m-auto" }, [
+      _c("div", { staticClass: "col-md-10 m-auto" }, [
         _c(
           "form",
           {
@@ -49640,8 +49646,8 @@ var render = function() {
                       {
                         name: "model",
                         rawName: "v-model",
-                        value: _vm.mainCategory,
-                        expression: "mainCategory"
+                        value: _vm.category,
+                        expression: "category"
                       }
                     ],
                     staticClass: "custom-select form-control",
@@ -49656,7 +49662,7 @@ var render = function() {
                             var val = "_value" in o ? o._value : o.value
                             return val
                           })
-                        _vm.mainCategory = $event.target.multiple
+                        _vm.category = $event.target.multiple
                           ? $$selectedVal
                           : $$selectedVal[0]
                       }
@@ -49690,7 +49696,7 @@ var render = function() {
                   staticClass: "col-md-4 col-form-label text-md-right",
                   attrs: { for: "" }
                 },
-                [_vm._v("Sub Category: ")]
+                [_vm._v("Classification: ")]
               ),
               _vm._v(" "),
               _c("div", { staticClass: "col-md-7" }, [
@@ -49701,8 +49707,8 @@ var render = function() {
                       {
                         name: "model",
                         rawName: "v-model",
-                        value: _vm.subCategory,
-                        expression: "subCategory"
+                        value: _vm.classification,
+                        expression: "classification"
                       }
                     ],
                     staticClass: "custom-select form-control",
@@ -49717,7 +49723,7 @@ var render = function() {
                             var val = "_value" in o ? o._value : o.value
                             return val
                           })
-                        _vm.subCategory = $event.target.multiple
+                        _vm.classification = $event.target.multiple
                           ? $$selectedVal
                           : $$selectedVal[0]
                       }
@@ -49786,7 +49792,10 @@ var render = function() {
                   _c("div", { staticClass: "row" }, [
                     _c(
                       "table",
-                      { staticClass: "mt-3 mb-3 table table-striped border" },
+                      {
+                        staticClass:
+                          "mt-3 mb-3 table table-striped table-responsive-md"
+                      },
                       [
                         _vm._m(1),
                         _vm._v(" "),
@@ -49798,9 +49807,9 @@ var render = function() {
                               _vm._v(" "),
                               _c("td", [_vm._v(_vm._s(item.quantity) + "Kg")]),
                               _vm._v(" "),
-                              _c("td", [_vm._v(_vm._s(item.mainCategory))]),
+                              _c("td", [_vm._v(_vm._s(item.category))]),
                               _vm._v(" "),
-                              _c("td", [_vm._v(_vm._s(item.subCategory))]),
+                              _c("td", [_vm._v(_vm._s(item.classification))]),
                               _vm._v(" "),
                               _c("td", [
                                 _c(
@@ -49819,10 +49828,7 @@ var render = function() {
                                       }
                                     }
                                   },
-                                  [
-                                    _c("i", { staticClass: "fas fa-times" }),
-                                    _vm._v(" Remove")
-                                  ]
+                                  [_c("i", { staticClass: "fas fa-times" })]
                                 )
                               ])
                             ])
@@ -49896,7 +49902,10 @@ var render = function() {
                             }
                           ],
                           staticClass: "form-control",
-                          attrs: { type: "datetime-local" },
+                          attrs: {
+                            type: "datetime-local",
+                            id: "datetimepicker"
+                          },
                           domProps: { value: _vm.bidEndDate },
                           on: {
                             input: function($event) {
@@ -49950,7 +49959,7 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Category")]),
         _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Sub Category")]),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Classification")]),
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } })
       ])

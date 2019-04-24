@@ -1,7 +1,7 @@
 <template>
     <div class="card-body">
         <div class="row justify-content-center">
-            <div class="col-md-8 m-auto">
+            <div class="col-md-10 m-auto">
 
                 <form @submit.prevent="addOrder">
 
@@ -36,7 +36,7 @@
                     <div class="form-group row">
                         <label for="" class="col-md-4 col-form-label text-md-right">Category: </label>
                         <div class="col-md-7">
-                            <select v-model="mainCategory" id="" class="custom-select form-control">
+                            <select v-model="category" id="" class="custom-select form-control">
                                 <option value="live">Live</option>
                                 <option value="fresh">Fresh</option>
                                 <option value="frozen">Frozen</option>
@@ -46,9 +46,9 @@
                     </div>
 
                     <div class="form-group row">
-                        <label for="" class="col-md-4 col-form-label text-md-right">Sub Category: </label>
+                        <label for="" class="col-md-4 col-form-label text-md-right">Classification: </label>
                         <div class="col-md-7">
-                            <select v-model="subCategory" id="" class="custom-select form-control">
+                            <select v-model="classification" id="" class="custom-select form-control">
                                 <option value="fish">Fish</option>
                                 <option value="roe">Roe</option>
                                 <option value="crustaceans">Crustaceans</option>
@@ -75,13 +75,13 @@
 
                     <div class="mt-3" v-if="items.length">
                         <div class="row">
-                            <table class="mt-3 mb-3 table table-striped border">
+                            <table class="mt-3 mb-3 table table-striped table-responsive-md">
                                 <thead>
                                     <tr>
                                         <th scope="col">Item</th>
                                         <th scope="col">Quantity</th>
                                         <th scope="col">Category</th>
-                                        <th scope="col">Sub Category</th>
+                                        <th scope="col">Classification</th>
                                         <th scope="col"></th>
                                     </tr>
                                 </thead>
@@ -89,10 +89,10 @@
                                     <tr v-for="item in items" :key="item.index">
                                         <td>{{ item.item }}</td>
                                         <td>{{ item.quantity }}Kg</td>
-                                        <td>{{ item.mainCategory }}</td>
-                                        <td>{{ item.subCategory }}</td>
+                                        <td>{{ item.category }}</td>
+                                        <td>{{ item.classification }}</td>
                                         <td>
-                                            <a href="#" class="text-danger" @click.prevent="removeItem(items,'item',item.item)"><i class="fas fa-times"></i> Remove</a>
+                                            <a href="#" class="text-danger" @click.prevent="removeItem(items,'item',item.item)"><i class="fas fa-times"></i></a>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -109,7 +109,7 @@
                         <div class="form-group row justify-content-center">
                             <label for="" class="col-md-4 col-form-label text-md-right">Bid end date: </label>
                             <div class="col-md-7">
-                                <input type="datetime-local" class="form-control" v-model="bidEndDate">
+                                <input type="datetime-local" class="form-control" id="datetimepicker" v-model="bidEndDate">
                             </div>
                         </div>
 
@@ -133,14 +133,13 @@ export default {
         return {
             item: "",
             quantity: 0,
-            mainCategory: "",
-            subCategory: "",
+            category: "",
+            classification: "",
             description: "",
             bidEndDate: "",
             items: [],
             messages: [],
             errors: [],
-
         }
     },
     methods: {
@@ -159,13 +158,13 @@ export default {
 
                 this.errors.push("Quantity is required.");
 
-            } else if(!this.mainCategory) {
+            } else if(!this.category) {
 
                 this.errors.push("Category is required.");
 
-            } else if(!this.subCategory) {
+            } else if(!this.classification) {
 
-                this.errors.push("Sub-Category is required.");
+                this.errors.push("Classification is required.");
 
             } else if (this.items.length >= 3) {
 
@@ -176,8 +175,8 @@ export default {
                 this.items.push({
                     item: this.item,
                     quantity: this.quantity,
-                    mainCategory: this.mainCategory,
-                    subCategory: this.subCategory
+                    category: this.category,
+                    classification: this.classification
                 });
 
                  this.clearForm();
@@ -187,28 +186,30 @@ export default {
 
             this.messages = [];
 
-            console.log(this.items, this.description, this.bidEndDate);
+            axios({
+            method: 'post',
+                url: '/api/order',
+                data: {
+                    items: this.items,
+                    description: this.description,
+                    category: this.category,
+                    classification: this.classification,
+                    bidEndDate: this.bidEndDate
+                }
+            })
+            .then(response => {
 
-            // axios({
-            // method: 'post',
-            // url: '/api/order',
-            // data: {
-            //     items: this.items,
-            //     description: this.description
-            //     }
-            // })
-            // .then(response => {
+                this.messages.push(response.data);
+                this.items = [];
+                this.description = "";
+                this.bidEndDate = "";
 
-            //     this.messages.push(response.data);
-            //     this.items = [];
-            //     this.description = "";
+            })
+            .catch(err => {
 
-            // })
-            // .catch(err => {
+                console.log(err);
 
-            //     console.log(err);
-
-            // })
+            })
 
         },
 
@@ -230,8 +231,9 @@ export default {
 
             this.item = "";
             this.quantity = "";
-            this.mainCategory = "";
-            this.subCategory = "";
+            this.category = "";
+            this.classification = "";
+            this.bidEndDate = "";
 
         }
     }
