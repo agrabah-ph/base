@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Order;
 use App\User;
-use App\Item;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -85,7 +84,7 @@ class OrdersController extends Controller
      */
     public function show($id)
     {
-        $order = Order::where('id', $id)->with('user', 'items', 'bids')->get();
+        $order = Order::where('id', $id)->with('user', 'items', 'bids', 'bids.user')->get();
 
         return response()->json($order);
     }
@@ -133,7 +132,7 @@ class OrdersController extends Controller
     public function userPurchaseOrders()
     {
         $order = Order::where('user_id', auth()->id())
-                ->with(['user', 'items', 'bids', 'bids.user'])
+                ->with(['user', 'bids', 'bids.user'])
                 ->get();
 
         return response()->json($order);

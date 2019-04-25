@@ -44,9 +44,7 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
     public function loginActivities() {
-
         return $this->hasMany('App\LoginActivity');
-
     }
 
     public function userAddress()
