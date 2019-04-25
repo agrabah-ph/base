@@ -30,7 +30,7 @@ class OrdersController extends Controller
     public function index()
     {
         $orders = Order::where('bid_end_date', '>' , DB::raw('Now()'))->orderBy('created_at', 'desc')
-            ->with('user', 'items', 'bids', 'bids.user')->paginate(5);
+            ->with(['user', 'items', 'bids', 'bids.user'])->paginate(5);
 
         return OrderResource::collection($orders);
     }
@@ -133,7 +133,7 @@ class OrdersController extends Controller
     public function userPurchaseOrders()
     {
         $order = Order::where('user_id', auth()->id())
-                ->with('user', 'items', 'bids')
+                ->with(['user', 'items', 'bids', 'bids.user'])
                 ->get();
 
         return response()->json($order);

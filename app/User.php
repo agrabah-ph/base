@@ -61,7 +61,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function bids()
     {
-        return $this->hasMany('App\Bids');
+        return $this->hasMany('App\Bid');
     }
 
     public function getAddressAttribute()
