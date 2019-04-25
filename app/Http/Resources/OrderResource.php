@@ -20,7 +20,8 @@ class OrderResource extends JsonResource
             'bid_end_date' => $this->bid_end_date,
             'items' => $this->items,
             'user' => $this->user,
-            'bids' => $this->bids
+            'bids' => $this->bids,
+            'bidend' => $this->bidend
         ];
     }
 }

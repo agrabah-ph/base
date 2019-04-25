@@ -6,6 +6,9 @@ let getters = {
     },
     orders: state => {
         return state.orders
+    },
+    ownpo: state => {
+        return state.ownpo
     }
 }
 

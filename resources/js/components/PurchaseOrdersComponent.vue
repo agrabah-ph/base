@@ -2,9 +2,9 @@
     <div class="container">
         <h4>Purchase Orders</h4>
         <div class="row">
-            <div class="form-group col-md-2">
-                <label for="status">Status: </label>
-                <select v-model="status" id="" class="form-control custom-select">
+            <div class="form-group col-md-4 d-flex">
+                <label for="status" class="d-block m-auto">Status: </label>&nbsp;
+                <select v-model="status" id="" class="form-control custom-select" @change="getByStatus">
                     <option value="all">All</option>
                     <option value="Active">Active</option>
                     <option value="Expired">Expired</option>
@@ -22,11 +22,18 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>8</td>
-                    <td>April 30, 2019</td>
-                    <td class="text-success">Active</td>
+                <tr v-for="po in ownpo" :key="po.id">
+                    <th scope="row">{{ po.id }}</th>
+                    <td>{{ po.bids.length }}</td>
+                    <td>{{ po.bid_end_date }}</td>
+                    <td :class="biddingStatus(po.end) ? 'text-success' : 'text-danger'">
+                        <span v-if="biddingStatus(po.end)">
+                            Active
+                        </span>
+                        <span v-else>
+                            Expired
+                        </span>
+                    </td>
                     <td><a href="#">View</a></td>
                 </tr>
             </tbody>
@@ -35,31 +42,46 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
     name: "purchaseOrders",
     data() {
         return {
             status: 'all',
+            currentDate: new Date()
         }
     },
-    created() {
+    mounted() {
 
-        this.getOwnPO();
+        this.$store.dispatch('GET_OWN_PO')
 
     },
     methods: {
 
-        getOwnPO() {
+        biddingStatus(dbBidEndDate) {
 
-            axios.get('/api/userPurchaseOrders')
-            .then( response => {
+            var today = new Date();
+            var endDate = new Date(dbBidEndDate * 1000);
 
-                console.log(response);
+            console.log(today, endDate, dbBidEndDate);
 
-            });
+            if(today < endDate) {
 
+                return true;
+
+            } else {
+
+                return false;
+
+            }
         }
 
+    },
+    computed: {
+        ...mapGetters([
+            'ownpo'
+        ]),
     }
 }
 </script>

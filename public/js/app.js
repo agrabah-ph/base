@@ -2101,7 +2101,6 @@ __webpack_require__.r(__webpack_exports__);
       this.quantity = "";
       this.category = "";
       this.classification = "";
-      this.bidEndDate = "";
     }
   }
 });
@@ -3078,6 +3077,11 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -3114,23 +3118,39 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "purchaseOrders",
   data: function data() {
     return {
-      status: 'all'
+      status: 'all',
+      currentDate: new Date()
     };
   },
-  created: function created() {
-    this.getOwnPO();
+  mounted: function mounted() {
+    this.$store.dispatch('GET_OWN_PO');
   },
   methods: {
-    getOwnPO: function getOwnPO() {
-      axios.get('/api/userPurchaseOrders').then(function (response) {
-        console.log(response);
-      });
+    biddingStatus: function biddingStatus(dbBidEndDate) {
+      var today = new Date();
+      var endDate = new Date(dbBidEndDate * 1000);
+      console.log(today, endDate, dbBidEndDate);
+
+      if (today < endDate) {
+        return true;
+      } else {
+        return false;
+      }
     }
-  }
+  },
+  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['ownpo']))
 });
 
 /***/ }),
@@ -51007,9 +51027,13 @@ var render = function() {
     _c("h4", [_vm._v("Purchase Orders")]),
     _vm._v(" "),
     _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "form-group col-md-2" }, [
-        _c("label", { attrs: { for: "status" } }, [_vm._v("Status: ")]),
-        _vm._v(" "),
+      _c("div", { staticClass: "form-group col-md-4 d-flex" }, [
+        _c(
+          "label",
+          { staticClass: "d-block m-auto", attrs: { for: "status" } },
+          [_vm._v("Status: ")]
+        ),
+        _vm._v(" \n            "),
         _c(
           "select",
           {
@@ -51024,19 +51048,22 @@ var render = function() {
             staticClass: "form-control custom-select",
             attrs: { id: "" },
             on: {
-              change: function($event) {
-                var $$selectedVal = Array.prototype.filter
-                  .call($event.target.options, function(o) {
-                    return o.selected
-                  })
-                  .map(function(o) {
-                    var val = "_value" in o ? o._value : o.value
-                    return val
-                  })
-                _vm.status = $event.target.multiple
-                  ? $$selectedVal
-                  : $$selectedVal[0]
-              }
+              change: [
+                function($event) {
+                  var $$selectedVal = Array.prototype.filter
+                    .call($event.target.options, function(o) {
+                      return o.selected
+                    })
+                    .map(function(o) {
+                      var val = "_value" in o ? o._value : o.value
+                      return val
+                    })
+                  _vm.status = $event.target.multiple
+                    ? $$selectedVal
+                    : $$selectedVal[0]
+                },
+                _vm.getByStatus
+              ]
             }
           },
           [
@@ -51050,7 +51077,47 @@ var render = function() {
       ])
     ]),
     _vm._v(" "),
-    _vm._m(0)
+    _c("table", { staticClass: "table table-striped border" }, [
+      _vm._m(0),
+      _vm._v(" "),
+      _c(
+        "tbody",
+        _vm._l(_vm.ownpo, function(po) {
+          return _c("tr", { key: po.id }, [
+            _c("th", { attrs: { scope: "row" } }, [_vm._v(_vm._s(po.id))]),
+            _vm._v(" "),
+            _c("td", [_vm._v(_vm._s(po.bids.length))]),
+            _vm._v(" "),
+            _c("td", [_vm._v(_vm._s(po.bid_end_date))]),
+            _vm._v(" "),
+            _c(
+              "td",
+              {
+                class: _vm.biddingStatus(po.end)
+                  ? "text-success"
+                  : "text-danger"
+              },
+              [
+                _vm.biddingStatus(po.end)
+                  ? _c("span", [
+                      _vm._v(
+                        "\n                        Active\n                    "
+                      )
+                    ])
+                  : _c("span", [
+                      _vm._v(
+                        "\n                        Expired\n                    "
+                      )
+                    ])
+              ]
+            ),
+            _vm._v(" "),
+            _vm._m(1, true)
+          ])
+        }),
+        0
+      )
+    ])
   ])
 }
 var staticRenderFns = [
@@ -51058,35 +51125,25 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("table", { staticClass: "table table-striped border" }, [
-      _c("thead", [
-        _c("tr", [
-          _c("th", { attrs: { scope: "col" } }, [_vm._v("Order #")]),
-          _vm._v(" "),
-          _c("th", { attrs: { scope: "col" } }, [_vm._v("Bidders")]),
-          _vm._v(" "),
-          _c("th", { attrs: { scope: "col" } }, [_vm._v("Bid end date")]),
-          _vm._v(" "),
-          _c("th", { attrs: { scope: "col" } }, [_vm._v("Status")]),
-          _vm._v(" "),
-          _c("th", { attrs: { scope: "col" } })
-        ])
-      ]),
-      _vm._v(" "),
-      _c("tbody", [
-        _c("tr", [
-          _c("th", { attrs: { scope: "row" } }, [_vm._v("1")]),
-          _vm._v(" "),
-          _c("td", [_vm._v("8")]),
-          _vm._v(" "),
-          _c("td", [_vm._v("April 30, 2019")]),
-          _vm._v(" "),
-          _c("td", { staticClass: "text-success" }, [_vm._v("Active")]),
-          _vm._v(" "),
-          _c("td", [_c("a", { attrs: { href: "#" } }, [_vm._v("View")])])
-        ])
+    return _c("thead", [
+      _c("tr", [
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Order #")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Bidders")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Bid end date")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Status")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } })
       ])
     ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [_c("a", { attrs: { href: "#" } }, [_vm._v("View")])])
   }
 ]
 render._withStripped = true
@@ -67330,6 +67387,16 @@ var actions = {
     })["catch"](function (err) {
       console.log(err);
     });
+  },
+  GET_OWN_PO: function GET_OWN_PO(_ref4) {
+    var commit = _ref4.commit;
+    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/userPurchaseOrders').then(function (res) {
+      {
+        commit('SET_OWN_PO', res.data);
+      }
+    })["catch"](function (err) {
+      console.log(err);
+    });
   }
 };
 /* harmony default export */ __webpack_exports__["default"] = (actions);
@@ -67353,6 +67420,9 @@ var getters = {
   },
   orders: function orders(state) {
     return state.orders;
+  },
+  ownpo: function ownpo(state) {
+    return state.ownpo;
   }
 };
 /* harmony default export */ __webpack_exports__["default"] = (getters);
@@ -67406,6 +67476,9 @@ var mutations = {
   },
   SET_ORDERS: function SET_ORDERS(state, orders) {
     state.orders = orders;
+  },
+  SET_OWN_PO: function SET_OWN_PO(state, ownpo) {
+    state.ownpo = ownpo;
   }
 };
 /* harmony default export */ __webpack_exports__["default"] = (mutations);
@@ -67423,7 +67496,8 @@ var mutations = {
 __webpack_require__.r(__webpack_exports__);
 var state = {
   users: [],
-  orders: []
+  orders: [],
+  ownpo: []
 };
 /* harmony default export */ __webpack_exports__["default"] = (state);
 

@@ -32,7 +32,22 @@ let actions = {
         Axios.get('/api/orders')
         .then( res => {
             {
-                commit('SET_ORDERS', res.data);
+                commit('SET_ORDERS', res.data)
+            }
+        })
+        .catch( err => {
+
+            console.log(err)
+
+        })
+
+    },
+    GET_OWN_PO({commit}) {
+
+        Axios.get('/api/userPurchaseOrders')
+        .then( res => {
+            {
+                commit('SET_OWN_PO', res.data)
             }
         })
         .catch( err => {

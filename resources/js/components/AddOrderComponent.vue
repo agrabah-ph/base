@@ -231,7 +231,6 @@ export default {
             this.quantity = "";
             this.category = "";
             this.classification = "";
-            this.bidEndDate = "";
 
         }
     }

@@ -4,6 +4,9 @@ let mutations = {
     },
     SET_ORDERS(state, orders) {
         state.orders = orders
+    },
+    SET_OWN_PO(state, ownpo) {
+        state.ownpo = ownpo
     }
 }
 

@@ -19,7 +19,7 @@ class OrdersController extends Controller
 {
     public function __construct()
     {
-        //$this->middleware(['role:owner']);
+        $this->middleware(['role:owner']);
         // $this->middleware(['role:client']);
     }
 
@@ -133,6 +133,10 @@ class OrdersController extends Controller
      */
     public function userPurchaseOrders()
     {
-        return response()->json(auth()->id());
+        $order = Order::where('user_id', auth()->id())
+                ->with('user', 'items', 'bids')
+                ->get();
+
+        return response()->json($order);
     }
 }
