@@ -76,10 +76,6 @@
                         <div class="col-md">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         </div>
-                        <div class="col-md">
-                            <button type="button" class="btn btn-success float-right">Bid</button>
-                            <button type="button" class="btn btn-success float-right">Close Bidding</button>
-                        </div>
                     </div>
                 </div>
             </div>

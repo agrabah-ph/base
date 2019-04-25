@@ -2942,10 +2942,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['user'],
   name: "Orders",
@@ -3125,12 +3121,51 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "purchaseOrders",
   data: function data() {
     return {
-      status: 'all'
+      status: 'all',
+      viewPurchaseOrder: []
     };
   },
   mounted: function mounted() {
@@ -3147,7 +3182,18 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         return false;
       }
     },
-    getPoStatus: function getPoStatus() {}
+    getPoStatus: function getPoStatus() {},
+    getPurchaseOrder: function getPurchaseOrder(orderId) {
+      var _this = this;
+
+      this.viewOrder = [];
+      axios.get('/api/order/' + orderId).then(function (response) {
+        _this.viewPurchaseOrder = response.data;
+        console.log(_this.viewPurchaseOrder);
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    }
   },
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['ownpo']))
 });
@@ -50813,26 +50859,6 @@ var staticRenderFns = [
           },
           [_vm._v("Close")]
         )
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-md" }, [
-        _c(
-          "button",
-          {
-            staticClass: "btn btn-success float-right",
-            attrs: { type: "button" }
-          },
-          [_vm._v("Bid")]
-        ),
-        _vm._v(" "),
-        _c(
-          "button",
-          {
-            staticClass: "btn btn-success float-right",
-            attrs: { type: "button" }
-          },
-          [_vm._v("Close Bidding")]
-        )
       ])
     ])
   }
@@ -51111,12 +51137,114 @@ var render = function() {
               ]
             ),
             _vm._v(" "),
-            _vm._m(1, true)
+            _c("td", [
+              _c(
+                "a",
+                {
+                  attrs: {
+                    href: "#",
+                    "data-toggle": "modal",
+                    "data-target": "#viewOrder"
+                  },
+                  on: {
+                    click: function($event) {
+                      _vm.getPurchaseOrder(po.id)
+                    }
+                  }
+                },
+                [_vm._v("\n                        View\n                    ")]
+              )
+            ])
           ])
         }),
         0
       )
-    ])
+    ]),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass: "modal fade",
+        attrs: {
+          id: "viewOrder",
+          tabindex: "-1",
+          role: "dialog",
+          "aria-labelledby": "ModalCenterTitle",
+          "aria-hidden": "true"
+        }
+      },
+      [
+        _c(
+          "div",
+          {
+            staticClass: "modal-dialog modal-dialog-centered modal-lg",
+            attrs: { role: "document" }
+          },
+          _vm._l(_vm.viewPurchaseOrder, function(order) {
+            return _c(
+              "div",
+              { key: order.id, staticClass: "modal-content" },
+              [
+                _c("div", { staticClass: "modal-header" }, [
+                  _c(
+                    "h5",
+                    {
+                      staticClass: "modal-title",
+                      attrs: { id: "ModalLongTitle" }
+                    },
+                    [_vm._v(_vm._s(order.user.name))]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "modal-body" }, [
+                  _c("p", [_vm._v(_vm._s(order.description))]),
+                  _vm._v(" "),
+                  _c(
+                    "ul",
+                    { staticClass: "list-group" },
+                    _vm._l(order.items, function(item) {
+                      return _c(
+                        "li",
+                        {
+                          key: item.index,
+                          staticClass:
+                            "list-group-item d-flex justify-content-around"
+                        },
+                        [
+                          _c("span", [_vm._v(_vm._s(item.item))]),
+                          _vm._v(" "),
+                          _c("span", [_vm._v(_vm._s(item.quantity) + "kg")])
+                        ]
+                      )
+                    }),
+                    0
+                  )
+                ]),
+                _vm._v(" "),
+                _vm._l(order.bids, function(bid) {
+                  return _c("div", { key: bid.id, staticClass: "modal-body" }, [
+                    _c("h5", [_vm._v("Bids")]),
+                    _vm._v(" "),
+                    _c(
+                      "li",
+                      {
+                        staticClass:
+                          "list-group-item d-flex justify-content-around"
+                      },
+                      [_c("span", [_vm._v(_vm._s(bid.user.name))])]
+                    )
+                  ])
+                }),
+                _vm._v(" "),
+                _vm._m(1, true)
+              ],
+              2
+            )
+          }),
+          0
+        )
+      ]
+    )
   ])
 }
 var staticRenderFns = [
@@ -51142,7 +51270,18 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("td", [_c("a", { attrs: { href: "#" } }, [_vm._v("View")])])
+    return _c("div", { staticClass: "row justify-content-between p-3" }, [
+      _c("div", { staticClass: "col-md" }, [
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-secondary",
+            attrs: { type: "button", "data-dismiss": "modal" }
+          },
+          [_vm._v("Close")]
+        )
+      ])
+    ])
   }
 ]
 render._withStripped = true

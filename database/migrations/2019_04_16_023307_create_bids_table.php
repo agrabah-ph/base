@@ -16,6 +16,7 @@ class CreateBidsTable extends Migration
         Schema::create('bids', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('order_id');
+            $table->unsignedInteger('user_id');
             $table->unsignedInteger('offer');
             $table->text('message');
             $table->dateTime('delivery_date_time');
@@ -24,6 +25,11 @@ class CreateBidsTable extends Migration
             $table->foreign('order_id')
                 ->references('id')
                 ->on('orders')
+                ->onDelete('cascade');
+
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users')
                 ->onDelete('cascade');
         });
     }
