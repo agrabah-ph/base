@@ -6,7 +6,7 @@
         <purchase-orders></purchase-orders>
 
         <a href="{{ route('purchase.add') }}" class="btn btn-lg btn-success mx-auto" id="add_user">
-            Add Order
+            Add Purchase Order <i class="fas fa-plus"></i>
         </a>
 
     </div>

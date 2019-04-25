@@ -49,10 +49,9 @@ class User extends Authenticatable implements MustVerifyEmail
 
     }
 
-    public function userAddress() {
-
+    public function userAddress()
+    {
         return $this->hasOne('App\UserAddress');
-
     }
 
     public function orders()

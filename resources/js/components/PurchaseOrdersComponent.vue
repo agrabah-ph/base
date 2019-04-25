@@ -65,7 +65,7 @@
                     <div class="modal-body" v-for="bid in order.bids" :key="bid.id">
                         <h5>Bids</h5>
                         <li class="list-group-item d-flex justify-content-around">
-                            <span>{{ bid.user.name }}</span>
+                            <span>{{ bid }}</span>
                         </li>
                     </div>
                     <div class="row justify-content-between p-3">
@@ -76,6 +76,7 @@
                 </div>
             </div>
         </div>
+
     </div>
 </template>
 
@@ -101,6 +102,9 @@ export default {
 
             var today = new Date();
             var endDate = new Date(bidend * 1000);
+
+            console.log("Today:" + today);
+            console.log("End Date: " + endDate);
 
             if(today < endDate) {
 

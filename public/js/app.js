@@ -3159,6 +3159,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "purchaseOrders",
@@ -3175,6 +3176,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     biddingStatus: function biddingStatus(bidend) {
       var today = new Date();
       var endDate = new Date(bidend * 1000);
+      console.log("Today:" + today);
+      console.log("End Date: " + endDate);
 
       if (today < endDate) {
         return true;
@@ -51231,7 +51234,7 @@ var render = function() {
                         staticClass:
                           "list-group-item d-flex justify-content-around"
                       },
-                      [_c("span", [_vm._v(_vm._s(bid.user.name))])]
+                      [_c("span", [_vm._v(_vm._s(bid))])]
                     )
                   ])
                 }),

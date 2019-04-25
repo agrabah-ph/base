@@ -33,7 +33,7 @@
                 <div class="row justify-content-center">
                     <div class="col-md-8">
                         <div class="card">
-                            <div class="card-header">Add Order</div>
+                            <div class="card-header">Add Purchase Order</div>
                             <add-order></add-order>
                         </div>
                     </div>
@@ -41,6 +41,6 @@
             </div>
         </main>
     </div>
-    
+
 </body>
 </html>

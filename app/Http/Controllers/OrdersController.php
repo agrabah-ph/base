@@ -19,8 +19,7 @@ class OrdersController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['role:owner']);
-        // $this->middleware(['role:client']);
+        $this->middleware(['role:client'], ['role:owner']);
     }
 
     /**
@@ -31,7 +30,7 @@ class OrdersController extends Controller
     public function index()
     {
         $orders = Order::where('bid_end_date', '>' , DB::raw('Now()'))->orderBy('created_at', 'desc')
-            ->with('user', 'items', 'bids')->paginate(5);
+            ->with('user', 'items', 'bids', 'bids.user')->paginate(5);
 
         return OrderResource::collection($orders);
     }
