@@ -4,10 +4,10 @@
         <div class="row">
             <div class="form-group col-md-4 d-flex">
                 <label for="status" class="d-block m-auto">Status: </label>&nbsp;
-                <select v-model="status" id="" class="form-control custom-select" @change="getByStatus">
+                <select v-model="status" id="" class="form-control custom-select" @change="getPoStatus">
                     <option value="all">All</option>
-                    <option value="Active">Active</option>
-                    <option value="Expired">Expired</option>
+                    <option value="active">Active</option>
+                    <option value="expired">Expired</option>
                 </select>
             </div>
         </div>
@@ -49,7 +49,6 @@ export default {
     data() {
         return {
             status: 'all',
-            currentDate: new Date()
         }
     },
     mounted() {
@@ -59,12 +58,10 @@ export default {
     },
     methods: {
 
-        biddingStatus(dbBidEndDate) {
+        biddingStatus(bidend) {
 
             var today = new Date();
-            var endDate = new Date(dbBidEndDate * 1000);
-
-            console.log(today, endDate, dbBidEndDate);
+            var endDate = new Date(bidend * 1000);
 
             if(today < endDate) {
 
@@ -75,6 +72,10 @@ export default {
                 return false;
 
             }
+        },
+
+        getPoStatus() {
+
         }
 
     },

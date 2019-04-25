@@ -3130,25 +3130,24 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   name: "purchaseOrders",
   data: function data() {
     return {
-      status: 'all',
-      currentDate: new Date()
+      status: 'all'
     };
   },
   mounted: function mounted() {
     this.$store.dispatch('GET_OWN_PO');
   },
   methods: {
-    biddingStatus: function biddingStatus(dbBidEndDate) {
+    biddingStatus: function biddingStatus(bidend) {
       var today = new Date();
-      var endDate = new Date(dbBidEndDate * 1000);
-      console.log(today, endDate, dbBidEndDate);
+      var endDate = new Date(bidend * 1000);
 
       if (today < endDate) {
         return true;
       } else {
         return false;
       }
-    }
+    },
+    getPoStatus: function getPoStatus() {}
   },
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['ownpo']))
 });
@@ -51062,16 +51061,16 @@ var render = function() {
                     ? $$selectedVal
                     : $$selectedVal[0]
                 },
-                _vm.getByStatus
+                _vm.getPoStatus
               ]
             }
           },
           [
             _c("option", { attrs: { value: "all" } }, [_vm._v("All")]),
             _vm._v(" "),
-            _c("option", { attrs: { value: "Active" } }, [_vm._v("Active")]),
+            _c("option", { attrs: { value: "active" } }, [_vm._v("Active")]),
             _vm._v(" "),
-            _c("option", { attrs: { value: "Expired" } }, [_vm._v("Expired")])
+            _c("option", { attrs: { value: "expired" } }, [_vm._v("Expired")])
           ]
         )
       ])

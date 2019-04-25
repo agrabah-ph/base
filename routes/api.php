@@ -27,4 +27,3 @@ Route::group(['middleware' => ['auth:api', 'role:owner']], function() {
     Route::get('/order/{order}', 'OrdersController@show');
     Route::get('/userPurchaseOrders', 'OrdersController@userPurchaseOrders');
 });
-
