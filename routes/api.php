@@ -25,9 +25,20 @@ Route::group(['middleware' => ['auth:api', 'role:owner']], function() {
 
 });
 
-Route::group(['middleware' => ['auth:api', 'role: owner|client|vendor']], function() {
-    Route::get('orders', 'OrdersController@index');
+/**
+ * Allow Client and owner to use Purchase Orders
+ */
+
+Route::group(['middleware' => ['auth:api', 'role: owner|client']], function() {
     Route::post('order', 'OrdersController@store');
     Route::get('/order/{order}', 'OrdersController@show');
     Route::get('/userPurchaseOrders', 'OrdersController@userPurchaseOrders');
+});
+
+/**
+ * Display all Orders to owner client and vendor
+ */
+
+Route::group(['middleware' => ['auth:api', 'role: owner|vendor|client']], function() {
+    Route::get('orders', 'OrdersController@index');
 });

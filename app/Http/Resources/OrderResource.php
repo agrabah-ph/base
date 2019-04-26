@@ -21,7 +21,8 @@ class OrderResource extends JsonResource
             'items' => $this->items,
             'user' => $this->user,
             'bids' => $this->bids,
-            'bidend' => $this->bidend
+            'ended' => $this->ended,
+            'created_at' => $this->created_at
         ];
     }
 }

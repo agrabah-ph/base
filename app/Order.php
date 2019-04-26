@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 class Order extends Model
 {
     protected $guarded = [];
-    protected $appends = ['end'];
+    protected $appends = ['ended'];
 
     public function user()
     {
@@ -25,11 +25,26 @@ class Order extends Model
         return $this->hasMany("App\Bid", "order_id");
     }
 
-    public function getEndAttribute()
+    /**
+     * Check to see if bidding has ended and return a boolean instead
+     *
+     * @return boolean
+     */
+    public function getEndedAttribute()
     {
-        $end = DB::table('orders')->where('bid_end_date', $this->bid_end_date)->value('bid_end_date');
+        $dbEndDate = DB::table('orders')->where('bid_end_date', $this->bid_end_date)->value('bid_end_date');
 
-        return strtotime($end);
+        $enddate = date("M/d/Y H:i:a", strtotime($dbEndDate));
+        $currentdate = date("M/d/Y H:i:a");
+
+        if($currentdate >= $enddate)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
 }

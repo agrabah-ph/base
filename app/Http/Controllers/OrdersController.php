@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Order;
 use App\User;
+use App\Item;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -72,12 +73,13 @@ class OrdersController extends Controller
         }
 
         //broadcast(new OrderPlaced($user, $order, $items))->toOthers();
+        //Mail Here
 
-        return response()->json("Thank you. Your Order has been added.");
+        return response()->json("Your purchase order has been added. Thank you");
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified order.
      *
      * @param  \App\Order  $order
      * @return \Illuminate\Http\Response
@@ -125,13 +127,14 @@ class OrdersController extends Controller
     }
 
     /**
-     * Display purchase orders for specific client
+     * Display purchase orders for logged in client
      *
      * @return \Illuminate\Http\Response
      */
     public function userPurchaseOrders()
     {
         $order = Order::where('user_id', auth()->id())
+                ->orderBy('created_at', 'desc')
                 ->with(['user', 'bids', 'bids.user'])
                 ->get();
 

@@ -26,8 +26,8 @@
                     <th scope="row">{{ po.id }}</th>
                     <td>{{ po.bids.length }}</td>
                     <td>{{ po.bid_end_date }}</td>
-                    <td :class="biddingStatus(po.end) ? 'text-success' : 'text-danger'">
-                        <span v-if="biddingStatus(po.end)">
+                    <td :class="!po.ended ? 'text-success' : 'text-danger'">
+                        <span v-if="!po.ended">
                             Active
                         </span>
                         <span v-else>
@@ -52,6 +52,7 @@
                 <div class="modal-content" v-for="order in viewPurchaseOrder" :key="order.id">
                     <div class="modal-header">
                         <h5 class="modal-title" id="ModalLongTitle">{{ order.user.name }}</h5>
+                        <small>Posted on: {{ order.created_at }}</small>
                     </div>
                     <div class="modal-body" >
                         <p>{{ order.description }}</p>
@@ -62,11 +63,39 @@
                             </li>
                         </ul>
                     </div>
-                    <div class="modal-body" v-for="bid in order.bids" :key="bid.id">
+                    <div class="modal-body">
                         <h5>Bids</h5>
-                        <li class="list-group-item d-flex justify-content-around">
-                            <span>{{ bid }}</span>
-                        </li>
+                        <table class="table table-striped border">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Bid #</th>
+                                    <th scope="col">Bidder</th>
+                                    <th scope="col">Price</th>
+                                    <th scope="col">Message</th>
+                                    <th scope="col">Delivery Date</th>
+                                    <th scope="col"></th>
+                                </tr>
+                            </thead>
+                            <tbody v-if="order.bids.length">
+                                <tr v-for="bid in order.bids" :key="bid.id">
+                                    <th scope="row">{{ bid.id }}</th>
+                                    <td>
+                                        <a href="#">{{ bid.user.name }}</a>
+                                    </td>
+                                    <td>{{ bid.offer }}</td>
+                                    <td>{{ bid.message }}</td>
+                                    <td>{{ bid.delivery_date_time }}</td>
+                                    <td>
+                                        <button class="btn btn-success">Approve</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <tbody v-else>
+                                <tr>
+                                    <th colspan="6" class="text-center">No bids yet</th>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                     <div class="row justify-content-between p-3">
                         <div class="col-md">
@@ -88,7 +117,7 @@ export default {
     data() {
         return {
             status: 'all',
-            viewPurchaseOrder: []
+            viewPurchaseOrder: [],
         }
     },
     mounted() {
@@ -97,33 +126,19 @@ export default {
 
     },
     methods: {
-
-        biddingStatus(bidend) {
-
-            var today = new Date();
-            var endDate = new Date(bidend * 1000);
-
-            console.log("Today:" + today);
-            console.log("End Date: " + endDate);
-
-            if(today < endDate) {
-
-                return true;
-
-            } else {
-
-                return false;
-
-            }
-        },
-
+        /**
+         * Sort Purchase order by status(Active or Expired)
+         */
         getPoStatus() {
 
         },
 
+        /**
+         * Get a specified purchase order and pass it on modal display
+         */
         getPurchaseOrder(orderId) {
 
-            this.viewOrder = [];
+            this.viewPurchaseOrder = [];
 
             axios.get('/api/order/' + orderId)
             .then( response => {
