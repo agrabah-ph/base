@@ -72,3 +72,5 @@ Vue.use(Geocoder, {
     googleMapsApiKey: process.env.MIX_MAP_API_KEY,
 
 });
+
+Vue.use(require('vue-moment'))

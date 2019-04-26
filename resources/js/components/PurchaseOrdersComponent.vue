@@ -25,7 +25,7 @@
                 <tr v-for="po in ownpo" :key="po.id">
                     <th scope="row">{{ po.id }}</th>
                     <td>{{ po.bids.length }}</td>
-                    <td>{{ po.bid_end_date }}</td>
+                    <td>{{ po.bid_end_date | moment("MMMM DD, YYYY  h:mm A") }}</td>
                     <td :class="!po.ended ? 'text-success' : 'text-danger'">
                         <span v-if="!po.ended">
                             Active
@@ -52,7 +52,11 @@
                 <div class="modal-content" v-for="order in viewPurchaseOrder" :key="order.id">
                     <div class="modal-header">
                         <h5 class="modal-title" id="ModalLongTitle">{{ order.user.name }}</h5>
-                        <small>Posted on: {{ order.created_at }}</small>
+                        <div>
+                            <small>Posted on: {{ order.created_at | moment("MMMM DD, YYYY H:mmA") }}</small>
+                            <br>
+                            <small>{{ order.created_at | moment("from", true) }} ago</small>
+                        </div>
                     </div>
                     <div class="modal-body" >
                         <p>{{ order.description }}</p>
@@ -152,7 +156,7 @@ export default {
                 console.log(error)
 
             })
-        }
+        },
 
     },
     computed: {
