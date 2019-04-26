@@ -17,7 +17,7 @@ class OrderResource extends JsonResource
         return [
             'id' => $this->id,
             'description' => $this->description,
-            'bid_end_date' => $this->bid_end_date,
+            'bid_end_date' => strtotime($this->bid_end_date),
             'items' => $this->items,
             'user' => $this->user,
             'bids' => $this->bids,

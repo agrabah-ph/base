@@ -2941,7 +2941,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['user'],
   name: "Orders",
@@ -3192,7 +3191,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "purchaseOrders",
@@ -3207,11 +3205,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   methods: {
     /**
-     * Sort Purchase order by status(Active or Expired)
-     */
-    getPoStatus: function getPoStatus() {},
-
-    /**
      * Get a specified purchase order and pass it on modal display
      */
     getPurchaseOrder: function getPurchaseOrder(orderId) {
@@ -3220,13 +3213,35 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.viewPurchaseOrder = [];
       axios.get('/api/order/' + orderId).then(function (response) {
         _this.viewPurchaseOrder = response.data;
-        console.log(_this.viewPurchaseOrder);
       })["catch"](function (error) {
         console.log(error);
       });
     }
   },
-  computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['ownpo']))
+  computed: _objectSpread({
+    filteredUsersByRole: function filteredUsersByRole() {
+      var role = this.role;
+      return this.users.filter(function (user) {
+        if (role == "all") {
+          return true;
+        } else {
+          return user.role.includes(role);
+        }
+      });
+    },
+    filterByStatus: function filterByStatus() {
+      var status = this.status;
+      return this.ownpo.filter(function (po) {
+        if (status == 'all') {
+          return true;
+        } else if (status == 'expired') {
+          return po.ended == true;
+        } else if (status == 'active') {
+          return po.ended == false;
+        }
+      });
+    }
+  }, Object(vuex__WEBPACK_IMPORTED_MODULE_0__["mapGetters"])(['ownpo']))
 });
 
 /***/ }),
@@ -51328,22 +51343,19 @@ var render = function() {
             staticClass: "form-control custom-select",
             attrs: { id: "" },
             on: {
-              change: [
-                function($event) {
-                  var $$selectedVal = Array.prototype.filter
-                    .call($event.target.options, function(o) {
-                      return o.selected
-                    })
-                    .map(function(o) {
-                      var val = "_value" in o ? o._value : o.value
-                      return val
-                    })
-                  _vm.status = $event.target.multiple
-                    ? $$selectedVal
-                    : $$selectedVal[0]
-                },
-                _vm.getPoStatus
-              ]
+              change: function($event) {
+                var $$selectedVal = Array.prototype.filter
+                  .call($event.target.options, function(o) {
+                    return o.selected
+                  })
+                  .map(function(o) {
+                    var val = "_value" in o ? o._value : o.value
+                    return val
+                  })
+                _vm.status = $event.target.multiple
+                  ? $$selectedVal
+                  : $$selectedVal[0]
+              }
             }
           },
           [
@@ -51357,62 +51369,70 @@ var render = function() {
       ])
     ]),
     _vm._v(" "),
-    _c("table", { staticClass: "table table-striped border" }, [
-      _vm._m(0),
-      _vm._v(" "),
-      _c(
-        "tbody",
-        _vm._l(_vm.ownpo, function(po) {
-          return _c("tr", { key: po.id }, [
-            _c("th", { attrs: { scope: "row" } }, [_vm._v(_vm._s(po.id))]),
-            _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(po.bids.length))]),
-            _vm._v(" "),
-            _c("td", [
-              _vm._v(
-                _vm._s(
-                  _vm._f("moment")(po.bid_end_date, "MMMM DD, YYYY  h:mm A")
+    _c(
+      "table",
+      { staticClass: "table table-striped border table-responsive-md" },
+      [
+        _vm._m(0),
+        _vm._v(" "),
+        _c(
+          "tbody",
+          _vm._l(_vm.filterByStatus, function(po) {
+            return _c("tr", { key: po.id }, [
+              _c("th", { attrs: { scope: "row" } }, [_vm._v(_vm._s(po.id))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(po.bids.length))]),
+              _vm._v(" "),
+              _c("td", [
+                _vm._v(
+                  _vm._s(
+                    _vm._f("moment")(po.bid_end_date, "MMMM DD, YYYY  h:mm A")
+                  )
                 )
-              )
-            ]),
-            _vm._v(" "),
-            _c("td", { class: !po.ended ? "text-success" : "text-danger" }, [
-              !po.ended
-                ? _c("span", [
-                    _vm._v(
-                      "\n                        Active\n                    "
-                    )
-                  ])
-                : _c("span", [
-                    _vm._v(
-                      "\n                        Expired\n                    "
-                    )
-                  ])
-            ]),
-            _vm._v(" "),
-            _c("td", [
-              _c(
-                "a",
-                {
-                  attrs: {
-                    href: "#",
-                    "data-toggle": "modal",
-                    "data-target": "#viewOrder"
-                  },
-                  on: {
-                    click: function($event) {
-                      _vm.getPurchaseOrder(po.id)
+              ]),
+              _vm._v(" "),
+              _c("td", { class: !po.ended ? "text-success" : "text-danger" }, [
+                !po.ended
+                  ? _c("span", [
+                      _vm._v(
+                        "\n                        Active\n                    "
+                      )
+                    ])
+                  : _c("span", [
+                      _vm._v(
+                        "\n                        Expired\n                    "
+                      )
+                    ])
+              ]),
+              _vm._v(" "),
+              _c("td", [
+                _c(
+                  "a",
+                  {
+                    attrs: {
+                      href: "#",
+                      "data-toggle": "modal",
+                      "data-target": "#viewOrder"
+                    },
+                    on: {
+                      click: function($event) {
+                        _vm.getPurchaseOrder(po.id)
+                      }
                     }
-                  }
-                },
-                [_vm._v("\n                        View\n                    ")]
-              )
+                  },
+                  [
+                    _vm._v(
+                      "\n                        View\n                    "
+                    )
+                  ]
+                )
+              ])
             ])
-          ])
-        }),
-        0
-      )
-    ]),
+          }),
+          0
+        )
+      ]
+    ),
     _vm._v(" "),
     _c(
       "div",
@@ -51430,22 +51450,22 @@ var render = function() {
         _c(
           "div",
           {
-            staticClass: "modal-dialog modal-dialog-centered modal-lg",
+            staticClass: "modal-dialog modal-dialog-centered modal-md",
             attrs: { role: "document" }
           },
           _vm._l(_vm.viewPurchaseOrder, function(order) {
             return _c("div", { key: order.id, staticClass: "modal-content" }, [
               _c("div", { staticClass: "modal-header" }, [
-                _c(
-                  "h5",
-                  {
-                    staticClass: "modal-title",
-                    attrs: { id: "ModalLongTitle" }
-                  },
-                  [_vm._v(_vm._s(order.user.name))]
-                ),
-                _vm._v(" "),
                 _c("div", [
+                  _c(
+                    "h5",
+                    {
+                      staticClass: "modal-title",
+                      attrs: { id: "ModalLongTitle" }
+                    },
+                    [_vm._v(_vm._s(order.user.name))]
+                  ),
+                  _vm._v(" "),
                   _c("small", [
                     _vm._v(
                       "Posted on: " +
@@ -51461,10 +51481,7 @@ var render = function() {
                   _c("br"),
                   _vm._v(" "),
                   _c("small", [
-                    _vm._v(
-                      _vm._s(_vm._f("moment")(order.created_at, "from", true)) +
-                        " ago"
-                    )
+                    _vm._v(_vm._s(_vm._f("moment")(order.created_at, "from")))
                   ])
                 ])
               ]),
@@ -51474,21 +51491,16 @@ var render = function() {
                 _vm._v(" "),
                 _c(
                   "ul",
-                  { staticClass: "list-group" },
                   _vm._l(order.items, function(item) {
-                    return _c(
-                      "li",
-                      {
-                        key: item.index,
-                        staticClass:
-                          "list-group-item d-flex justify-content-around"
-                      },
-                      [
-                        _c("span", [_vm._v(_vm._s(item.item))]),
-                        _vm._v(" "),
-                        _c("span", [_vm._v(_vm._s(item.quantity) + "kg")])
-                      ]
-                    )
+                    return _c("li", { key: item.index }, [
+                      _vm._v(
+                        "\n                            " +
+                          _vm._s(item.item) +
+                          " " +
+                          _vm._s(item.quantity) +
+                          "kg\n                        "
+                      )
+                    ])
                   }),
                   0
                 )
@@ -51497,40 +51509,66 @@ var render = function() {
               _c("div", { staticClass: "modal-body" }, [
                 _c("h5", [_vm._v("Bids")]),
                 _vm._v(" "),
-                _c("table", { staticClass: "table table-striped border" }, [
-                  _vm._m(1, true),
-                  _vm._v(" "),
-                  order.bids.length
-                    ? _c(
-                        "tbody",
-                        _vm._l(order.bids, function(bid) {
-                          return _c("tr", { key: bid.id }, [
-                            _c("th", { attrs: { scope: "row" } }, [
-                              _vm._v(_vm._s(bid.id))
-                            ]),
-                            _vm._v(" "),
-                            _c("td", [
-                              _c("a", { attrs: { href: "#" } }, [
-                                _vm._v(_vm._s(bid.user.name))
-                              ])
-                            ]),
-                            _vm._v(" "),
-                            _c("td", [_vm._v(_vm._s(bid.offer))]),
-                            _vm._v(" "),
-                            _c("td", [_vm._v(_vm._s(bid.message))]),
-                            _vm._v(" "),
-                            _c("td", [_vm._v(_vm._s(bid.delivery_date_time))]),
-                            _vm._v(" "),
-                            _vm._m(2, true)
-                          ])
-                        }),
-                        0
-                      )
-                    : _c("tbody", [_vm._m(3, true)])
-                ])
+                order.bids.length
+                  ? _c(
+                      "table",
+                      {
+                        staticClass:
+                          "table table-striped border table-responsive-md"
+                      },
+                      [
+                        _vm._m(1, true),
+                        _vm._v(" "),
+                        _c(
+                          "tbody",
+                          _vm._l(order.bids, function(bid) {
+                            return _c("tr", { key: bid.id }, [
+                              _c("th", { attrs: { scope: "row" } }, [
+                                _vm._v(_vm._s(bid.id))
+                              ]),
+                              _vm._v(" "),
+                              _c("td", [
+                                _c("a", { attrs: { href: "#" } }, [
+                                  _vm._v(_vm._s(bid.user.name))
+                                ])
+                              ]),
+                              _vm._v(" "),
+                              _c("td", [
+                                _vm._v(
+                                  _vm._s(
+                                    _vm._f("moment")(bid.created_at, "from")
+                                  )
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _c("td", [_vm._v(_vm._s(bid.offer))]),
+                              _vm._v(" "),
+                              _c("td", [_vm._v(_vm._s(bid.message))]),
+                              _vm._v(" "),
+                              _c("td", [
+                                _vm._v(
+                                  _vm._s(
+                                    _vm._f("moment")(
+                                      bid.delivery_date_time,
+                                      "MMMM DD, YYYY H:mmA"
+                                    )
+                                  )
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _vm._m(2, true)
+                            ])
+                          }),
+                          0
+                        )
+                      ]
+                    )
+                  : _c("p", { staticClass: "text-center" }, [
+                      _c("strong", [_vm._v("No bids yet")])
+                    ])
               ]),
               _vm._v(" "),
-              _vm._m(4, true)
+              _vm._m(3, true)
             ])
           }),
           0
@@ -51568,6 +51606,8 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Bidder")]),
         _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Bid Placed")]),
+        _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Price")]),
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Message")]),
@@ -51584,16 +51624,6 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("td", [
       _c("button", { staticClass: "btn btn-success" }, [_vm._v("Approve")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("tr", [
-      _c("th", { staticClass: "text-center", attrs: { colspan: "6" } }, [
-        _vm._v("No bids yet")
-      ])
     ])
   },
   function() {
@@ -72606,6 +72636,20 @@ var getters = {
     return state.orders;
   },
   ownpo: function ownpo(state) {
+    var purchaseOrder = state.ownpo.map(function (po) {
+      return {
+        orderId: po.id,
+        description: po.description,
+        bidEnd: po.bid_end_date,
+        items: {
+          item: po.items[0].item,
+          quantity: po.items[0].quantity + " Kg",
+          category: po.items[0].category,
+          classification: po.items[0].classification
+        },
+        client: po.user.name
+      };
+    });
     return state.ownpo;
   }
 };

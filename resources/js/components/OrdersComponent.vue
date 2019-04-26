@@ -17,7 +17,6 @@
         </div>
 
         <table class="table border">
-
             <thead>
                 <tr>
                     <th scope="col">Client</th>
