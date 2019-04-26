@@ -22,7 +22,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="po in filterByStatus" :key="po.id">
+                <tr v-for="po in filterByStatus" :key="po.index">
                     <th scope="row">{{ po.id }}</th>
                     <td>{{ po.bids.length }}</td>
                     <td>{{ po.bid_end_date | moment("MMMM DD, YYYY  h:mm A") }}</td>
@@ -128,10 +128,6 @@ export default {
         this.$store.dispatch('GET_OWN_PO')
     },
     methods: {
-
-        /**
-         * Get a specified purchase order and pass it on modal display
-         */
         getPurchaseOrder(orderId) {
 
             this.viewPurchaseOrder = [];
@@ -152,21 +148,11 @@ export default {
     },
     computed: {
 
-        filteredUsersByRole() {
-                let role = this.role;
-                return this.users.filter(function(user){
-                    if(role == "all"){
-                        return true;
-                    } else {
-                        return user.role.includes(role);
-                    }
-                })
-            },
-
         filterByStatus() {
+
             let status = this.status;
 
-            return this.ownpo.filter(function(po) {
+            return this.ownpo.filter( po => {
                 if(status == 'all') {
 
                     return true;

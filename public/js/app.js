@@ -3204,9 +3204,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     this.$store.dispatch('GET_OWN_PO');
   },
   methods: {
-    /**
-     * Get a specified purchase order and pass it on modal display
-     */
     getPurchaseOrder: function getPurchaseOrder(orderId) {
       var _this = this;
 
@@ -3219,16 +3216,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }
   },
   computed: _objectSpread({
-    filteredUsersByRole: function filteredUsersByRole() {
-      var role = this.role;
-      return this.users.filter(function (user) {
-        if (role == "all") {
-          return true;
-        } else {
-          return user.role.includes(role);
-        }
-      });
-    },
     filterByStatus: function filterByStatus() {
       var status = this.status;
       return this.ownpo.filter(function (po) {
@@ -51378,7 +51365,7 @@ var render = function() {
         _c(
           "tbody",
           _vm._l(_vm.filterByStatus, function(po) {
-            return _c("tr", { key: po.id }, [
+            return _c("tr", { key: po.index }, [
               _c("th", { attrs: { scope: "row" } }, [_vm._v(_vm._s(po.id))]),
               _vm._v(" "),
               _c("td", [_vm._v(_vm._s(po.bids.length))]),
@@ -72636,20 +72623,6 @@ var getters = {
     return state.orders;
   },
   ownpo: function ownpo(state) {
-    var purchaseOrder = state.ownpo.map(function (po) {
-      return {
-        orderId: po.id,
-        description: po.description,
-        bidEnd: po.bid_end_date,
-        items: {
-          item: po.items[0].item,
-          quantity: po.items[0].quantity + " Kg",
-          category: po.items[0].category,
-          classification: po.items[0].classification
-        },
-        client: po.user.name
-      };
-    });
     return state.ownpo;
   }
 };
