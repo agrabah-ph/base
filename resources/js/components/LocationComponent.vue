@@ -124,7 +124,12 @@ import {gmapApi} from 'vue2-google-maps';
 
 export default {
     name: "locations",
-    props: ['province_error', 'municipality_error', 'barangay_error', 'addln_error'],
+    props: [
+        'province_error',
+        'municipality_error',
+        'barangay_error',
+        'addln_error'
+        ],
     data() {
         return {
             province: null,

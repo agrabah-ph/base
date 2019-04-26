@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 class Order extends Model
 {
     protected $guarded = [];
-    protected $appends = ['ended'];
+    protected $appends = ['status'];
 
     public function user()
     {
@@ -30,7 +30,7 @@ class Order extends Model
      *
      * @return boolean
      */
-    public function getEndedAttribute()
+    public function getStatusAttribute()
     {
         $dbEndDate = DB::table('orders')->where('bid_end_date', $this->bid_end_date)->value('bid_end_date');
 
@@ -39,11 +39,16 @@ class Order extends Model
 
         if($currentdate >= $enddate)
         {
-            return true;
+            return 'Expired';
         }
-        else
+        elseif($currentdate <= $enddate)
         {
-            return false;
+            return 'Active';
+
+        } else {
+
+            return 'Closed';
+
         }
     }
 
