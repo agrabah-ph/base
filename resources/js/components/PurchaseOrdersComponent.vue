@@ -26,8 +26,13 @@
                     <th scope="row">{{ po.id }}</th>
                     <td>{{ po.bids.length }}</td>
                     <td>{{ po.bid_end_date | moment("MMMM DD, YYYY  h:mm A") }}</td>
-                    <td :class="po.status == 'Active' ? 'text-success' : po.status == 'Expired' ? 'text-danger' : 'text-warning'">
-                        {{ po.status }}
+                    <td :class="!po.ended ? 'text-success' :  'text-danger'">
+                        <span v-if="!po.ended">
+                            Active
+                        </span>
+                        <span v-else>
+                            Expired
+                        </span>
                     </td>
                     <td>
                         <a href="#"
@@ -161,7 +166,9 @@ export default {
                     return po.ended == false;
 
                 } else {
+
                     return null;
+
                 }
 
             })

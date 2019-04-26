@@ -3185,6 +3185,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "purchaseOrders",
@@ -51374,24 +51379,19 @@ var render = function() {
                 )
               ]),
               _vm._v(" "),
-              _c(
-                "td",
-                {
-                  class:
-                    po.status == "Active"
-                      ? "text-success"
-                      : po.status == "Expired"
-                      ? "text-danger"
-                      : "text-warning"
-                },
-                [
-                  _vm._v(
-                    "\n                    " +
-                      _vm._s(po.status) +
-                      "\n                "
-                  )
-                ]
-              ),
+              _c("td", { class: !po.ended ? "text-success" : "text-danger" }, [
+                !po.ended
+                  ? _c("span", [
+                      _vm._v(
+                        "\n                        Active\n                    "
+                      )
+                    ])
+                  : _c("span", [
+                      _vm._v(
+                        "\n                        Expired\n                    "
+                      )
+                    ])
+              ]),
               _vm._v(" "),
               _c("td", [
                 _c(
