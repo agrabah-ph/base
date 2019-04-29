@@ -13,35 +13,35 @@
             </div>
         </div>
 
-        <div v-for="po in filterByStatus" :key="po.id" class="row mb-3 p-2 rounded bg-white border">
-            <div class="col-md">
+        <div v-for="po in filterByStatus" :key="po.id" class="row justify-content-start">
+            <div class="col-md rounded bg-white border mb-3 p-2">
                 <div class="row">
                     <div class="col-md">
+                        <p>Purchase Order #: {{ po.id }} </p>
                         <p>
+                            Bid end date:
+                            {{ po.bid_end_date | moment("dddd MMMM DD, YYYY  h:mm A")}}, &nbsp;
+                            {{ po.bid_end_date | moment("from") }}
+                        </p>
+                        <p>
+                            Status:
+                            <span :class="!po.ended ? 'text-success' : 'text-danger'">
+                                <strong v-if="!po.ended">Active</strong>
+                                <strong v-else>Expired</strong>
+                            </span>
+                        </p>
+                        <p>Description:
                             {{ cropText(po.description) }}
                         </p>
                         <ul class="custom-ul">
+                            <lh>Products: </lh>
                             <li v-for="item in po.items" :key="item.id">{{ item.item }} {{ item.quantity + "Kg" }}</li>
                         </ul>
                     </div>
-                    <div class="col-md">
-
-                        <div class="text-right order-details">
-                            <p>Purchase Order #: {{ po.id }} </p>
-                            <p>
-                                Bid end date:
-                                {{ po.bid_end_date | moment("dddd MMMM DD, YYYY  h:mm A")}}, &nbsp;
-                                {{ po.bid_end_date | moment("from") }}
-                            </p>
-                            <p>
-                                Status:
-                                <span :class="!po.ended ? 'text-success' : 'text-danger'">
-                                    <span v-if="!po.ended">Active</span>
-                                    <span v-else>Expired</span>
-                                </span>
-                            </p>
-                        </div>
+                    <div class="col-md-2 d-flex justify-content-center">
+                        <button class="btn btn-primary m-auto">View</button>
                     </div>
+
                 </div>
                 <div class="row">
                     <div class="col-md d-flex justify-content-between">
@@ -52,7 +52,6 @@
                                 {{ po.created_at | moment("from") }}
                             </small>
                         </p>
-                        <button class="btn btn-primary">View</button>
                     </div>
                 </div>
             </div>
@@ -172,18 +171,4 @@ export default {
 </script>
 
 <style scoped>
-.custom-ul {
-    margin: 5px;
-    padding: 0;
-}
-
-.custom-ul li {
-    margin: 0 5px;
-}
-
-@media only screen and (max-width: 767px) {
-  .order-details {
-    text-align: left!important;
-  }
-}
 </style>
