@@ -26,7 +26,7 @@
                     </div>
                     <div class="col-md">
 
-                        <div class="text-right">
+                        <div class="text-right order-details">
                             <p>Purchase Order #: {{ po.id }} </p>
                             <p>
                                 Bid end date:
@@ -179,5 +179,11 @@ export default {
 
 .custom-ul li {
     margin: 0 5px;
+}
+
+@media only screen and (max-width: 767px) {
+  .order-details {
+    text-align: left!important;
+  }
 }
 </style>

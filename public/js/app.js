@@ -7806,7 +7806,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.custom-ul[data-v-5181af88] {\n    margin: 5px;\n    padding: 0;\n}\n.custom-ul li[data-v-5181af88] {\n    margin: 0 5px;\n}\n", ""]);
+exports.push([module.i, "\n.custom-ul[data-v-5181af88] {\n    margin: 5px;\n    padding: 0;\n}\n.custom-ul li[data-v-5181af88] {\n    margin: 0 5px;\n}\n@media only screen and (max-width: 767px) {\n.order-details[data-v-5181af88] {\n    text-align: left!important;\n}\n}\n", ""]);
 
 // exports
 
@@ -51423,7 +51423,7 @@ var render = function() {
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "col-md" }, [
-                  _c("div", { staticClass: "text-right" }, [
+                  _c("div", { staticClass: "text-right order-details" }, [
                     _c("p", [
                       _vm._v("Purchase Order #: " + _vm._s(po.id) + " ")
                     ]),
