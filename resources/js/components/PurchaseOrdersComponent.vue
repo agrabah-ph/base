@@ -13,46 +13,55 @@
             </div>
         </div>
 
-        <table class="table table-striped border table-responsive-md">
-            <thead>
-                <tr>
-                    <th scope="col">Order #</th>
-                    <th scope="col">Bidders</th>
-                    <th scope="col">Bid end date</th>
-                    <th scope="col">Status</th>
-                    <th scope="col"></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr v-for="po in filterByStatus" :key="po.index">
-                    <th scope="row">{{ po.id }}</th>
-                    <td>{{ po.bids.length }}</td>
-                    <td>{{ po.bid_end_date | moment("MMMM DD, YYYY  h:mm A") }}</td>
-                    <td :class="!po.ended ? 'text-success' :  'text-danger'">
-                        <span v-if="!po.ended">
-                            Active
-                        </span>
-                        <span v-else>
-                            Expired
-                        </span>
-                    </td>
-                    <td>
-                        <button
-                            class="btn btn-link"
-                            type="button"
-                            data-toggle="modal"
-                            data-target="#viewOrder">
-                            View
-                        </button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+        <div v-for="po in filterByStatus" :key="po.id" class="row mb-3 p-2 rounded bg-white border">
+            <div class="col-md">
+                <div class="row">
+                    <div class="col-md">
+                        <p>
+                            {{ cropText(po.description) }}
+                        </p>
+                        <ul class="custom-ul">
+                            <li v-for="item in po.items" :key="item.id">{{ item.item }} {{ item.quantity + "Kg" }}</li>
+                        </ul>
+                    </div>
+                    <div class="col-md">
+
+                        <div class="text-right">
+                            <p>Purchase Order #: {{ po.id }} </p>
+                            <p>
+                                Bid end date:
+                                {{ po.bid_end_date | moment("dddd MMMM DD, YYYY  h:mm A")}}, &nbsp;
+                                {{ po.bid_end_date | moment("from") }}
+                            </p>
+                            <p>
+                                Status:
+                                <span :class="!po.ended ? 'text-success' : 'text-danger'">
+                                    <span v-if="!po.ended">Active</span>
+                                    <span v-else>Expired</span>
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md d-flex justify-content-between">
+                        <p>
+                            <small>
+                                Posted on:
+                                {{ po.created_at | moment("MMMM DD, YYYY  h:mm A") }},&nbsp;
+                                {{ po.created_at | moment("from") }}
+                            </small>
+                        </p>
+                        <button class="btn btn-primary">View</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+        <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
             Launch demo modal
-        </button>
+        </button> -->
 
         <!-- Modal -->
         <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -115,7 +124,7 @@ export default {
 
             if(text.length >= 65) {
 
-                return text.slice(0, 65) + "...";
+                return text.slice(0, 95) + "...";
 
             } else {
 
@@ -163,15 +172,12 @@ export default {
 </script>
 
 <style scoped>
-.modal {
-    position: fixed;
-    top: 3%;
-    right: 3%;
-    left: 3%;
-    width: auto;
-    margin: 0;
+.custom-ul {
+    margin: 5px;
+    padding: 0;
 }
-.modal-body {
-    height: 60%;
+
+.custom-ul li {
+    margin: 0 5px;
 }
 </style>

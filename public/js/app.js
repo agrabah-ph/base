@@ -3157,6 +3157,15 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "purchaseOrders",
@@ -3182,7 +3191,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     cropText: function cropText(text) {
       if (text.length >= 65) {
-        return text.slice(0, 65) + "...";
+        return text.slice(0, 95) + "...";
       } else {
         return text;
       }
@@ -7797,7 +7806,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.modal[data-v-5181af88] {\n    position: fixed;\n    top: 3%;\n    right: 3%;\n    left: 3%;\n    width: auto;\n    margin: 0;\n}\n.modal-body[data-v-5181af88] {\n    height: 60%;\n}\n", ""]);
+exports.push([module.i, "\n.custom-ul[data-v-5181af88] {\n    margin: 5px;\n    padding: 0;\n}\n.custom-ul li[data-v-5181af88] {\n    margin: 0 5px;\n}\n", ""]);
 
 // exports
 
@@ -51329,155 +51338,168 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container" }, [
-    _c("h4", [_vm._v("Purchase Orders")]),
-    _vm._v(" "),
-    _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "form-group col-md-4 d-flex" }, [
-        _c(
-          "label",
-          { staticClass: "d-block m-auto", attrs: { for: "status" } },
-          [_vm._v("Status: ")]
-        ),
-        _vm._v(" \n            "),
-        _c(
-          "select",
-          {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.status,
-                expression: "status"
+  return _c(
+    "div",
+    { staticClass: "container" },
+    [
+      _c("h4", [_vm._v("Purchase Orders")]),
+      _vm._v(" "),
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "form-group col-md-4 d-flex" }, [
+          _c(
+            "label",
+            { staticClass: "d-block m-auto", attrs: { for: "status" } },
+            [_vm._v("Status: ")]
+          ),
+          _vm._v(" \n            "),
+          _c(
+            "select",
+            {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.status,
+                  expression: "status"
+                }
+              ],
+              staticClass: "form-control custom-select",
+              attrs: { id: "" },
+              on: {
+                change: function($event) {
+                  var $$selectedVal = Array.prototype.filter
+                    .call($event.target.options, function(o) {
+                      return o.selected
+                    })
+                    .map(function(o) {
+                      var val = "_value" in o ? o._value : o.value
+                      return val
+                    })
+                  _vm.status = $event.target.multiple
+                    ? $$selectedVal
+                    : $$selectedVal[0]
+                }
               }
-            ],
-            staticClass: "form-control custom-select",
-            attrs: { id: "" },
-            on: {
-              change: function($event) {
-                var $$selectedVal = Array.prototype.filter
-                  .call($event.target.options, function(o) {
-                    return o.selected
-                  })
-                  .map(function(o) {
-                    var val = "_value" in o ? o._value : o.value
-                    return val
-                  })
-                _vm.status = $event.target.multiple
-                  ? $$selectedVal
-                  : $$selectedVal[0]
-              }
-            }
-          },
+            },
+            [
+              _c("option", { attrs: { value: "all" } }, [_vm._v("All")]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "active" } }, [_vm._v("Active")]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "expired" } }, [_vm._v("Expired")])
+            ]
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _vm._l(_vm.filterByStatus, function(po) {
+        return _c(
+          "div",
+          { key: po.id, staticClass: "row mb-3 p-2 rounded bg-white border" },
           [
-            _c("option", { attrs: { value: "all" } }, [_vm._v("All")]),
-            _vm._v(" "),
-            _c("option", { attrs: { value: "active" } }, [_vm._v("Active")]),
-            _vm._v(" "),
-            _c("option", { attrs: { value: "expired" } }, [_vm._v("Expired")])
+            _c("div", { staticClass: "col-md" }, [
+              _c("div", { staticClass: "row" }, [
+                _c("div", { staticClass: "col-md" }, [
+                  _c("p", [
+                    _vm._v(
+                      "\n                        " +
+                        _vm._s(_vm.cropText(po.description)) +
+                        "\n                    "
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "ul",
+                    { staticClass: "custom-ul" },
+                    _vm._l(po.items, function(item) {
+                      return _c("li", { key: item.id }, [
+                        _vm._v(
+                          _vm._s(item.item) + " " + _vm._s(item.quantity + "Kg")
+                        )
+                      ])
+                    }),
+                    0
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md" }, [
+                  _c("div", { staticClass: "text-right" }, [
+                    _c("p", [
+                      _vm._v("Purchase Order #: " + _vm._s(po.id) + " ")
+                    ]),
+                    _vm._v(" "),
+                    _c("p", [
+                      _vm._v(
+                        "\n                            Bid end date:\n                            " +
+                          _vm._s(
+                            _vm._f("moment")(
+                              po.bid_end_date,
+                              "dddd MMMM DD, YYYY  h:mm A"
+                            )
+                          ) +
+                          ",  \n                            " +
+                          _vm._s(_vm._f("moment")(po.bid_end_date, "from")) +
+                          "\n                        "
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("p", [
+                      _vm._v(
+                        "\n                            Status:\n                            "
+                      ),
+                      _c(
+                        "span",
+                        { class: !po.ended ? "text-success" : "text-danger" },
+                        [
+                          !po.ended
+                            ? _c("span", [_vm._v("Active")])
+                            : _c("span", [_vm._v("Expired")])
+                        ]
+                      )
+                    ])
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "row" }, [
+                _c(
+                  "div",
+                  { staticClass: "col-md d-flex justify-content-between" },
+                  [
+                    _c("p", [
+                      _c("small", [
+                        _vm._v(
+                          "\n                            Posted on:\n                            " +
+                            _vm._s(
+                              _vm._f("moment")(
+                                po.created_at,
+                                "MMMM DD, YYYY  h:mm A"
+                              )
+                            ) +
+                            ", \n                            " +
+                            _vm._s(_vm._f("moment")(po.created_at, "from")) +
+                            "\n                        "
+                        )
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c("button", { staticClass: "btn btn-primary" }, [
+                      _vm._v("View")
+                    ])
+                  ]
+                )
+              ])
+            ])
           ]
         )
-      ])
-    ]),
-    _vm._v(" "),
-    _c(
-      "table",
-      { staticClass: "table table-striped border table-responsive-md" },
-      [
-        _vm._m(0),
-        _vm._v(" "),
-        _c(
-          "tbody",
-          _vm._l(_vm.filterByStatus, function(po) {
-            return _c("tr", { key: po.index }, [
-              _c("th", { attrs: { scope: "row" } }, [_vm._v(_vm._s(po.id))]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(po.bids.length))]),
-              _vm._v(" "),
-              _c("td", [
-                _vm._v(
-                  _vm._s(
-                    _vm._f("moment")(po.bid_end_date, "MMMM DD, YYYY  h:mm A")
-                  )
-                )
-              ]),
-              _vm._v(" "),
-              _c("td", { class: !po.ended ? "text-success" : "text-danger" }, [
-                !po.ended
-                  ? _c("span", [
-                      _vm._v(
-                        "\n                        Active\n                    "
-                      )
-                    ])
-                  : _c("span", [
-                      _vm._v(
-                        "\n                        Expired\n                    "
-                      )
-                    ])
-              ]),
-              _vm._v(" "),
-              _vm._m(1, true)
-            ])
-          }),
-          0
-        )
-      ]
-    ),
-    _vm._v(" "),
-    _c(
-      "button",
-      {
-        staticClass: "btn btn-primary",
-        attrs: {
-          type: "button",
-          "data-toggle": "modal",
-          "data-target": "#exampleModalCenter"
-        }
-      },
-      [_vm._v("\n        Launch demo modal\n    ")]
-    ),
-    _vm._v(" "),
-    _vm._m(2)
-  ])
+      }),
+      _vm._v(" "),
+      _vm._m(0)
+    ],
+    2
+  )
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("thead", [
-      _c("tr", [
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Order #")]),
-        _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Bidders")]),
-        _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Bid end date")]),
-        _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Status")]),
-        _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } })
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("td", [
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-link",
-          attrs: {
-            type: "button",
-            "data-toggle": "modal",
-            "data-target": "#viewOrder"
-          }
-        },
-        [_vm._v("\n                        View\n                    ")]
-      )
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
