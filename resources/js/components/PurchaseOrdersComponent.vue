@@ -1,6 +1,7 @@
 <template>
     <div class="container">
         <h4>Purchase Orders</h4>
+
         <div class="row">
             <div class="form-group col-md-4 d-flex">
                 <label for="status" class="d-block m-auto">Status: </label>&nbsp;
@@ -11,6 +12,7 @@
                 </select>
             </div>
         </div>
+
         <table class="table table-striped border table-responsive-md">
             <thead>
                 <tr>
@@ -35,74 +37,39 @@
                         </span>
                     </td>
                     <td>
-                        <a href="#"
+                        <button
+                            class="btn btn-link"
+                            type="button"
                             data-toggle="modal"
-                            data-target="#viewOrder"
-                            @click="getPurchaseOrder(po.id)">
+                            data-target="#viewOrder">
                             View
-                        </a>
+                        </button>
                     </td>
                 </tr>
             </tbody>
         </table>
 
-        <div class="modal fade" id="viewOrder" tabindex="-1" role="dialog" aria-labelledby="ModalCenterTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-md" role="document">
-                <div class="modal-content" v-for="order in viewPurchaseOrder" :key="order.id">
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+            Launch demo modal
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
                     <div class="modal-header">
-                        <div>
-                            <h5 class="modal-title" id="ModalLongTitle">{{ order.user.name }}</h5>
-                            <small>Posted on: {{ order.created_at | moment("MMMM DD, YYYY H:mmA") }}</small>
-                            <br>
-                            <small>{{ order.created_at | moment("from") }}</small>
-                        </div>
+                        <h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
                     </div>
                     <div class="modal-body">
-                        <p>{{ order.description }}</p>
-                        <ul>
-                            <li v-for="item in order.items" :key="item.index">
-                                {{ item.item }} {{ item.quantity }}kg
-                            </li>
-                        </ul>
+                        ...
                     </div>
-                    <div class="modal-body">
-                        <h5>Bids</h5>
-                        <table class="table table-striped border table-responsive-md" v-if="order.bids.length">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Bid #</th>
-                                    <th scope="col">Bidder</th>
-                                    <th scope="col">Bid Placed</th>
-                                    <th scope="col">Price</th>
-                                    <th scope="col">Message</th>
-                                    <th scope="col">Delivery Date</th>
-                                    <th scope="col"></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr v-for="bid in order.bids" :key="bid.id">
-                                    <th scope="row">{{ bid.id }}</th>
-                                    <td>
-                                        <a href="#">{{ bid.user.name }}</a>
-                                    </td>
-                                    <td>{{ bid.created_at | moment("from") }}</td>
-                                    <td>{{ bid.offer }}</td>
-                                    <td>{{ bid.message }}</td>
-                                    <td>{{ bid.delivery_date_time | moment("MMMM DD, YYYY H:mmA") }}</td>
-                                    <td>
-                                        <button class="btn btn-success">Approve</button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <p v-else class="text-center">
-                            <strong>No bids yet</strong>
-                        </p>
-                    </div>
-                    <div class="row justify-content-between p-3">
-                        <div class="col-md">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
                     </div>
                 </div>
             </div>
@@ -127,6 +94,7 @@ export default {
         this.$store.dispatch('GET_OWN_PO')
     },
     methods: {
+
         getPurchaseOrder(orderId) {
 
             this.viewPurchaseOrder = [];
@@ -142,6 +110,19 @@ export default {
                 console.log(error)
 
             })
+        },
+        cropText(text) {
+
+            if(text.length >= 65) {
+
+                return text.slice(0, 65) + "...";
+
+            } else {
+
+                return text
+
+            }
+
         },
 
     },
@@ -177,6 +158,20 @@ export default {
         ...mapGetters([
             'ownpo'
         ]),
-    }
+    },
 }
 </script>
+
+<style scoped>
+.modal {
+    position: fixed;
+    top: 3%;
+    right: 3%;
+    left: 3%;
+    width: auto;
+    margin: 0;
+}
+.modal-body {
+    height: 60%;
+}
+</style>
