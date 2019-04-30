@@ -109,7 +109,17 @@
                         <div class="form-group row justify-content-center">
                             <label for="" class="col-md-4 col-form-label text-md-right">Bid end date: </label>
                             <div class="col-md-7">
-                                <input type="datetime-local" class="form-control" id="datetimepicker" v-model="bidEndDate">
+                                <datetime
+                                    class="form-control-datetime"
+                                    type="datetime"
+                                    value-zone="Asia/Singapore"
+                                    :format="{ year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: '2-digit'}"
+                                    :phrases="{ok: 'Continue', cancel: 'Exit'}"
+                                    :week-start="7"
+                                    v-model="bidEndDate"
+                                    use12-hour>
+                                    <span slot="after"><i class="far fa-calendar-alt"></i></span>
+                                </datetime>
                             </div>
                         </div>
 
@@ -137,6 +147,7 @@ export default {
             classification: "",
             description: "",
             bidEndDate: "",
+            bidEndDatetry: "",
             items: [],
             messages: [],
             errors: [],
@@ -147,6 +158,8 @@ export default {
         qtyDec() { this.quantity--; },
 
         addItem() {
+
+            console.log(this.bidEndDatetry);
 
             this.errors = [];
 
@@ -184,6 +197,8 @@ export default {
         },
         addOrder() {
 
+            var endDate = this.bidEndDate;
+            var newDate = endDate.slice(0, endDate.length - 13);
             this.messages = [];
 
             axios({
@@ -192,7 +207,7 @@ export default {
                 data: {
                     items: this.items,
                     description: this.description,
-                    bidEndDate: this.bidEndDate
+                    bidEndDate: newDate
                 }
             })
             .then(response => {

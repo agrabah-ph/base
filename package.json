@@ -28,10 +28,7 @@
     },
     "dependencies": {
         "@pderas/vue2-geocoder": "^1.0.2",
-        "luxon": "^1.12.1",
-        "vue-datetime": "^1.0.0-beta.10",
         "vue-moment": "^4.0.0",
-        "vue2-google-maps": "^0.10.6",
-        "weekstart": "^1.0.0"
+        "vue2-google-maps": "^0.10.6"
     }
 }
