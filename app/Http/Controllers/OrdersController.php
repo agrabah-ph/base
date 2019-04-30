@@ -88,7 +88,7 @@ class OrdersController extends Controller
     {
         $order = Order::where('id', $id)->with('user', 'items', 'bids', 'bids.user')->get();
 
-        return response()->json($order);
+        return view('orders.show', compact($order));
     }
 
     /**

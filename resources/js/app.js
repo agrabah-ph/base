@@ -29,9 +29,10 @@ Vue.component('users', require('./components/UsersComponent.vue').default);
 Vue.component('loginlogs-table', require('./components/LoginLogsTableComponent.vue').default);
 Vue.component('user-location', require('./components/LocationComponent.vue').default);
 Vue.component('user-profile', require('./components/ProfileComponent.vue').default);
-Vue.component('purchase-orders', require('./components/PurchaseOrdersComponent.vue').default);
-Vue.component('add-order', require('./components/AddOrderComponent.vue').default);
-Vue.component('client-orders', require('./components/OrdersComponent.vue').default);
+Vue.component('purchase-orders', require('./components/PurchaseOrders/PurchaseOrdersComponent.vue').default);
+Vue.component('view-order', require('./components/PurchaseOrders/ViewPO.vue').default);
+Vue.component('add-order', require('./components/PurchaseOrders/AddOrderComponent.vue').default);
+Vue.component('client-orders', require('./components/PurchaseOrders/OrdersComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

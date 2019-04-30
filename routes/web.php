@@ -31,6 +31,7 @@ Route::group(['middleware' => ['role:client|vendor']], function() {
 
 Route::group(['middleware' => 'verified'], function() {
     Route::get('/purchaseorders', 'HomeController@purchaseorders')->name('purchase.orders');
+    Route::get('/purchaseorder/{id}', 'OrdersController@show');
     Route::get('/order-add', 'OrdersController@create')->name('purchase.add');
 });
 
