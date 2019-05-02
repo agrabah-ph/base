@@ -84,11 +84,9 @@ class OrdersController extends Controller
      * @param  \App\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Order $order)
     {
-        $order = Order::where('id', $id)->with('user', 'items', 'bids', 'bids.user')->get();
-
-        return view('orders.show', compact($order));
+        return view('orders.show', compact('order'));
     }
 
     /**

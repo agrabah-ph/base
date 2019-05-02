@@ -31,7 +31,7 @@
                         <strong v-if="!po.ended">Active</strong>
                         <strong v-else>Expired</strong>
                     </td>
-                    <td>{{ po.bid_end_date | moment("dddd MMMM DD, YYYY  h:mm A")}}</td>
+                    <td>{{ po.bid_end_date | moment("dddd, MMMM DD, YYYY  h:mm A") }}</td>
                     <td>
                         <a :href="'/purchaseorder/'+po.id">View</a>
                     </td>

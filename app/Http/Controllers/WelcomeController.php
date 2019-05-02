@@ -21,22 +21,19 @@ class WelcomeController extends Controller
         } else {
             return redirect()->route('register');
         }
-
     }
 
     public function volunteer()
     {
-
         dd($this->validateVolunteer());
-
     }
 
     public function contact()
     {
-        dd($this->validateContactMessage());
+        dd($this->validateContacts());
     }
 
-    public function validateContactMessage()
+    public function validateContacts()
     {
         return request()->validate([
 
