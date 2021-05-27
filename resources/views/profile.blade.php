@@ -3,17 +3,18 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-10">
             <div class="card">
-                <div class="card-header">{{ Auth::user()->name }}</div>
-
+                <div class="card-header">Profile</div>
                 <div class="card-body">
-                    @foreach(Auth::user()->getRoleNames() as $role)
+                    {{-- @foreach(Auth::user()->getRoleNames() as $role)
                     {{$role}}
-                    @endforeach
+                    @endforeach --}}
+                    <user-profile :user="{{ json_encode(Auth::user()) }}"></user-profile>
                 </div>
             </div>
         </div>
     </div>
+
 </div>
 @endsection

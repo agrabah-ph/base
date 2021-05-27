@@ -11,26 +11,6 @@ window.Vue = require('vue');
 
 import store from './store/index'
 
-import * as VueGoogleMaps from 'vue2-google-maps';
-import Geocoder from '@pderas/vue2-geocoder';
-
-Vue.use(VueGoogleMaps, {
-
-    load: {
-
-        key: 'AIzaSyDSD1bBpEjkW1-JIdMdtL24qRkw7E2cWgE',
-        libraries: 'places'
-
-    }
-
-});
-
-Vue.use(Geocoder, {
-
-    googleMapsApiKey: 'AIzaSyDSD1bBpEjkW1-JIdMdtL24qRkw7E2cWgE'
-
-});
-
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -48,6 +28,11 @@ Vue.component('user', require('./components/UserComponent.vue').default);
 Vue.component('users', require('./components/UsersComponent.vue').default);
 Vue.component('loginlogs-table', require('./components/LoginLogsTableComponent.vue').default);
 Vue.component('user-location', require('./components/LocationComponent.vue').default);
+Vue.component('user-profile', require('./components/ProfileComponent.vue').default);
+Vue.component('purchase-orders', require('./components/PurchaseOrders/PurchaseOrdersComponent.vue').default);
+Vue.component('po-bids', require('./components/PurchaseOrders/POBidsComponent.vue').default);
+Vue.component('add-order', require('./components/PurchaseOrders/AddOrderComponent.vue').default);
+Vue.component('client-orders', require('./components/PurchaseOrders/OrdersComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -57,5 +42,5 @@ Vue.component('user-location', require('./components/LocationComponent.vue').def
 
 const app = new Vue({
     el: '#app',
-    store
+    store,
 });

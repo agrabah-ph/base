@@ -42,7 +42,8 @@ if (token) {
  * allows your team to easily build robust real-time web applications.
  */
 
-import Echo from 'laravel-echo'
+import Echo from 'laravel-echo';
+import Vue from 'vue';
 
 window.Pusher = require('pusher-js');
 
@@ -52,3 +53,29 @@ window.Echo = new Echo({
     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
     encrypted: false
 });
+
+import * as VueGoogleMaps from 'vue2-google-maps';
+Vue.use(VueGoogleMaps, {
+
+    load: {
+
+        key: process.env.MIX_MAP_API_KEY,
+        libraries: 'places'
+
+    }
+
+});
+
+import Geocoder from '@pderas/vue2-geocoder';
+Vue.use(Geocoder, {
+
+    googleMapsApiKey: process.env.MIX_MAP_API_KEY,
+
+});
+
+Vue.use(require('vue-moment'))
+
+import Datetime from 'vue-datetime'
+import 'vue-datetime/dist/vue-datetime.css'
+
+Vue.use(Datetime)

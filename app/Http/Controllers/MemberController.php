@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 
 use App\User;
+use App\UserAddress;
 
 class MemberController extends Controller
 {
@@ -19,12 +20,19 @@ class MemberController extends Controller
     }
 
     public function register(Request $request) {
+
         $validator = Validator::make($request->all(), [
             'name' => ['required', 'string', 'max:255', 'unique:users'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'role' => ['required',
                 Rule::in(['owner', 'client', 'vendor', 'mod']),
             ],
+            'province' => ['required', 'string', 'max:12'],
+            'municipality' => ['required', 'string', 'max:12'],
+            'barangay' => ['required', 'string', 'max:40'],
+            'address_line' => ['required', 'max:60'],
+            'lat' => ['required', 'string'],
+            'lng' => ['required', 'string']
         ]);
 
         if($validator->fails()){
@@ -45,6 +53,16 @@ class MemberController extends Controller
         ]);
 
         $user->assignRole($role);
+
+        $userAddress = UserAddress::create([
+            'user_id' => $user->id,
+            'provCode' => $request['province'],
+            'citymunCode' => $request['municipality'],
+            'brgyCode' => $request['barangay'],
+            'address_line' => $request['address_line'],
+            'lat' => $request['lat'],
+            'lng' => $request['lng']
+        ]);
 
         User::sendWelcomeEmail($user);
 

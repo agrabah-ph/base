@@ -21,29 +21,26 @@ class WelcomeController extends Controller
         } else {
             return redirect()->route('register');
         }
-
     }
 
     public function volunteer()
     {
-
         dd($this->validateVolunteer());
-
     }
 
     public function contact()
     {
-        dd($this->validateContactMessage());
+        dd($this->validateContacts());
     }
 
-    public function validateContactMessage()
+    public function validateContacts()
     {
         return request()->validate([
 
-            'contact_firstname' => ['required', 'min:1', 'string'],
-            'contact_lastname' => ['required', 'min:1', 'string'],
-            'contact_email' => ['required', 'email'],
-            'contact_message' => ['required', 'min:3', 'string']
+            'contact_firstname' => ['required', 'min:1', 'max:50','string'],
+            'contact_lastname' => ['required', 'min:1', 'max:50', 'string'],
+            'contact_email' => ['required', 'email', 'max:50'],
+            'contact_message' => ['required', 'min:3', 'max:220', 'string']
 
         ]);
     }
@@ -52,10 +49,10 @@ class WelcomeController extends Controller
     {
         return request()->validate([
 
-            'volunteer_firstname' => ['required', 'min:1', 'string'],
-            'volunteer_lastname' => ['required', 'min:1', 'string'],
-            'volunteer_address' => ['required', 'min: 3', 'string'],
-            'volunteer_email' => ['required', 'email'],
+            'volunteer_firstname' => ['required', 'min:1', 'max:50', 'string'],
+            'volunteer_lastname' => ['required', 'min:1','max:50', 'string'],
+            'volunteer_address' => ['required', 'min: 3','max:300', 'string'],
+            'volunteer_email' => ['required', 'email', 'max:50'],
             'volunteer_mobile' => ['required', 'numeric','digits:11'],
             'volunteer-role' => ['required'],
             'agreement' => ['accepted']

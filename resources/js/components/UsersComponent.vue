@@ -10,7 +10,7 @@
             </select>
         </div>
 
-        <div class="select_wrapper">    
+        <div class="select_wrapper">
             <label for="verified">Status</label>
             <select v-model="status" class="form-control" name="verified">
                 <option value="all">All</option>
@@ -18,7 +18,7 @@
                 <option value="unverified">Unverified</option>
             </select>
         </div>
-        
+
         <span class="result_message" v-if="!filteredUsers.length">No matching record found.</span>
         <span class="result_message" v-if="filteredUsers.length">Found {{filteredUsers.length}} record{{filteredUsers.length>1? 's' : ''}}.</span>
 
@@ -35,12 +35,50 @@
                     <td>{{user.name}}</td>
                     <td class="d-none d-sm-table-cell">{{user.email}}</td>
                     <td class="user_action_td">
-                        <a href="#0" class="user_action"><i class="far fa-eye"></i></a>
-                        <a href="#0" class="user_action"><i class="fas fa-cog"></i></a>
+
+                        <a href="#0" class="user_action" data-toggle="modal" :data-target="'#'+trimname(user.name)"><i class="far fa-eye"></i></a>
+
+                        <div class="dropdown show d-inline">
+                            <a href="#" class="user_action" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-cog"></i>
+                            </a>
+
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                <button class="dropdown-item">Edit</button>
+                                <button class="dropdown-item">Delete</button>
+                            </div>
+                        </div>
                     </td>
+                    <div class="modal fade" :id="trimname(user.name)" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">{{ user.name }}</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+
+                                <div class="modal-body">
+                                    <p><b>Email: </b> {{ user.email }}</p>
+                                    <p><b>Address: </b> {{ user.address }}</p>
+                                </div>
+
+                                <div class="modal-footer justify-content-between">
+                                    <div>
+                                        <button class="btn btn-warning">Edit</button>
+                                        <button class="btn btn-danger" @click="deleteUser(user.id)">Delete</button>
+                                    </div>
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </tr>
             </tbody>
         </table>
+
     </div>
 </template>
 
@@ -54,12 +92,15 @@
             return {
                 role: 'all',
                 status: 'all',
+                display: false,
+                userDetails: []
             }
         },
         mounted() {
             this.$store.dispatch('GET_USERS')
         },
         computed: {
+
             filteredUsersByRole() {
                 let role = this.role;
                 return this.users.filter(function(user){
@@ -72,7 +113,7 @@
             },
             filteredUsers() {
                 let status = this.status;
-                return this.filteredUsersByRole.filter(function(user){
+                return this.filteredUsersByRole.filter(function(user) {
                     if(status == "all") {
                         return true;
                     }
@@ -85,8 +126,20 @@
             },
             ...mapGetters([
                 'users'
-            ])
-        }
+            ]),
+        },
+        methods: {
+            trimname(string) {
+
+                return string.replace(/\s/g,'');
+
+            },
+            deleteUser(user) {
+
+                console.log(user);
+
+            }
+        },
     }
 </script>
 

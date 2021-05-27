@@ -12,7 +12,9 @@ let actions = {
                 if(res.data === 'ok')
                     console.log('request sent successfully')
             }).catch(err => {
+
                 console.log(err)
+
             })
     },
     GET_USERS({commit}) {
@@ -24,6 +26,36 @@ let actions = {
             }).catch(err => {
                 console.log(err)
             })
+    },
+    GET_ORDERS({commit}) {
+
+        Axios.get('/api/orders')
+        .then( res => {
+            {
+                commit('SET_ORDERS', res.data)
+            }
+        })
+        .catch( err => {
+
+            console.log(err)
+
+        })
+
+    },
+    GET_OWN_PO({commit}) {
+
+        Axios.get('/api/userPurchaseOrders')
+        .then( res => {
+            {
+                commit('SET_OWN_PO', res.data)
+            }
+        })
+        .catch( err => {
+
+            console.log(err)
+
+        })
+
     }
 }
 
